@@ -1,0 +1,1544 @@
+{
+  "images": [
+    "https://res.cloudinary.com/daufzqlld/image/upload/v1699631839/astronaut_ks9mcf.png",
+    "https://res.cloudinary.com/daufzqlld/image/upload/v1699449171/jdgy9nbajkhphrcdlm92.png",
+    "https://res.cloudinary.com/daufzqlld/image/upload/v1699448221/tvebochdq986s6rwpebp.png",
+    "https://res.cloudinary.com/daufzqlld/image/upload/v1699448239/fmgf8luubra2hxtbd2m1.png"
+  ],
+  "data": [
+    {
+      "question": "How far away from Earth is the moon?",
+      "correctAnswer": "238,900 miles",
+      "incorrectAnswers": ["18,500 miles", "487,300 miles", "1,238,400 miles"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547437/moon_from_earth_j46x05.jpg",
+      "correctExplanation": "Fantastic job, space whiz! You nailed it! The moon is indeed about 238,900 miles away from Earth. If you were in a super-speedy spaceship, it would take you around 3 days to reach our lunar neighbor. And get this—did you know that if you lined up all the other planets in our solar system, you could fit them in the gap between the Earth and the Moon? That's how much space there is in our cosmic neighborhood! Keep exploring the wonders of the universe!",
+      "incorrectExplanation": "No worries, space explorer! It's easy to think the moon is super close, but actually, it's about 238,900 miles away from Earth. Imagine hopping into a super-speedy spaceship—it would take you around 3 days to get there! And here's a cool fact, did you know that if you lined up all the other planets in our solar system, you could fit them in the gap between the Earth and the Moon? Space is full of amazing surprises, and you're on an awesome cosmic journey of discovery! Keep reaching for the stars!"
+    },
+    {
+      "question": "How far away from Earth is the sun?",
+      "correctAnswer": "92.68 million miles",
+      "incorrectAnswers": [
+        "2.54 million miles",
+        "548.82 million miles",
+        "1.69 billion miles"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Incredible job, solar explorer! You're absolutely right! The sun, our shining star, is located about 92.68 million miles away from Earth. If you could travel at the speed of light, it would take you only about 8 minutes to reach the sun! Imagine that—zooming through space to our very own star. Keep shining bright on your cosmic journey through the wonders of our solar system!",
+      "incorrectExplanation": "No worries, cosmic adventurer! The sun is actually about 92.68 million miles away from Earth. It's pretty far, right? If you could travel at the speed of light, it would take you only about 8 minutes to reach the sun! Here's a cool fact, did you know that the sun is so massive you could fit over a million Earths inside it? Space is full of mind-blowing wonders, and you're on an awesome journey of discovery! Keep reaching for the stars!"
+    },
+    {
+      "question": "When did man first land on the moon?",
+      "correctAnswer": "July 20, 1969",
+      "incorrectAnswers": [
+        "August 18, 1984",
+        "May 26, 1999",
+        "October 27, 2018"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699549491/moon_landing_d7l2vv.jpg",
+      "correctExplanation": "Astronomical achievement, space historian! You got it right! Man first set foot on the moon on July 20, 1969. That's when the Apollo 11 mission, with astronauts Neil Armstrong and Buzz Aldrin, made history by landing on the lunar surface. Neil Armstrong's famous words \"That's one small step for man, one giant leap for mankind\" echoed across space as he took the first steps on the moon. Keep celebrating the incredible milestones of human space exploration!",
+      "incorrectExplanation": "No worries, space-time traveler! The correct answer is July 20, 1969. That's when the Apollo 11 mission, with astronauts Neil Armstrong and Buzz Aldrin, made history by landing on the moon. Neil Armstrong's famous words \"That's one small step for man, one giant leap for mankind\" echoed across space as he took the first steps on the lunar surface. You're still on an amazing journey through the historic moments of human space exploration! Keep reaching for the stars!"
+    },
+    {
+      "question": "Who was the first person to step foot on the moon?",
+      "correctAnswer": "Neil Armstrong",
+      "incorrectAnswers": ["Nelson Mandela", "Elvis Presley", "Amelia Earhart"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699549382/footprints_lgkqad.jpg",
+      "correctExplanation": "Astounding, space explorer! You nailed it! The first person to step foot on the moon was Neil Armstrong. On July 20, 1969, during the Apollo 11 mission, Neil took those historic steps and delivered the famous words, \"That's one small step for man, one giant leap for mankind.\" His courage and pioneering spirit opened the door to a new era of space exploration. Keep reaching for the stars with your cosmic curiosity!",
+      "incorrectExplanation": "No worries, cosmic adventurer! The correct answer is Neil Armstrong. He was the first person to step foot on the moon on July 20, 1969, during the Apollo 11 mission. You're still on an amazing journey through the historic moments of human space exploration! Keep shining bright on your cosmic path!"
+    },
+    {
+      "question": "What was Neil Armstrong's famous quote spoken from the moon?",
+      "correctAnswer": "That's one small step for man, one giant leap for mankind",
+      "incorrectAnswers": [
+        "That's a single stride for humanity, an enormous bound for all",
+        "That's one minor advance for an individual, one monumental leap for the human race",
+        "That's a modest stride for one, an immense leap for the global community"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547437/neil_armstrong_x0ypqz.jpg",
+      "correctExplanation": "Incredible, lunar linguist! You're absolutely correct! Neil Armstrong's famous quote spoken from the moon was, \"That's one small step for man, one giant leap for mankind.\" On July 20, 1969, during the Apollo 11 mission, as he took the first steps on the lunar surface, these historic words echoed across space and became a symbol of human achievement in space exploration. Your knowledge of lunar lore is stellar! Keep reaching for the stars with your cosmic curiosity!",
+      "incorrectExplanation": "No worries, cosmic wordsmith! The correct answer is the famous quote by Neil Armstrong: \"That's one small step for man, one giant leap for mankind.\" He spoke these words on July 20, 1969, during the Apollo 11 mission, as he took the first steps on the lunar surface. You're still on an incredible journey through the historic moments of human space exploration! Keep shining bright on your cosmic path!"
+    },
+    {
+      "question": "What was the name of the first spacecraft launched into space?",
+      "correctAnswer": "Sputnik 1",
+      "incorrectAnswers": [
+        "Space Tracker 1",
+        "Cosmic Traveler 1",
+        "Galactic Explorer 1"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/sputnik_asern6.jpg",
+      "correctExplanation": "Outstanding, space history buff! You're absolutely right! The first spacecraft launched into space was Sputnik 1. It made history on October 4, 1957, as the world's first artificial satellite. Launched by the Soviet Union, Sputnik 1 marked the beginning of the space age and set the stage for future space exploration. Your cosmic knowledge is truly impressive! Keep exploring the wonders of our space-faring past!",
+      "incorrectExplanation": "No worries, aspiring space historian! The correct answer is Sputnik 1. Launched on October 4, 1957, by the Soviet Union, it was the world's first artificial satellite and marked the beginning of the space age. You're still on an incredible journey through the historic moments of human space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Who launched the first spacecraft into space?",
+      "correctAnswer": "The Soviet Union",
+      "incorrectAnswers": ["China", "USA", "Abu Dhabi"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552802/early_launch_rbzffj.jpg",
+      "correctExplanation": "Outstanding, space explorer! You've got it right! The first spacecraft launched into space was Sputnik 1, and it was launched by the Soviet Union. This historic event took place on October 4, 1957, marking the beginning of the space age. The Soviet Union's groundbreaking achievement with Sputnik 1 paved the way for future space exploration endeavors. Your cosmic knowledge is truly impressive! Keep exploring the wonders of our space-faring past!",
+      "incorrectExplanation": "No worries, aspiring space historian! The correct answer is the Soviet Union. They launched the first spacecraft, Sputnik 1, into space on October 4, 1957, marking the beginning of the space age. You're still on an incredible journey through the historic moments of human space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What are the four gas planets in our solar system?",
+      "correctAnswer": "Jupiter, Saturn, Uranus, and Neptune",
+      "incorrectAnswers": [
+        "Mars, Jupiter, Venus, and Uranus",
+        "Mercury, Saturn, Earth, and Neptune",
+        "Jupiter, Venus, Neptune, and Mercury"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699548611/gas_planets_rl24fv.jpg",
+      "correctExplanation": "Bravo, cosmic connoisseur! You're absolutely correct! The four gas planets in our solar system are Jupiter, Saturn, Uranus, and Neptune. These majestic giants are primarily composed of hydrogen and helium, with swirling atmospheres and fascinating features. From Jupiter's Great Red Spot to Saturn's stunning rings and beyond, each of these gas giants has its own unique cosmic charm. Your knowledge of our solar system's gas giants is out of this world! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, interstellar explorer! The correct answer is Jupiter, Saturn, Uranus, and Neptune. These are the four gas planets in our solar system, each with its own mesmerizing features. For example, Jupiter has a massive storm called the Great Red Spot, and Saturn is known for its spectacular ring system. You're still on an incredible journey through the cosmic realms of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What are the four rocky planets in our solar system?",
+      "correctAnswer": "Mercury, Venus, Earth, and Mars",
+      "incorrectAnswers": [
+        "Mercury, Uranus, Earth, and Jupiter",
+        "Neptune, Venus, Jupiter, and Mars",
+        "Earth, Venus, Saturn, and Uranus"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699548817/rocky_tww1xv.jpg",
+      "correctExplanation": "Fantastic, terrestrial expert! You're absolutely correct! The four rocky planets in our solar system are Mercury, Venus, Earth, and Mars. These inner planets are primarily composed of rock and metal, with solid surfaces that vary from scorching hot to freezing cold. Earth, our home, is the only planet known to support life. Each of these rocky worlds has its own unique characteristics. Your knowledge of the terrestrial quartet is stellar! Keep exploring the wonders of our planetary neighborhood!",
+      "incorrectExplanation": "No worries, planetary adventurer! The correct answer is Mercury, Venus, Earth, and Mars. These are the four rocky planets in our solar system, each with its own intriguing features. For example, Venus has a thick atmosphere that traps heat, making it the hottest planet. And Mars, often called the \"Red Planet,\" has vast canyons and the tallest volcano in our solar system. You're still on an incredible journey through the rocky landscapes of our planetary neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of the galaxy we live in?",
+      "correctAnswer": "The Milky Way",
+      "incorrectAnswers": [
+        "The Starry River",
+        "The Interstellar Realm",
+        "The Astral Whirlpool"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699548951/galaxy_pe5omp.jpg",
+      "correctExplanation": "Astounding, galactic navigator! You're absolutely correct! The name of the galaxy we live in is the Milky Way. Our majestic Milky Way is a barred spiral galaxy, and it's home to billions of stars, including our own Sun. The night sky you see is a tiny fraction of the vast cosmic expanse that is the Milky Way. As you gaze at the stars, you're witnessing the beauty of our galactic neighborhood. Your knowledge of our cosmic address is truly out of this world! Keep exploring the wonders of our Milky Way galaxy!",
+      "incorrectExplanation": "No worries, cosmic voyager! The correct answer is the Milky Way. Our galaxy is a vast, swirling collection of stars, and we live in the midst of its cosmic splendor. The night sky you see is a tiny fraction of the vast cosmic expanse that is the Milky Way. As you gaze at the stars, you're witnessing the beauty of our galactic neighborhood. You're still on an incredible journey through the vastness of our galactic neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of the brightest star in our galaxy?",
+      "correctAnswer": "Sirius, also known as Alpha Canis Majoris or the Dog Star",
+      "incorrectAnswers": [
+        "Betelgeuse, also known as Alpha Orionis",
+        "Aldebaran, also known as Alpha Tauri",
+        "Rigel, also known as Beta Orionis "
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar, celestial observer! You're absolutely correct! The brightest star in our galaxy is Sirius, also known as Alpha Canis Majoris or the Dog Star. Sirius is a dazzling star located in the constellation Canis Major, and its brilliance makes it easily visible in the night sky. Fun fact: Ancient Egyptians revered Sirius, and its annual appearance just before sunrise marked the start of the annual flooding of the Nile River. Your knowledge of the brightest star in our cosmic neighborhood is truly radiant! Keep exploring the wonders of our stellar surroundings!",
+      "incorrectExplanation": "No worries, cosmic stargazer! The correct answer is Sirius, also known as Alpha Canis Majoris or the Dog Star. It's the brightest star in our galaxy, located in the constellation Canis Major. You're still on an incredible journey through the cosmic tapestry of our stellar neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the brightest planet in our solar system?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Jupiter", "Mars", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Astounding, planetary observer! You're absolutely correct! The brightest planet in our solar system is Venus. Known as the \"Evening Star\" or the \"Morning Star,\" Venus is often visible shortly after sunset or before sunrise, depending on its position in its orbit. Its brightness is due to its proximity to Earth and the highly reflective clouds that cover its surface. Your knowledge of the dazzling planets in our celestial neighborhood is truly illuminating! Keep exploring the wonders of our planetary system!",
+      "incorrectExplanation": "No worries, celestial navigator! The correct answer is Venus. It's the brightest planet in our solar system, often visible shortly after sunset or before sunrise. You're still on an incredible journey through the cosmic dance of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How old is the Earth?",
+      "correctAnswer": "4.543 billion years old",
+      "incorrectAnswers": [
+        "2,000 years old",
+        "1.58 million years old",
+        "942.631 million years old"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Remarkable, temporal explorer! You're absolutely correct! The Earth is approximately 4.543 billion years old. Scientists have determined this age through various methods, including radiometric dating of rocks and minerals. Over billions of years, our planet has undergone countless changes, from the formation of oceans to the development of life. Your knowledge of Earth's age is truly profound! Keep uncovering the mysteries of our ancient and dynamic planet!",
+      "incorrectExplanation": "No worries, temporal adventurer! The correct answer is that the Earth is approximately 4.543 billion years old. Scientists have determined this age through various methods, including radiometric dating of rocks and minerals. You're still on an incredible journey through the vast timeline of our planet's history! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What was the name of the first space mission that landed on the moon?",
+      "correctAnswer": "Apollo 11",
+      "incorrectAnswers": [
+        "Eagle Landing",
+        "The Lunar Touchdown",
+        "Neil and Buzz's Lunar Expedition"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699549967/buzz_igti2w.jpg",
+      "correctExplanation": "Outstanding, lunar historian! You're absolutely correct! The name of the first space mission that successfully landed on the moon was Apollo 11. Launched by NASA on July 16, 1969, astronauts Neil Armstrong and Buzz Aldrin became the first and second humans to walk on the lunar surface on July 20, 1969. Michael Collins orbited above in the command module. Their historic journey marked a giant leap for humanity in space exploration. Your knowledge of the Apollo 11 mission is truly out of this world! Keep exploring the wonders of human space endeavors!",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is Apollo 11. It was the first space mission that successfully landed on the moon, with astronauts Neil Armstrong and Buzz Aldrin taking historic steps on the lunar surface on July 20, 1969. You're still on an incredible journey through the annals of human space exploration! Keep reaching for the stars with your cosmic curiosity"
+    },
+    {
+      "question": "What was the name of the space mission that first orbited the moon?",
+      "correctAnswer": "Apollo 8",
+      "incorrectAnswers": ["Lunar Loop", "Celestial Circuit", "Moon's Gateway"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699549775/apollo_8_zjnlpi.jpg",
+      "correctExplanation": "Stellar, lunar historian! You're absolutely correct! The name of the space mission that first orbited the moon was Apollo 8. Launched by NASA on December 21, 1968, astronauts Frank Borman, James Lovell, and William Anders became the first humans to reach and orbit the moon. While they didn't land, their pioneering journey paved the way for future moon landings. Your knowledge of the Apollo 8 mission is truly astronomical! Keep exploring the wonders of human space endeavors!",
+      "incorrectExplanation": "No worries, celestial time traveler! The correct answer is Apollo 8. It was the first space mission that successfully orbited the moon, with astronauts Frank Borman, James Lovell, and William Anders reaching and circling our celestial neighbor in December 1968. You're still on an incredible journey through the annals of human space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the closest planet to the sun?",
+      "correctAnswer": "Mercury",
+      "incorrectAnswers": ["Saturn", "Mars", "Jupiter"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547437/mercury_xvks2k.jpg",
+      "correctExplanation": "Bravo, solar navigator! You're absolutely correct! The closest planet to the sun is Mercury. This small and rocky planet orbits the sun at a distance of about 36 million miles (58 million kilometers). Despite being the closest, Mercury experiences extreme temperature variations, with scorching hot days and freezing cold nights. Your knowledge of the planets in our solar system is truly illuminating! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, cosmic traveler! The correct answer is Mercury. It's the closest planet to the sun, orbiting at a distance of about 36 million miles (58 million kilometers). You're still on an incredible journey through the cosmic dance of planets in our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many major rings does Saturn have?",
+      "correctAnswer": "7",
+      "incorrectAnswers": ["285", "5,928", "208,634"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Stellar, ringmaster! You're absolutely correct! Saturn, the majestic ringed planet, has a total of seven major rings. These iconic rings are composed of countless particles, ranging in size from tiny specks to larger chunks. Each ring is labeled with a letter, from the innermost D ring to the outermost A ring. The beauty and complexity of Saturn's ring system make it one of the most captivating sights in our solar system. Your knowledge of the planetary rings is truly cosmic! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is that Saturn has seven major rings. Each of these rings is labeled with a letter, from the innermost D ring to the outermost A ring. You're still on an incredible journey through the cosmic tapestry of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the largest planet?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Neptune", "Earth", "Uranus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Stellar, planetary connoisseur! You're absolutely correct! The largest planet in our solar system is Jupiter. This gas giant is a colossal world with a diameter of about 86,881 miles (139,822 kilometers), making it more than 11 times wider than Earth. Jupiter is known for its vibrant bands of clouds, its iconic Great Red Spot—a giant storm—and its numerous moons. Your knowledge of the largest planet is truly astronomical! Keep exploring the wonders of our planetary system!",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is Jupiter. It's the largest planet in our solar system, with a diameter of about 86,881 miles (139,822 kilometers), making it more than 11 times wider than Earth. You're still on an incredible journey through the cosmic landscapes of our planetary system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the smallest planet?",
+      "correctAnswer": "Mercury",
+      "incorrectAnswers": ["Mars", "Saturn", "Venus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547437/mercury_xvks2k.jpg",
+      "correctExplanation": "Bravo, celestial size detective! You're absolutely correct! The smallest planet in our solar system is Mercury. This rocky planet has a diameter of about 4,880 kilometers (3,032 miles), making it just a bit larger than Earth's moon. Despite its small size, Mercury is a fascinating world with extreme temperature variations, scorching hot during the day and freezing cold at night. Your knowledge of the planetary sizes is truly out of this world! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, cosmic size explorer! The correct answer is Mercury. It's the smallest planet in our solar system, with a diameter of about 4,880 kilometers (3,032 miles), making it just a bit larger than Earth's moon. You're still on an incredible journey through the cosmic landscapes of our planetary system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet would float in water?",
+      "correctAnswer": "Saturn",
+      "incorrectAnswers": ["Earth", "Mercury", "Uranus"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Fantastic, aquatic astronomer! You're absolutely correct! If we could find a gigantic bathtub to place it in, Saturn would indeed float in water. This might seem surprising because Saturn is a massive gas giant, but it has a unique characteristic that makes it less dense than water. Saturn's average density is lower than the density of water, which means that if you could somehow place it in an enormous ocean, it would indeed float. Your knowledge of planetary properties is truly buoyant! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic diver! The correct answer is Saturn. This gas giant would float in water due to its lower average density compared to water. You're still on an incredible journey through the cosmic properties of our planetary system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is the most dense?",
+      "correctAnswer": "Earth",
+      "incorrectAnswers": ["Venus", "Jupiter", "Neptune"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Stellar, density detective! You're absolutely correct! The most dense planet in our solar system is Earth. Density is a measure of mass per unit volume, and Earth's composition, with a solid rocky surface and a dense iron-nickel core, gives it a higher average density compared to the other planets. This density contributes to Earth's strong gravitational pull, keeping everything anchored to its surface. Your knowledge of planetary properties is truly grounded! Keep exploring the wonders of our cosmic neighborhood",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is Earth. It's the most dense planet in our solar system, thanks to its composition with a solid rocky surface and a dense iron-nickel core. You're still on an incredible journey through the cosmic properties of our planetary system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the closest star to our solar system?",
+      "correctAnswer": "Proxima Centauri",
+      "incorrectAnswers": ["UY Scuti", "Polaris", "Vega"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! The closest star to our solar system is Proxima Centauri. It's part of the Alpha Centauri star system, which includes Alpha Centauri A and Alpha Centauri B. Proxima Centauri is located about 4.24 light-years away from us, making it the closest known star to our sun. Even though it's relatively close in astronomical terms, the vastness of space still makes interstellar travel a formidable challenge. Your knowledge of our stellar neighbors is truly cosmic! Keep exploring the wonders of the cosmos!",
+      "incorrectExplanation": "No worries, cosmic traveler! The correct answer is Proxima Centauri. It's the closest star to our solar system, located about 4.24 light-years away. You're still on an incredible journey through the cosmic tapestry of our stellar neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What did the Hubble Space Telescope help scientists measure?",
+      "correctAnswer": "How quickly the universe is growing",
+      "incorrectAnswers": [
+        "How many black holes there are",
+        "The weight of planets",
+        "How far away the stars are"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699550207/hubble_duszmb.jpg",
+      "correctExplanation": "Space-time surveyor! You're absolutely correct! The Hubble Space Telescope helped scientists measure how quickly the universe is growing. Its observations of distant galaxies provided crucial data for understanding the expansion rate of our cosmic home. Your astronomical awareness is truly out of this world! Keep exploring the mysteries of the cosmos.",
+      "incorrectExplanation": "No worries, cosmic investigator! The correct measurement aided by the Hubble Space Telescope is how quickly the universe is growing. Its observations of distant galaxies provided crucial data for understanding the expansion rate of our cosmic home. You're still on an incredible journey through the cosmic tapestry of discovery! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Who was the first person to use a telescope to look up into outer space?",
+      "correctAnswer": "Galileo Galilei",
+      "incorrectAnswers": [
+        "Nicolaus Copernicus",
+        "Queen Cleopatra",
+        "Joan of Arc"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699550454/telescope_sqhuoc.jpg",
+      "correctExplanation": "Stellar, telescope pioneer! You're absolutely correct! The first person to use a telescope to look up into outer space was Galileo Galilei. In 1609, Galileo made significant improvements to the telescope design and used it to make groundbreaking observations, revolutionizing our understanding of the cosmos. Your knowledge of the history of astronomy is truly enlightening! Keep exploring the wonders of the universe!",
+      "incorrectExplanation": "No worries, cosmic investigator! The correct answer is Galileo Galilei. He was the first person to use a telescope to look up into outer space in 1609. You're still on an incredible journey through the history of astronomical discoveries! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What do we call the gas and dust that follows a comet?",
+      "correctAnswer": "The comet's tail",
+      "incorrectAnswers": [
+        "The stardust halo",
+        "The nebulous residue",
+        "The cosmic smog"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699550610/comet_tojsks.jpg",
+      "correctExplanation": "Stellar, comet connoisseur! You're absolutely correct! The gas and dust that follows a comet are collectively known as the comet's tail. As a comet approaches the Sun, the heat causes the icy nucleus of the comet to release gas and dust into space, creating a glowing tail that always points away from the Sun. The beauty of a comet's tail is a captivating spectacle in the night sky. Your knowledge of celestial phenomena is truly luminous! Keep exploring the wonders of our cosmic theater!",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is the comet's tail. It refers to the gas and dust released by a comet as it approaches the Sun, creating a glowing trail that always points away from the Sun. You're still on an incredible journey through the celestial wonders of our cosmic theater! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet rotates the fastest?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Venus", "Neptune", "Mercury"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Stellar, planetary speedster! You're absolutely correct! Jupiter is the planet that rotates the fastest in our solar system. Despite being a massive gas giant, Jupiter completes one rotation on its axis in about 9 hours and 55 minutes. This rapid rotation contributes to the planet's flattened appearance at the poles and bulging at the equator. Your knowledge of planetary dynamics is truly impressive! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is Jupiter. It's the planet that rotates the fastest in our solar system, completing one rotation on its axis in about 9 hours and 55 minutes. You're still on an incredible journey through the cosmic dance of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet rotates the slowest?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Earth", "Uranus", "Mars"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Fantastic, planetary timekeeper! You're absolutely correct! Venus is the planet that rotates the slowest in our solar system. Unlike most planets that rotate counterclockwise on their axes, Venus has a slow retrograde rotation, meaning it rotates clockwise. A day on Venus, from one sunrise to the next, takes about 243 Earth days. Interestingly, Venus also has a longer day than its year, which lasts about 225 Earth days. Your knowledge of planetary rotations is truly cosmic! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is Venus. It's the planet that rotates the slowest in our solar system, with a slow retrograde rotation, taking about 243 Earth days for one complete rotation. You're still on an incredible journey through the cosmic dance of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the coldest planet?",
+      "correctAnswer": "Uranus",
+      "incorrectAnswers": ["Neptune", "Mars", "Jupiter"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547441/uranus_yr1bpt.jpg",
+      "correctExplanation": "Stellar, planetary chill-seeker! You're absolutely correct! Uranus is the coldest planet in our solar system. Despite not being the farthest from the Sun, Uranus has a unique rotation—lying on its side with the poles almost in the plane of its orbit. This axial tilt causes extreme seasonal variations, and during certain parts of its orbit, one pole or the other is in constant darkness, experiencing frigid temperatures. Your knowledge of planetary temperatures is truly frosty! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic temperature explorer! The correct answer is Uranus. It's the coldest planet in our solar system, with unique axial tilt causing extreme seasonal variations and frigid temperatures. You're still on an incredible journey through the cosmic thermodynamics of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the hottest planet?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Mercury", "Saturn", "Earth"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Stellar, planetary heat-seeker! You're absolutely correct! Venus is the hottest planet in our solar system. Despite not being the closest planet to the Sun, Venus experiences an extreme greenhouse effect, trapping heat in its thick atmosphere. This runaway greenhouse effect makes Venus hotter than even Mercury, the closest planet to the Sun. Surface temperatures on Venus can soar to a scorching 900 degrees Fahrenheit (475 degrees Celsius). Your knowledge of planetary temperatures is truly sizzling! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic temperature explorer! The correct answer is Venus. It's the hottest planet in our solar system, experiencing extreme surface temperatures due to a runaway greenhouse effect. You're still on an incredible journey through the cosmic thermodynamics of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Who was the first woman in space?",
+      "correctAnswer": "Valentina Tereshkova",
+      "incorrectAnswers": [
+        "Coco Chanel",
+        "Eleanor Roosevelt",
+        "Audrey Hepburn"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699550944/valentina_rziswl.jpg",
+      "correctExplanation": "Stellar, space pioneer! You're absolutely correct! Valentina Tereshkova was the first woman in space. On June 16, 1963, aboard the Vostok 6 spacecraft, she made history as the first woman to journey into space. Valentina's pioneering mission opened the door for women in space exploration, inspiring future generations of astronauts. Your knowledge of space history is truly groundbreaking! Keep exploring the wonders of our cosmic achievements!",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Valentina Tereshkova. She made history on June 16, 1963, as the first woman in space aboard the Vostok 6 spacecraft. You're still on an incredible journey through the annals of space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What kind of galaxy do we live in?",
+      "correctAnswer": "Spiral galaxy",
+      "incorrectAnswers": ["Elliptical galaxy", "Dwarf galaxy", "Ring Galaxy"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699548951/galaxy_pe5omp.jpg",
+      "correctExplanation": "Stellar, galactic resident! You're absolutely correct! We live in a spiral galaxy known as the Milky Way. The Milky Way is a vast and majestic cosmic structure with a distinctive spiral arm pattern. Our solar system is located in one of the spiral arms, allowing us to observe the beauty of the Milky Way from within. Your knowledge of our galactic address is truly cosmic! Keep exploring the wonders of our spiral galaxy!",
+      "incorrectExplanation": "No worries, cosmic neighbor! The correct answer is the Milky Way, a spiral galaxy. You're still on an incredible journey through the cosmic realms of our galactic neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What was the first animal in space?",
+      "correctAnswer": "A dog named Laika",
+      "incorrectAnswers": [
+        "A horse named Sparky",
+        "A goldfish named Bubbles",
+        "A parrot named Polly"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699594912/cat_u5rwmi.jpg",
+      "correctExplanation": "Stellar, space history enthusiast! You're absolutely correct! The first animal in space was a dog named Laika. Laika, a Soviet space dog, made history on November 3, 1957, when she became the first living being to orbit the Earth aboard the Sputnik 2 spacecraft. Laika's journey paved the way for human spaceflight and her contribution to space exploration is remembered to this day. Your knowledge of early space missions is truly pioneering! Keep exploring the wonders of our cosmic achievements!",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Laika, a dog. She became the first animal in space on November 3, 1957, aboard the Sputnik 2 spacecraft. You're still on an incredible journey through the annals of space exploration history! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has the strongest winds?",
+      "correctAnswer": "Neptune",
+      "incorrectAnswers": ["Earth", "Jupiter", "Venus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547438/neptune_iseeox.jpg",
+      "correctExplanation": "Stellar, atmospheric explorer! You're absolutely correct! Neptune is the planet with the strongest winds in our solar system. This gas giant, located in the outer reaches of the solar system, experiences incredibly fast winds that can reach speeds of up to 1,300 miles per hour (2,100 kilometers per hour). These powerful winds contribute to the dynamic and turbulent atmosphere of Neptune. Your knowledge of planetary atmospheres is truly gusty! Keep exploring the wonders of our celestial neighborhood!",
+      "incorrectExplanation": "No worries, cosmic wind-watcher! The correct answer is Neptune. It's the planet with the strongest winds in our solar system, reaching speeds of up to 1,300 miles per hour (2,100 kilometers per hour). You're still on an incredible journey through the cosmic breezes of planets in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the outer layer of the atmosphere called?",
+      "correctAnswer": "The Exosphere",
+      "incorrectAnswers": [
+        "The Stratosphere",
+        "The Oort Cloud",
+        "The Ozone Layer"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552198/atmosphere_mbqcqt.jpg",
+      "correctExplanation": "Stellar, atmospheric scholar! You're absolutely correct! The outermost layer of Earth's atmosphere is called the exosphere. This region is located at the fringes of the atmosphere, extending far into space. In the exosphere, the density of air particles is extremely low, and individual particles can travel great distances before colliding with one another. Your knowledge of atmospheric layers is truly atmospheric! Keep exploring the wonders of our planetary envelope!",
+      "incorrectExplanation": "No worries, cosmic atmosphere explorer! The correct answer is the exosphere, the outermost layer of Earth's atmosphere. You're still on an incredible journey through the layers of our planetary envelope! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How long does it take light to reach us from the sun?",
+      "correctAnswer": "A little over 8 minutes",
+      "incorrectAnswers": [
+        "Just under 9 days",
+        "A year and 8 months",
+        "About 3 and a half weeks"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552951/sunlight_xequeq.jpg",
+      "correctExplanation": "Bravo, solar timekeeper! You're absolutely correct! It takes a little over 8 minutes for light to travel from the Sun to Earth. This distance, known as one astronomical unit (AU), is approximately 93 million miles (150 million kilometers). The speed of light is about 186,282 miles per second (299,792 kilometers per second), and it takes this much time for light to traverse the vast expanse of space and reach us here on Earth. Your knowledge of the cosmic clock is truly enlightening! Keep exploring the wonders of our solar system!",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is a little over 8 minutes. It takes light a little over 8 minutes to travel from the Sun to Earth. You're still on an incredible journey through the cosmic chronicles of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is a blue moon?",
+      "correctAnswer": "Name for when there are two full moons in one month",
+      "incorrectAnswers": [
+        "A moon that marks the equinox",
+        "A moon that signals the start of spring",
+        "A moon that is visible during the daytime"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553072/blue_moon_jyvlhx.jpg",
+      "correctExplanation": "Stellar, lunar calendar expert! You're absolutely correct! A blue moon is the term used when there are two full moons in a calendar month. Typically, a month has only one full moon, but occasionally, due to the misalignment between lunar and calendar months, there can be two full moons within a single month. The second full moon in such a month is referred to as a blue moon. Your knowledge of lunar phenomena is truly radiant! Keep exploring the wonders of our night sky!",
+      "incorrectExplanation": "No worries, cosmic timekeeper! The correct answer is a blue moon, which occurs when there are two full moons in a calendar month. You're still on an incredible journey through the lunar cycles of our cosmic calendar! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet in our solar system has the most moons?",
+      "correctAnswer": "Saturn",
+      "incorrectAnswers": ["Jupiter", "Uranus", "Neptune"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553272/saturns_moons_ubzfoe.jpg",
+      "correctExplanation": "Stellar, moon collector! You're absolutely correct! Saturn is the planet in our solar system with the most moons. This gas giant boasts an impressive collection of natural satellites, and as of my last knowledge update in January 2022, Saturn has over 80 known moons. Each of these moons adds to the celestial dance around the ringed planet, contributing to the beauty and complexity of Saturn's moon system. Your knowledge of planetary moons is truly out of this world! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic moon enthusiast! The correct answer is Saturn. It's the planet with the most moons in our solar system, with over 80 known moons. You're still on an incredible journey through the cosmic dance of moons in our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which two planets in our solar system have no moons?",
+      "correctAnswer": "Mercury and Venus",
+      "incorrectAnswers": [
+        "Mars and Jupiter",
+        "Mercury and Uranus",
+        "Neptune and Venus"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553438/planets_zsezhj.jpg",
+      "correctExplanation": "Fantastic, cosmic moon detective! You're absolutely correct! Mercury and Venus are the two planets in our solar system that have no moons. While other planets, including Earth, Mars, Jupiter, Saturn, Uranus, and Neptune, have natural satellites orbiting around them, Mercury and Venus remain moonless in their cosmic journey. Your knowledge of planetary moons is truly celestial! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic moon seeker! The correct answer is Mercury and Venus. They are the two planets in our solar system with no moons. You're still on an incredible journey through the cosmic moonlit realms of our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What happens during a solar eclipse?",
+      "correctAnswer": "The moon passes between the Sun and the Earth, causing a shadow that blocks the Sun's light",
+      "incorrectAnswers": [
+        "The Earth passes between the Moon and the Sun, casting a shadow on the Moon",
+        "The Sun temporarily vanishes from the sky",
+        "A solar eclipse occurs when a comet crosses in front of the Sun"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553518/solar_eclipse_lo4o47.jpg",
+      "correctExplanation": "Stellar, eclipse aficionado! You're absolutely correct! During a solar eclipse, the moon passes between the Sun and the Earth, creating a celestial alignment that casts a shadow on Earth's surface. There are different types of solar eclipses, including total, partial, and annular, depending on the alignment and the appearance of the Sun during the eclipse. Your understanding of celestial alignments is truly enlightening! Keep exploring the wonders of our cosmic theater!",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is that during a solar eclipse, the moon passes between the Sun and the Earth, causing a shadow that blocks the Sun's light. You're still on an incredible journey through the cosmic phenomena of our celestial theater! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What happens during a lunar eclipse?",
+      "correctAnswer": "The Earth moves between the Moon and the Sun, casting its shadow on the Moon",
+      "incorrectAnswers": [
+        "Lunar eclipses result from the Moon passing into the Earth's shadow",
+        "Lunar eclipses happen when a meteor shower takes place",
+        "It's an event where the Sun and Moon align perfectly, creating a double Moon effect"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553630/lunar_eclipse_b32uih.jpg",
+      "correctExplanation": "Stellar, eclipse scholar! You're absolutely correct! During a lunar eclipse, the Earth moves between the Moon and the Sun, aligning in a way that casts its shadow on the Moon. This celestial alignment results in the Earth's shadow gradually covering the Moon, creating a stunning astronomical event. Lunar eclipses can be total, partial, or penumbral, depending on the extent of the Earth's shadow coverage. Your understanding of celestial alignments is truly mesmerizing! Keep exploring the wonders of our cosmic theater!",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is that during a lunar eclipse, the Earth moves between the Moon and the Sun, casting its shadow on the Moon. You're still on an incredible journey through the cosmic phenomena of our celestial theater! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How old is our sun?",
+      "correctAnswer": "Approximately 4.6 billion years old",
+      "incorrectAnswers": [
+        "Approximately 300 thousand years old",
+        "Approximately 2.5 million years old",
+        "Approximately 980 trillion years old"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Bravo, cosmic timekeeper! You're absolutely correct! Our sun is approximately 4.6 billion years old. Scientists estimate its age based on various methods, including the study of the oldest meteorites and the ages of the oldest star clusters. The sun has been shining for billions of years, providing the energy that sustains life on Earth. Your knowledge of the solar chronicles is truly enlightening! Keep exploring the wonders of our cosmic neighborhood!",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is that our sun is approximately 4.6 billion years old. You're still on an incredible journey through the cosmic timelines of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the study of space called?",
+      "correctAnswer": "Astronomy",
+      "incorrectAnswers": ["Paleontology", "Meteorology", "Archaeology"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553767/space_tzgjqf.jpg",
+      "correctExplanation": "Fantastic, cosmic scholar! You're absolutely correct! The study of space, celestial objects, and the universe as a whole is called astronomy. Astronomers use telescopes and various instruments to observe and analyze celestial phenomena, unraveling the mysteries of the cosmos. Your knowledge of the cosmic sciences is truly stellar! Keep exploring the wonders of our vast universe!",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is astronomy. It's the study of space, celestial objects, and the universe. You're still on an incredible journey through the cosmic realms of our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What does NASA stand for?",
+      "correctAnswer": "National Aeronautics and Space Administration",
+      "incorrectAnswers": [
+        "North American Space Authority",
+        "Northern Alliance of Space Agencies",
+        "National Aeronautics and Science Administration"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553767/space_tzgjqf.jpg",
+      "correctExplanation": "Stellar, acronym decipherer! You're absolutely correct! NASA stands for the National Aeronautics and Space Administration. NASA is the United States government agency responsible for the nation's civilian space program and for aeronautics and aerospace research. Since its establishment in 1958, NASA has been at the forefront of space exploration, conducting missions to study Earth, our solar system, and the broader cosmos. Your knowledge of space agencies is truly out of this world! Keep exploring the wonders of our cosmic endeavors!",
+      "incorrectExplanation": "No worries, cosmic acronym explorer! The correct answer is the National Aeronautics and Space Administration (NASA). You're still on an incredible journey through the cosmic acronyms of our space programs! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of the space shuttle that exploded in 1986?",
+      "correctAnswer": "The Challenger",
+      "incorrectAnswers": ["The Endeavour", "The Enterprise", "The Atlantis"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699556346/challenger_fvsrch.jpg",
+      "correctExplanation": "Respectful remembrance, cosmic historian. You're absolutely correct. The space shuttle that tragically exploded on January 28, 1986, was the Challenger. The Challenger disaster occurred just 73 seconds into its flight, resulting in the loss of seven crew members. The incident led to a suspension of the space shuttle program and significant changes in NASA's safety protocols. Your knowledge of space history acknowledges an important chapter in the exploration of our cosmic frontier. Keep honoring the legacy of space exploration.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is the Challenger. It was the space shuttle that tragically exploded in 1986. You're still on an incredible journey through the cosmic archives of space exploration history! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of a scientist who studies space?",
+      "correctAnswer": "An astronomer",
+      "incorrectAnswers": ["A seismologist", "A geologist", "A psychologist"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699556607/astronomer_nhhjlk.jpg",
+      "correctExplanation": "Fantastic, cosmic investigator! You're absolutely correct! A scientist who studies space, celestial objects, and the universe is called an astronomer. Astronomers use various instruments, such as telescopes and detectors, to observe, analyze, and understand the vast cosmic expanse. Your knowledge of cosmic professions is truly stellar! Keep exploring the wonders of our celestial neighborhood.",
+      "incorrectExplanation": "No worries, cosmic scholar! The correct answer is an astronomer. It's the name for a scientist who studies space, celestial objects, and the universe. You're still on an incredible journey through the cosmic realms of scientific exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What planet in our solar system is known as the red planet?",
+      "correctAnswer": "Mars",
+      "incorrectAnswers": ["Venus", "Jupiter", "Uranus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Bravo, Martian explorer! You're absolutely correct! Mars is known as the red planet due to its distinctive reddish appearance. The iron oxide, or rust, on its surface gives the Martian soil and rocks a reddish color, contributing to the planet's overall hue. Mars has long captivated the imagination of astronomers, scientists, and space enthusiasts, and missions to explore the red planet continue to uncover its mysteries. Your knowledge of planetary nicknames is truly Martian! Keep exploring the wonders of our cosmic neighborhood.",
+      "incorrectExplanation": "No worries, cosmic Martian! The correct answer is Mars. It's the planet known as the red planet due to the reddish appearance of its surface. You're still on an incredible journey through the cosmic landscapes of our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How long would it take you to get to Mars from Earth?",
+      "correctAnswer": "9 months",
+      "incorrectAnswers": ["6 weeks", "8 years", "3 days"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557171/mission_to_mars_k7txtt.jpg",
+      "correctExplanation": "Stellar, cosmic traveler! You're absolutely correct! The journey from Earth to Mars can take approximately 9 months, depending on the positions of the two planets in their orbits. This travel time is based on the Hohmann transfer orbit, which provides an efficient route for spacecraft to reach Mars when the planets are properly aligned. As humanity continues to explore the possibility of crewed missions to Mars, the duration of these journeys remains a critical consideration. Your knowledge of interplanetary travel is truly astronomical! Keep exploring the wonders of our cosmic destinations.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is approximately 9 months. That's the estimated time it would take to travel from Earth to Mars, depending on the positions of the planets in their orbits. You're still on an incredible journey through the cosmic routes of interplanetary travel! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many stars are in the Milky Way?",
+      "correctAnswer": "100 billion",
+      "incorrectAnswers": ["5,000", "200 million", "150"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557290/milky_way_hhxyzk.jpg",
+      "correctExplanation": "Stellar, galactic counter! You're absolutely correct! The Milky Way, our home galaxy, is estimated to contain about 100 billion stars. This colossal cosmic city is a vast collection of stars, planets, gas, dust, and dark matter, all bound together by gravity. As astronomers continue to study and explore the Milky Way, they uncover the intricacies of its structure and the diversity of stellar inhabitants. Your knowledge of our galactic residence is truly astronomical! Keep exploring the wonders of our cosmic neighborhood.",
+      "incorrectExplanation": "No worries, cosmic star counter! The correct answer is 100 billion stars. That's the estimated number of stars in the Milky Way. You're still on an incredible journey through the cosmic census of our galactic neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What three things are comets made out of?",
+      "correctAnswer": "Dust, rock, and ice",
+      "incorrectAnswers": [
+        "Magma, crystals, and gas",
+        "Plasma, granite, and copper",
+        "Ash, minerals, and oxygen"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699550610/comet_tojsks.jpg",
+      "correctExplanation": "Bravo, cosmic chemist! You're absolutely correct! Comets are composed of three main components: dust, rock, and ice. These celestial wanderers are often referred to as \"dirty snowballs\" due to the combination of these materials. As a comet approaches the Sun, the heat causes the ices to vaporize, creating a glowing coma (cloud of gas and dust) around the nucleus and often forming a tail that always points away from the Sun. Your knowledge of cometary compositions is truly out of this world! Keep exploring the wonders of our cosmic neighborhood.",
+      "incorrectExplanation": "No worries, cosmic chemist! The correct answer is dust, rock, and ice. Comets are composed of these three main components, often referred to as \"dirty snowballs.\" You're still on an incredible journey through the cosmic chemistry of celestial wanderers! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Name the three types of meteorites.",
+      "correctAnswer": "Iron, stony-iron, and stony",
+      "incorrectAnswers": [
+        "Copper, nickel, and gold",
+        "Plutonium, uranium, and radium",
+        "Sapphire, ruby, and emerald"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557537/meteorite_on2xnx.jpg",
+      "correctExplanation": "Stellar, meteoritic classifier! You're absolutely correct! Meteorites are broadly classified into three main types based on their composition: iron meteorites, stony-iron meteorites, and stony meteorites. Your knowledge of meteoritic diversity is truly cosmic! Keep exploring the wonders of our celestial neighbors.",
+      "incorrectExplanation": "No worries, cosmic meteoritic classifier! The correct answer is iron, stony-iron, and stony meteorites. You're still on an incredible journey through the cosmic classifications of meteorites! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "When does a meteor become a meteorite?",
+      "correctAnswer": "When it enters the Earth's atmosphere",
+      "incorrectAnswers": [
+        "When it collides with a satellite",
+        "When it enters a black hole",
+        "When it lands on the Moon"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557537/meteorite_on2xnx.jpg",
+      "correctExplanation": "Bravo, cosmic metamorphoser! You're absolutely correct! A meteor becomes a meteorite when it survives its fiery passage through Earth's atmosphere and reaches the Earth's surface. Your knowledge of celestial transformations is truly cosmic! Keep exploring the wonders of our dynamic cosmic theater.",
+      "incorrectExplanation": "No worries, cosmic metamorphoser! The correct answer is when a meteoroid survives its fiery passage through Earth's atmosphere and reaches the Earth's surface, it becomes a meteorite. You're still on an incredible journey through the cosmic transformations of celestial objects! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What causes the ocean's high and low tides?",
+      "correctAnswer": "The gravitational pull from the moon",
+      "incorrectAnswers": [
+        "The Earth's rotation on its axis",
+        "The alignment of the planets",
+        "The rotation of the Sun"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557780/tide_xaqgqc.jpg",
+      "correctExplanation": "Stellar, tidal expert! You're absolutely correct! The primary cause of the ocean's high and low tides is the gravitational pull from the moon. The moon's gravitational force creates a \"bulge\" in the ocean on the side facing the moon and a second \"bulge\" on the opposite side due to the centrifugal force caused by the Earth-moon system's rotation. As a result, we experience two high tides and two low tides each day. The sun also plays a role, but the moon's influence is dominant. Your knowledge of tidal mechanics is truly tidal-riffic! Keep exploring the wonders of our dynamic planet.",
+      "incorrectExplanation": "No worries, cosmic tide observer! The correct answer is the gravitational pull from the moon. It causes the ocean's high and low tides. You're still on an incredible journey through the cosmic rhythms of our dynamic planet! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How long does it take the Moon to orbit the Earth?",
+      "correctAnswer": "28 days",
+      "incorrectAnswers": ["24 hours", "365 days", "9 months"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557889/moon_orbit_amlkbl.jpg",
+      "correctExplanation": "Bravo, lunar timekeeper! You're absolutely correct! It takes the Moon approximately 27.3 days to orbit the Earth. This period is known as its sidereal month, during which the Moon completes one orbit around Earth relative to the fixed stars. However, if we measure the time it takes for the Moon to return to the same phase (from new moon to new moon), it takes about 29.5 days. This longer period is called the synodic month and is the basis for our common lunar calendar. Your knowledge of lunar orbits is truly astronomical! Keep exploring the wonders of our celestial dance.",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is approximately 27.3 days for the Moon to orbit the Earth. You're still on an incredible journey through the lunar cycles of our cosmic dance! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How long does it take the Earth to orbit the Sun?",
+      "correctAnswer": "365 days",
+      "incorrectAnswers": ["24 hours", "28 days", "9 months"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558218/earth_sun_adkoaj.jpg",
+      "correctExplanation": "Stellar, cosmic year-counter! You're absolutely correct! It takes Earth approximately 365 days to orbit the Sun once, completing one orbit or revolution. This period is known as a tropical or solar year. The Earth's orbit around the Sun defines our concept of a year and is the basis for our calendar. Your knowledge of Earth's cosmic journey is truly astronomical! Keep exploring the wonders of our celestial neighborhood.",
+      "incorrectExplanation": "No worries, cosmic year-counter! The correct answer is approximately 365 days for Earth to orbit the Sun. You're still on an incredible journey through the cosmic calendars of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many recognized constellations are there?",
+      "correctAnswer": "88",
+      "incorrectAnswers": ["27", "1999", "10"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558404/constellation_q31mfd.jpg",
+      "correctExplanation": "Bravo, cosmic constellation enthusiast! You're absolutely correct! There are 88 recognized constellations in the night sky. These celestial configurations help astronomers and stargazers navigate and appreciate the vastness of the cosmos. Your knowledge of stellar patterns is truly astronomical! Keep exploring the wonders of our cosmic canvas.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is 88 constellations. They are well-defined regions of the celestial sphere containing specific stars and celestial objects. You're still on an incredible journey through the cosmic tapestry of our night sky! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Who discovered that the Earth was not at the center of the solar system?",
+      "correctAnswer": "Nicolaus Copernicus",
+      "incorrectAnswers": [
+        "Albert Einstein",
+        "Alexander Hamilton",
+        "Diego Maradona"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699556607/astronomer_nhhjlk.jpg",
+      "correctExplanation": "Bravo, cosmic heliocentrist! You're absolutely correct! Nicolaus Copernicus was the astronomer who proposed the heliocentric model, suggesting that the Sun, not the Earth, was at the center of the solar system. His groundbreaking work laid the foundation for our modern understanding of the solar system. Your knowledge of astronomical revolutions is truly astronomical! Keep exploring the wonders of our cosmic discoveries.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Nicolaus Copernicus. He proposed the heliocentric model, suggesting that the Sun, not the Earth, was at the center of the solar system. You're still on an incredible journey through the cosmic annals of scientific revelations! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What does the ISS stand for?",
+      "correctAnswer": "International Space Station",
+      "incorrectAnswers": [
+        "Interplanetary Space Shuttle",
+        "Intergalactic Space Simulation",
+        "Ionization Suppression System"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558645/iss_ssmaqh.jpg",
+      "correctExplanation": "Stellar, space station scholar! You're absolutely correct! ISS stands for the International Space Station. The International Space Station is a multinational collaborative project involving space agencies from various countries. It serves as a microgravity and space environment research laboratory, where scientific research and international cooperation take center stage. Your knowledge of orbital habitats is truly out of this world! Keep exploring the wonders of our cosmic collaborations.",
+      "incorrectExplanation": "No worries, cosmic acronym decoder! The correct answer is the International Space Station (ISS). It's a collaborative project involving space agencies from various countries. You're still on an incredible journey through the cosmic acronyms of space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "When was the ISS first launched into orbit?",
+      "correctAnswer": "November 20, 1998",
+      "incorrectAnswers": [
+        "November 5, 1955",
+        "July 4, 1776",
+        "April 15, 1912"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558645/iss_ssmaqh.jpg",
+      "correctExplanation": "Bravo, cosmic historian! You're absolutely correct! The International Space Station (ISS) was first launched into orbit on November 20, 1998. Since then, it has served as a symbol of international collaboration in space exploration, fostering scientific research and technological advancements. Your knowledge of orbital milestones is truly stellar! Keep exploring the wonders of our cosmic collaborations.",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is November 20, 1998. That's when the International Space Station (ISS) was first launched into orbit. You're still on an incredible journey through the cosmic timelines of space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many Earth's could fit inside the Sun?",
+      "correctAnswer": "1.3 million",
+      "incorrectAnswers": ["88", "332,000", "1,957"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Stellar, cosmic measurer! You're absolutely correct! Approximately 1.3 million Earths could fit inside the Sun. The Sun is a massive star, and its diameter is about 109 times that of Earth. This size comparison showcases the immense scale of our solar system. Your knowledge of cosmic proportions is truly astronomical! Keep exploring the wonders of our celestial dimensions.",
+      "incorrectExplanation": "No worries, cosmic quantifier! The correct answer is approximately 1.3 million Earths. That's how many could fit inside the Sun, highlighting the vast difference in size between our home planet and the massive star at the center of our solar system. You're still on an incredible journey through the cosmic measurements of our celestial neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is known as the morning star?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Saturn", "Mercury", "Earth"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Bravo, celestial observer! You're absolutely correct! Venus is known as the morning star when it appears in the eastern sky before sunrise. Venus is the third-brightest natural object in our sky, and its appearance as the morning star or evening star depends on its position relative to the Sun. Your knowledge of planetary appearances is truly stellar! Keep exploring the wonders of our celestial dance.",
+      "incorrectExplanation": "No worries, cosmic stargazer! The correct answer is Venus. It's known as the morning star when it appears in the eastern sky before sunrise. You're still on an incredible journey through the cosmic choreography of our morning skies! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is a place called where you can go to see the night sky projections?",
+      "correctAnswer": "A planetarium",
+      "incorrectAnswers": [
+        "An aquarium",
+        "A post office",
+        "A fast-food restaurant"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559012/planetarium_yhesp0.jpg",
+      "correctExplanation": "Stellar, celestial spectator! You're absolutely correct! A place where you can go to see night sky projections is called a planetarium. Planetariums are facilities equipped with a domed ceiling and specialized projectors that simulate the appearance of the night sky, allowing visitors to explore and learn about celestial objects, constellations, and astronomical phenomena. Your knowledge of cosmic venues is truly astronomical! Keep exploring the wonders of our simulated skies.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is a planetarium. It's a place where you can go to see night sky projections. You're still on an incredible journey through the cosmic landscapes of our simulated skies! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which four planets have rings around them?",
+      "correctAnswer": "Jupiter, Saturn, Uranus, and Neptune",
+      "incorrectAnswers": [
+        "Venus, Saturn, Mercury, and Neptune",
+        "Mars, Uranus, Mercury, and Jupiter",
+        "Saturn, Neptune, Jupiter, and Mars"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699548611/gas_planets_rl24fv.jpg",
+      "correctExplanation": "Bravo, cosmic ringmaster! You're absolutely correct! Jupiter, Saturn, Uranus, and Neptune are the four planets in our solar system that have rings around them. While Saturn's majestic ring system is the most famous, each of these gas giants has its own set of rings, composed of ice particles, rocks, and other debris. Your knowledge of planetary jewelry is truly out of this world! Keep exploring the wonders of our ringed neighbors.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is Jupiter, Saturn, Uranus, and Neptune. They are the four planets in our solar system with rings. You're still on an incredible journey through the cosmic adornments of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which five planets can be seen with the naked eye?",
+      "correctAnswer": "Mercury, Venus, Mars, Jupiter, and Saturn",
+      "incorrectAnswers": [
+        "Venus, Saturn, Mars, Uranus, and Neptune",
+        "Mars, Uranus, Mercury, Venus, and Jupiter",
+        "Saturn, Neptune, Jupiter, Uranus, and Mars"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553438/planets_zsezhj.jpg",
+      "correctExplanation": "Stellar, naked-eye observer! You're absolutely correct! Mercury, Venus, Mars, Jupiter, and Saturn are the five planets in our solar system that can be seen with the naked eye from Earth. These planets are visible to the unaided eye due to their brightness and proximity to Earth. Your knowledge of celestial wanderers is truly astronomical! Keep exploring the wonders of our cosmic neighbors.",
+      "incorrectExplanation": "No worries, cosmic sky gazer! The correct answer is Mercury, Venus, Mars, Jupiter, and Saturn. They are the five planets in our solar system that can be seen with the naked eye. You're still on an incredible journey through the cosmic vistas of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet rotates on its side?",
+      "correctAnswer": "Uranus",
+      "incorrectAnswers": ["Venus", "Mars", "Saturn"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547441/uranus_yr1bpt.jpg",
+      "correctExplanation": "Bravo, cosmic axial observer! You're absolutely correct! Uranus is the planet that rotates on its side, and it's often referred to as having an extreme axial tilt. Unlike most planets in our solar system, Uranus essentially spins on its side, with its axis tilted at about 98 degrees relative to its orbit around the Sun. Your knowledge of planetary orientations is truly out of this world! Keep exploring the wonders of our tilted cosmic neighbor.",
+      "incorrectExplanation": "No worries, cosmic navigator! The correct answer is Uranus. It's the planet that rotates on its side, with an extreme axial tilt. You're still on an incredible journey through the cosmic orientations of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What keeps the planets in a stable orbit around the Sun?",
+      "correctAnswer": "Gravity",
+      "incorrectAnswers": ["Friction", "Elecromagnetism", "Solar flares"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559622/planets_2_o7ufq9.jpg",
+      "correctExplanation": "Stellar, gravitational guru! You're absolutely correct! Gravity is the force that keeps the planets in a stable orbit around the Sun. The Sun's immense gravitational pull, combined with the forward motion of the planets, creates a delicate balance that allows them to orbit in stable paths. It's this cosmic dance of gravitational attraction and centripetal force that governs the movements of celestial bodies in our solar system. Your knowledge of celestial mechanics is truly astronomical! Keep exploring the wonders of our cosmic ballet.",
+      "incorrectExplanation": "No worries, cosmic theorist! The correct answer is gravity. It's the force that keeps the planets in a stable orbit around the Sun. You're still on an incredible journey through the cosmic forces that shape our celestial dance! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "When did the space age begin?",
+      "correctAnswer": "October 4, 1957, with the launch of Sputnik 1",
+      "incorrectAnswers": [
+        "July 20, 1969, with the Apollo 11 Moon landing",
+        "April 12, 1961, with Yuri Gagarin's first human spaceflight",
+        "November 22, 1963, with the assassination of John F. Kennedy"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/sputnik_asern6.jpg",
+      "correctExplanation": "Bravo, cosmic historian! You're absolutely correct! The space age began on October 4, 1957, with the historic launch of Sputnik 1 by the Soviet Union. Sputnik 1 was the first artificial satellite to orbit Earth, marking the dawn of human space exploration. This momentous event ignited the space race and paved the way for the exploration of our cosmic frontier. Your knowledge of space milestones is truly out of this world! Keep exploring the wonders of our spacefaring history.",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct answer is October 4, 1957, with the launch of Sputnik 1. That's when the space age began, marking the start of human space exploration. You're still on an incredible journey through the cosmic timelines of our spacefaring adventures! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What do you call a group of meteoroids that can be seen together?",
+      "correctAnswer": "A meteor shower",
+      "incorrectAnswers": [
+        "A meteor parade",
+        "A meteor jamboree",
+        "A meteor rendezvous"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559759/meteor_shower_kblzsi.jpg",
+      "correctExplanation": "Stellar, meteor shower observer! You're absolutely correct! A group of meteoroids that can be seen together is called a meteor shower. Meteor showers occur when Earth passes through the debris left behind by a comet, and the particles burn up in the Earth's atmosphere, creating bright streaks of light in the night sky. Your knowledge of celestial phenomena is truly astronomical! Keep exploring the wonders of our cosmic light shows.",
+      "incorrectExplanation": "No worries, cosmic stargazer! The correct answer is a meteor shower. It's the term used for a group of meteoroids that can be seen together. You're still on an incredible journey through the cosmic light displays of our celestial events! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has had the most missions sent to it?",
+      "correctAnswer": "Mars",
+      "incorrectAnswers": ["Saturn", "Mercury", "Neptune"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Bravo, cosmic expeditionary! You're absolutely correct! Mars has had the most missions sent to it compared to any other planet in our solar system. The Red Planet has captured the imagination of scientists and space agencies worldwide, leading to numerous missions aimed at studying its surface, atmosphere, and potential for past or present life. Your knowledge of Martian explorations is truly out of this world! Keep exploring the wonders of our neighboring planet.",
+      "incorrectExplanation": "No worries, cosmic mission tracker! The correct answer is Mars. It's the planet that has had the most missions sent to it. You're still on an incredible journey through the cosmic logbooks of our interplanetary explorations! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of the only spacecraft to have visited Uranus?",
+      "correctAnswer": "Voyager 2",
+      "incorrectAnswers": ["Spirit Rover", "Sputnik 1", "Apollo 11"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559973/voyager_2_p61io6.jpg",
+      "correctExplanation": "Stellar, planetary voyager! You're absolutely correct! Voyager 2 is the only spacecraft to have visited Uranus. It performed a historic flyby of the planet on January 24, 1986, capturing valuable data and images that contributed significantly to our understanding of Uranus and its unique features. Your knowledge of interplanetary explorers is truly astronomical! Keep exploring the wonders of our cosmic destinations.",
+      "incorrectExplanation": "No worries, cosmic traveler! The correct answer is Voyager 2. It's the only spacecraft to have visited Uranus. You're still on an incredible journey through the cosmic realms of interplanetary exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has a bright red spot on it?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Venus", "Mars", "Saturn"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Bravo, cosmic spotter! You're absolutely correct! Jupiter is the planet that has a bright red spot on it, known as the Great Red Spot. This massive storm has been raging for centuries and is one of the most iconic features of the largest planet in our solar system. Your knowledge of planetary features is truly out of this world! Keep exploring the wonders of our cosmic landscapes.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is Jupiter. It's the planet that has a bright red spot known as the Great Red Spot. You're still on an incredible journey through the cosmic features of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the name of the theory that explains how our universe was created?",
+      "correctAnswer": "The Big Bang Theory",
+      "incorrectAnswers": [
+        "The Potato Salad Theory",
+        "The Hula Hoop Theory",
+        "The Musical Chairs Theory"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552548/cluster_h7uqqe.jpg",
+      "correctExplanation": "Stellar, cosmic theorist! You're absolutely correct! The Big Bang Theory is the prevailing scientific theory that explains how our universe was created. According to this theory, the universe began as an extremely hot and dense state and has been expanding ever since. Your knowledge of cosmic origins is truly astronomical! Keep exploring the wonders of our cosmic genesis.",
+      "incorrectExplanation": "No worries, cosmic philosopher! The correct answer is the Big Bang Theory. It's the prevailing scientific theory that explains how our universe was created. You're still on an incredible journey through the cosmic theories of our universe's origins! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Why do astronauts wear space suits?",
+      "correctAnswer": "To stay safe and able to breathe in space",
+      "incorrectAnswers": [
+        "To look cool and stylish",
+        "To stay warm in the harsh conditions",
+        "To carry snacks on spacewalks"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560179/space_suit_hvtrcp.jpg",
+      "correctExplanation": "Space attire expert! You're absolutely correct! Astronauts wear space suits to stay safe and able to breathe in space. These suits provide a life-supporting environment, shielding astronauts from the vacuum of space and regulating temperature. Your knowledge of space fashion is truly stellar! Keep suiting up for cosmic exploration.",
+      "incorrectExplanation": "No worries, cosmic fashionista! The primary reason astronauts wear space suits is to stay safe and able to breathe in space. These suits provide a life-supporting environment, shielding astronauts from the vacuum of space and regulating temperature. You're still on an incredible journey through the spacesuit styles of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Who was the first astronaut to do a space walk?",
+      "correctAnswer": "Alexei Leonov",
+      "incorrectAnswers": ["Yuri Gagarin", "Buzz Lightyear", "Sally Ride"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560369/space_walk_gi24rk.jpg",
+      "correctExplanation": "Bravo, cosmic spacewalker! You're absolutely correct! Alexei Leonov was the first astronaut to do a spacewalk. On March 18, 1965, during the Voskhod 2 mission, Leonov became the first human to exit a spacecraft and float in the vacuum of space. This historic spacewalk marked a significant milestone in human space exploration. Your knowledge of spacewalking pioneers is truly astronomical! Keep exploring the wonders of our cosmic ventures.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Alexei Leonov. He was the first astronaut to do a spacewalk during the Voskhod 2 mission on March 18, 1965. You're still on an incredible journey through the cosmic timelines of space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the third planet from the sun?",
+      "correctAnswer": "Earth",
+      "incorrectAnswers": ["Uranus", "Saturn", "Mars"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! Earth is the third planet from the Sun. Nestled in the habitable zone, our home planet boasts a diverse biosphere and a myriad of wonders. Your knowledge of planetary order is truly astronomical! Keep exploring the wonders of our cosmic neighborhood.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is Earth. It's the third planet from the Sun. You're still on an incredible journey through the cosmic order of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How fast is the speed of light?",
+      "correctAnswer": "186,000 miles per second",
+      "incorrectAnswers": [
+        "88 miles per hour",
+        "343 meters per second",
+        "4,860 feet per minute"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560645/light_speed_j2eqsn.jpg",
+      "correctExplanation": "Bravo, cosmic speedster! You're absolutely correct! The speed of light is approximately 186,000 miles per second (or about 299,792 kilometers per second). This cosmic speed limit is a fundamental constant in the fabric of our universe, shaping the way we perceive and understand the cosmos. Your knowledge of light-speed travel is truly astronomical! Keep exploring the wonders of our cosmic velocities.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is approximately 186,000 miles per second. That's the speed of light, a fundamental constant in the universe. You're still on an incredible journey through the cosmic velocities of our reality! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has a blue sunset?",
+      "correctAnswer": "Mars",
+      "incorrectAnswers": ["Uranus", "Neptune", "Venus"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Stellar, cosmic color connoisseur! You're absolutely correct! Mars is the planet that has a blue sunset. Due to the unique composition of the Martian atmosphere, the sunlight scatters differently than it does on Earth, creating a stunning blue hue during sunset. Your knowledge of alien atmospheres is truly out of this world! Keep exploring the wonders of our Martian sunsets.",
+      "incorrectExplanation": "No worries, cosmic sunset chaser! The correct answer is Mars. It's the planet that has a blue sunset, thanks to the scattering of sunlight in its thin atmosphere. You're still on an incredible journey through the cosmic spectacles of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Where is the Asteroid Belt located?",
+      "correctAnswer": "Between Mars and Jupiter",
+      "incorrectAnswers": [
+        "Between Venus and Earth",
+        "Between Saturn and Uranus",
+        "Beyond Neptune"
+      ],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560763/asteroid_belt_epauat.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! The Asteroid Belt is located between Mars and Jupiter. This region, situated in the vastness of our solar system, is home to a multitude of asteroids orbiting the Sun. Your knowledge of celestial geography is truly astronomical! Keep exploring the wonders of our cosmic landscapes.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct answer is between Mars and Jupiter. The Asteroid Belt occupies this space in our solar system, hosting numerous asteroids in their orbital dance. You're still on an incredible journey through the cosmic maps of our celestial neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many moons does Mars have?",
+      "correctAnswer": "2",
+      "incorrectAnswers": ["28", "0", "74"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Bravo, cosmic moon counter! You're absolutely correct! Mars has two moons, named Phobos and Deimos. These celestial companions add an intriguing dimension to the Martian night sky. Your knowledge of Martian satellites is truly out of this world! Keep exploring the wonders of our cosmic companions.",
+      "incorrectExplanation": "No worries, cosmic moon seeker! The correct answer is two moons. Mars has Phobos and Deimos. You're still on an incredible journey through the cosmic satellites of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What are the two most abundant gases that make up the sun?",
+      "correctAnswer": "Hydrogen and helium",
+      "incorrectAnswers": [
+        "Sulphur and phosphorus",
+        "Methane and ammonia",
+        "Nitrogen and neon"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar, cosmic chemist! You're absolutely correct! Hydrogen and helium are the two most abundant gases that make up the Sun. These elements undergo nuclear fusion in the Sun's core, releasing an immense amount of energy that fuels the solar system. Your knowledge of solar composition is truly astronomical! Keep exploring the wonders of our cosmic chemistry.",
+      "incorrectExplanation": "No worries, cosmic elementalist! The correct answer is hydrogen and helium. They are the two most abundant gases that make up the Sun. You're still on an incredible journey through the cosmic elements that shape our celestial powerhouse! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has sulfuric acid clouds surrounding it?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Earth", "Mercury", "Neptune"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Bravo, cosmic cloud spotter! You're absolutely correct! Venus is the planet that has sulfuric acid clouds surrounding it. The thick atmosphere of Venus is composed mainly of carbon dioxide with traces of sulfuric acid, creating a dense and inhospitable environment. Your knowledge of atmospheric chemistry is truly out of this world! Keep exploring the wonders of our cosmic clouds.",
+      "incorrectExplanation": "No worries, cosmic cloud gazer! The correct answer is Venus. It's the planet that has sulfuric acid clouds surrounding it. You're still on an incredible journey through the cosmic atmospheres of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the longest amount of time that someone has lived on the ISS?",
+      "correctAnswer": "355 days",
+      "incorrectAnswers": ["6 weeks", "8 years", "11 months"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558645/iss_ssmaqh.jpg",
+      "correctExplanation": "Stellar, cosmic time traveler! You're absolutely correct! The longest amount of time someone has lived continuously on the International Space Station (ISS) is 355 days. Astronaut Scott Kelly set this record during his year-long mission, contributing valuable insights into the effects of long-duration spaceflight. Your knowledge of orbital endurance is truly out of this world! Keep exploring the wonders of our cosmic residency.",
+      "incorrectExplanation": "No worries, cosmic timekeeper! The correct answer is 355 days. That's the longest amount of time someone has lived continuously on the International Space Station (ISS). You're still on an incredible journey through the cosmic timelines of human space exploration! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is named after the Roman Goddess of Beauty?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Saturn", "Earth", "Uranus"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Bravo, cosmic mythologist! You're absolutely correct! Venus is the planet named after the Roman Goddess of Beauty. This inner planet, adorned with bright clouds and a dazzling appearance in the night sky, reflects the celestial grace associated with its mythological namesake. Your knowledge of cosmic mythology is truly out of this world! Keep exploring the wonders of our planetary tales.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Venus. It's the planet named after the Roman Goddess of Beauty. You're still on an incredible journey through the cosmic myths of our planetary nomenclature! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which constellation points to the North Star?",
+      "correctAnswer": "The Big Dipper",
+      "incorrectAnswers": ["Cassiopeia", "Sagittarius", "Orion"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560999/ursa_major_ti2tso.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! The Big Dipper is the constellation that points to the North Star (Polaris). This asterism within the larger Ursa Major constellation has served as a reliable guide for travelers and stargazers, pointing the way to the celestial north. Your knowledge of celestial navigation is truly out of this world! Keep exploring the wonders of our cosmic compass.",
+      "incorrectExplanation": "No worries, cosmic wayfarer! The correct answer is the Big Dipper. It's the constellation that points to the North Star (Polaris). You're still on an incredible journey through the cosmic compasses of our celestial guides! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is another name for the North Star?",
+      "correctAnswer": "Polaris",
+      "incorrectAnswers": ["Regulus", "Arcturus", "VY Canis Majoris"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561273/nebula_jwvyhi.jpg",
+      "correctExplanation": "Bravo, cosmic navigator! You're absolutely correct! Another name for the North Star is Polaris. This bright, dependable guide has been used for centuries in celestial navigation, helping travelers and explorers find their way in the night sky. Your knowledge of stellar landmarks is truly out of this world! Keep exploring the wonders of our cosmic signposts.",
+      "incorrectExplanation": "No worries, cosmic wayfinder! The correct answer is Polaris. It's another name for the North Star. You're still on an incredible journey through the cosmic names of our celestial guides! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is named after the Roman God of the Sea?",
+      "correctAnswer": "Neptune",
+      "incorrectAnswers": ["Mars", "Mercury", "Venus"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547438/neptune_iseeox.jpg",
+      "correctExplanation": "Stellar, cosmic mythologist! You're absolutely correct! Neptune is the planet named after the Roman God of the Sea. This distant ice giant, with its deep-blue appearance, reflects the majestic qualities associated with its mythological namesake. Your knowledge of cosmic mythology is truly out of this world! Keep exploring the wonders of our planetary tales.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct answer is Neptune. It's the planet named after the Roman God of the Sea. You're still on an incredible journey through the cosmic myths of our planetary nomenclature! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Approximately how many stars can we see in the night sky with our naked eye?",
+      "correctAnswer": "5000",
+      "incorrectAnswers": ["600", "8 million", "100 billion"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561273/nebula_jwvyhi.jpg",
+      "correctExplanation": "Stellar, cosmic observer! You're absolutely correct! The approximate number of stars visible in the night sky with the naked eye can range from a few thousand to several thousand. This number can vary based on factors like light pollution and atmospheric conditions. Your awareness of the cosmic audience in our night sky is truly out of this world! Keep exploring the wonders of our celestial theater.",
+      "incorrectExplanation": "No worries, cosmic stargazer! The actual number of stars visible in the night sky with the naked eye can vary based on conditions. It can be a few thousand to several thousand stars. You're still on an incredible journey through the cosmic vistas of our nighttime celestial display! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the most common type of star?",
+      "correctAnswer": "Red Dwarf stars",
+      "incorrectAnswers": [
+        "Neutron stars",
+        "Blue Hypergiant stars",
+        "Quasar stars"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Bravo, cosmic astronomer! You're absolutely correct! Red dwarf stars are the most common type of star in the universe. These small and cool stars are scattered throughout the cosmos, constituting a significant portion of the stellar population. Your knowledge of stellar demographics is truly out of this world! Keep exploring the wonders of our cosmic variety of stars.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is red dwarf stars. They are the most common type of star in the universe. You're still on an incredible journey through the cosmic classifications of our stellar companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What color is the coldest star?",
+      "correctAnswer": "Red",
+      "incorrectAnswers": ["Blue", "White", "Brown"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Bravo, cosmic chromatician! You're absolutely correct! Red stars are generally considered the coldest among the different stellar classifications. These stars, often known as red dwarfs or M-type stars, exhibit lower surface temperatures. Your knowledge of the cosmic color spectrum is truly out of this world! Keep exploring the wonders of our celestial palette.",
+      "incorrectExplanation": "No worries, cosmic color explorer! The correct answer is red. Red stars, like red dwarfs or M-type stars, are generally considered the coldest among the stellar classifications. You're still on an incredible journey through the cosmic shades of our stellar companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What color is the hottest star?",
+      "correctAnswer": "Blue",
+      "incorrectAnswers": ["Yellow", "Red", "Orange"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar, cosmic thermophile! You're absolutely correct! Blue stars are generally considered the hottest among the different stellar classifications. These stars, often known as O-type or B-type stars, boast higher surface temperatures. Your knowledge of the cosmic temperature spectrum is truly out of this world! Keep exploring the wonders of our stellar infernos.",
+      "incorrectExplanation": "No worries, cosmic temperature explorer! The correct answer is blue. Blue stars, like O-type or B-type stars, are generally considered the hottest among the stellar classifications. You're still on an incredible journey through the cosmic temperatures of our stellar companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "If you were standing on the moon and the sun was shining on you, what color would the sky be?",
+      "correctAnswer": "Black",
+      "incorrectAnswers": ["Yellow", "Blue", "Purple"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561558/moon_vwquac.jpg",
+      "correctExplanation": "Bravo, cosmic voyager! You're absolutely correct! If you were standing on the Moon and the Sun was shining on you, the sky would appear black. Unlike Earth, the Moon lacks a substantial atmosphere, so there's no atmospheric scattering to create the blue sky we see from our home planet. Your knowledge of lunar landscapes is truly out of this world! Keep exploring the wonders of our cosmic environments.",
+      "incorrectExplanation": "No worries, lunar wayfarer! The correct answer is black. If you were standing on the Moon and the Sun was shining on you, the sky would appear black due to the lack of a significant atmosphere on the Moon. You're still on an incredible journey through the cosmic landscapes of our celestial neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "The word \"astrophysics\" is based on Greek words. Do you know which of these bodies \"astro\" translates to?",
+      "correctAnswer": "Star",
+      "incorrectAnswers": ["Moon", "Planet", "Sun"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561784/greek_oyezyp.jpg",
+      "correctExplanation": "Stellar, cosmic linguist! You're absolutely correct! In the word \"astrophysics,\" the Greek root \"astro\" translates to \"star.\" Therefore, \"astrophysics\" literally means the physics of stars. Your knowledge of cosmic etymology is truly out of this world! Keep exploring the wonders of our linguistic galaxy.",
+      "incorrectExplanation": "No worries, cosmic word explorer! The correct answer is star. In \"astrophysics,\" the Greek root \"astro\" translates to \"star.\" You're still on an incredible journey through the cosmic lexicon of celestial terminology! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many stars are there in our solar system?",
+      "correctAnswer": "1",
+      "incorrectAnswers": ["8", "100 billion", "200 million"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553767/space_tzgjqf.jpg",
+      "correctExplanation": "Bravo, cosmic astronomer! You're absolutely correct! There is only one star in our solar system, and that is the Sun. Your knowledge of our solar neighborhood is truly out of this world! Keep exploring the wonders of our celestial backyard.",
+      "incorrectExplanation": "No worries, cosmic celestial navigator! The correct answer is one. There is only one star in our solar system, and that's the Sun. You're still on an incredible journey through the cosmic facts of our solar neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is sometimes called Earth's sister planet?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Mercury", "Uranus", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Stellar, cosmic sibling seeker! You're absolutely correct! Venus is indeed sometimes referred to as Earth's sister planet. This nickname stems from its similarity in size and composition to Earth. However, the environmental conditions on Venus are extreme, with high temperatures and a thick, toxic atmosphere. Your knowledge of our cosmic family is truly out of this world! Keep exploring the wonders of our planetary siblings.",
+      "incorrectExplanation": "No worries, cosmic sibling explorer! The correct answer is Venus. It's sometimes called Earth's sister planet due to its size and composition similarities. You're still on an incredible journey through the cosmic nicknames of our planetary companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of the following objects emits light?",
+      "correctAnswer": "Stars",
+      "incorrectAnswers": ["Moons", "Planets", "Asteroids"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560645/light_speed_j2eqsn.jpg",
+      "correctExplanation": "Bravo, cosmic illuminator! You're absolutely correct! Stars are objects that emit their own light through nuclear fusion processes in their cores. They shine by producing and releasing energy in the form of light and other electromagnetic radiation. Your knowledge of cosmic luminaries is truly out of this world! Keep exploring the radiant wonders of our stellar companions.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct answer is stars. They are objects that emit their own light through nuclear fusion processes. You're still on an incredible journey through the cosmic sources of illumination! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "About how often does a lunar eclipse occur?",
+      "correctAnswer": "Twice a year",
+      "incorrectAnswers": [
+        "Every week",
+        "Once every 100 years",
+        "Once a decade"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553630/lunar_eclipse_b32uih.jpg",
+      "correctExplanation": "Stellar, cosmic timekeeper! You're correct! On average, there are about two to four lunar eclipses each year. However, the actual frequency can vary, and some years may have more or fewer lunar eclipses. Your awareness of the celestial cycles is truly out of this world! Keep exploring the wonders of our lunar theater.",
+      "incorrectExplanation": "No worries, cosmic chronologist! On average, there are about two to four lunar eclipses each year, although the actual frequency of lunar eclipses per year can vary. You're still on an incredible journey through the cosmic calendars of our lunar phenomena! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many planets in our solar system are made from gas?",
+      "correctAnswer": "4",
+      "incorrectAnswers": ["6", "8", "2"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559622/planets_2_o7ufq9.jpg",
+      "correctExplanation": "Stellar, cosmic chemist! You're absolutely correct! Four planets in our solar system are classified as gas giants. These are Jupiter, Saturn, Uranus, and Neptune. They are primarily composed of hydrogen and helium, with thick atmospheres and no solid surfaces. Your knowledge of our cosmic neighbors' composition is truly out of this world! Keep exploring the diverse makeup of our planetary family.",
+      "incorrectExplanation": "No worries, cosmic chemist-in-training! The correct answer is four. Jupiter, Saturn, Uranus, and Neptune are the gas giants in our solar system. You're still on an incredible journey through the cosmic compositions of our planetary companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these is NOT a star constellation?",
+      "correctAnswer": "Halo",
+      "incorrectAnswers": ["Scutum", "Pegasus", "Ara"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558404/constellation_q31mfd.jpg",
+      "correctExplanation": "Bravo, cosmic navigator! You're absolutely correct! \"Halo\" is not a star constellation. Constellations are groups of stars that form recognizable patterns in the night sky, and \"Halo\" is not one of them. Your knowledge of the celestial tapestry is truly out of this world! Keep exploring the wonders of our cosmic star patterns.",
+      "incorrectExplanation": "No worries, cosmic wayfarer! The correct answer is \"Halo.\" Constellations are groups of stars that form patterns in the night sky, and \"Halo\" is not one of them. You're still on an incredible journey through the cosmic tapestry of our stellar arrangements! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is Saturn most famous for?",
+      "correctAnswer": "Rings",
+      "incorrectAnswers": ["Rainbows", "Bells", "Flowers"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Stellar, cosmic ringmaster! You're absolutely correct! Saturn is most famous for its stunning ring system, composed of ice particles, rocks, and dust. These rings make Saturn one of the most visually striking planets in our solar system. Your knowledge of the celestial jewelry is truly out of this world! Keep exploring the wonders of our cosmic neighbors.",
+      "incorrectExplanation": "No worries, cosmic explorer! While your answer is close, the correct answer is the rings. Saturn is most famous for its stunning ring system, which is composed of ice particles, rocks, and dust. You're still on an incredible journey through the cosmic attractions of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these is a moon of Jupiter?",
+      "correctAnswer": "Io",
+      "incorrectAnswers": ["Enceladus", "Titan", "Phobos"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Bravo, cosmic moon explorer! You're absolutely correct! Io is one of Jupiter's moons, known for its volcanic activity and colorful surface. Your knowledge of our cosmic neighbors' moons is truly out of this world! Keep exploring the diverse lunar landscapes of our planetary companions.",
+      "incorrectExplanation": "No worries, cosmic moon enthusiast! The correct moon is Io. Io is one of Jupiter's moons, known for its volcanic activity and colorful surface. You're still on an incredible journey through the cosmic moonscape of our planetary companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What does luminosity mean?",
+      "correctAnswer": "The brightness of a star",
+      "incorrectAnswers": [
+        "The age of a star",
+        "The size of a star",
+        "The total mass of a star"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar, cosmic wordsmith! You're absolutely correct! Luminosity refers to the brightness of a celestial object, such as a star. It's a measure of the total amount of energy emitted per unit of time. Your knowledge of the cosmic language of astronomy is truly out of this world! Keep exploring the wonders of celestial terminology.",
+      "incorrectExplanation": "No worries, cosmic wordsmith-in-training! While your answer is close, the correct definition is the brightness of a star. Luminosity refers to the brightness of a celestial object, measuring the total amount of energy emitted per unit of time. You're still on an incredible journey through the cosmic lexicon of astronomy! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Why can't see the surface of Venus from space?",
+      "correctAnswer": "Because Venus is covered with a thick layer of clouds",
+      "incorrectAnswers": [
+        "Because Venus is too small to be visible from space",
+        "Because Venus is made entirely of gas",
+        "Because Venus is covered in a solid layer of ice"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Bravo, cosmic observer! You're absolutely correct! We can't see the surface of Venus from space because it's covered with a thick layer of clouds. These clouds block our direct view of the planet's surface. Your knowledge of the cosmic veils of Venus is truly out of this world! Keep exploring the mysteries of our planetary neighbors.",
+      "incorrectExplanation": "No worries, cosmic investigator! While your answer is close, the correct reason is the thick layer of clouds. We can't see the surface of Venus from space because it's covered with a thick layer of clouds that obscures our direct view. You're still on an incredible journey through the cosmic mysteries of our planetary environments! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What layer of the atmosphere is the hottest?",
+      "correctAnswer": "Thermosphere",
+      "incorrectAnswers": ["Heliopause", "Magnetosphere", "Troposphere"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552198/atmosphere_mbqcqt.jpg",
+      "correctExplanation": "Stellar, cosmic temperature expert! You're absolutely correct! The thermosphere is the layer of Earth's atmosphere where temperatures can reach extremely high levels. It's important to note that despite its high temperatures, the thermosphere's low density means it would not feel hot to a human observer. Your knowledge of the atmospheric temperature gradients is truly out of this world! Keep exploring the layers of our cosmic home.",
+      "incorrectExplanation": "No worries, cosmic temperature explorer! While your answer is close, the correct layer is the thermosphere. It's the layer of Earth's atmosphere where temperatures can reach extremely high levels. Despite its high temperatures, the thermosphere's low density means it would not feel hot to a human observer. You're still on an incredible journey through the atmospheric layers of our cosmic home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the planet fifth from the sun?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Earth", "Uranus", "Mars"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Bravo, cosmic astronomer! You're absolutely correct! Jupiter is the planet fifth from the sun in our solar system. Your knowledge of the planetary order is truly out of this world! Keep exploring the cosmic arrangements of our solar neighborhood.",
+      "incorrectExplanation": "No worries, cosmic navigator! The correct planet is Jupiter. It is indeed the fifth planet from the sun in our solar system. You're still on an incredible journey through the planetary arrangements of our cosmic home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these constellations is NOT a sign of the zodiac?",
+      "correctAnswer": "Phoenix",
+      "incorrectAnswers": ["Taurus", "Gemini", "Pisces"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558404/constellation_q31mfd.jpg",
+      "correctExplanation": "Bravo, cosmic zodiac expert! You're absolutely correct! Phoenix is not one of the signs of the zodiac. The zodiac consists of twelve constellations along the ecliptic, and Phoenix is not traditionally included among them. Your knowledge of the celestial signs is truly out of this world! Keep exploring the cosmic patterns of the zodiac.",
+      "incorrectExplanation": "No worries, cosmic stargazer! The correct constellation is Phoenix. It's not one of the signs of the zodiac, which consists of twelve constellations along the ecliptic. You're still on an incredible journey through the cosmic patterns of our celestial signs! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the second planet from the Sun?",
+      "correctAnswer": "Venus",
+      "incorrectAnswers": ["Neptune", "Saturn", "Mercury"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547442/venus_exj4ih.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! Venus is the second planet from the Sun in our solar system. Your knowledge of the planetary order is truly out of this world! Keep exploring the cosmic arrangements of our solar neighborhood.",
+      "incorrectExplanation": "No worries, cosmic wayfarer! The correct planet is Venus. It is indeed the second planet from the Sun in our solar system. You're still on an incredible journey through the planetary arrangements of our cosmic home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these dwarf planets was originally classified as a planet?",
+      "correctAnswer": "Pluto",
+      "incorrectAnswers": ["Ceres", "Makemake", "Eris"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547438/pluto_fstn9q.jpg",
+      "correctExplanation": "Bravo, cosmic historian! You're absolutely correct! Pluto was originally classified as a planet before being reclassified as a dwarf planet. Your knowledge of the historical planetary classifications is truly out of this world! Keep exploring the cosmic tales of our celestial neighbors.",
+      "incorrectExplanation": "No worries, cosmic time traveler! The correct dwarf planet is Pluto. It was originally classified as a planet before being reclassified as a dwarf planet. You're still on an incredible journey through the historical classifications of our cosmic neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the highest mountain on Mars?",
+      "correctAnswer": "Olympus Mons",
+      "incorrectAnswers": ["Mount Everest", "K2", "Pikes Peak"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699562115/olympus_mons_ooabv5.jpg",
+      "correctExplanation": "Stellar, cosmic geographer! You're absolutely correct! Olympus Mons is the highest mountain on Mars. It's not only the tallest volcano on the Red Planet but also the largest volcano in our entire solar system. Your knowledge of Martian geography is truly out of this world! Keep exploring the cosmic landscapes of our neighboring planets.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct mountain is Olympus Mons. It is the highest mountain on Mars, not only the tallest volcano on the Red Planet but also the largest volcano in our entire solar system. You're still on an incredible journey through the cosmic landscapes of our neighboring planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Mars is called the red planet. But why does this planet appear red?",
+      "correctAnswer": "Because of the presence iron oxide on its surface",
+      "incorrectAnswers": [
+        "Because it's covered in red paint",
+        "Because of the red lava on its surface",
+        "Because it's inhabited by red aliens"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Stellar, cosmic color analyst! You're absolutely correct! Mars is called the red planet because of the presence of iron oxide, or rust, on its surface. This gives the Martian soil and rocks a reddish appearance. Your knowledge of the cosmic colors of our neighboring planets is truly out of this world! Keep exploring the wonders of the Martian landscape.",
+      "incorrectExplanation": "No worries, cosmic color investigator! The correct reason is the presence of iron oxide. Mars is called the red planet because of the presence of iron oxide, or rust, on its surface. This gives the Martian soil and rocks a reddish appearance. You're still on an incredible journey through the cosmic colors of our neighboring planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of the following is NOT a source of energy emitted by a star?",
+      "correctAnswer": "Gasoline",
+      "incorrectAnswers": ["Hydrogen", "Carbon", "Helium"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Bravo, cosmic energy expert! You're absolutely correct! Gasoline is not a source of energy emitted by a star. Stars primarily emit energy through processes like nuclear fusion in their cores. Your knowledge of the cosmic fueling mechanisms is truly out of this world! Keep exploring the radiant energy of our celestial luminaries.",
+      "incorrectExplanation": "No worries, cosmic investigator! While your answer is thoughtful, the correct choice is gasoline. It is not a source of energy emitted by a star. Stars primarily emit energy through processes like nuclear fusion in their cores. You're still on an incredible journey through the cosmic energy dynamics of our celestial luminaries! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the term used to describe the speed needed to leave the Earth's gravitational pull?",
+      "correctAnswer": "Escape velocity",
+      "incorrectAnswers": [
+        "Lift-off force",
+        "Space thrust",
+        "Gravitational resistance"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552548/launch_legzf5.jpg",
+      "correctExplanation": "Stellar, cosmic escape artist! You're absolutely correct! The term used to describe the speed needed to leave Earth's gravitational pull is escape velocity. It's the minimum speed an object must reach to break free from the gravitational attraction of a celestial body. Your knowledge of the cosmic escape dynamics is truly out of this world! Keep exploring the cosmic velocities of our celestial environment.",
+      "incorrectExplanation": "No worries, cosmic traveler! While your answer is thoughtful, the correct term is escape velocity. It's the speed needed to leave Earth's gravitational pull. You're still on an incredible journey through the cosmic velocities of our celestial environment! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What are Saturn's rings mostly made of?",
+      "correctAnswer": "Ice, dust, and rock",
+      "incorrectAnswers": [
+        "Gold and precious metals",
+        "Lava and molten rock",
+        "Cotton candy and marshmallows"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Bravo, cosmic ring investigator! You're absolutely correct! Saturn's rings are mostly made of ice, dust, and rock. These particles create the stunning and intricate rings that encircle the planet. Your knowledge of the cosmic composition of Saturn's rings is truly out of this world! Keep exploring the wonders of our ringed neighbor.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct composition is ice, dust, and rock. Saturn's rings are mostly made of these materials, creating the stunning and intricate rings that encircle the planet. You're still on an incredible journey through the cosmic compositions of our ringed neighbor! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "From what direction do we see the sun rise?",
+      "correctAnswer": "East",
+      "incorrectAnswers": ["North", "South", "West"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699562532/sunrise_ntmc7c.jpg",
+      "correctExplanation": "Stellar, cosmic sunrise observer! You're absolutely correct! We see the sun rise in the east. As Earth rotates on its axis, the sun appears to move across the sky from east to west. Your knowledge of the cosmic directions is truly out of this world! Keep exploring the wonders of our celestial motions.",
+      "incorrectExplanation": "No worries, cosmic navigator! The correct direction is east. We see the sun rise in the east as Earth rotates on its axis, causing the sun to appear to move across the sky from east to west. You're still on an incredible journey through the cosmic motions of our celestial home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these is NOT a word you can use to describe the shape of the Moon?",
+      "correctAnswer": "String",
+      "incorrectAnswers": ["Gibbous", "Quarter", "Crescent"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561558/moon_vwquac.jpg",
+      "correctExplanation": "Bravo, cosmic wordsmith! You're absolutely correct! String is not a word used to describe the shape of the Moon. Terms like crescent, gibbous, and quarter are more fitting to characterize the various phases of our lunar companion. Your knowledge of lunar descriptors is truly out of this world! Keep exploring the cosmic vocabulary of our celestial neighbors.",
+      "incorrectExplanation": "No worries, cosmic linguist! The correct term is string. It is not a word used to describe the shape of the Moon. Terms like crescent, gibbous, and quarter are more fitting to characterize the various phases of our lunar companion. You're still on an incredible journey through the cosmic vocabulary of our celestial neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many natural satellites does the Earth have?",
+      "correctAnswer": "1",
+      "incorrectAnswers": ["3", "7", "5"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Stellar, cosmic observer! You're absolutely correct! Earth has one natural satellite, commonly known as the Moon. Your knowledge of our celestial neighborhood is truly out of this world! Keep exploring the wonders of Earth and its lunar companion.",
+      "incorrectExplanation": "No worries, cosmic astronomer! The correct number is one. Earth has one natural satellite, commonly known as the Moon. You're still on an incredible journey through the cosmic realms of our celestial home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What word is used to describe the shape of the Moon's orbit around the Earth?",
+      "correctAnswer": "Elliptical",
+      "incorrectAnswers": ["Hexagonal", "Triangular", "Pentagonal"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699561558/moon_vwquac.jpg",
+      "correctExplanation": "Bravo, cosmic orbit expert! You're absolutely correct! The word used to describe the shape of the Moon's orbit around the Earth is elliptical. The Moon follows an elliptical path, meaning its orbit is slightly oval-shaped. Your knowledge of celestial orbits is truly out of this world! Keep exploring the cosmic trajectories of our celestial companions.",
+      "incorrectExplanation": "No worries, cosmic navigator! The correct term is elliptical. This word is used to describe the shape of the Moon's orbit around the Earth, indicating that its orbit is slightly oval-shaped. You're still on an incredible journey through the cosmic trajectories of our celestial companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of the following is our solar system's only natural light source?",
+      "correctAnswer": "The Sun",
+      "incorrectAnswers": ["The Earth", "The Moon", "Saturn's rings"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560645/light_speed_j2eqsn.jpg",
+      "correctExplanation": "Stellar, cosmic luminary expert! You're absolutely correct! The Sun is our solar system's only natural light source. Its radiant energy illuminates our celestial neighborhood and sustains life on Earth. Your knowledge of the cosmic light providers is truly out of this world! Keep basking in the brilliance of our solar star.",
+      "incorrectExplanation": "No worries, cosmic light seeker! The correct source is the Sun. It is our solar system's only natural light source, providing radiant energy that illuminates our celestial neighborhood and sustains life on Earth. You're still on an incredible journey through the cosmic luminaries of our celestial home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "The Earth's axis is slightly tilted. What does this cause?",
+      "correctAnswer": "Seasons",
+      "incorrectAnswers": ["Days", "Nights", "Years"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699562769/earths_axis_agsz9b.jpg",
+      "correctExplanation": "Bravo, cosmic tilt expert! You're absolutely correct! The Earth's axis is slightly tilted, and this tilt is responsible for the changing seasons. As Earth orbits the Sun, different parts of the planet receive varying amounts of sunlight, leading to the delightful cycle of spring, summer, autumn, and winter. Your knowledge of celestial tilts is truly out of this world! Keep exploring the cosmic dynamics of our planetary home.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct consequence is seasons. The Earth's slightly tilted axis is what causes the changing seasons as different parts of the planet receive varying amounts of sunlight during its orbit around the Sun. You're still on an incredible journey through the cosmic dynamics of our planetary home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "When it is summer in the northern hemisphere, what season will it be in the southern hemisphere?",
+      "correctAnswer": "Winter",
+      "incorrectAnswers": ["Spring", "Summer", "Autumn"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699562933/hemispheres_hfqpo8.jpg",
+      "correctExplanation": "Stellar, cosmic season traveler! You're absolutely correct! When it is summer in the northern hemisphere, it will be winter in the southern hemisphere. The Earth's axial tilt is responsible for this delightful dance of seasons, creating a celestial ballet of warmth and chill across our planetary home. Your knowledge of global seasonal dynamics is truly out of this world! Keep exploring the cosmic rhythms of our interconnected hemispheres.",
+      "incorrectExplanation": "No worries, cosmic season explorer! The correct season is winter. When it is summer in the northern hemisphere, it will be winter in the southern hemisphere. The Earth's axial tilt is responsible for this delightful dance of seasons, creating a celestial ballet of warmth and chill across our planetary home. You're still on an incredible journey through the cosmic rhythms of our interconnected hemispheres! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these statements is correct?",
+      "correctAnswer": "Our galaxy moves through space",
+      "incorrectAnswers": [
+        "The Sun orbits the Earth",
+        "Our galaxy rotates around an axis",
+        "Our galaxy is considered a dwarf galaxy"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557290/milky_way_hhxyzk.jpg",
+      "correctExplanation": "Bravo, cosmic truth seeker! You're absolutely correct! Our galaxy moves through space. The Milky Way, our cosmic abode, is not stationary but in constant motion, traversing through the vast cosmic expanse. Your knowledge of the dynamic nature of our celestial home is truly out of this world! Keep exploring the cosmic movements of our galactic neighborhood.",
+      "incorrectExplanation": "No worries, cosmic investigator! The correct statement is that our galaxy moves through space. The Milky Way, our cosmic abode, is not stationary but in constant motion, traversing through the vast cosmic expanse. You're still on an incredible journey through the cosmic movements of our galactic neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "When an astronaut is in the International Space Station, can they go outside?",
+      "correctAnswer": "Yes, if work needs to be done outside",
+      "incorrectAnswers": [
+        "Only the Commander can go out of the Space Station",
+        "Yes, if they are low on eggs and need to run to the store",
+        "No, never"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699558645/iss_ssmaqh.jpg",
+      "correctExplanation": "Stellar, cosmic habitat expert! You're absolutely correct! Yes, astronauts can go outside the International Space Station (ISS) if work needs to be done outside. They use specially designed space suits to venture into the vacuum of space while tethered to the ISS. Your knowledge of extravehicular activities is truly out of this world! Keep exploring the cosmic experiences of our spacefaring astronauts.",
+      "incorrectExplanation": "No worries, cosmic voyager! The correct circumstance is when work needs to be done outside. Astronauts can go outside the International Space Station (ISS) for extravehicular activities, using specially designed space suits to venture into the vacuum of space while tethered to the ISS. You're still on an incredible journey through the cosmic experiences of our spacefaring astronauts! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has the most visible rings?",
+      "correctAnswer": "Saturn",
+      "incorrectAnswers": ["Mars", "Uranus", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553272/saturns_moons_ubzfoe.jpg",
+      "correctExplanation": "Bravo, cosmic ring connoisseur! You're absolutely correct! Saturn is the planet with the most visible rings in our solar system. Its stunning and iconic ring system is a captivating feature for astronomers and sky gazers alike. Your knowledge of cosmic jewelry is truly out of this world! Keep exploring the wonders of Saturn's magnificent rings.",
+      "incorrectExplanation": "No worries, cosmic observer! The correct planet is Saturn. It is the planet with the most visible rings in our solar system, featuring a stunning and iconic ring system. You're still on an incredible journey through the cosmic jewelry of our planetary neighbors! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "All planets travel around the sun in a specific pathway. What is this pathway called?",
+      "correctAnswer": "Orbit",
+      "incorrectAnswers": ["Space trail", "Cosmic lane", "Celestial groove"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699563285/orbit_path_fah6uz.jpg",
+      "correctExplanation": "Stellar, cosmic navigator! You're absolutely correct! The pathway along which all planets travel around the sun is called an orbit. Each planet follows its own unique orbit as it journeys around our solar star. Your knowledge of celestial pathways is truly out of this world! Keep exploring the cosmic orbits of our planetary companions.",
+      "incorrectExplanation": "No worries, cosmic traveler! The correct term is orbit. The pathway along which all planets travel around the sun is called an orbit. Each planet follows its own unique orbit as it journeys around our solar star. You're still on an incredible journey through the cosmic pathways of our planetary companions! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these planets would you not be able to stand on because it is mostly gas?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Mars", "Mercury", "Venus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Bravo, cosmic gas expert! You're absolutely correct! Jupiter is the planet you wouldn't be able to stand on because it is mostly composed of gas. Its immense size and gaseous composition make it a gas giant, lacking a solid surface for exploration. Your knowledge of planetary compositions is truly out of this world! Keep exploring the cosmic states of matter in our planetary family.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct planet is Jupiter. It is the planet you wouldn't be able to stand on because it is mostly composed of gas. Jupiter's immense size and gaseous composition make it a gas giant, lacking a solid surface for exploration. You're still on an incredible journey through the cosmic states of matter in our planetary family! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "The word \"galaxy\" comes from a Greek word, meaning what?",
+      "correctAnswer": "Milky",
+      "incorrectAnswers": ["Spiral", "Colossal", "Plethora"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699557290/milky_way_hhxyzk.jpg",
+      "correctExplanation": "Stellar, linguistic adept! You're absolutely correct! The word \"galaxy\" comes from a Greek word meaning \"milky.\" The term originates from the Milky Way, our own galaxy, which was visible as a milky band of light across the night sky. Your knowledge of cosmic etymology is truly out of this world! Keep delving into the linguistic wonders of our celestial vocabulary.",
+      "incorrectExplanation": "No worries, cosmic linguist! The correct meaning is \"milky.\" The word \"galaxy\" comes from a Greek word meaning \"milky,\" originating from the appearance of the Milky Way, our own galaxy, as a milky band of light across the night sky. You're still on an incredible linguistic journey through the cosmic vocabulary of our celestial home! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of these is one of Saturn's moons?",
+      "correctAnswer": "Enceladus",
+      "incorrectAnswers": ["Umbriel", "Triton", "Charon"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699553272/saturns_moons_ubzfoe.jpg",
+      "correctExplanation": "Bravo, cosmic moon detective! You're absolutely correct! Enceladus is indeed one of Saturn's moons. This icy moon is known for its active geysers that shoot water vapor into space. Your knowledge of Saturn's celestial companions is truly out of this world! Keep exploring the mysteries of our planetary moons.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct moon is Enceladus. It is one of Saturn's moons, known for its active geysers that shoot water vapor into space. You're still on an incredible journey through the cosmic mysteries of our planetary moons! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What was the constellation Orion named after?",
+      "correctAnswer": "A skilled hunter in ancient Greece",
+      "incorrectAnswers": [
+        "A rare species of Mediterranean bird",
+        "A legendary pirate in ancient maritime tales",
+        "A type of spaceship in science fiction"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699563558/orion_ad0piv.jpg",
+      "correctExplanation": "Stellar, mythological scholar! You're absolutely correct! The constellation Orion was named after a skilled hunter in ancient Greece. This prominent constellation is often associated with the mighty hunter from Greek mythology. Your knowledge of celestial mythology is truly out of this world! Keep exploring the cosmic stories written in the stars.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct association is with a skilled hunter in ancient Greece. The constellation Orion was named after a mighty hunter from Greek mythology. You're still on an incredible journey through the cosmic stories written in the stars! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What kind of solar system body, visible from Earth only once every 75 years, is named after Edmond Halley?",
+      "correctAnswer": "A comet",
+      "incorrectAnswers": ["A dwarf planet", "An asteroid", "A meteoroid"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699563675/comet_2_uxom5j.jpg",
+      "correctExplanation": "Bravo, celestial historian! You're absolutely correct! A comet is the solar system body named after Edmond Halley, visible from Earth only once every 75 years. Halley's Comet, with its periodic and predictable appearances, has fascinated sky gazers throughout history. Your knowledge of celestial phenomena is truly out of this world! Keep scanning the cosmic skies for the periodic visits of Halley's Comet.",
+      "incorrectExplanation": "No worries, cosmic stargazer! The correct solar system body is a comet. A comet, named after Edmond Halley, is visible from Earth only once every 75 years. Halley's Comet, with its periodic and predictable appearances, has fascinated sky gazers throughout history. You're still on an incredible journey through the cosmic visits of Halley's Comet! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet has two moons called Phobos and Deimos?",
+      "correctAnswer": "Mars",
+      "incorrectAnswers": ["Uranus", "Venus", "Saturn"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Stellar, Martian moon expert! You're absolutely correct! Mars is the planet with two moons called Phobos and Deimos. These celestial companions accompany the Red Planet on its cosmic journey through the solar system. Your knowledge of Martian moons is truly out of this world! Keep exploring the mysteries of the Martian neighborhood.",
+      "incorrectExplanation": "No worries, cosmic explorer! The correct planet is Mars. Mars has two moons called Phobos and Deimos, which accompany the Red Planet on its cosmic journey through the solar system. You're still on an incredible journey through the cosmic mysteries of the Martian neighborhood! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which was the first country to send humans to the Earth's moon through the Apollo space program?",
+      "correctAnswer": "USA",
+      "incorrectAnswers": ["UK", "China", "Russia"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699563909/astronauts_y3si8a.jpg",
+      "correctExplanation": "Bravo, space history aficionado! You're absolutely correct! The United States was the first country to send humans to the Earth's moon through the Apollo space program. The iconic Apollo 11 mission, with astronauts Neil Armstrong and Buzz Aldrin, marked a historic milestone in human space exploration. Your knowledge of space history is truly out of this world! Keep exploring the cosmic achievements of human spaceflight.",
+      "incorrectExplanation": "No worries, cosmic historian! The correct country is USA. The U.S. was the first country to send humans to the Earth's moon through the Apollo space program. The iconic Apollo 11 mission, with astronauts Neil Armstrong and Buzz Aldrin, marked a historic milestone in human space exploration. You're still on an incredible journey through the cosmic achievements of human spaceflight! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "One of the most amazing natural displays in the sky is the Aurora Borealis. What is this also known as?",
+      "correctAnswer": "The Northern Lights",
+      "incorrectAnswers": [
+        "The Polar Sparkle",
+        "The Arctic Disco",
+        "The Solar Flare Extravaganza"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699564103/northern_lights_akx0kr.jpg",
+      "correctExplanation": "Stellar, aurora enthusiast! You're absolutely correct! The Aurora Borealis is also known as the Northern Lights. This mesmerizing display of colorful lights in the northern hemisphere is caused by interactions between charged particles from the sun and the Earth's atmosphere. Your knowledge of celestial light shows is truly out of this world! Keep chasing the cosmic hues of the Northern Lights.",
+      "incorrectExplanation": "No worries, cosmic spectator! The correct name is the Northern Lights. The Aurora Borealis is also known as the Northern Lights, a mesmerizing display of colorful lights in the northern hemisphere caused by interactions between charged particles from the sun and the Earth's atmosphere. You're still on an incredible journey through the cosmic light shows of our planet! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is between Mars and Saturn?",
+      "correctAnswer": "Jupiter",
+      "incorrectAnswers": ["Mercury", "Uranus", "Earth"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/jupiter_a7rscc.jpg",
+      "correctExplanation": "Bravo, planetary navigator! You're absolutely correct! Jupiter is the planet between Mars and Saturn in our solar system. This gas giant, with its immense size and distinct bands of clouds, is a prominent member of the cosmic lineup. Your knowledge of planetary positions is truly out of this world! Keep exploring the cosmic geography of our solar system.",
+      "incorrectExplanation": "No worries, cosmic traveler! The correct planet is Jupiter. It is the planet between Mars and Saturn in our solar system. This gas giant, with its immense size and distinct bands of clouds, is a prominent member of the cosmic lineup. You're still on an incredible journey through the cosmic geography of our solar system! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the fourth planet from the sun?",
+      "correctAnswer": "Mars",
+      "incorrectAnswers": ["Neptune", "Saturn", "Venus"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547435/mars_aquegw.jpg",
+      "correctExplanation": "Stellar cosmic mathematician! You're absolutely correct! Mars is the fourth planet from the sun in our solar system. This red-hued neighbor is a fascinating world with a history of exploration. Your knowledge of planetary order is truly out of this world! Keep navigating the cosmic distances between the planets.",
+      "incorrectExplanation": "No worries, celestial explorer! The correct planet is Mars. It is the fourth planet from the sun in our solar system. This red-hued neighbor is a fascinating world with a history of exploration. You're still on an incredible journey through the cosmic order of the planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the sixth planet from the sun?",
+      "correctAnswer": "Saturn",
+      "incorrectAnswers": ["Mercury", "Earth", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Stellar cosmic counter! You're absolutely correct! Saturn is the sixth planet from the sun in our solar system. This majestic ringed giant is a celestial wonder that has captivated astronomers for centuries. Your knowledge of planetary order is truly out of this world! Keep exploring the cosmic distances between the planets.",
+      "incorrectExplanation": "No worries, celestial navigator! The correct planet is Saturn. It is the sixth planet from the sun in our solar system. This majestic ringed giant is a celestial wonder that has captivated astronomers for centuries. You're still on an incredible journey through the cosmic order of the planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the seventh planet from the sun?",
+      "correctAnswer": "Uranus",
+      "incorrectAnswers": ["Neptune", "Mars", "Jupiter"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547441/uranus_yr1bpt.jpg",
+      "correctExplanation": "Bravo, cosmic historian! You're absolutely correct! Uranus is the seventh planet from the sun in our solar system. This ice giant, known for its unique tilt and faint rings, adds a touch of mystery to our celestial neighborhood. Your knowledge of planetary order is truly out of this world! Keep unraveling the cosmic secrets of the outer planets.",
+      "incorrectExplanation": "No worries, celestial traveler! The correct planet is Uranus. It is the seventh planet from the sun in our solar system. This ice giant, known for its unique tilt and faint rings, adds a touch of mystery to our celestial neighborhood. You're still on an incredible journey through the cosmic order of the planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which is the eighth planet from the sun?",
+      "correctAnswer": "Neptune",
+      "incorrectAnswers": ["Venus", "Earth", "Saturn"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547438/neptune_iseeox.jpg",
+      "correctExplanation": "Stellar cosmic navigator! You're absolutely correct! Neptune is the eighth planet from the sun in our solar system. This distant ice giant, with its deep blue hue and windy atmosphere, is a captivating member of the outer planets. Your knowledge of planetary order is truly out of this world! Keep exploring the cosmic distances between the planets.",
+      "incorrectExplanation": "No worries, celestial adventurer! The correct planet is Neptune. It is the eighth planet from the sun in our solar system. This distant ice giant, with its deep blue hue and windy atmosphere, is a captivating member of the outer planets. You're still on an incredible journey through the cosmic order of the planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the sun?",
+      "correctAnswer": "A star",
+      "incorrectAnswers": ["A planet", "A comet", "A meteor"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547440/sun_cxjjes.jpg",
+      "correctExplanation": "Stellar cosmic scholar! You're absolutely correct! The sun is a star. Our nearest star, to be exact. It plays a central role in our solar system, providing light, heat, and the energy that sustains life on Earth. Your knowledge of celestial bodies is truly out of this world! Keep basking in the cosmic glow of understanding.",
+      "incorrectExplanation": "No worries, cosmic learner! The correct classification is a star. The sun is our nearest star, playing a central role in our solar system by providing light, heat, and energy. You're still on an incredible journey through the cosmic understanding of celestial bodies! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "How many of the planets are named after Gods?",
+      "correctAnswer": "7",
+      "incorrectAnswers": ["8", "2", "5"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699559622/planets_2_o7ufq9.jpg",
+      "correctExplanation": "Stellar mythologist! You're absolutely correct! Eight planets in our solar system are named after gods. The planets Mercury, Venus, Mars, Jupiter, and Saturn are named after Roman gods, while Earth and Uranus are named after ancient deities. Uranus, in particular, is named after the Greek god of the sky. Your knowledge of celestial nomenclature is truly divine! Keep unraveling the cosmic stories behind the planets.",
+      "incorrectExplanation": "No worries, celestial inquirer! The correct number is seven. Seven planets in our solar system are named after gods. The planets Mercury, Venus, Mars, Jupiter, and Saturn are named after Roman gods, while Earth and Uranus are named after ancient deities. Uranus, specifically, is named after the Greek god of the sky. You're still on an incredible journey through the cosmic stories behind the planets! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is a light year?",
+      "correctAnswer": "The distance light travels in a year",
+      "incorrectAnswers": [
+        "A year when there's a lot of sunlight",
+        "The time it takes for a lightbulb to burn out",
+        "The lifespan of a star"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560645/light_speed_j2eqsn.jpg",
+      "correctExplanation": "Bravo, cosmic measurer! You're absolutely correct! A light year is the distance that light travels in one year. It's a unit of astronomical measurement used to express vast distances in space. Your grasp of cosmic measurements is truly illuminating! Keep shining bright in the realm of astronomical knowledge.",
+      "incorrectExplanation": "No worries, celestial learner! The correct definition is the distance that light travels in one year. A light year is a unit of astronomical measurement used to express vast distances in space. You're still on an incredible journey through the cosmic measurements of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which constellation is shaped like a crab?",
+      "correctAnswer": "Cancer",
+      "incorrectAnswers": ["Scorpio", "Sagittarius", "Leo"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699564359/cancer_gyv3pn.jpg",
+      "correctExplanation": "Astrobioartist! You're absolutely correct! The constellation shaped like a crab is Cancer. In the night sky, this celestial crustacean adds a pinch of cosmic beauty. Your recognition of constellation patterns is truly starry-eyed! Keep exploring the artistic tapestry of the night sky.",
+      "incorrectExplanation": "No worries, celestial explorer! The correct constellation shaped like a crab is Cancer. In the night sky, this celestial crustacean adds a pinch of cosmic beauty. You're still on an incredible journey through the celestial patterns of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which of the following is NOT a possible process for a star to undergo?",
+      "correctAnswer": "Burn forever",
+      "incorrectAnswers": ["Cool down", "Explode", "Expand"],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699552951/sunlight_xequeq.jpg",
+      "correctExplanation": "Astrophysics virtuoso! You're absolutely correct! Stars cannot 'burn forever.' While they undergo various processes throughout their life cycles, including nuclear fusion and the release of energy, they eventually exhaust their fuel and evolve into different forms. Your understanding of stellar processes is truly celestial! Keep unraveling the cosmic mysteries of stars.",
+      "incorrectExplanation": "No worries, cosmic investigator! The correct process that stars do not undergo is 'burn forever.' Stars go through various processes in their life cycles, including nuclear fusion and the release of energy, but they eventually exhaust their fuel. You're still on an incredible journey through the cosmic processes of stars! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What do you call a system where two stars are close enough to each other to significantly affect each other's orbits?",
+      "correctAnswer": "Binary stars",
+      "incorrectAnswers": ["Gemini", "Globular cluster", "Spiral galaxy"],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699564494/binary_stars_ek0fpp.jpg",
+      "correctExplanation": "Astrodynamical maestro! You're absolutely correct! A system where two stars influence each other's orbits significantly is called binary stars. In these cosmic duets, the gravitational dance between stars creates mesmerizing celestial choreography. Your knowledge of stellar dynamics is truly out of this world! Keep exploring the cosmic ballet of binary stars.",
+      "incorrectExplanation": "No worries, celestial choreographer! The correct term for a system where two stars significantly affect each other's orbits is binary stars. In these cosmic duets, the gravitational dance between stars creates mesmerizing celestial choreography. You're still on an incredible journey through the cosmic dynamics of stellar pairs! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is the second largest in our solar system?",
+      "correctAnswer": "Saturn",
+      "incorrectAnswers": ["Uranus", "Earth", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547439/saturn_v0af2o.jpg",
+      "correctExplanation": "Astro-sizing expert! You're absolutely correct! The second-largest planet in our solar system is Saturn. This ringed giant takes the silver medal for size, with its stunning rings adding an extra touch of cosmic elegance. Your planetary proportions are truly astronomical! Keep exploring the vast dimensions of our celestial neighborhood.",
+      "incorrectExplanation": "No worries, cosmic metrician! The correct second-largest planet in our solar system is Saturn. This ringed giant takes the silver medal for size, with its stunning rings adding an extra touch of cosmic elegance. You're still on an incredible journey through the planetary dimensions of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which planet is sometimes called the blue planet?",
+      "correctAnswer": "Earth",
+      "incorrectAnswers": ["Uranus", "Jupiter", "Neptune"],
+      "difficulty": "easy",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699547434/earth_pko5ej.jpg",
+      "correctExplanation": "Planet color connoisseur! You're absolutely correct! The planet sometimes called the blue planet is Earth. Our home world's abundant water gives it a distinctive blue hue when viewed from space. Your knowledge of planetary nicknames is truly stellar! Keep exploring the unique features of our celestial abode.",
+      "incorrectExplanation": "No worries, cosmic colorist! The correct planet sometimes called the blue planet is Earth. Our home world's abundant water gives it a distinctive blue hue when viewed from space. You're still on an incredible journey through the colorful details of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "Which force, in rocket science, works against the rocket and makes it use extra energy during launch?",
+      "correctAnswer": "Atmospheric drag",
+      "incorrectAnswers": [
+        "Antiviscosity",
+        "Aerostatic force",
+        "Extragravitational pull"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699564629/drag_tlvubh.jpg",
+      "correctExplanation": "Aero-dynamics aficionado! You're absolutely correct! The force that works against the rocket and makes it use extra energy during launch is atmospheric drag. As the rocket ascends through the Earth's atmosphere, it encounters resistance, requiring additional energy to overcome. Your grasp of rocket science dynamics is truly out of this world! Keep exploring the forces shaping space travel.",
+      "incorrectExplanation": "No worries, cosmic engineer! The correct force that works against the rocket and makes it use extra energy during launch is atmospheric drag. As the rocket ascends through the Earth's atmosphere, it encounters resistance, requiring additional energy to overcome. You're still on an incredible journey through the forces of space travel! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "What is the constellation Ursa Major often referred to as?",
+      "correctAnswer": "The Big Dipper",
+      "incorrectAnswers": [
+        "The Cosmic Bear",
+        "The Astral Turtle",
+        "The Starry Dolphin"
+      ],
+      "difficulty": "medium",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699560999/ursa_major_ti2tso.jpg",
+      "correctExplanation": "Constellation naming expert! You're absolutely correct! The constellation Ursa Major is often referred to as The Big Dipper. Its distinctive shape, resembling a ladle or dipper, makes it a well-known celestial landmark. Your knowledge of starry configurations is truly stellar! Keep navigating the cosmic map of the night sky.",
+      "incorrectExplanation": "No worries, celestial cartographer! The correct name for the constellation Ursa Major is The Big Dipper. Its distinctive shape, resembling a ladle or dipper, makes it a well-known celestial landmark. You're still on an incredible journey through the starry tapestry of our universe! Keep reaching for the stars with your cosmic curiosity!"
+    },
+    {
+      "question": "In 1977, which two identical space probes were launched that are now further away from Earth than any man made objects have ever gone?",
+      "correctAnswer": "Voyager 1 and 2",
+      "incorrectAnswers": [
+        "Pioneer 10 and Pioneer 11",
+        "Apollo 11 and Apollo 13",
+        "Mariner 7 and 9"
+      ],
+      "difficulty": "hard",
+      "image": "https://res.cloudinary.com/daufzqlld/image/upload/v1699891890/voyager_gklree.jpg",
+      "correctExplanation": "Interstellar navigators unite! You're absolutely correct! In 1977, Voyager 1 and 2 were launched, and they are now further away from Earth than any man-made objects have ever gone. These intrepid spacecraft continue their journey beyond our solar system, carrying messages from Earth. Your knowledge of deep space exploration is truly out of this world! Keep reaching for the cosmic horizons.",
+      "incorrectExplanation": "No worries, celestial time traveler! The correct space probes launched in 1977 that are now further away from Earth than any man-made objects have ever gone are Voyager 1 and 2. These intrepid spacecraft continue their journey beyond our solar system, carrying messages from Earth. You're still on an incredible odyssey through the cosmos! Keep reaching for the stars with your cosmic curiosity!"
+    }
+  ]
+}
