@@ -48,6 +48,8 @@ export const TriviaSetupScreen = ({ navigation }) => {
     `Commander, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
   );
 
+  const { textSpeed } = useSelector((state) => state.user);
+
   const { navigate, dispatch } = navigation;
 
   const skipOkText = () => {
@@ -149,7 +151,7 @@ export const TriviaSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={okTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndIntro}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -162,7 +164,7 @@ export const TriviaSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={difficultyTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndDifficulty}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -175,7 +177,7 @@ export const TriviaSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={durationTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndDuration}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -188,7 +190,7 @@ export const TriviaSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={readyTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndReady}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >

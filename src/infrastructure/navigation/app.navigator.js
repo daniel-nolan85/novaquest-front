@@ -1,44 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, TouchableOpacity } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { getAuth, signOut } from 'firebase/auth';
-import { app } from '../../../firebase';
-import { SafeArea } from '../../components/utils/safe-area.component';
 import { ImagesNavigator } from './images.navigator';
 import { PlanetsNavigator } from './planets.navigator';
 import { GamesNavigator } from './games.navigator';
-import Telescope from '../../../assets/telescope.svg';
-import TelescopeInactive from '../../../assets/telescope-inactive.svg';
-import Planets from '../../../assets/planets.svg';
-import PlanetsInactive from '../../../assets/planets-inactive.svg';
-import Joystick from '../../../assets/joystick.svg';
-import JoystickInactive from '../../../assets/joystick-inactive.svg';
-import Settings from '../../../assets/settings.svg';
-import SettingsInactive from '../../../assets/settings-inactive.svg';
+import { SettingsScreen } from '../../features/settings/screens/settings.screen';
+import Telescope from '../../../assets/svg/telescope.svg';
+import TelescopeInactive from '../../../assets/svg/telescope-inactive.svg';
+import Planets from '../../../assets/svg/planets.svg';
+import PlanetsInactive from '../../../assets/svg/planets-inactive.svg';
+import Joystick from '../../../assets/svg/joystick.svg';
+import JoystickInactive from '../../../assets/svg/joystick-inactive.svg';
+import Settings from '../../../assets/svg/settings.svg';
+import SettingsInactive from '../../../assets/svg/settings-inactive.svg';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export const AppNavigator = () => {
-  const dispatch = useDispatch();
-  const auth = getAuth();
-
-  const logout = async () => {
-    await signOut(auth);
-    dispatch({
-      type: 'LOGOUT',
-      payload: null,
-    });
-  };
-
-  const SettingsScreen = () => (
-    <SafeArea>
-      <Text>SettingsScreen</Text>
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </SafeArea>
-  );
-
   return (
     <Navigator>
       <Screen

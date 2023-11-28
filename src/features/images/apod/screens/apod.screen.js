@@ -5,7 +5,7 @@ import { NASA_API_KEY } from '@env';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
 import { DrawerActions } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import Calendar from '../../../../../assets/calendar.svg';
+import Calendar from '../../../../../assets/svg/calendar.svg';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { ApodInfoCard } from '../components/apod-card.component';

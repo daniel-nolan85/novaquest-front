@@ -1,6 +1,6 @@
 import { View, Image } from 'react-native';
 import Matter from 'matter-js';
-import Meteorite from '../../../../../assets/meteorite.svg';
+import Meteorite from '../../../../../assets/svg/meteorite.svg';
 
 const Asteroid = (props) => {
   const widthBody = props.body.bounds.max.x - props.body.bounds.min.x;

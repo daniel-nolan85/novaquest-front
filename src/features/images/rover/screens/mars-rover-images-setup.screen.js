@@ -60,6 +60,8 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     `Commander, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, lens, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, Commander, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, Commander, and may your exploration of the cosmos be nothing short of extraordinary!`
   );
 
+  const { textSpeed } = useSelector((state) => state.user);
+
   const {
     selectedRover,
     setSelectedRover,
@@ -206,7 +208,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={roverTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndIntro}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -219,7 +221,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={cameraTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndCamera}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -232,7 +234,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={dateTypeTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndDateType}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -245,7 +247,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={dateTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndDate}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -258,7 +260,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={readyTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndReady}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >

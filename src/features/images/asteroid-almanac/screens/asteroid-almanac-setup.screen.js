@@ -36,6 +36,8 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
     `Be vigilant, Commander. Some of these celestial wanderers may be potentially hazardous, heightening the stakes in your cosmic exploration. Whether you're a seasoned stargazer or a commanding astronomer, 'Asteroid Almanac' offers a captivating journey through the cosmos, providing insights into both the wonders and potential challenges posed by these cosmic travelers. The universe awaits your exploration in this enthralling section dedicated to the asteroids of our cosmic neighborhood.`
   );
 
+  const { textSpeed } = useSelector((state) => state.user);
+
   const { date, setDate } = useContext(ImagesContext);
 
   const { navigate, dispatch } = navigation;
@@ -89,7 +91,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={dateTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndDate}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -102,7 +104,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={readyTyping ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEndReady}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >

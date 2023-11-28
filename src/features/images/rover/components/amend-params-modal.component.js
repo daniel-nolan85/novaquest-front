@@ -13,11 +13,13 @@ import {
   OptionText,
   AmendedOption,
 } from '../styles/amend-params-modal.styles';
-import Rover from '../../../../../assets/rover.svg';
-import Camera from '../../../../../assets/camera.svg';
-import Mars from '../../../../../assets/mars.svg';
-import Earth from '../../../../../assets/earth.svg';
+import Rover from '../../../../../assets/svg/rover.svg';
+import Camera from '../../../../../assets/svg/camera.svg';
+import Mars from '../../../../../assets/svg/mars.svg';
+import Earth from '../../../../../assets/svg/earth.svg';
 import { Text } from '../../../../components/typography/text.component';
+
+const { Item } = Picker;
 
 export const AmendParamsModal = ({ open, handleFilters }) => {
   const [showRoverPicker, setShowRoverPicker] = useState(false);
@@ -204,10 +206,10 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
                 setEarthDate(null);
               }}
             >
-              <Picker.Item label='Curiosity' value='curiosity' />
-              <Picker.Item label='Opportunity' value='opportunity' />
-              <Picker.Item label='Perseverance' value='perseverance' />
-              <Picker.Item label='Spirit' value='spirit' />
+              <Item label='Curiosity' value='curiosity' />
+              <Item label='Opportunity' value='opportunity' />
+              <Item label='Perseverance' value='perseverance' />
+              <Item label='Spirit' value='spirit' />
             </Picker>
           )}
           {amendedRover && (
@@ -236,7 +238,7 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
                   }}
                 >
                   {getCameraOptions(amendedRover).map((cameraOption, index) => (
-                    <Picker.Item
+                    <Item
                       key={index}
                       label={cameraOption.fullName}
                       value={cameraOption.code}

@@ -21,9 +21,9 @@ export const RegistrationForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         sendEmailVerification(userCredential.user)
           .then(() => {
@@ -76,8 +76,11 @@ export const RegistrationForm = () => {
             text2: errorMessage || 'An error occurred during registration.',
           });
         }
-        // ..
       });
+  };
+
+  const handleGuestLogin = () => {
+    //
   };
 
   return (
@@ -86,14 +89,14 @@ export const RegistrationForm = () => {
         Register
       </Text>
       <Input
-        label='Email'
+        label={<Text variant='body'>Email</Text>}
         type='email'
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType='email-address'
       />
       <Input
-        label='Password'
+        label={<Text variant='body'>Password</Text>}
         type='password'
         value={password}
         onChangeText={(text) => setPassword(text)}
@@ -102,7 +105,7 @@ export const RegistrationForm = () => {
       <OptionContainer>
         <Option onPress={handleRegistration}>
           <GradientBackground>
-            <OptionText variant='body'>OK</OptionText>
+            <OptionText variant='body'>Prepare for Launch...</OptionText>
           </GradientBackground>
         </Option>
       </OptionContainer>
@@ -110,6 +113,13 @@ export const RegistrationForm = () => {
         After signing up, please check your email and click the link to complete
         your registration.
       </Info>
+      <OptionContainer>
+        <Option onPress={handleGuestLogin}>
+          <GradientBackground>
+            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+          </GradientBackground>
+        </Option>
+      </OptionContainer>
     </View>
   );
 };

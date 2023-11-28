@@ -32,6 +32,8 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
     `Brace yourself for an odyssey of celestial proportions as you explore the intricacies of our vast cosmos. The stars await your arrangement, and the galaxies beckon your strategic mind. Get ready to be the architect of your cosmic adventure — the 'Interstellar Assembly' begins now!`
   );
 
+  const { textSpeed } = useSelector((state) => state.user);
+
   const { navigate, dispatch } = navigation;
 
   const skipText = () => {
@@ -75,7 +77,7 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -88,7 +90,7 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >

@@ -22,7 +22,7 @@ export const InterstellarAssemblyModal = ({ handlePlayAgain, isGameWon }) => {
                 autoPlay
                 loop
                 resizeMode='cover'
-                source={require('../../../../../assets/correct.json')}
+                source={require('../../../../../assets/animation/correct.json')}
               />
             </AnimationWrapper>
             <Congratulations variant='title'>You did it!</Congratulations>

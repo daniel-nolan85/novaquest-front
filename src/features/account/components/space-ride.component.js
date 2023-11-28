@@ -8,7 +8,7 @@ export const SpaceRide = () => {
       autoPlay
       loop
       resizeMode='cover'
-      source={require('../../../../assets/space-ride.json')}
+      source={require('../../../../assets/animation/space-ride.json')}
     />
   );
 };

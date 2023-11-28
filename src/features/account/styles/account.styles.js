@@ -23,6 +23,7 @@ export const GradientBackground = styled(LinearGradient).attrs({
 
 export const OptionText = styled(Text)`
   color: ${(props) => props.theme.colors.text.inverse};
+  text-transform: uppercase;
 `;
 
 export const Input = styled(TextInput)`

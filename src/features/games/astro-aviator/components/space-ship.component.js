@@ -21,7 +21,7 @@ const Rocket = (props) => {
       }}
     >
       <LottieView
-        source={require('../../../../../assets/rocket.json')}
+        source={require('../../../../../assets/animation/rocket.json')}
         autoPlay
         loop
         style={{

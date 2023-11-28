@@ -12,11 +12,14 @@ import {
   OptionText,
   Input,
 } from '../styles/account.styles';
+import { ForgotPasswordModal } from './forgot-password-modal.component';
+import { createOrLocateUser } from '../../../requests/auth';
 
 export const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('danielnolan85@yahoo.com');
+  const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -28,13 +31,19 @@ export const LoginForm = () => {
         const user = userCredential.user;
         if (user.emailVerified) {
           const idToken = user.accessToken;
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              email: user.email,
-              token: idToken,
-            },
-          });
+          createOrLocateUser(idToken)
+            .then((res) => {
+              dispatch({
+                type: 'LOGGED_IN_USER',
+                payload: {
+                  token: idToken,
+                  _id: res.data._id,
+                  email: res.data.email,
+                  role: res.data.role,
+                },
+              });
+            })
+            .catch((err) => console.error(err));
         } else {
           Toast.show({
             type: 'error',
@@ -78,20 +87,24 @@ export const LoginForm = () => {
       });
   };
 
+  const handleGuestLogin = () => {
+    //
+  };
+
   return (
     <View>
       <Text variant='title' style={{ textAlign: 'center' }}>
         Login
       </Text>
       <Input
-        label='Email'
+        label={<Text variant='body'>Email</Text>}
         type='email'
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType='email-address'
       />
       <Input
-        label='Password'
+        label={<Text variant='body'>Password</Text>}
         type='password'
         value={password}
         onChangeText={(text) => setPassword(text)}
@@ -100,13 +113,23 @@ export const LoginForm = () => {
       <OptionContainer>
         <Option onPress={handleLogin}>
           <GradientBackground>
-            <OptionText variant='body'>OK</OptionText>
+            <OptionText variant='body'>Blast Off!</OptionText>
           </GradientBackground>
         </Option>
       </OptionContainer>
-      {/* <TouchableOpacity>
-        <Text variant='body'>Forgot password?</Text>
-      </TouchableOpacity> */}
+      <TouchableOpacity onPress={() => setVisible(true)}>
+        <Text variant='body' style={{ textAlign: 'center' }}>
+          Forgot password?
+        </Text>
+      </TouchableOpacity>
+      <ForgotPasswordModal visible={visible} setVisible={setVisible} />
+      <OptionContainer>
+        <Option onPress={handleGuestLogin}>
+          <GradientBackground>
+            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+          </GradientBackground>
+        </Option>
+      </OptionContainer>
     </View>
   );
 };

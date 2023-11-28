@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { Text } from '../../../../components/typography/text.component';
 import { images } from '../../../../services/trivia/trivia.data.json';
@@ -37,6 +38,8 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
   const [text4] = useState(
     `Prepare for lift-off, Commander, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
   );
+
+  const { textSpeed } = useSelector((state) => state.user);
 
   const { navigate, dispatch } = navigation;
 
@@ -81,7 +84,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -94,7 +97,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -107,7 +110,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -120,7 +123,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={typing ? 1 : 0}
-            maxDelay={50}
+            maxDelay={textSpeed}
             onTypingEnd={handleTypingEnd}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >

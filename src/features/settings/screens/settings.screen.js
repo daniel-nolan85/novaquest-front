@@ -1,0 +1,153 @@
+import { useState, useEffect } from 'react';
+import { Animated, StyleSheet, View } from 'react-native';
+import { List, Avatar } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import Toast from 'react-native-toast-message';
+import { getAuth, signOut, updatePassword } from 'firebase/auth';
+import { app } from '../../../../firebase';
+import { SafeArea } from '../../../components/utils/safe-area.component';
+import {
+  AvatarContainer,
+  UserInfoContainer,
+  SettingsItem,
+} from '../styles/settings.styles';
+import Astronaut from '../../../../assets/svg/astronaut.svg';
+import Password from '../../../../assets/svg/password.svg';
+import Speech from '../../../../assets/svg/speech.svg';
+import Logout from '../../../../assets/svg/logout.svg';
+import { Text } from '../../../components/typography/text.component';
+import { UpdatePasswordModal } from '../components/update-password-modal.component';
+import { TextSpeedModal } from '../components/text-speed-modal.component';
+import { updateTextSpeed } from '../../../requests/user';
+
+export const SettingsScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showTextSpeed, setShowTextSpeed] = useState(false);
+  const [password, setPassword] = useState('');
+  const [textSpeed, setTextSpeed] = useState('');
+
+  useEffect(() => {
+    setTextSpeed(user.textSpeed);
+  }, []);
+
+  const { Icon } = Avatar;
+  const { Section } = List;
+
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => ({ ...state }));
+
+  const auth = getAuth();
+
+  const updateUserPassword = async () => {
+    setIsLoading(true);
+    const user = auth.currentUser;
+    await updatePassword(user, password)
+      .then(() => {
+        setIsLoading(false);
+        Toast.show({
+          type: 'success',
+          text1: 'Launch credentials updated successfully',
+          text2:
+            'Your account is now fortified with a new password. Safe travels, Commander!',
+        });
+        setShowPassword(false);
+        setPassword('');
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+        console.error('errorMessage => ', errorMessage);
+        setIsLoading(false);
+        setShowPassword(false);
+        setPassword('');
+        if (errorCode === 'auth/requires-recent-login') {
+          Toast.show({
+            type: 'error',
+            text1: 'Recent sign-in is required',
+            text2: 'Please sign in again to proceed with the password update.',
+          });
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Update Failed',
+            text2: errorMessage || 'An error occurred during password update.',
+          });
+        }
+      });
+  };
+
+  const closePasswordModal = () => {
+    setShowPassword(false);
+    setPassword('');
+  };
+
+  const updateUserTextSpeed = async () => {
+    updateTextSpeed(user.token, user._id, textSpeed)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+  };
+
+  const closeTextSpeedModal = () => {
+    setShowTextSpeed(false);
+    setTextSpeed('');
+  };
+
+  const logout = async () => {
+    await signOut(auth);
+    dispatch({
+      type: 'LOGOUT',
+      payload: null,
+    });
+  };
+  return (
+    <SafeArea>
+      <AvatarContainer>
+        <Icon
+          icon={() => <Astronaut width={180} height={180} />}
+          backgroundColor='#eeeeef'
+        />
+      </AvatarContainer>
+      <UserInfoContainer>
+        <Text variant='body'>{user.email}</Text>
+      </UserInfoContainer>
+      <Section>
+        <SettingsItem
+          title={<Text variant='body'>Change password</Text>}
+          left={() => <Password width={32} height={32} />}
+          onPress={() => setShowPassword(true)}
+        />
+        <SettingsItem
+          title={<Text variant='body'>Change conversation speed</Text>}
+          left={() => <Speech width={32} height={32} />}
+          onPress={() => setShowTextSpeed(true)}
+        />
+        <SettingsItem
+          title={<Text variant='body'>Logout</Text>}
+          left={() => <Logout width={32} height={32} />}
+          onPress={logout}
+        />
+      </Section>
+      <UpdatePasswordModal
+        password={password}
+        setPassword={setPassword}
+        updateUserPassword={updateUserPassword}
+        showPassword={showPassword}
+        closePasswordModal={closePasswordModal}
+      />
+      <TextSpeedModal
+        textSpeed={textSpeed}
+        setTextSpeed={setTextSpeed}
+        updateUserTextSpeed={updateUserTextSpeed}
+        showTextSpeed={showTextSpeed}
+        closeTextSpeedModal={closeTextSpeedModal}
+      />
+    </SafeArea>
+  );
+};
+
+const styles = StyleSheet.create({
+  passwordContainer: {
+    overflow: 'hidden',
+  },
+});

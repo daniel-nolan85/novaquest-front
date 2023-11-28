@@ -17,6 +17,7 @@ import { theme } from './src/infrastructure/theme';
 import { PlanetsContextProvider } from './src/services/planets/planets.context';
 import { ImagesContextProvider } from './src/services/images/images.context';
 import { Navigation } from './src/infrastructure/navigation';
+import { currentUser } from './src/requests/auth';
 
 export const AppComponents = () => {
   const dispatch = useDispatch();
@@ -24,14 +25,18 @@ export const AppComponents = () => {
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
+      if (user && user.emailVerified) {
         const idToken = await user.accessToken;
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            email: user.email,
-            token: idToken,
-          },
+        currentUser(idToken).then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              token: idToken,
+              _id: res.data._id,
+              email: res.data.email,
+              role: res.data.role,
+            },
+          }).catch((err) => console.error(err));
         });
       }
     });

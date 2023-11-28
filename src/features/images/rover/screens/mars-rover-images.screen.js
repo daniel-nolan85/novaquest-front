@@ -9,7 +9,7 @@ import { Spacer } from '../../../../components/spacer/spacer.component';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { MarsRoverImage } from '../components/mars-rover-image-card.components';
 import { Text } from '../../../../components/typography/text.component';
-import Filters from '../../../../../assets/filters.svg';
+import Filters from '../../../../../assets/svg/filters.svg';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { Heading } from '../styles/mars-rover-images-screen.styles';
 import { Option, OptionText } from '../styles/mars-rover-images-screen.styles';
@@ -29,24 +29,17 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  console.log('selectedRover => ', selectedRover);
-  console.log('dateType => ', dateType);
-  console.log('date => ', date);
-  console.log('camera => ', camera);
-
   useEffect(() => {
     retrieveImages();
   }, [selectedRover]);
 
   const retrieveImages = async () => {
-    console.log('fetching');
     setIsLoading(true);
     await axios
       .get(
         `https://api.nasa.gov/mars-photos/api/v1/rovers/${selectedRover}/photos?${dateType}=${date}&camera=${camera}&api_key=${NASA_API_KEY}`
       )
       .then((res) => {
-        console.log(res.data.photos);
         setIsLoading(false);
         setImages(res.data.photos);
       });

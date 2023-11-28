@@ -3,6 +3,7 @@ import { ApodScreen } from '../../features/images/apod/screens/apod.screen';
 import { MarsRoverNavigator } from './rover.navigator';
 import { LandsatHomeScreen } from '../../features/images/landsat/screens/landsat-home.screen';
 import { AsteroidAlmanacNavigator } from './asteroid-almanac.navigator';
+import { Text } from '../../components/typography/text.component';
 
 const { Navigator, Screen } = createDrawerNavigator();
 
@@ -14,7 +15,7 @@ export const ImagesNavigator = () => {
         component={ApodScreen}
         options={{
           headerShown: false,
-          drawerLabel: 'Picture of the Day',
+          drawerLabel: () => <Text variant='body'>Picture of the Day</Text>,
         }}
       />
       <Screen
@@ -22,7 +23,7 @@ export const ImagesNavigator = () => {
         component={MarsRoverNavigator}
         options={{
           headerShown: false,
-          drawerLabel: 'Mars Rovers',
+          drawerLabel: () => <Text variant='body'>Mars Rovers</Text>,
         }}
       />
       <Screen
@@ -30,7 +31,7 @@ export const ImagesNavigator = () => {
         component={LandsatHomeScreen}
         options={{
           headerShown: false,
-          drawerLabel: 'Landsat',
+          drawerLabel: () => <Text variant='body'>Landsat</Text>,
         }}
       />
       <Screen
@@ -38,7 +39,7 @@ export const ImagesNavigator = () => {
         component={AsteroidAlmanacNavigator}
         options={{
           headerShown: false,
-          drawerLabel: 'Asteroid Almanac',
+          drawerLabel: () => <Text variant='body'>Asteroid Almanac</Text>,
         }}
       />
     </Navigator>

@@ -35,8 +35,8 @@ export const TriviaModal = ({
                 resizeMode='cover'
                 source={
                   correct
-                    ? require('../../../../../assets/correct.json')
-                    : require('../../../../../assets/incorrect.json')
+                    ? require('../../../../../assets/animation/correct.json')
+                    : require('../../../../../assets/animation/incorrect.json')
                 }
               />
             </AnimationWrapper>

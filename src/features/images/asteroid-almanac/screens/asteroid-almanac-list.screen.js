@@ -22,14 +22,12 @@ export const AsteroidAlmanacListScreen = ({ navigation, route }) => {
   }, []);
 
   const fetchAsteroids = async () => {
-    console.log('fetching');
     setIsLoading(true);
     await axios
       .get(
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=${NASA_API_KEY}`
       )
       .then((res) => {
-        console.log(res.data);
         setIsLoading(false);
         setCount(res.data.element_count);
         const asteroidsArray = Object.entries(res.data.near_earth_objects);

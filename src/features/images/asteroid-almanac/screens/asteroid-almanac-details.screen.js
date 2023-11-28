@@ -21,9 +21,9 @@ import {
   StatsTitle,
   StatsItem,
 } from '../styles/asteroid-almanac-details.styles';
-import Size from '../../../../../assets/size.svg';
-import Performance from '../../../../../assets/performance.svg';
-import Radar from '../../../../../assets/radar.svg';
+import Size from '../../../../../assets/svg/size.svg';
+import Performance from '../../../../../assets/svg/performance.svg';
+import Radar from '../../../../../assets/svg/radar.svg';
 
 const { Accordion, Icon } = List;
 
