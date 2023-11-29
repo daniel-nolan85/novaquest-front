@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { Text } from '../../../../components/typography/text.component';
 import { images } from '../../../../services/trivia/trivia.data.json';
 import { MessageBubble } from '../../../../components/message-bubble.component';
@@ -35,20 +36,25 @@ export const TriviaSetupScreen = ({ navigation }) => {
   const [showDifficulty, setShowDifficulty] = useState(false);
   const [showDuration, setShowDuration] = useState(false);
   const [showReady, setShowReady] = useState(false);
-  const [text1] = useState(
-    `Greetings, Commander! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
-  );
+  const [text1, setText1] = useState();
   const [text2] = useState(
     `Before we embark on this mission, you have the power to tailor your cosmic adventure. Choose your difficulty level wisely, whether you're a budding stargazer or a seasoned astrophysicist.`
   );
   const [text3] = useState(
     `Next, decide the length of your journey — a brief orbit or an extended voyage through the cosmos.`
   );
-  const [text4] = useState(
-    `Commander, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
-  );
+  const [text4, setText4] = useState();
 
-  const { textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    setText1(
+      `Greetings, Commander ${name}! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
+    );
+    setText4(
+      `Commander ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
+    );
+  }, []);
+
+  const { name, textSpeed } = useSelector((state) => state.user);
 
   const { navigate, dispatch } = navigation;
 

@@ -1,8 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { Text } from '../../../../components/typography/text.component';
 import { images } from '../../../../services/trivia/trivia.data.json';
 import { MessageBubble } from '../../../../components/message-bubble.component';
@@ -29,14 +30,19 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
   const [readyTyping, setReadyTyping] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showReady, setShowReady] = useState(false);
-  const [text1] = useState(
-    `Commander, prepare for an exhilarating venture into the cosmic realm of 'Asteroid Almanac,' where the mysteries of our celestial neighbors come to life. Brace yourself for an adventure beyond the stars as you enter a specific date below. We will then unveil a curated collection of information on all the asteroids gracefully orbiting Earth within the chosen date range and the following 7 days.`
-  );
-  const [text2] = useState(
-    `Be vigilant, Commander. Some of these celestial wanderers may be potentially hazardous, heightening the stakes in your cosmic exploration. Whether you're a seasoned stargazer or a commanding astronomer, 'Asteroid Almanac' offers a captivating journey through the cosmos, providing insights into both the wonders and potential challenges posed by these cosmic travelers. The universe awaits your exploration in this enthralling section dedicated to the asteroids of our cosmic neighborhood.`
-  );
+  const [text1, setText1] = useState();
+  const [text2, setText2] = useState();
 
-  const { textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    setText1(
+      `Commander ${name}, prepare for an exhilarating venture into the cosmic realm of 'Asteroid Almanac,' where the mysteries of our celestial neighbors come to life. Brace yourself for an adventure beyond the stars as you enter a specific date below. We will then unveil a curated collection of information on all the asteroids gracefully orbiting Earth within the chosen date range and the following 7 days.`
+    );
+    setText2(
+      `Be vigilant, Commander ${name}. Some of these celestial wanderers may be potentially hazardous, heightening the stakes in your cosmic exploration. Whether you're a seasoned stargazer or a commanding astronomer, 'Asteroid Almanac' offers a captivating journey through the cosmos, providing insights into both the wonders and potential challenges posed by these cosmic travelers. The universe awaits your exploration in this enthralling section dedicated to the asteroids of our cosmic neighborhood.`
+    );
+  }, []);
+
+  const { name, textSpeed } = useSelector((state) => state.user);
 
   const { date, setDate } = useContext(ImagesContext);
 

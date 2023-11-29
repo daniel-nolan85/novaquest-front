@@ -35,6 +35,9 @@ export const AppComponents = () => {
               _id: res.data._id,
               email: res.data.email,
               role: res.data.role,
+              name: res.data.name,
+              hasCompletedWelcome: res.data.hasCompletedWelcome,
+              textSpeed: res.data.textSpeed,
             },
           }).catch((err) => console.error(err));
         });

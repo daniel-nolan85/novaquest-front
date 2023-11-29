@@ -40,6 +40,9 @@ export const LoginForm = () => {
                   _id: res.data._id,
                   email: res.data.email,
                   role: res.data.role,
+                  name: res.data.name,
+                  hasCompletedWelcome: res.data.hasCompletedWelcome,
+                  textSpeed: res.data.textSpeed,
                 },
               });
             })
@@ -98,14 +101,12 @@ export const LoginForm = () => {
       </Text>
       <Input
         label={<Text variant='body'>Email</Text>}
-        type='email'
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType='email-address'
       />
       <Input
         label={<Text variant='body'>Password</Text>}
-        type='password'
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry

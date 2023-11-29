@@ -90,14 +90,12 @@ export const RegistrationForm = () => {
       </Text>
       <Input
         label={<Text variant='body'>Email</Text>}
-        type='email'
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType='email-address'
       />
       <Input
         label={<Text variant='body'>Password</Text>}
-        type='password'
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry

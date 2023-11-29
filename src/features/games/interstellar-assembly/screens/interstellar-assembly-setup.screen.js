@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 import { Text } from '../../../../components/typography/text.component';
 import { images } from '../../../../services/trivia/trivia.data.json';
 import { MessageBubble } from '../../../../components/message-bubble.component';
@@ -25,14 +26,18 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
   const [readyButton, setReadyButton] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showOk, setShowOk] = useState(true);
-  const [text1] = useState(
-    `Welcome, Space Explorer, to a cosmic challenge like no other — 'Interstellar Assembly.' Prepare to embark on an interstellar journey where your wits and creativity will be put to the test. In this cosmic puzzle adventure, you have the unique opportunity to arrange planets, match moons to their celestial hosts, and assemble the wonders of the universe with a simple drag and drop.`
-  );
+  const [text1, setText1] = useState();
   const [text2] = useState(
     `Brace yourself for an odyssey of celestial proportions as you explore the intricacies of our vast cosmos. The stars await your arrangement, and the galaxies beckon your strategic mind. Get ready to be the architect of your cosmic adventure — the 'Interstellar Assembly' begins now!`
   );
 
-  const { textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    setText1(
+      `Welcome, Commander ${name}, to a cosmic challenge like no other — 'Interstellar Assembly.' Prepare to embark on an interstellar journey where your wits and creativity will be put to the test. In this cosmic puzzle adventure, you have the unique opportunity to arrange planets, match moons to their celestial hosts, and assemble the wonders of the universe with a simple drag and drop.`
+    );
+  }, []);
+
+  const { name, textSpeed } = useSelector((state) => state.user);
 
   const { navigate, dispatch } = navigation;
 

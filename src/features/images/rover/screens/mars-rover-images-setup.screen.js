@@ -3,6 +3,7 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
 import { Text } from '../../../../components/typography/text.component';
@@ -44,9 +45,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const [showDateType, setShowDateType] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showReady, setShowReady] = useState(false);
-  const [text1] = useState(
-    `Greetings Commander! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
-  );
+  const [text1, setText1] = useState();
   const [text2] = useState(
     `As we prepare to delve into the Red Planet's mysteries, you have the distinguished choice of cameras. Opt for the lens that will capture the Red Planet's beauty through your command, from the reliable Hazard Avoidance Camera to the steadfast Navigation Camera and beyond. Each rover boasts its own set of specialized lenses, unveiling Mars in all its celestial splendour. The cosmos awaits your command, Commander.`
   );
@@ -56,11 +55,18 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const [text4] = useState(
     `Now, with your preferred time scale in mind, select the specific date you wish to explore. The cosmos awaits your chosen moment, Commander.`
   );
-  const [text5] = useState(
-    `Commander, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, lens, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, Commander, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, Commander, and may your exploration of the cosmos be nothing short of extraordinary!`
-  );
+  const [text5, setText5] = useState();
 
-  const { textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    setText1(
+      `Greetings Commander ${name}! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
+    );
+    setText5(
+      `Commander ${name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, lens, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, Commander, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, Commander, and may your exploration of the cosmos be nothing short of extraordinary!`
+    );
+  }, []);
+
+  const { name, textSpeed } = useSelector((state) => state.user);
 
   const {
     selectedRover,

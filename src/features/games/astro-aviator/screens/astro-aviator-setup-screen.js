@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
@@ -26,20 +26,25 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
   const [readyButton, setReadyButton] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showOk, setShowOk] = useState(true);
-  const [text1] = useState(
-    `Attention, Brave Space Explorer! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
-  );
+  const [text1, setText1] = useState();
   const [text2] = useState(
     `Tap the screen to propel your spaceship upwards, defying gravity and guiding your spaceship through the meteor storm. Your bravery will be tested as you soar through the stars, avoiding collisions with looming asteroids and the unforgiving cosmic floor.`
   );
   const [text3] = useState(
     `Each successful passage through this perilous journey earns you points, bringing you one step closer to becoming the ultimate Astro Aviator. But be vigilant! A single collision could spell the end of your cosmic adventure.`
   );
-  const [text4] = useState(
-    `Prepare for lift-off, Commander, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
-  );
+  const [text4, setText4] = useState();
 
-  const { textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    setText1(
+      `Attention, Commander ${name}! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
+    );
+    setText4(
+      `Prepare for lift-off, Commander ${name}, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
+    );
+  }, []);
+
+  const { name, textSpeed } = useSelector((state) => state.user);
 
   const { navigate, dispatch } = navigation;
 
@@ -55,7 +60,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
 
   const handleTypingEnd = () => {
     setShowOk(false);
-    setTyping(true);
+    setTyping(false);
     if (currentStep < 4) {
       setOkButton(true);
     } else {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
-import { List, Avatar } from 'react-native-paper';
+import { Animated, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { List, Avatar, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import { getAuth, signOut, updatePassword } from 'firebase/auth';
@@ -19,17 +19,17 @@ import { Text } from '../../../components/typography/text.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { updateTextSpeed } from '../../../requests/user';
+import { updateUserName } from '../../../requests/user';
 
 export const SettingsScreen = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [passwordIsLoading, setPasswordIsLoading] = useState(false);
+  const [textSpeedIsLoading, setTextSpeedIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showTextSpeed, setShowTextSpeed] = useState(false);
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
-
-  useEffect(() => {
-    setTextSpeed(user.textSpeed);
-  }, []);
+  const [isEditing, setIsEditing] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const { Icon } = Avatar;
   const { Section } = List;
@@ -37,19 +37,48 @@ export const SettingsScreen = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
 
+  useEffect(() => {
+    if (user.textSpeed === 100) {
+      setTextSpeed('slow');
+    } else if (user.textSpeed === 50) {
+      setTextSpeed('medium');
+    } else {
+      setTextSpeed('fast');
+    }
+  }, []);
+
   const auth = getAuth();
 
+  const handleEditPress = () => {
+    setIsEditing(true);
+  };
+
+  const handleSavePress = () => {
+    setIsEditing(false);
+    updateUserName(user.token, user._id, userName)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            name: res.data.name,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
+  };
+
   const updateUserPassword = async () => {
-    setIsLoading(true);
-    const user = auth.currentUser;
-    await updatePassword(user, password)
+    setPasswordIsLoading(true);
+    const fbUser = auth.currentUser;
+    await updatePassword(fbUser, password)
       .then(() => {
-        setIsLoading(false);
+        setPasswordIsLoading(false);
         Toast.show({
           type: 'success',
           text1: 'Launch credentials updated successfully',
-          text2:
-            'Your account is now fortified with a new password. Safe travels, Commander!',
+          text2: `Your account is now fortified with a new password. Safe travels, Commander ${user.name}!`,
         });
         setShowPassword(false);
         setPassword('');
@@ -58,7 +87,7 @@ export const SettingsScreen = () => {
         const errorCode = err.code;
         const errorMessage = err.message;
         console.error('errorMessage => ', errorMessage);
-        setIsLoading(false);
+        setPasswordIsLoading(false);
         setShowPassword(false);
         setPassword('');
         if (errorCode === 'auth/requires-recent-login') {
@@ -83,14 +112,34 @@ export const SettingsScreen = () => {
   };
 
   const updateUserTextSpeed = async () => {
+    setTextSpeedIsLoading(true);
     updateTextSpeed(user.token, user._id, textSpeed)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        setTextSpeedIsLoading(false);
+        setShowTextSpeed(false);
+        Toast.show({
+          type: 'success',
+          text1: 'Your cosmic reading speed has been adjusted',
+          text2:
+            'Navigate through the cosmos at your own pace. Enjoy the journey, Commander!',
+        });
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            textSpeed: res.data.textSpeed,
+          },
+        });
+      })
+      .catch((err) => {
+        setTextSpeedIsLoading(false);
+        setShowTextSpeed(false);
+        console.error(err);
+      });
   };
 
   const closeTextSpeedModal = () => {
     setShowTextSpeed(false);
-    setTextSpeed('');
   };
 
   const logout = async () => {
@@ -109,7 +158,18 @@ export const SettingsScreen = () => {
         />
       </AvatarContainer>
       <UserInfoContainer>
-        <Text variant='body'>{user.email}</Text>
+        {isEditing ? (
+          <TextInput
+            value={userName}
+            onChangeText={(text) => setUserName(text)}
+            onBlur={handleSavePress}
+            autoFocus
+          />
+        ) : (
+          <TouchableOpacity onPress={handleEditPress}>
+            <Text variant='body'>{user.name}</Text>
+          </TouchableOpacity>
+        )}
       </UserInfoContainer>
       <Section>
         <SettingsItem
