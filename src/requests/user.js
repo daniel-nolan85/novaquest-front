@@ -13,10 +13,10 @@ export const updateUserName = async (authtoken, _id, name) => {
   );
 };
 
-export const updateWelcomeComplete = async (authtoken, _id) => {
+export const badgeUnlocked = async (authtoken, _id, badge) => {
   return await axios.put(
-    `${API_BASE_URL}/update-welcome-complete`,
-    { _id },
+    `${API_BASE_URL}/badge-unlocked`,
+    { _id, badge },
     {
       headers: {
         authtoken,

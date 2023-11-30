@@ -18,9 +18,9 @@ import {
   OptionText,
   Input,
 } from '../styles/welcome.styles';
-import { updateUserName, updateWelcomeComplete } from '../../../requests/user';
+import { updateUserName } from '../../../requests/user';
 
-export const WelcomeScreen = () => {
+export const WelcomeSetupScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [nameEntry, setNameEntry] = useState(false);
   const [userName, setUserName] = useState('');
@@ -31,7 +31,7 @@ export const WelcomeScreen = () => {
   const [showName, setShowName] = useState(true);
   const [showOk, setShowOk] = useState(false);
   const [text1] = useState(
-    `Greetings, Commander, to the cosmic wonders of Astro Sense, your celestial guide through the mysteries of the universe! Before we embark on this interstellar journey, may we know the name of the intrepid explorer steering the spacecraft?`
+    `Greetings, Commander. Welcome to the cosmic wonders of Astro Sense, your celestial guide through the mysteries of the universe! Before we embark on this interstellar journey, may we know the name of the intrepid explorer steering the spacecraft?`
   );
   const [text2, setText2] = useState('');
   const [text3] = useState(
@@ -41,6 +41,8 @@ export const WelcomeScreen = () => {
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
+
+  const { navigate } = navigation;
 
   useEffect(() => {
     if (user && user.name) {
@@ -56,7 +58,7 @@ export const WelcomeScreen = () => {
   const skipNameText = () => {
     setShowName(false);
     setNameTyping(false);
-    setOkButton(true);
+    setNameEntry(true);
   };
 
   const skipText = () => {
@@ -122,18 +124,7 @@ export const WelcomeScreen = () => {
 
   const handleReadyClick = () => {
     setOkButton(false);
-    updateWelcomeComplete(user.token, user._id)
-      .then((res) => {
-        console.log(res);
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            hasCompletedWelcome: res.data.hasCompletedWelcome,
-          },
-        });
-      })
-      .catch((err) => console.error(err));
+    navigate('WelcomeComplete');
   };
 
   const renderCurrentStep = () => {

@@ -36,7 +36,7 @@ export const AppComponents = () => {
               email: res.data.email,
               role: res.data.role,
               name: res.data.name,
-              hasCompletedWelcome: res.data.hasCompletedWelcome,
+              achievedCosmicPioneer: res.data.achievedCosmicPioneer,
               textSpeed: res.data.textSpeed,
             },
           }).catch((err) => console.error(err));

@@ -41,7 +41,7 @@ export const LoginForm = () => {
                   email: res.data.email,
                   role: res.data.role,
                   name: res.data.name,
-                  hasCompletedWelcome: res.data.hasCompletedWelcome,
+                  achievedCosmicPioneer: res.data.achievedCosmicPioneer,
                   textSpeed: res.data.textSpeed,
                 },
               });

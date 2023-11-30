@@ -53,7 +53,7 @@ export const AsteroidAlmanacListScreen = ({ navigation, route }) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    navigate('AsteroidsDetails', {
+                    navigate('AsteroidAlmanacDetails', {
                       asteroids,
                     });
                   }}
