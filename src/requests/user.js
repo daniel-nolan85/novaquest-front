@@ -36,3 +36,21 @@ export const updateTextSpeed = async (authtoken, _id, textSpeed) => {
     }
   );
 };
+
+export const updateViewedRovers = async (
+  authtoken,
+  _id,
+  rover,
+  camera,
+  dateType
+) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-viewed-rovers`,
+    { _id, rover, camera, dateType },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

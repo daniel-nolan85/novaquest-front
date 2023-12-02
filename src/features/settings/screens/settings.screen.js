@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Animated, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { List, Avatar, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
@@ -12,10 +12,12 @@ import {
   SettingsItem,
 } from '../styles/settings.styles';
 import Astronaut from '../../../../assets/svg/astronaut.svg';
+import Achievements from '../../../../assets/svg/achievements.svg';
 import Password from '../../../../assets/svg/password.svg';
 import Speech from '../../../../assets/svg/speech.svg';
 import Logout from '../../../../assets/svg/logout.svg';
 import { Text } from '../../../components/typography/text.component';
+import { AchievementsModal } from '../components/achievements-modal.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { updateTextSpeed } from '../../../requests/user';
@@ -24,6 +26,7 @@ import { updateUserName } from '../../../requests/user';
 export const SettingsScreen = () => {
   const [passwordIsLoading, setPasswordIsLoading] = useState(false);
   const [textSpeedIsLoading, setTextSpeedIsLoading] = useState(false);
+  const [showAchievements, setShowAchievements] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showTextSpeed, setShowTextSpeed] = useState(false);
   const [password, setPassword] = useState('');
@@ -57,7 +60,6 @@ export const SettingsScreen = () => {
     setIsEditing(false);
     updateUserName(user.token, user._id, userName)
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {
@@ -67,6 +69,10 @@ export const SettingsScreen = () => {
         });
       })
       .catch((err) => console.error(err));
+  };
+
+  const closeAchievementsModal = () => {
+    setShowAchievements(false);
   };
 
   const updateUserPassword = async () => {
@@ -173,6 +179,11 @@ export const SettingsScreen = () => {
       </UserInfoContainer>
       <Section>
         <SettingsItem
+          title={<Text variant='body'>Achievements</Text>}
+          left={() => <Achievements width={32} height={32} />}
+          onPress={() => setShowAchievements(true)}
+        />
+        <SettingsItem
           title={<Text variant='body'>Change password</Text>}
           left={() => <Password width={32} height={32} />}
           onPress={() => setShowPassword(true)}
@@ -188,6 +199,10 @@ export const SettingsScreen = () => {
           onPress={logout}
         />
       </Section>
+      <AchievementsModal
+        showAchievements={showAchievements}
+        closeAchievementsModal={closeAchievementsModal}
+      />
       <UpdatePasswordModal
         password={password}
         setPassword={setPassword}

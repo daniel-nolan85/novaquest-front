@@ -1,13 +1,11 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
 import { DrawerActions } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import Calendar from '../../../../../assets/svg/calendar.svg';
-import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { ApodInfoCard } from '../components/apod-card.component';
 import {
@@ -27,10 +25,6 @@ export const ApodScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
 
   const isFirstRun = useRef(true);
-
-  const { user } = useSelector((state) => ({ ...state }));
-
-  console.log('currentUser => ', user);
 
   useEffect(() => {
     fetchApod();

@@ -17,7 +17,7 @@ const Animation = styled(Animatable.View)`
 const TextWrapper = styled.View`
   align-self: center;
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   z-index: 100;
   padding: ${(props) => props.theme.space[3]};
 `;

@@ -36,8 +36,15 @@ export const AppComponents = () => {
               email: res.data.email,
               role: res.data.role,
               name: res.data.name,
-              achievedCosmicPioneer: res.data.achievedCosmicPioneer,
               textSpeed: res.data.textSpeed,
+              viewedRovers: res.data.viewedRovers,
+              viewedRoverCameras: res.data.viewedRoverCameras,
+              viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+              achievedCosmicPioneer: res.data.achievedCosmicPioneer,
+              achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
+              achievedMarsRoverMaestro: res.data.achievedMarsRoverMaestro,
+              achievedMartianLensMaster: res.data.achievedMartianLensMaster,
+              achievedCosmicChronologist: res.data.achievedCosmicChronologist,
             },
           }).catch((err) => console.error(err));
         });

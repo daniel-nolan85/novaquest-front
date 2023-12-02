@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from '../../../components/typography/text.component';
 
-const { Item } = List;
+const { Section, Item } = List;
 
 export const AvatarContainer = styled.View`
   margin: ${(props) => props.theme.space[5]};
@@ -17,6 +17,7 @@ export const UserInfoContainer = styled.View`
 
 export const SettingsItem = styled(Item)`
   padding: ${(props) => props.theme.space[3]};
+  margin: 0 ${(props) => props.theme.space[1]};
 `;
 
 export const OptionContainer = styled.View`
@@ -57,12 +58,11 @@ export const ModalWrapper = styled.View`
   margin: ${(props) => props.theme.space[3]};
 `;
 
-export const ModalView = styled.View`
+const baseModalStyle = `
   margin: 20px;
   background-color: white;
   border-radius: 20px;
   width: 100%;
-  padding: 35px;
   align-items: center;
   shadow-color: #000;
   shadow-offset: {
@@ -74,6 +74,16 @@ export const ModalView = styled.View`
   elevation: 5;
 `;
 
+export const ModalView = styled.View`
+  ${baseModalStyle}
+  padding: 35px;
+`;
+
+export const AchievementsModalView = styled.View`
+  ${baseModalStyle}
+  padding: 35px 10px;
+`;
+
 export const CloseIcon = styled.TouchableOpacity`
   width: 55px;
   height: 55px;
@@ -81,4 +91,10 @@ export const CloseIcon = styled.TouchableOpacity`
   top: ${(props) => props.theme.space[2]};
   right: ${(props) => props.theme.space[2]};
   padding: ${(props) => props.theme.space[2]};
+`;
+
+export const AchievementsSection = styled(Section)``;
+
+export const AchievementsItem = styled(Item)`
+  width: 90%;
 `;

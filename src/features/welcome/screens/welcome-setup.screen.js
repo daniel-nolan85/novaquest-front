@@ -88,7 +88,6 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     }
     updateUserName(user.token, user._id, userName)
       .then((res) => {
-        console.log(res);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

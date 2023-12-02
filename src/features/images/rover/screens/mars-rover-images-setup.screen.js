@@ -3,7 +3,7 @@ import { ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
 import { Text } from '../../../../components/typography/text.component';
@@ -24,6 +24,7 @@ import { SolSelector } from '../components/sol-selector.component';
 import { EarthDateSelector } from '../components/earth-date-selector.component';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { ImagesContext } from '../../../../services/images/images.context';
+import { updateViewedRovers } from '../../../../requests/user';
 
 export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -59,18 +60,20 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
 
   useEffect(() => {
     setText1(
-      `Greetings Commander ${name}! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
+      `Greetings Commander ${user.name}! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
     );
     setText5(
-      `Commander ${name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, lens, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, Commander, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, Commander, and may your exploration of the cosmos be nothing short of extraordinary!`
+      `Commander ${user.name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, lens, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, Commander, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, Commander, and may your exploration of the cosmos be nothing short of extraordinary!`
     );
   }, []);
 
-  const { name, textSpeed } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => ({ ...state }));
+  const reduxDispatch = useDispatch();
 
   const {
     selectedRover,
     setSelectedRover,
+    camera,
     setCamera,
     dateType,
     setDateType,
@@ -132,31 +135,31 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const handleTypingEndIntro = () => {
     setShowRover(false);
     setRoverButtons(true);
-    setRoverTyping(true);
-    setCameraTyping(true);
+    setRoverTyping(false);
   };
 
   const handleTypingEndCamera = () => {
     setShowCamera(false);
     setCameraButtons(true);
-    setDateTypeTyping(true);
+    setCameraTyping(false);
   };
 
   const handleTypingEndDateType = () => {
     setShowDateType(false);
     setDateTypeButtons(true);
-    setDateTyping(true);
+    setDateTypeTyping(false);
   };
 
   const handleTypingEndDate = () => {
     setShowDate(false);
     setDateButtons(true);
-    setReadyTyping(true);
+    setDateTyping(false);
   };
 
   const handleTypingEndReady = () => {
     setShowReady(false);
     setReadyButton(true);
+    setReadyTyping(false);
   };
 
   const handleRoverClick = (choice) => {
@@ -195,7 +198,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setReadyTyping(true);
   };
 
-  const handleReadyClick = () => {
+  const handleReadyClick = async () => {
     setShowReady(false);
     setCurrentStep(1);
     setRoverButtons(false);
@@ -203,7 +206,35 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setDateTypeButtons(false);
     setDateButtons(false);
     setReadyButton(false);
-    navigate('MarsRoverImagesScreen');
+    await updateViewedRovers(
+      user.token,
+      user._id,
+      selectedRover,
+      camera,
+      dateType
+    )
+      .then((res) => {
+        reduxDispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            viewedRovers: res.data.viewedRovers,
+            viewedRoverCameras: res.data.viewedRoverCameras,
+            viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+          },
+        });
+        if (res.data.achievement) {
+          navigate(res.data.achievement);
+        } else if (res.data.simultaneousAchievements) {
+          const firstAchievement = res.data.simultaneousAchievements[0];
+          const additionalAchievements =
+            res.data.simultaneousAchievements.slice(1);
+          navigate(firstAchievement, { additionalAchievements });
+        } else if (res.data.noAchievements) {
+          navigate('MarsRoverImagesScreen');
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const renderCurrentStep = () => {
@@ -214,7 +245,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={roverTyping ? 1 : 0}
-            maxDelay={textSpeed}
+            maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndIntro}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -227,7 +258,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={cameraTyping ? 1 : 0}
-            maxDelay={textSpeed}
+            maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndCamera}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -240,7 +271,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={dateTypeTyping ? 1 : 0}
-            maxDelay={textSpeed}
+            maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndDateType}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -253,7 +284,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={dateTyping ? 1 : 0}
-            maxDelay={textSpeed}
+            maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndDate}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
@@ -266,7 +297,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         ) : (
           <TypeWriter
             typing={readyTyping ? 1 : 0}
-            maxDelay={textSpeed}
+            maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndReady}
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
