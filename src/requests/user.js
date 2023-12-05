@@ -54,3 +54,21 @@ export const updateViewedRovers = async (
     }
   );
 };
+
+export const checkTriviaAchievements = async (
+  authtoken,
+  _id,
+  score,
+  level,
+  questionsAmount
+) => {
+  return await axios.put(
+    `${API_BASE_URL}/check-trivia-achievements`,
+    { _id, score, level, questionsAmount },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

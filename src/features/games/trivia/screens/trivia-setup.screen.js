@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -19,6 +19,7 @@ import {
   OptionText,
 } from '../styles/trivia-setup.styles';
 import { IconsWrapper } from '../styles/trivia.styles';
+import { GamesContext } from '../../../../services/games/games.context';
 
 export const TriviaSetupScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -28,11 +29,9 @@ export const TriviaSetupScreen = ({ navigation }) => {
   const [difficultyButtons, setDifficultyButtons] = useState(false);
   const [durationButtons, setDurationButtons] = useState(false);
   const [readyButton, setReadyButton] = useState(false);
-  const [okTyping, setOkTyping] = useState(true);
   const [difficultyTyping, setDifficultyTyping] = useState(false);
   const [durationTyping, setDurationTyping] = useState(false);
   const [readyTyping, setReadyTyping] = useState(false);
-  const [showOk, setShowOk] = useState(true);
   const [showDifficulty, setShowDifficulty] = useState(false);
   const [showDuration, setShowDuration] = useState(false);
   const [showReady, setShowReady] = useState(false);
@@ -53,6 +52,8 @@ export const TriviaSetupScreen = ({ navigation }) => {
       `Commander ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
     );
   }, []);
+
+  const { okTyping, setOkTyping, showOk, setShowOk } = useContext(GamesContext);
 
   const { name, textSpeed } = useSelector((state) => state.user);
 
@@ -144,8 +145,6 @@ export const TriviaSetupScreen = ({ navigation }) => {
     navigate('TriviaQuestion', {
       difficulty,
       duration,
-      setOkTyping,
-      setShowOk,
     });
   };
 

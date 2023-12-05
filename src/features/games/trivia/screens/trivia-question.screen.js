@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { Animated } from 'react-native';
+import { useSelector } from 'react-redux';
 import data from '../../../../services/trivia/trivia.data.json';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { TriviaQuestionCard } from '../components/trivia-question-card.component';
 import { ProgressBar } from '../components/trivia-progress-bar.component';
 import { TriviaModal } from '../components/trivia-modal.component';
+import { checkTriviaAchievements } from '../../../../requests/user';
+import { GamesContext } from '../../../../services/games/games.context';
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -14,18 +17,19 @@ const shuffleArray = (array) => {
 };
 
 export const TriviaQuestionScreen = ({ navigation, route }) => {
-  const { difficulty, duration, setOkTyping, setShowOk } = route.params;
+  const { difficulty, duration } = route.params;
 
   const [questions, setQuestions] = useState();
   const [questionNum, setQuestionNum] = useState(0);
   const [level, setLevel] = useState('');
-  const [questionsAmount, setQuestionsAmount] = useState(null);
   const [options, setOptions] = useState([]);
-  const [score, setScore] = useState(0);
   const [progress] = useState(new Animated.Value(0));
   const [progressPercent, setProgressPercent] = useState('');
   const [visible, setVisible] = useState(false);
   const [correct, setCorrect] = useState(false);
+
+  const { score, setScore, questionsAmount, setQuestionsAmount } =
+    useContext(GamesContext);
 
   useEffect(() => {
     setLevel(difficulty);
@@ -39,6 +43,8 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
       setProgressPercent(pp);
     }
   }, [level, questionsAmount]);
+
+  const { user } = useSelector((state) => ({ ...state }));
 
   const scrollRef = useRef();
 
@@ -99,17 +105,45 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
     }).start();
   };
 
-  const handleFinish = () => {
-    navigate('TriviaResult', {
+  // const handleFinish = () => {
+  //   navigate('TriviaResult', {
+  //     score,
+  //     setOkTyping,
+  //     setShowOk,
+  //     questionsAmount,
+  //   });
+  //   setTimeout(() => {
+  //     setVisible(false);
+  //     setCorrect(false);
+  //   }, 500);
+  // };
+
+  const handleFinish = async () => {
+    await checkTriviaAchievements(
+      user.token,
+      user._id,
       score,
-      setOkTyping,
-      setShowOk,
-      questionsAmount,
-    });
-    setTimeout(() => {
-      setVisible(false);
-      setCorrect(false);
-    }, 500);
+      level,
+      questionsAmount
+    )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.achievement) {
+          navigate(res.data.achievement);
+        } else if (res.data.simultaneousAchievements) {
+          const firstAchievement = res.data.simultaneousAchievements[0];
+          const additionalAchievements =
+            res.data.simultaneousAchievements.slice(1);
+          navigate(firstAchievement, { additionalAchievements });
+        } else if (res.data.noAchievements) {
+          navigate('TriviaResult');
+        }
+        setTimeout(() => {
+          setVisible(false);
+          setCorrect(false);
+        }, 500);
+      })
+      .catch((err) => console.error(err));
   };
 
   const { navigate } = navigation;

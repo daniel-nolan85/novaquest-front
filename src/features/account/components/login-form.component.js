@@ -51,6 +51,17 @@ export const LoginForm = () => {
                   achievedMartianLensMaster: res.data.achievedMartianLensMaster,
                   achievedCosmicChronologist:
                     res.data.achievedCosmicChronologist,
+                  achievedCosmicCadet: res.data.achievedCosmicCadet,
+                  achievedStarNavigator: res.data.achievedStarNavigator,
+                  achievedGalacticSage: res.data.achievedGalacticSage,
+                  achievedNovaScholar: res.data.achievedNovaScholar,
+                  achievedQuasarVirtuoso: res.data.achievedQuasarVirtuoso,
+                  achievedSupernovaSavant: res.data.achievedSupernovaSavant,
+                  achievedLightSpeedExplorer:
+                    res.data.achievedLightSpeedExplorer,
+                  achievedOdysseyTrailblazer:
+                    res.data.achievedOdysseyTrailblazer,
+                  achievedInfinityVoyager: res.data.achievedInfinityVoyager,
                 },
               });
             })

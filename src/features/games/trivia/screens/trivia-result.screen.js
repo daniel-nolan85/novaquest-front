@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import LottieView from 'lottie-react-native';
 import {
   ResultsContainer,
@@ -8,10 +9,12 @@ import {
   OptionText,
 } from '../styles/trivia-result.styles';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
+import { GamesContext } from '../../../../services/games/games.context';
 
-export const TriviaResultScreen = ({ navigation, route }) => {
+export const TriviaResultScreen = ({ navigation }) => {
   const { navigate } = navigation;
-  const { score, setOkTyping, setShowOk, questionsAmount } = route.params;
+  const { score, setScore, setOkTyping, setShowOk, questionsAmount } =
+    useContext(GamesContext);
 
   const maxPossibleScore = questionsAmount * 10;
   const scorePercentage = (score / maxPossibleScore) * 100;
@@ -44,6 +47,7 @@ export const TriviaResultScreen = ({ navigation, route }) => {
         <Result variant='body'>{resultText}</Result>
         <Option
           onPress={() => {
+            setScore(0);
             setOkTyping(true);
             setShowOk(true);
             navigate('TriviaSetup');

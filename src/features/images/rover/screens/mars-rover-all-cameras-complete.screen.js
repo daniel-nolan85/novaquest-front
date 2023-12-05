@@ -43,7 +43,7 @@ export const MarsRoverAllCamerasCompleteScreen = ({ navigation, route }) => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<RoverCamera width={512} height={512} />}
+        svg={<RoverCamera width={380} height={380} />}
         title='Martian Lens Master'
         body={`Commander ${user.name}, congratulations on achieving the title of 'Martian Lens Master'! By thoroughly exploring every available camera on each Martian rover, you've become a virtuoso of Martian observation. Your keen eye for detail has unlocked the secrets of the Red Planet's landscapes.`}
         handleSubmit={handleSubmit}

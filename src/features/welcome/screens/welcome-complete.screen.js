@@ -31,7 +31,7 @@ export const WelcomeCompleteScreen = () => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<RocketLaunch width={512} height={512} />}
+        svg={<RocketLaunch width={380} height={380} />}
         title='Cosmic Pioneer'
         body={`Congratulations, Commander ${user.name}! You've earned the illustrious 'Cosmic Pioneer' badge, signifying the launch of your extraordinary journey through the cosmos. Like a rocket soaring into the vast unknown, you've just begun to explore the wonders that await. May your celestial adventure be as limitless as the cosmos itself. Onward and upward, Cosmic Pioneer!`}
         handleSubmit={handleSubmit}

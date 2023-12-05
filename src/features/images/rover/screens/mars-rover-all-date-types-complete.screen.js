@@ -43,7 +43,7 @@ export const MarsRoverAllDateTypesCompleteScreen = ({ navigation, route }) => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<RoverCalendar width={512} height={512} />}
+        svg={<RoverCalendar width={380} height={380} />}
         title='Cosmic Chronologist'
         body={`Commander ${user.name}, you've reached the distinguished rank of 'Cosmic Chronologist'! By seamlessly navigating both Earth dates and Martian sols in your Mars rover camera searches, you've become a master of temporal exploration. Your ability to traverse time and space sets you apart as a true cosmic chronologist.`}
         handleSubmit={handleSubmit}

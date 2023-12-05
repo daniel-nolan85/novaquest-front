@@ -43,7 +43,7 @@ export const MarsRoverAllCompleteScreen = ({ navigation, route }) => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<AllRovers width={512} height={512} />}
+        svg={<AllRovers width={380} height={380} />}
         title='Mars Rover Maestro'
         body={`Commander ${user.name}, a celestial salute to you! Your insatiable curiosity has led you to earn the distinguished 'Mars Rover Maestro' badge. By exploring images from all the rovers that have traversed the Martian terrain, you've become a true maestro of the Red Planet. Your cosmic journey has unveiled the wonders of Mars from every angle. Continue to orchestrate your celestial symphony, Mars Rover Maestro!`}
         handleSubmit={handleSubmit}

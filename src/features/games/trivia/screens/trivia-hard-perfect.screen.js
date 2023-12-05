@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../../requests/user';
 import { BadgeAnimation } from '../../../../components/animations/badge.animation';
-import OneRover from '../../../../../assets/svg/badges/one-rover.svg';
+import Supernova from '../../../../../assets/svg/badges/supernova.svg';
 
 const BadgeContainer = styled.View`
   flex: 1;
@@ -10,7 +10,7 @@ const BadgeContainer = styled.View`
   align-items: center;
 `;
 
-export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
+export const TriviaPerfectHardScreen = ({ navigation, route }) => {
   const { navigate } = navigation;
   let additionalAchievements = route.params?.additionalAchievements || [];
 
@@ -18,13 +18,13 @@ export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedRedPlanetVoyager')
+    badgeUnlocked(user.token, user._id, 'achievedSupernovaSavant')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {
             ...user,
-            achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
+            achievedSupernovaSavant: res.data.achievedSupernovaSavant,
           },
         });
         if (additionalAchievements.length > 1) {
@@ -34,7 +34,7 @@ export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
         } else if (additionalAchievements.length === 1) {
           navigate(additionalAchievements[0]);
         } else {
-          navigate('MarsRoverImagesScreen');
+          navigate('TriviaResult');
         }
       })
       .catch((err) => console.error(err));
@@ -43,9 +43,9 @@ export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<OneRover width={380} height={380} />}
-        title='Red Planet Voyager'
-        body={`Congratulations, Commander ${user.name}! You've earned the esteemed 'Red Planet Voyager' badge, marking your exploration of captivating Martian landscapes captured by our intrepid rovers. Like a cosmic explorer gazing upon the Martian frontier, you've delved into the mysteries of the Red Planet. May your curiosity continue to propel you across the vast reaches of our celestial neighbor. Onward, Red Planet Voyager!`}
+        svg={<Supernova width={380} height={380} />}
+        title='Supernova Savant'
+        body={`Unparalleled brilliance, Commander ${user.name}! As a 'Supernova Savant,' you've achieved a perfect score as a Galactic Guardian, cementing your status as a cosmic sage. Your intellect blazes with the intensity of a supernova, illuminating the cosmos with your knowledge.`}
         handleSubmit={handleSubmit}
       />
     </BadgeContainer>
