@@ -18,26 +18,36 @@ export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedRedPlanetVoyager')
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
-          },
-        });
-        if (additionalAchievements.length > 1) {
-          const firstAchievement = additionalAchievements[0];
-          additionalAchievements = additionalAchievements.slice(1);
-          navigate(firstAchievement, { additionalAchievements });
-        } else if (additionalAchievements.length === 1) {
-          navigate(additionalAchievements[0]);
-        } else {
-          navigate('MarsRoverImagesScreen');
-        }
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      badgeUnlocked(user.token, user._id, 'achievedRedPlanetVoyager')
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          achievedRedPlanetVoyager: true,
+        },
+      });
+    }
+    if (additionalAchievements.length > 1) {
+      const firstAchievement = additionalAchievements[0];
+      additionalAchievements = additionalAchievements.slice(1);
+      navigate(firstAchievement, { additionalAchievements });
+    } else if (additionalAchievements.length === 1) {
+      navigate(additionalAchievements[0]);
+    } else {
+      navigate('MarsRoverImagesScreen');
+    }
   };
 
   return (

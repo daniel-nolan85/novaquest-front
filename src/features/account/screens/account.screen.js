@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import Swiper from 'react-native-swiper';
 import { View, StyleSheet } from 'react-native';
 import { SpaceRide } from '../components/space-ride.component';
 import { LoginForm } from '../components/login-form.component';
 import { RegistrationForm } from '../components/registration-form.component';
+import { GuestExplorerModal } from '../components/guest-explorer-modal.component';
 
 export const AccountScreen = () => {
+  const [visible, setVisible] = useState(false);
+
+  const handleGuestLogin = () => {
+    setVisible(true);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}>
@@ -16,8 +24,9 @@ export const AccountScreen = () => {
           dotStyle={styles.dot}
           activeDotStyle={styles.activeDot}
         >
-          <LoginForm />
-          <RegistrationForm />
+          <LoginForm handleGuestLogin={handleGuestLogin} />
+          <RegistrationForm handleGuestLogin={handleGuestLogin} />
+          <GuestExplorerModal visible={visible} setVisible={setVisible} />
         </Swiper>
       </View>
     </View>

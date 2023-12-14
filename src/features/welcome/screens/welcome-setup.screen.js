@@ -86,17 +86,27 @@ export const WelcomeSetupScreen = ({ navigation }) => {
       });
       return;
     }
-    updateUserName(user.token, user._id, userName)
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            name: res.data.name,
-          },
-        });
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      updateUserName(user.token, user._id, userName)
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              name: res.data.name,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          name: userName,
+        },
+      });
+    }
     setShowOk(true);
     setNameEntry(false);
     setCurrentStep(currentStep + 1);

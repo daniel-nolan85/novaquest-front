@@ -58,17 +58,27 @@ export const SettingsScreen = () => {
 
   const handleSavePress = () => {
     setIsEditing(false);
-    updateUserName(user.token, user._id, userName)
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            name: res.data.name,
-          },
-        });
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      updateUserName(user.token, user._id, userName)
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              name: res.data.name,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          name: userName,
+        },
+      });
+    }
   };
 
   const closeAchievementsModal = () => {
@@ -119,29 +129,37 @@ export const SettingsScreen = () => {
 
   const updateUserTextSpeed = async () => {
     setTextSpeedIsLoading(true);
-    updateTextSpeed(user.token, user._id, textSpeed)
-      .then((res) => {
-        setTextSpeedIsLoading(false);
-        setShowTextSpeed(false);
-        Toast.show({
-          type: 'success',
-          text1: 'Your cosmic reading speed has been adjusted',
-          text2:
-            'Navigate through the cosmos at your own pace. Enjoy the journey, Commander!',
+    if (user.role !== 'guest') {
+      updateTextSpeed(user.token, user._id, textSpeed)
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              textSpeed: res.data.textSpeed,
+            },
+          });
+        })
+        .catch((err) => {
+          console.error(err);
         });
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            textSpeed: res.data.textSpeed,
-          },
-        });
-      })
-      .catch((err) => {
-        setTextSpeedIsLoading(false);
-        setShowTextSpeed(false);
-        console.error(err);
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          textSpeed,
+        },
       });
+    }
+    setShowTextSpeed(false);
+    setTextSpeedIsLoading(false);
+    Toast.show({
+      type: 'success',
+      text1: 'Your cosmic reading speed has been adjusted',
+      text2:
+        'Navigate through the cosmos at your own pace. Enjoy the journey, Commander!',
+    });
   };
 
   const closeTextSpeedModal = () => {
@@ -149,7 +167,7 @@ export const SettingsScreen = () => {
   };
 
   const logout = async () => {
-    await signOut(auth);
+    if (user.role !== 'guest') await signOut(auth);
     dispatch({
       type: 'LOGOUT',
       payload: null,
@@ -183,11 +201,13 @@ export const SettingsScreen = () => {
           left={() => <Achievements width={32} height={32} />}
           onPress={() => setShowAchievements(true)}
         />
-        <SettingsItem
-          title={<Text variant='body'>Change password</Text>}
-          left={() => <Password width={32} height={32} />}
-          onPress={() => setShowPassword(true)}
-        />
+        {user.role !== 'guest' && (
+          <SettingsItem
+            title={<Text variant='body'>Change password</Text>}
+            left={() => <Password width={32} height={32} />}
+            onPress={() => setShowPassword(true)}
+          />
+        )}
         <SettingsItem
           title={<Text variant='body'>Change conversation speed</Text>}
           left={() => <Speech width={32} height={32} />}

@@ -18,26 +18,36 @@ export const MarsRoverAllCamerasCompleteScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedMartianLensMaster')
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            achievedMartianLensMaster: res.data.achievedMartianLensMaster,
-          },
-        });
-        if (additionalAchievements.length > 1) {
-          const firstAchievement = additionalAchievements[0];
-          additionalAchievements = additionalAchievements.slice(1);
-          navigate(firstAchievement, { additionalAchievements });
-        } else if (additionalAchievements.length === 1) {
-          navigate(additionalAchievements[0]);
-        } else {
-          navigate('MarsRoverImagesScreen');
-        }
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      badgeUnlocked(user.token, user._id, 'achievedMartianLensMaster')
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              achievedMartianLensMaster: res.data.achievedMartianLensMaster,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          achievedMartianLensMaster: true,
+        },
+      });
+    }
+    if (additionalAchievements.length > 1) {
+      const firstAchievement = additionalAchievements[0];
+      additionalAchievements = additionalAchievements.slice(1);
+      navigate(firstAchievement, { additionalAchievements });
+    } else if (additionalAchievements.length === 1) {
+      navigate(additionalAchievements[0]);
+    } else {
+      navigate('MarsRoverImagesScreen');
+    }
   };
 
   return (

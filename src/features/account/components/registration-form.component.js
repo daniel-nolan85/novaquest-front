@@ -17,7 +17,7 @@ import {
   Info,
 } from '../styles/account.styles';
 
-export const RegistrationForm = () => {
+export const RegistrationForm = ({ handleGuestLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -77,10 +77,6 @@ export const RegistrationForm = () => {
           });
         }
       });
-  };
-
-  const handleGuestLogin = () => {
-    //
   };
 
   return (

@@ -18,26 +18,36 @@ export const TriviaComplete30QuestionScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedInfinityVoyager')
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            achievedInfinityVoyager: res.data.achievedInfinityVoyager,
-          },
-        });
-        if (additionalAchievements.length > 1) {
-          const firstAchievement = additionalAchievements[0];
-          additionalAchievements = additionalAchievements.slice(1);
-          navigate(firstAchievement, { additionalAchievements });
-        } else if (additionalAchievements.length === 1) {
-          navigate(additionalAchievements[0]);
-        } else {
-          navigate('TriviaResult');
-        }
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      badgeUnlocked(user.token, user._id, 'achievedInfinityVoyager')
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              achievedInfinityVoyager: res.data.achievedInfinityVoyager,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          achievedInfinityVoyager: true,
+        },
+      });
+    }
+    if (additionalAchievements.length > 1) {
+      const firstAchievement = additionalAchievements[0];
+      additionalAchievements = additionalAchievements.slice(1);
+      navigate(firstAchievement, { additionalAchievements });
+    } else if (additionalAchievements.length === 1) {
+      navigate(additionalAchievements[0]);
+    } else {
+      navigate('TriviaResult');
+    }
   };
 
   return (

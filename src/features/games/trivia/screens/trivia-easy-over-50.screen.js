@@ -18,26 +18,36 @@ export const TriviaEasyScoreOver50Screen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicCadet')
-      .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            achievedCosmicCadet: res.data.achievedCosmicCadet,
-          },
-        });
-        if (additionalAchievements.length > 1) {
-          const firstAchievement = additionalAchievements[0];
-          additionalAchievements = additionalAchievements.slice(1);
-          navigate(firstAchievement, { additionalAchievements });
-        } else if (additionalAchievements.length === 1) {
-          navigate(additionalAchievements[0]);
-        } else {
-          navigate('TriviaResult');
-        }
-      })
-      .catch((err) => console.error(err));
+    if (user.role !== 'guest') {
+      badgeUnlocked(user.token, user._id, 'achievedCosmicCadet')
+        .then((res) => {
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              achievedCosmicCadet: res.data.achievedCosmicCadet,
+            },
+          });
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: {
+          ...user,
+          achievedCosmicCadet: true,
+        },
+      });
+    }
+    if (additionalAchievements.length > 1) {
+      const firstAchievement = additionalAchievements[0];
+      additionalAchievements = additionalAchievements.slice(1);
+      navigate(firstAchievement, { additionalAchievements });
+    } else if (additionalAchievements.length === 1) {
+      navigate(additionalAchievements[0]);
+    } else {
+      navigate('TriviaResult');
+    }
   };
 
   return (

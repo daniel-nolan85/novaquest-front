@@ -24,7 +24,10 @@ import { SolSelector } from '../components/sol-selector.component';
 import { EarthDateSelector } from '../components/earth-date-selector.component';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { ImagesContext } from '../../../../services/images/images.context';
-import { updateViewedRovers } from '../../../../requests/user';
+import {
+  updateViewedRovers,
+  updateGuestViewedRovers,
+} from '../../../../requests/user';
 
 export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -206,35 +209,70 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setDateTypeButtons(false);
     setDateButtons(false);
     setReadyButton(false);
-    await updateViewedRovers(
-      user.token,
-      user._id,
-      selectedRover,
-      camera,
-      dateType
-    )
-      .then((res) => {
+    if (user.role !== 'guest') {
+      await updateViewedRovers(
+        user.token,
+        user._id,
+        selectedRover,
+        camera,
+        dateType
+      )
+        .then((res) => {
+          reduxDispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              viewedRovers: res.data.user.viewedRovers,
+              viewedRoverCameras: res.data.user.viewedRoverCameras,
+              viewedRoverDateTypes: res.data.user.viewedRoverDateTypes,
+            },
+          });
+          if (res.data.achievement) {
+            navigate(res.data.achievement);
+          } else if (res.data.simultaneousAchievements) {
+            const firstAchievement = res.data.simultaneousAchievements[0];
+            const additionalAchievements =
+              res.data.simultaneousAchievements.slice(1);
+            navigate(firstAchievement, { additionalAchievements });
+          } else if (res.data.noAchievements) {
+            navigate('MarsRoverImagesScreen');
+          }
+        })
+        .catch((err) => console.error(err));
+    } else {
+      if (
+        !user.viewedRovers.includes(selectedRover) ||
+        !user.viewedRoverCameras.includes(camera) ||
+        !user.viewedRoverDateTypes.includes(dateType)
+      ) {
         reduxDispatch({
           type: 'LOGGED_IN_USER',
           payload: {
             ...user,
-            viewedRovers: res.data.viewedRovers,
-            viewedRoverCameras: res.data.viewedRoverCameras,
-            viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+            viewedRovers: user.viewedRovers.includes(selectedRover)
+              ? user.viewedRovers
+              : [...user.viewedRovers, selectedRover],
+            viewedRoverCameras: user.viewedRoverCameras.includes(camera)
+              ? user.viewedRoverCameras
+              : [...user.viewedRoverCameras, camera],
+            viewedRoverDateTypes: user.viewedRoverDateTypes.includes(dateType)
+              ? user.viewedRoverDateTypes
+              : [...user.viewedRoverDateTypes, dateType],
           },
         });
-        if (res.data.achievement) {
-          navigate(res.data.achievement);
-        } else if (res.data.simultaneousAchievements) {
-          const firstAchievement = res.data.simultaneousAchievements[0];
-          const additionalAchievements =
-            res.data.simultaneousAchievements.slice(1);
-          navigate(firstAchievement, { additionalAchievements });
-        } else if (res.data.noAchievements) {
-          navigate('MarsRoverImagesScreen');
-        }
-      })
-      .catch((err) => console.error(err));
+      }
+      const achievements = await updateGuestViewedRovers(user);
+      console.log('achievements => ', achievements);
+      if (achievements.length > 1) {
+        const firstAchievement = achievements[0];
+        const additionalAchievements = achievements.slice(1);
+        navigate(firstAchievement, { additionalAchievements });
+      } else if (achievements.length === 1) {
+        navigate(achievements);
+      } else {
+        navigate('MarsRoverImagesScreen');
+      }
+    }
   };
 
   const renderCurrentStep = () => {

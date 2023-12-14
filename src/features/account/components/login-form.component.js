@@ -15,7 +15,7 @@ import {
 import { ForgotPasswordModal } from './forgot-password-modal.component';
 import { createOrLocateUser } from '../../../requests/auth';
 
-export const LoginForm = () => {
+export const LoginForm = ({ handleGuestLogin }) => {
   const [email, setEmail] = useState('danielnolan85@yahoo.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
@@ -107,10 +107,6 @@ export const LoginForm = () => {
           });
         }
       });
-  };
-
-  const handleGuestLogin = () => {
-    //
   };
 
   return (
