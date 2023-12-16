@@ -11,12 +11,14 @@ import {
   UserInfoContainer,
   SettingsItem,
 } from '../styles/settings.styles';
+import Rocket from '../../../../assets/svg/rocket.svg';
 import Astronaut from '../../../../assets/svg/astronaut.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import Password from '../../../../assets/svg/password.svg';
 import Speech from '../../../../assets/svg/speech.svg';
 import Logout from '../../../../assets/svg/logout.svg';
 import { Text } from '../../../components/typography/text.component';
+import { DaysInSpaceModal } from '../components/days-in-space-modal.component';
 import { AchievementsModal } from '../components/achievements-modal.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
@@ -26,6 +28,7 @@ import { updateUserName } from '../../../requests/user';
 export const SettingsScreen = () => {
   const [passwordIsLoading, setPasswordIsLoading] = useState(false);
   const [textSpeedIsLoading, setTextSpeedIsLoading] = useState(false);
+  const [showDays, setShowDays] = useState(false);
   const [showAchievements, setShowAchievements] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showTextSpeed, setShowTextSpeed] = useState(false);
@@ -79,6 +82,10 @@ export const SettingsScreen = () => {
         },
       });
     }
+  };
+
+  const closeDaysInSpaceModal = () => {
+    setShowDays(false);
   };
 
   const closeAchievementsModal = () => {
@@ -197,6 +204,11 @@ export const SettingsScreen = () => {
       </UserInfoContainer>
       <Section>
         <SettingsItem
+          title={<Text variant='body'>Days in space</Text>}
+          left={() => <Rocket width={32} height={32} />}
+          onPress={() => setShowDays(true)}
+        />
+        <SettingsItem
           title={<Text variant='body'>Achievements</Text>}
           left={() => <Achievements width={32} height={32} />}
           onPress={() => setShowAchievements(true)}
@@ -219,6 +231,10 @@ export const SettingsScreen = () => {
           onPress={logout}
         />
       </Section>
+      <DaysInSpaceModal
+        showDays={showDays}
+        closeDaysInSpaceModal={closeDaysInSpaceModal}
+      />
       <AchievementsModal
         showAchievements={showAchievements}
         closeAchievementsModal={closeAchievementsModal}

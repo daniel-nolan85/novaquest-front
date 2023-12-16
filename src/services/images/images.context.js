@@ -3,6 +3,7 @@ import { useState, createContext } from 'react';
 export const ImagesContext = createContext();
 
 export const ImagesContextProvider = ({ children }) => {
+  const [renderDays, setRenderDays] = useState(false);
   const [selectedRover, setSelectedRover] = useState('');
   const [camera, setCamera] = useState('');
   const [dateType, setDateType] = useState(0);
@@ -13,6 +14,8 @@ export const ImagesContextProvider = ({ children }) => {
   return (
     <ImagesContext.Provider
       value={{
+        renderDays,
+        setRenderDays,
         selectedRover,
         setSelectedRover,
         camera,

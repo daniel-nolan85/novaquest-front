@@ -13,10 +13,10 @@ import {
   Input,
 } from '../styles/account.styles';
 import { ForgotPasswordModal } from './forgot-password-modal.component';
-import { createOrLocateUser } from '../../../requests/auth';
+import { createOrUpdateUser } from '../../../requests/auth';
 
 export const LoginForm = ({ handleGuestLogin }) => {
-  const [email, setEmail] = useState('danielnolan85@yahoo.com');
+  const [email, setEmail] = useState('daniel@nolancode.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -31,8 +31,9 @@ export const LoginForm = ({ handleGuestLogin }) => {
         const user = userCredential.user;
         if (user.emailVerified) {
           const idToken = user.accessToken;
-          createOrLocateUser(idToken)
+          createOrUpdateUser(idToken)
             .then((res) => {
+              console.log(res.data);
               dispatch({
                 type: 'LOGGED_IN_USER',
                 payload: {
@@ -40,12 +41,26 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   _id: res.data._id,
                   email: res.data.email,
                   role: res.data.role,
+                  lastLoginDate: res.data.lastLoginDate,
+                  daysInSpace: res.data.daysInSpace,
                   name: res.data.name,
                   textSpeed: res.data.textSpeed,
                   viewedRovers: res.data.viewedRovers,
                   viewedRoverCameras: res.data.viewedRoverCameras,
                   viewedRoverDateTypes: res.data.viewedRoverDateTypes,
                   achievedCosmicPioneer: res.data.achievedCosmicPioneer,
+                  achievedAdventurousExplorer:
+                    res.data.achievedAdventurousExplorer,
+                  achievedStellarVoyager: res.data.achievedStellarVoyager,
+                  achievedAstroPioneer: res.data.achievedAstroPioneer,
+                  achievedCosmicTrailblazer: res.data.achievedCosmicTrailblazer,
+                  achievedCelestialNomad: res.data.achievedCelestialNomad,
+                  achievedGalacticWayfarer: res.data.achievedGalacticWayfarer,
+                  achievedInterstellarVoyager:
+                    res.data.achievedInterstellarVoyager,
+                  achievedStellarCenturion: res.data.achievedStellarCenturion,
+                  achievedVoyagerExtraordinaire:
+                    res.data.achievedVoyagerExtraordinaire,
                   achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
                   achievedMarsRoverMaestro: res.data.achievedMarsRoverMaestro,
                   achievedMartianLensMaster: res.data.achievedMartianLensMaster,

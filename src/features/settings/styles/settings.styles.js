@@ -1,5 +1,6 @@
 import { List, TextInput } from 'react-native-paper';
 import styled from 'styled-components/native';
+import LottieView from 'lottie-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from '../../../components/typography/text.component';
 
@@ -97,4 +98,21 @@ export const AchievementsSection = styled(Section)``;
 
 export const AchievementsItem = styled(Item)`
   width: 90%;
+`;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: ${(props) => props.theme.space[4]};
+`;
+
+export const Animation = styled(LottieView)`
+  width: 100%;
+  height: 100%;
+`;
+
+export const DaysDescription = styled(Text)`
+  margin-top: 20px;
 `;

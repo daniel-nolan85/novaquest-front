@@ -25,6 +25,7 @@ export const GuestExplorerModal = ({ visible, setVisible }) => {
       type: 'LOGGED_IN_USER',
       payload: {
         role: 'guest',
+        daysInSpace: 1,
       },
     });
   };

@@ -13,6 +13,24 @@ import { SafeArea } from '../../../components/utils/safe-area.component';
 import Close from '../../../../assets/svg/close.svg';
 import { Text } from '../../../components/typography/text.component';
 import RocketLaunch from '../../../../assets/svg/badges/rocket-launch.svg';
+import AdventurousExplorer from '../../../../assets/svg/badges/adventurous-explorer.svg';
+import AdventurousExplorerGrey from '../../../../assets/svg/badges/adventurous-explorer-grey.svg';
+import StellarVoyager from '../../../../assets/svg/badges/stellar-voyager.svg';
+import StellarVoyagerGrey from '../../../../assets/svg/badges/stellar-voyager-grey.svg';
+import AstroPioneer from '../../../../assets/svg/badges/astro-pioneer.svg';
+import AstroPioneerGrey from '../../../../assets/svg/badges/astro-pioneer-grey.svg';
+import CosmicTrailblazer from '../../../../assets/svg/badges/cosmic-trailblazer.svg';
+import CosmicTrailblazerGrey from '../../../../assets/svg/badges/cosmic-trailblazer-grey.svg';
+import CelestialNomad from '../../../../assets/svg/badges/celestial-nomad.svg';
+import CelestialNomadGrey from '../../../../assets/svg/badges/celestial-nomad-grey.svg';
+import GalacticWayfarer from '../../../../assets/svg/badges/galactic-wayfarer.svg';
+import GalacticWayfarerGrey from '../../../../assets/svg/badges/galactic-wayfarer-grey.svg';
+import InterstellarVoyager from '../../../../assets/svg/badges/interstellar-voyager.svg';
+import InterstellarVoyagerGrey from '../../../../assets/svg/badges/interstellar-voyager-grey.svg';
+import StellarCenturion from '../../../../assets/svg/badges/stellar-centurion.svg';
+import StellarCenturionGrey from '../../../../assets/svg/badges/stellar-centurion-grey.svg';
+import VoyagerExtraordinaire from '../../../../assets/svg/badges/voyager-extraordinaire.svg';
+import VoyagerExtraordinaireGrey from '../../../../assets/svg/badges/voyager-extraordinaire-grey.svg';
 import OneRover from '../../../../assets/svg/badges/one-rover.svg';
 import OneRoverGrey from '../../../../assets/svg/badges/one-rover-grey.svg';
 import AllRovers from '../../../../assets/svg/badges/all-rovers.svg';
@@ -45,6 +63,15 @@ export const AchievementsModal = ({
   closeAchievementsModal,
 }) => {
   const {
+    achievedAdventurousExplorer,
+    achievedStellarVoyager,
+    achievedAstroPioneer,
+    achievedCosmicTrailblazer,
+    achievedCelestialNomad,
+    achievedGalacticWayfarer,
+    achievedInterstellarVoyager,
+    achievedStellarCenturion,
+    achievedVoyagerExtraordinaire,
     achievedRedPlanetVoyager,
     achievedMarsRoverMaestro,
     achievedMartianLensMaster,
@@ -78,6 +105,107 @@ export const AchievementsModal = ({
                   title={<Text variant='title'>Cosmic Pioneer</Text>}
                   description='Complete the app introduction and launch your cosmic adventure!'
                   left={() => <RocketLaunch width={100} height={100} />}
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Adventurous Explorer</Text>}
+                  description='Explore the cosmos for 4 days.'
+                  left={() =>
+                    achievedAdventurousExplorer ? (
+                      <AdventurousExplorer width={100} height={100} />
+                    ) : (
+                      <AdventurousExplorerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Stellar Voyager</Text>}
+                  description='Explore the cosmos for 7 days.'
+                  left={() =>
+                    achievedStellarVoyager ? (
+                      <StellarVoyager width={100} height={100} />
+                    ) : (
+                      <StellarVoyagerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Astro Pioneer</Text>}
+                  description='Explore the cosmos for 14 days.'
+                  left={() =>
+                    achievedAstroPioneer ? (
+                      <AstroPioneer width={100} height={100} />
+                    ) : (
+                      <AstroPioneerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Cosmic Trailblazer</Text>}
+                  description='Explore the cosmos for 30 days.'
+                  left={() =>
+                    achievedCosmicTrailblazer ? (
+                      <CosmicTrailblazer width={100} height={100} />
+                    ) : (
+                      <CosmicTrailblazerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Celestial Nomad</Text>}
+                  description='Explore the cosmos for 60 days.'
+                  left={() =>
+                    achievedCelestialNomad ? (
+                      <CelestialNomad width={100} height={100} />
+                    ) : (
+                      <CelestialNomadGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Galactic Wayfarer</Text>}
+                  description='Explore the cosmos for 90 days.'
+                  left={() =>
+                    achievedGalacticWayfarer ? (
+                      <GalacticWayfarer width={100} height={100} />
+                    ) : (
+                      <GalacticWayfarerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Interstellar Voyager</Text>}
+                  description='Explore the cosmos for 180 days.'
+                  left={() =>
+                    achievedInterstellarVoyager ? (
+                      <InterstellarVoyager width={100} height={100} />
+                    ) : (
+                      <InterstellarVoyagerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Stellar Centurion</Text>}
+                  description='Explore the cosmos for 270 days.'
+                  left={() =>
+                    achievedStellarCenturion ? (
+                      <StellarCenturion width={100} height={100} />
+                    ) : (
+                      <StellarCenturionGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={
+                    <Text variant='title'>Cosmic Voyager Extraordinaire</Text>
+                  }
+                  description='Explore the cosmos for 365 days.'
+                  left={() =>
+                    achievedVoyagerExtraordinaire ? (
+                      <VoyagerExtraordinaire width={100} height={100} />
+                    ) : (
+                      <VoyagerExtraordinaireGrey width={100} height={100} />
+                    )
+                  }
                 />
                 <AchievementsItem
                   title={<Text variant='title'>Red Planet Voyager</Text>}

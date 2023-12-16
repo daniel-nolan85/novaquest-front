@@ -241,8 +241,12 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         .catch((err) => console.error(err));
     } else {
       if (
-        !user.viewedRovers.includes(selectedRover) ||
-        !user.viewedRoverCameras.includes(camera) ||
+        user &&
+        user.viewedRovers &&
+        !user.viewedRovers.includes(selectedRover) &&
+        user.viewedRoverCameras &&
+        !user.viewedRoverCameras.includes(camera) &&
+        user.viewedRoverDateTypes &&
         !user.viewedRoverDateTypes.includes(dateType)
       ) {
         reduxDispatch({
@@ -268,7 +272,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         const additionalAchievements = achievements.slice(1);
         navigate(firstAchievement, { additionalAchievements });
       } else if (achievements.length === 1) {
-        navigate(achievements);
+        navigate(achievements[0]);
       } else {
         navigate('MarsRoverImagesScreen');
       }

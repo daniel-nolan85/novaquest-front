@@ -142,7 +142,7 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
         const additionalAchievements = achievements.slice(1);
         navigate(firstAchievement, { additionalAchievements });
       } else if (achievements.length === 1) {
-        navigate(achievements);
+        navigate(achievements[0]);
       } else {
         navigate('TriviaResult');
       }

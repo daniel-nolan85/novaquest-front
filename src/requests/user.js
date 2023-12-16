@@ -85,16 +85,21 @@ export const updateGuestViewedRovers = async (user) => {
   ];
   const allDateTypes = ['sol', 'earth_date'];
 
-  const isFirstRover = !user.viewedRovers.length;
-  const hasViewedAllRovers = allRovers.every((rover) =>
-    user.viewedRovers.includes(rover)
-  );
-  const hasViewedAllCameras = allCameras.every((camera) =>
-    user.viewedRoverCameras.includes(camera)
-  );
-  const hasViewedAllDateTypes = allDateTypes.every((dateType) =>
-    user.viewedRoverDateTypes.includes(dateType)
-  );
+  const isFirstRover = !user || !user.viewedRovers || !user.viewedRovers.length;
+  const hasViewedAllRovers =
+    user &&
+    user.viewedRovers &&
+    allRovers.every((rover) => user.viewedRovers.includes(rover));
+  const hasViewedAllCameras =
+    user &&
+    user.viewedRoverCameras &&
+    allCameras.every((camera) => user.viewedRoverCameras.includes(camera));
+  const hasViewedAllDateTypes =
+    user &&
+    user.viewedRoverDateTypes &&
+    allDateTypes.every((dateType) =>
+      user.viewedRoverDateTypes.includes(dateType)
+    );
 
   let achievements = [];
 
