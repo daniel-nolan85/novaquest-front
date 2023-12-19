@@ -30,6 +30,7 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-animatable": "^1.4.0",
+    "react-native-countup": "^0.0.2",
     "react-native-dotenv": "^3.4.9",
     "react-native-game-engine": "^1.2.0",
     "react-native-gesture-handler": "~2.12.0",

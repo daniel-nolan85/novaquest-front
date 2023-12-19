@@ -37,6 +37,18 @@ export const badgeUnlocked = async (authtoken, _id, badge) => {
   );
 };
 
+export const promoteUser = async (authtoken, _id, rank) => {
+  return await axios.put(
+    `${API_BASE_URL}/promote-user`,
+    { _id, rank },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const updateTextSpeed = async (authtoken, _id, textSpeed) => {
   return await axios.put(
     `${API_BASE_URL}/update-text-speed`,

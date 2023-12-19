@@ -1,5 +1,5 @@
 [
-  { "name": "Novice", "requiredXP": 0 },
+  { "name": "Space Explorer", "requiredXP": 0 },
   { "name": "Space Cadet", "requiredXP": 50 },
   { "name": "Star Recruit", "requiredXP": 150 },
   { "name": "Galactic Ensign", "requiredXP": 300 },
