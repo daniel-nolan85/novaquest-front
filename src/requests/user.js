@@ -13,6 +13,18 @@ export const updateUserName = async (authtoken, _id, name) => {
   );
 };
 
+export const awardXP = async (authtoken, _id, xp) => {
+  return await axios.put(
+    `${API_BASE_URL}/award-xp`,
+    { _id, xp },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const badgeUnlocked = async (authtoken, _id, badge) => {
   return await axios.put(
     `${API_BASE_URL}/badge-unlocked`,

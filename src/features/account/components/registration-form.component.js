@@ -18,8 +18,8 @@ import {
 } from '../styles/account.styles';
 
 export const RegistrationForm = ({ handleGuestLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('daniel@nolancode.com');
+  const [password, setPassword] = useState('Lennon1027');
 
   const handleRegistration = async () => {
     const auth = getAuth();

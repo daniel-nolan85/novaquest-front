@@ -198,7 +198,9 @@ export const SettingsScreen = () => {
           />
         ) : (
           <TouchableOpacity onPress={handleEditPress}>
-            <Text variant='title'>{user.name}</Text>
+            <Text variant='title'>
+              {user.rank} {user.name}
+            </Text>
           </TouchableOpacity>
         )}
       </UserInfoContainer>

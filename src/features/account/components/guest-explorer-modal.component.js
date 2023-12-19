@@ -26,6 +26,8 @@ export const GuestExplorerModal = ({ visible, setVisible }) => {
       payload: {
         role: 'guest',
         daysInSpace: 1,
+        rank: 'Novice',
+        xp: 0,
       },
     });
   };

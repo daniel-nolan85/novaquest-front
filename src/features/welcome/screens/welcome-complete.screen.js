@@ -1,7 +1,10 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../requests/user';
 import { BadgeAnimation } from '../../../components/animations/badge.animation';
+import { FadeInView } from '../../../components/animations/fade.animation';
+import { XPProgressAnimation } from '../../../components/animations/xp-progress.animation';
 import RocketLaunch from '../../../../assets/svg/badges/rocket-launch.svg';
 
 const BadgeContainer = styled.View`
@@ -11,6 +14,16 @@ const BadgeContainer = styled.View`
 `;
 
 export const WelcomeCompleteScreen = () => {
+  const [showXP, setShowXP] = useState(false);
+
+  useEffect(() => {
+    const delayTimeout = setTimeout(() => {
+      setShowXP(true);
+    }, 4000);
+
+    return () => clearTimeout(delayTimeout);
+  }, []);
+
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
@@ -46,6 +59,7 @@ export const WelcomeCompleteScreen = () => {
         body={`Congratulations, Commander ${user.name}! You've earned the illustrious 'Cosmic Pioneer' badge, signifying the launch of your extraordinary journey through the cosmos. Like a rocket soaring into the vast unknown, you've just begun to explore the wonders that await. May your celestial adventure be as limitless as the cosmos itself. Onward and upward, Cosmic Pioneer!`}
         handleSubmit={handleSubmit}
       />
+      {showXP && <XPProgressAnimation earnedXP={50} showXP={showXP} />}
     </BadgeContainer>
   );
 };

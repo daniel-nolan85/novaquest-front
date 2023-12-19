@@ -36,6 +36,8 @@ export const AppComponents = () => {
               _id: res.data._id,
               email: res.data.email,
               role: res.data.role,
+              xp: res.data.xp,
+              rank: res.data.rank,
               lastLoginDate: res.data.lastLoginDate,
               daysInSpace: res.data.daysInSpace,
               name: res.data.name,
