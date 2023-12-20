@@ -1,4 +1,5 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { GamesHubScreen } from '../../features/games/games-hub.screen';
 import { InterstellarAssemblyNavigator } from './interstellar-assembly.navigator';
 import { AstroAviatorNavigator } from './astro-aviator.navigator';
 import { TriviaNavigator } from './trivia.navigator';
@@ -8,7 +9,16 @@ const { Navigator, Screen } = createDrawerNavigator();
 
 export const GamesNavigator = () => {
   return (
-    <Navigator>
+    <Navigator initialRouteName='GamesHub'>
+      <Screen
+        name='GamesHub'
+        component={GamesHubScreen}
+        options={{
+          headerShown: false,
+          drawerLabel: () => null,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
       <Screen
         name='InterstellarAssembly'
         component={InterstellarAssemblyNavigator}
@@ -26,7 +36,7 @@ export const GamesNavigator = () => {
         }}
       />
       <Screen
-        name='TriviaAviator'
+        name='CosmicConundrum'
         component={TriviaNavigator}
         options={{
           headerShown: false,

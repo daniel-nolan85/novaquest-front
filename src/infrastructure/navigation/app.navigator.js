@@ -6,6 +6,7 @@ import { ImagesContext } from '../../services/images/images.context';
 import { DaysInSpaceScreen } from '../../features/welcome/screens/days-in-space.screen';
 import { ImagesNavigator } from './images.navigator';
 import { PlanetsNavigator } from './planets.navigator';
+// import { GamesHubScreen } from '../../features/games/games-hub.screen';
 import { GamesNavigator } from './games.navigator';
 import { SettingsScreen } from '../../features/settings/screens/settings.screen';
 import Telescope from '../../../assets/svg/telescope.svg';
@@ -92,7 +93,6 @@ export const AppNavigator = () => {
                   <PlanetsInactive height={32} width={32} />
                 ),
               headerShown: false,
-
               tabBarShowLabel: false,
             }}
           />
@@ -107,7 +107,6 @@ export const AppNavigator = () => {
                   <JoystickInactive height={32} width={32} />
                 ),
               headerShown: false,
-
               tabBarShowLabel: false,
             }}
           />
@@ -122,7 +121,6 @@ export const AppNavigator = () => {
                   <SettingsInactive height={32} width={32} />
                 ),
               headerShown: false,
-
               tabBarShowLabel: false,
             }}
           />

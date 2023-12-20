@@ -32,11 +32,6 @@ const GradientProgressBar = styled(AnimatedLinearGradient)`
   height: 100%;
   border-radius: 10px;
 `;
-// const ProgressBar = styled(Animated.View)`
-//   height: 100%;
-//   background-color: #009999;
-//   border-radius: 10px;
-// `;
 const NumberContainer = styled.View`
   flex-direction: row;
   justify-content: center;
