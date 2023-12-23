@@ -58,28 +58,28 @@ const CardDescription = styled(Text)`
 
 const DATA = [
   {
-    title: 'Astro Aviator',
-    name: 'AstroAviator',
+    title: 'Astronomy Pic of the Day',
+    name: 'Apod',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/astro-aviator_ppt6kx.heic',
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1703116574/apod_mkqqhb.jpg',
     description:
-      'Prepare for a cosmic challenge in Astro Aviator! Guide your spaceship through asteroid-filled space, aiming to surpass your highest score. Can you navigate the celestial obstacles and become a space-faring champion?',
+      'Embark on a daily cosmic journey with Astronomy Pic of the Day! Witness breathtaking space images accompanied by detailed descriptions. Feel free to explore the cosmos through time by selecting a date from the calendar and unveil the wonders of earlier Pics of the Day.',
   },
   {
-    title: 'Interstellar Assembly',
-    name: 'InterstellarAssembly',
+    title: 'Mars Rovers',
+    name: 'MarsRovers',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/interstellar-assembly_bsuzax.jpg',
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1699995097/opportunity_kgl72p.jpg',
     description:
-      'Embark on a planetary puzzle journey with Interstellar Assembly! Arrange the planets in the correct cosmic order and race against time to set new records. Sharpen your mind and assemble the celestial bodies with speed and precision!',
+      'Step into the shoes of a Martian explorer with Mars Rovers! Choose a rover, pick a camera to look through, and select a date to unveil real images captured on the Red Planet. Immerse yourself in the Martian landscapes and experience the wonders of interplanetary exploration.',
   },
   {
-    title: 'Cosmic Conundrum',
-    name: 'CosmicConundrum',
+    title: 'Asteroid Almanac',
+    name: 'AsteroidAlmanac',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/trivia_lm99oq.jpg',
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1703116367/asteroid-almanac_eunoqd.jpg',
     description:
-      'Engage your cosmic intellect with Cosmic Conundrum! Customize your space quiz by selecting the difficulty and length. Face space-themed questions, earn points, and unlock your stellar knowledge. How high can you score in this cosmic challenge?',
+      'Dive into the cosmic realm of Asteroid Almanac! Select a date to unveil information on all near-earth objects within a 7-day orbit. Explore the trajectories and details of these celestial travelers to enhance your understanding of the dynamic dance between Earth and asteroids.',
   },
 ];
 
@@ -155,7 +155,7 @@ const Item = ({
   );
 };
 
-export const GamesHubScreen = ({ navigation }) => {
+export const DiscoveryHubScreen = ({ navigation }) => {
   const [scrollX, setScrollX] = useState(0);
 
   const { navigate } = navigation;
@@ -168,7 +168,7 @@ export const GamesHubScreen = ({ navigation }) => {
       style={{ flex: 1 }}
     >
       <SafeAreaView>
-        <Title variant='title'>Games Hub</Title>
+        <Title variant='title'>Discovery Hub</Title>
         <AnimatedFlatList
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}

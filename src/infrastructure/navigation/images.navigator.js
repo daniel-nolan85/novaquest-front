@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DiscoveryHubScreen } from '../../features/images/discovery-hub.screen';
 import { ApodScreen } from '../../features/images/apod/screens/apod.screen';
 import { MarsRoverNavigator } from './rover.navigator';
-import { LandsatHomeScreen } from '../../features/images/landsat/screens/landsat-home.screen';
 import { AsteroidAlmanacNavigator } from './asteroid-almanac.navigator';
 import { Text } from '../../components/typography/text.component';
 
@@ -10,6 +10,15 @@ const { Navigator, Screen } = createDrawerNavigator();
 export const ImagesNavigator = () => {
   return (
     <Navigator>
+      <Screen
+        name='DiscoveryHub'
+        component={DiscoveryHubScreen}
+        options={{
+          headerShown: false,
+          drawerLabel: () => null,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
       <Screen
         name='Apod'
         component={ApodScreen}
@@ -24,14 +33,6 @@ export const ImagesNavigator = () => {
         options={{
           headerShown: false,
           drawerLabel: () => <Text variant='body'>Mars Rovers</Text>,
-        }}
-      />
-      <Screen
-        name='Landsat'
-        component={LandsatHomeScreen}
-        options={{
-          headerShown: false,
-          drawerLabel: () => <Text variant='body'>Landsat</Text>,
         }}
       />
       <Screen

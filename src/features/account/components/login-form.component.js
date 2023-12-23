@@ -33,7 +33,6 @@ export const LoginForm = ({ handleGuestLogin }) => {
           const idToken = user.accessToken;
           createOrUpdateUser(idToken)
             .then((res) => {
-              console.log(res.data);
               dispatch({
                 type: 'LOGGED_IN_USER',
                 payload: {

@@ -9,7 +9,7 @@ const { Navigator, Screen } = createDrawerNavigator();
 
 export const GamesNavigator = () => {
   return (
-    <Navigator initialRouteName='GamesHub'>
+    <Navigator>
       <Screen
         name='GamesHub'
         component={GamesHubScreen}

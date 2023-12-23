@@ -266,7 +266,6 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
         });
       }
       const achievements = await updateGuestViewedRovers(user);
-      console.log('achievements => ', achievements);
       if (achievements.length > 1) {
         const firstAchievement = achievements[0];
         const additionalAchievements = achievements.slice(1);
