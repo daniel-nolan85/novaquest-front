@@ -211,7 +211,7 @@ export const SettingsScreen = () => {
           onPress={() => setShowDays(true)}
         />
         <SettingsItem
-          title={<Text variant='body'>Achievements</Text>}
+          title={<Text variant='body'>Missions</Text>}
           left={() => <Achievements width={32} height={32} />}
           onPress={() => setShowAchievements(true)}
         />

@@ -1,4 +1,3 @@
-import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { Text } from '../../../components/typography/text.component';
 
@@ -19,7 +18,7 @@ export const PostHeader = styled.View`
   margin-top: 8px;
 `;
 
-export const PostCreator = styled.View`
+export const PostCreator = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   margin: 0 8px;

@@ -24,11 +24,13 @@ import Star from '../../../../assets/svg/star.svg';
 import Comment from '../../../../assets/svg/comment.svg';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
-export const Post = ({ posts }) => {
+export const Post = ({ navigate, posts }) => {
   const renderItem = ({ item }) => (
     <PostWrapper>
       <PostHeader>
-        <PostCreator>
+        <PostCreator
+          onPress={() => navigate('UserProfile', { userId: item.postedBy._id })}
+        >
           <PostCreatorImage
             source={
               item.postedBy.profileImage

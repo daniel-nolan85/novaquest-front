@@ -202,3 +202,63 @@ export const checkGuestTriviaAchievements = async (
 
   return achievements;
 };
+
+export const fetchThisUser = async (authtoken, userId) => {
+  return await axios.post(
+    `${API_BASE_URL}/fetch-this-user`,
+    { userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const followMember = async (authtoken, _id, userId) => {
+  return await axios.put(
+    `${API_BASE_URL}/follow-member`,
+    { _id, userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const unfollowMember = async (authtoken, _id, userId) => {
+  return await axios.put(
+    `${API_BASE_URL}/unfollow-member`,
+    { _id, userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const getAllies = async (authtoken, userId) => {
+  return await axios.post(
+    `${API_BASE_URL}/fetch-allies`,
+    { userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const getExplorers = async (authtoken, userId) => {
+  return await axios.post(
+    `${API_BASE_URL}/fetch-explorers`,
+    { userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

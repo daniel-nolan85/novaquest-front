@@ -12,6 +12,7 @@ import StarInactive from '../../../../assets/svg/star-inactive.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import AchievementsInactive from '../../../../assets/svg/achievements-inactive.svg';
 import { fetchUsersPosts } from '../../../requests/post';
+import { fetchThisUser } from '../../../requests/user';
 import { ProfileCard } from '../components/profile-card.component';
 import { ProfileButtons } from '../components/profile-buttons.component';
 import { PostsRoute } from '../components/posts-route.component';
@@ -23,7 +24,8 @@ const SafeAreaView = styled(SafeArea)`
   background-color: #fff;
 `;
 
-export const ProfileScreen = ({ navigation }) => {
+export const UserProfileScreen = ({ navigation, route }) => {
+  const [thisUser, setThisUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -47,18 +49,29 @@ export const ProfileScreen = ({ navigation }) => {
     },
   ]);
 
-  useEffect(() => {
-    if (token) {
-      usersPosts();
-    }
-  }, [token]);
+  const { navigate } = navigation;
+  const { params } = route;
+  const { userId } = params;
 
-  const { token, _id, profileImage, name, rank, bio } = useSelector(
-    (state) => state.user
-  );
+  useEffect(() => {
+    fetchUser();
+    usersPosts();
+  }, [userId]);
+
+  const { token } = useSelector((state) => state.user);
+
+  const { profileImage, name, rank, bio } = thisUser;
+
+  const fetchUser = async () => {
+    await fetchThisUser(token, userId)
+      .then((res) => {
+        setThisUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const usersPosts = async () => {
-    await fetchUsersPosts(token, _id)
+    await fetchUsersPosts(token, userId)
       .then((res) => {
         setPosts(res.data);
       })
@@ -94,19 +107,17 @@ export const ProfileScreen = ({ navigation }) => {
     />
   );
 
-  const { navigate } = navigation;
-
   return (
     <SafeAreaView>
       <ProfileCard
-        userId={_id}
+        userId={userId}
         profileImage={profileImage}
         name={name}
         rank={rank}
         bio={bio}
       />
       <ProfileButtons
-        userId={_id}
+        userId={userId}
         name={name}
         rank={rank}
         navigate={navigate}

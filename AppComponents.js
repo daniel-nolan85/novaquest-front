@@ -41,6 +41,8 @@ export const AppComponents = () => {
               lastLoginDate: res.data.lastLoginDate,
               daysInSpace: res.data.daysInSpace,
               name: res.data.name,
+              allies: res.data.allies,
+              explorers: res.data.explorers,
               textSpeed: res.data.textSpeed,
               viewedRovers: res.data.viewedRovers,
               viewedRoverCameras: res.data.viewedRoverCameras,
