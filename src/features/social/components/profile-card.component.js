@@ -45,7 +45,7 @@ export const ProfileCard = ({ userId, profileImage, name, rank, bio }) => {
         <Name variant='title'>
           {rank} {name}
         </Name>
-        <BioWrapper style={{ flexDirection: 'row' }}>
+        <BioWrapper>
           <Text variant='body'>{bio}</Text>
         </BioWrapper>
       </ProfileInfoWrapper>

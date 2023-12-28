@@ -35,13 +35,10 @@ export const RevokeModal = ({
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
-  console.log('allies => ', user.allies);
-
   const revokeAlliance = async () => {
     setIsLoading(true);
     await unfollowMember(user.token, user._id, userId)
       .then((res) => {
-        console.log('unfollowMember => ', res.data);
         setVisible(false);
         Toast.show({
           type: 'error',

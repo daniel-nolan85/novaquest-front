@@ -7,7 +7,6 @@ width = width - 44;
 
 export const ProfileCardWrapper = styled.View`
   width: ${width};
-  height: 260px;
   margin: 0 22px;
   padding: 18px 6px;
   border-color: #f7f7f7;
@@ -51,4 +50,5 @@ export const Name = styled(Text)`
 
 export const BioWrapper = styled.View`
   flex-direction: row;
+  margin-top: 10px;
 `;

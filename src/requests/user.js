@@ -262,3 +262,33 @@ export const getExplorers = async (authtoken, userId) => {
     }
   );
 };
+
+export const updateProfileWithImage = async (
+  authtoken,
+  _id,
+  name,
+  bio,
+  profileImage
+) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-profile-with-image`,
+    { _id, name, bio, profileImage },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const updateProfile = async (authtoken, _id, name, bio) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-profile`,
+    { _id, name, bio },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

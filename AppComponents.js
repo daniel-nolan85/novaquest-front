@@ -38,6 +38,8 @@ export const AppComponents = () => {
               role: res.data.role,
               xp: res.data.xp,
               rank: res.data.rank,
+              bio: res.data.bio,
+              profileImage: res.data.profileImage,
               lastLoginDate: res.data.lastLoginDate,
               daysInSpace: res.data.daysInSpace,
               name: res.data.name,

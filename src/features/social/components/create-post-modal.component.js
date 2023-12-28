@@ -28,11 +28,8 @@ import Close from '../../../../assets/svg/close.svg';
 import Camera from '../../../../assets/svg/camera.svg';
 import Submit from '../../../../assets/svg/submit.svg';
 import SubmitDisabled from '../../../../assets/svg/submit-disabled.svg';
-import {
-  uploadImagesToCloudinary,
-  submitPostWithImages,
-  submitPost,
-} from '../../../requests/post';
+import { uploadImagesToCloudinary } from '../../../requests/cloudinary';
+import { submitPostWithImages, submitPost } from '../../../requests/post';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
 const MAX_IMAGES = 9;

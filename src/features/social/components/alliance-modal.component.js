@@ -35,13 +35,10 @@ export const AllianceModal = ({
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
-  console.log('allies => ', user.allies);
-
   const formAlliance = async () => {
     setIsLoading(true);
     await followMember(user.token, user._id, userId)
       .then((res) => {
-        console.log('followMember => ', res.data);
         setVisible(false);
         Toast.show({
           type: 'success',
