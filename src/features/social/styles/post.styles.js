@@ -5,10 +5,14 @@ export const PostWrapper = styled.View`
   background-color: #fff;
   flex-direction: column;
   width: 100%;
-  border-radius: 26px;
-  border-width: 1px;
-  border-color: #fff;
-  margin-vertical: 12px;
+  border-radius: 12px;
+  elevation: 5;
+  shadow-color: #000;
+  shadow-offset: {
+    width: 0;
+    height: 4px;
+  }
+  margin: 6px 0;
 `;
 
 export const PostHeader = styled.View`
@@ -44,8 +48,13 @@ export const PostContentWrapper = styled.View`
 
 export const PostImage = styled.Image`
   margin-top: 10px;
-  width: 100%;
+  width: 350px;
   height: 350px;
+`;
+
+export const ImageNumber = styled(Text)`
+  text-align: center;
+  color: #009999;
 `;
 
 export const PostReactionWrapper = styled.View`

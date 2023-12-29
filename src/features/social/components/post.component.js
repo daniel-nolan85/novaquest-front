@@ -1,4 +1,5 @@
-import { TextInput, FlatList } from 'react-native';
+import { View, TextInput, FlatList, ScrollView } from 'react-native';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -10,6 +11,7 @@ import {
   Timestamp,
   PostContentWrapper,
   PostImage,
+  ImageNumber,
   PostReactionWrapper,
   StarsAndComments,
   Stars,
@@ -25,6 +27,8 @@ import Comment from '../../../../assets/svg/comment.svg';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
 export const Post = ({ navigate, posts }) => {
+  const { profileImage } = useSelector((state) => state.user);
+
   const renderItem = ({ item }) => (
     <PostWrapper>
       <PostHeader>
@@ -51,8 +55,30 @@ export const Post = ({ navigate, posts }) => {
 
       <PostContentWrapper>
         <Text variant='body'>{item.text}</Text>
-        {item.images.length && (
-          <PostImage source={{ uri: item.images[0].url }} />
+        {item.images.length > 1 ? (
+          <ScrollView
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0.8}
+            snapToInterval={350}
+            disableIntervalMomentum={true}
+            disableScrollViewPanResponder={true}
+            snapToAlignment={'center'}
+            horizontal={true}
+          >
+            {item.images.map((image, index) => (
+              <View key={index}>
+                <PostImage source={{ uri: image.url }} />
+                <ImageNumber variant='title'>{`${index + 1}/${
+                  item.images.length
+                }`}</ImageNumber>
+              </View>
+            ))}
+          </ScrollView>
+        ) : (
+          item.images.length === 1 && (
+            <PostImage source={{ uri: item.images[0].url }} />
+          )
         )}
       </PostContentWrapper>
 
@@ -60,22 +86,20 @@ export const Post = ({ navigate, posts }) => {
         <StarsAndComments>
           <Stars>
             <Star width={24} height={24} />
-            <StarsNumber variant='body'>22</StarsNumber>
+            <StarsNumber variant='body'>{item.likes.length}</StarsNumber>
           </Stars>
           <Comments>
             <Comment width={24} height={24} />
-            <CommentsNumber variant='body'>22</CommentsNumber>
+            <CommentsNumber variant='body'>
+              {item.comments.length}
+            </CommentsNumber>
           </Comments>
         </StarsAndComments>
       </PostReactionWrapper>
 
       <CommentSection>
         <UserImage
-          source={
-            item.postedBy.profileImage
-              ? item.postedBy.profileImage
-              : defaultProfile
-          }
+          source={profileImage ? profileImage : defaultProfile}
           resizeMode='contain'
         />
         <CommentBox>

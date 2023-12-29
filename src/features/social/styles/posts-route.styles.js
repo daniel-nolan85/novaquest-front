@@ -9,9 +9,9 @@ export const PostsList = styled.FlatList`
 `;
 
 export const PostWrapper = styled.View`
-  flex: 1;
   aspect-ratio: 1;
   margin: 3px;
+  width: 32%;
 `;
 
 export const PostImage = styled.Image`

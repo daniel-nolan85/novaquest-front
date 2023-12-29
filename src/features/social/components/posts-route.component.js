@@ -17,7 +17,7 @@ export const PostsRoute = ({ posts }) => (
             {item.images.length ? (
               <PostImage key={index} source={{ uri: item.images[0].url }} />
             ) : (
-              <Text variant='title'>Post</Text>
+              <Text variant='title'>{item.text}</Text>
             )}
           </PostWrapper>
         );

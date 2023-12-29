@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Modal, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { HelperText } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text } from '../../../components/typography/text.component';
 import { SafeArea } from '../../../components/utils/safe-area.component';
@@ -34,6 +35,8 @@ export const RepairModal = ({ visible, setVisible }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
+  const maxLength = 250;
+
   const closeModal = () => {
     setVisible(false);
     setNewName('');
@@ -42,6 +45,12 @@ export const RepairModal = ({ visible, setVisible }) => {
 
   const updatePhoto = () => {
     setShowUpdatePhoto(true);
+  };
+
+  const handleBioChange = (text) => {
+    if (text.length <= maxLength) {
+      setNewBio(text);
+    }
   };
 
   const save = async () => {
@@ -133,9 +142,17 @@ export const RepairModal = ({ visible, setVisible }) => {
                   <Input
                     label={<Text variant='body'>Bio</Text>}
                     defaultValue={user.bio}
-                    onChangeText={(text) => setNewBio(text)}
+                    onChangeText={handleBioChange}
                     multiline
+                    maxLength={250}
                   />
+                  <HelperText
+                    type='info'
+                    visible={true}
+                    style={{ textAlign: 'right' }}
+                  >
+                    {(newBio || user.bio).length}/{maxLength}
+                  </HelperText>
                 </BioWrapper>
               </ProfileInfoWrapper>
               {isLoading ? (
