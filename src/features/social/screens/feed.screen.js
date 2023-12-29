@@ -36,7 +36,7 @@ export const FeedScreen = ({ navigation }) => {
         <ScrollView>
           <CreatePost newsFeed={newsFeed} />
           {/* <AlliesScroll /> */}
-          <Post navigate={navigate} posts={posts} />
+          <Post navigate={navigate} posts={posts} newsFeed={newsFeed} />
         </ScrollView>
       </View>
     </SafeArea>

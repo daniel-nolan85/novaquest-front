@@ -38,11 +38,16 @@ export const PostInfo = styled.View`
   margin-left: 12px;
 `;
 
+export const Name = styled(Text)`
+  font-size: 15px;
+`;
+
 export const Timestamp = styled(Text)`
+  font-size: 14px;
   color: #009999;
 `;
 
-export const PostContentWrapper = styled.View`
+export const PostContentWrapper = styled.TouchableOpacity`
   margin: 8px;
 `;
 
@@ -69,7 +74,7 @@ export const StarsAndComments = styled.View`
   flex-direction: row;
 `;
 
-export const Stars = styled.View`
+export const Stars = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   margin-right: 12px;
@@ -79,7 +84,8 @@ export const StarsNumber = styled(Text)`
   margin-left: 2px;
 `;
 
-export const Comments = styled.View`
+export const Comments = styled.TouchableOpacity`
+  margin-left: 20px;
   flex-direction: row;
   align-items: center;
 `;
@@ -102,7 +108,7 @@ export const UserImage = styled.Image`
   border-radius: 26px;
 `;
 
-export const CommentBox = styled.View`
+export const CommentBox = styled.TouchableOpacity`
   flex: 1;
   height: 52px;
   border-radius: 26px;
@@ -111,4 +117,9 @@ export const CommentBox = styled.View`
   margin-left: 12px;
   padding-left: 12px;
   justify-content: center;
+`;
+
+export const Placeholder = styled(Text)`
+  color: #ccc;
+  font-size: 14px;
 `;
