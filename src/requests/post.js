@@ -25,12 +25,16 @@ export const submitPost = async (authtoken, _id, text) => {
   );
 };
 
-export const fetchPosts = async (authtoken) => {
-  return await axios.get(`${API_BASE_URL}/news-feed`, {
-    headers: {
-      authtoken,
-    },
-  });
+export const fetchPosts = async (authtoken, _id) => {
+  return await axios.post(
+    `${API_BASE_URL}/news-feed`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
 };
 
 export const fetchUsersPosts = async (authtoken, _id) => {

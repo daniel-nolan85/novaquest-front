@@ -304,3 +304,15 @@ export const fetchUsersAchievements = async (authtoken, _id) => {
     }
   );
 };
+
+export const blockMember = async (authtoken, _id, userId) => {
+  return await axios.put(
+    `${API_BASE_URL}/block-user`,
+    { _id, userId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

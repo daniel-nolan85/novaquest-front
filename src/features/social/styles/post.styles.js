@@ -47,9 +47,11 @@ export const Timestamp = styled(Text)`
   color: #009999;
 `;
 
-export const PostContentWrapper = styled.TouchableOpacity`
+export const PostContentWrapper = styled.View`
   margin: 8px;
 `;
+
+export const PostActions = styled.TouchableOpacity``;
 
 export const PostImage = styled.Image`
   margin-top: 10px;

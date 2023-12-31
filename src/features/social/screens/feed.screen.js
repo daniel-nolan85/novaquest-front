@@ -11,7 +11,7 @@ import { fetchPosts } from '../../../requests/post';
 export const FeedScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, _id } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (token) {
@@ -22,7 +22,7 @@ export const FeedScreen = ({ navigation }) => {
   const { navigate } = navigation;
 
   const newsFeed = async () => {
-    await fetchPosts(token)
+    await fetchPosts(token, _id)
       .then((res) => {
         setPosts(res.data);
       })
