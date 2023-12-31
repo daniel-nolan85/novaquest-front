@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
@@ -123,53 +123,60 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
   };
 
   return (
-    <SetupSafeArea>
-      <IconsWrapper>
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(DrawerActions.openDrawer());
-          }}
-        >
-          <Ionicons name='md-menu' size={30} color='#009999' />
-        </TouchableOpacity>
-      </IconsWrapper>
-      <ScrollView>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {dateButtons && (
-              <>
-                <DateSelector setDate={setDate} />
-                <Option onPress={() => handleDateClick(date)}>
-                  <OptionText variant='body'>Ok</OptionText>
+    <ImageBackground
+      source={{
+        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
+      }}
+      style={{ flex: 1 }}
+    >
+      <SetupSafeArea>
+        <IconsWrapper>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(DrawerActions.openDrawer());
+            }}
+          >
+            <Ionicons name='md-menu' size={30} color='#009999' />
+          </TouchableOpacity>
+        </IconsWrapper>
+        <ScrollView>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble>
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {dateButtons && (
+                <>
+                  <DateSelector setDate={setDate} />
+                  <Option onPress={() => handleDateClick(date)}>
+                    <OptionText variant='body'>Ok</OptionText>
+                  </Option>
+                </>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
                 </Option>
-              </>
-            )}
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {dateTyping && (
-              <Option onPress={skipDateText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showReady && readyTyping && (
-              <Option onPress={skipReadyText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </ScrollView>
-    </SetupSafeArea>
+              )}
+              {dateTyping && (
+                <Option onPress={skipDateText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+              {showReady && readyTyping && (
+                <Option onPress={skipReadyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+            </OptionContainer>
+          </SetupContainer>
+        </ScrollView>
+      </SetupSafeArea>
+    </ImageBackground>
   );
 };

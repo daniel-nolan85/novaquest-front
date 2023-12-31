@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
@@ -351,455 +351,468 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   };
 
   return (
-    <SetupSafeArea>
-      <IconsWrapper>
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(DrawerActions.openDrawer());
-          }}
-        >
-          <Ionicons name='md-menu' size={30} color='#009999' />
-        </TouchableOpacity>
-      </IconsWrapper>
-      <ScrollView>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {roverButtons && (
-              <>
-                <Option onPress={() => handleRoverClick('curiosity')}>
-                  <OptionText variant='body'>Curiosity</OptionText>
+    <ImageBackground
+      source={{
+        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
+      }}
+      style={{ flex: 1 }}
+    >
+      <SetupSafeArea>
+        <IconsWrapper>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(DrawerActions.openDrawer());
+            }}
+          >
+            <Ionicons name='md-menu' size={30} color='#009999' />
+          </TouchableOpacity>
+        </IconsWrapper>
+        <ScrollView>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble>
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {roverButtons && (
+                <>
+                  <Option onPress={() => handleRoverClick('curiosity')}>
+                    <OptionText variant='body'>Curiosity</OptionText>
+                  </Option>
+                  <Option onPress={() => handleRoverClick('opportunity')}>
+                    <OptionText variant='body'>Opportunity</OptionText>
+                  </Option>
+                  <Option onPress={() => handleRoverClick('perseverance')}>
+                    <OptionText variant='body'>Perseverance</OptionText>
+                  </Option>
+                  <Option onPress={() => handleRoverClick('spirit')}>
+                    <OptionText variant='body'>Spirit</OptionText>
+                  </Option>
+                </>
+              )}
+              {cameraButtons && (
+                <>
+                  {selectedRover === 'curiosity' && (
+                    <>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('fhaz');
+                          setCameraFullName('Front Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Front Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('rhaz');
+                          setCameraFullName('Rear Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rear Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('mast');
+                          setCameraFullName('Mast Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>Mast Camera</OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('chemcam');
+                          setCameraFullName('Chemistry and Camera Complex');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Chemistry and Camera Complex
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('mahli');
+                          setCameraFullName('Mars Hand Lens Imager');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Mars Hand Lens Imager
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('mardi');
+                          setCameraFullName('Mars Descent Imager');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Mars Descent Imager
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('navcam');
+                          setCameraFullName('Navigation Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Navigation Camera
+                        </OptionText>
+                      </Option>
+                    </>
+                  )}
+                  {selectedRover === 'opportunity' && (
+                    <>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('fhaz');
+                          setCameraFullName('Front Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Front Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('rhaz');
+                          setCameraFullName('Rear Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rear Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('navcam');
+                          setCameraFullName('Navigation Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Navigation Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('pancam');
+                          setCameraFullName('Panoramic Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>Panoramic Camera</OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('minites');
+                          setCameraFullName(
+                            'Miniature Thermal Emission Spectrometer (Mini-TES)'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Miniature Thermal Emission Spectrometer (Mini-TES)
+                        </OptionText>
+                      </Option>
+                    </>
+                  )}
+                  {selectedRover === 'perseverance' && (
+                    <>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('edl_rucam');
+                          setCameraFullName('Rover Up-Look Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rover Up-Look Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('edl_rdcam');
+                          setCameraFullName('Rover Down-Look Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rover Down-Look Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('edl_ddcam');
+                          setCameraFullName('Descent Stage Down-Look Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Descent Stage Down-Look Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('edl_pucam1');
+                          setCameraFullName('Parachute Up-Look Camera A');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Parachute Up-Look Camera A
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('edl_pucam2');
+                          setCameraFullName('Parachute Up-Look Camera B');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Parachute Up-Look Camera B
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('navcam_left');
+                          setCameraFullName('Navigation Camera - Left');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Navigation Camera - Left
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('navcam_right');
+                          setCameraFullName('Navigation Camera - Right');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Navigation Camera - Right
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('mcz_left');
+                          setCameraFullName('Mast Camera Zoom - Left');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Mast Camera Zoom - Left
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('mcz_right');
+                          setCameraFullName('Mast Camera Zoom - Right');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Mast Camera Zoom - Right
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('front_hazcam_left_a');
+                          setCameraFullName(
+                            'Front Hazard Avoidance Camera - Left'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Front Hazard Avoidance Camera - Left
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('front_hazcam_right_a');
+                          setCameraFullName(
+                            'Front Hazard Avoidance Camera - Right'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Front Hazard Avoidance Camera - Right
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('rear_hazcam_left');
+                          setCameraFullName(
+                            'Rear Hazard Avoidance Camera - Left'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rear Hazard Avoidance Camera - Left
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('rear_hazcam_right');
+                          setCameraFullName(
+                            'Rear Hazard Avoidance Camera - Right'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rear Hazard Avoidance Camera - Right
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('skycam');
+                          setCameraFullName('MEDA Skycam');
+                        }}
+                      >
+                        <OptionText variant='body'>MEDA Skycam</OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('sherloc_watson');
+                          setCameraFullName('Sherlock Watson Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Sherlock Watson Camera
+                        </OptionText>
+                      </Option>
+                    </>
+                  )}
+                  {selectedRover === 'spirit' && (
+                    <>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('fhaz');
+                          setCameraFullName('Front Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Front Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('rhaz');
+                          setCameraFullName('Rear Hazard Avoidance Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Rear Hazard Avoidance Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('navcam');
+                          setCameraFullName('Navigation Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Navigation Camera
+                        </OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('pancam');
+                          setCameraFullName('Panoramic Camera');
+                        }}
+                      >
+                        <OptionText variant='body'>Panoramic Camera</OptionText>
+                      </Option>
+                      <Option
+                        onPress={() => {
+                          handleCameraClick('minites');
+                          setCameraFullName(
+                            'Miniature Thermal Emission Spectrometer (Mini-TES)'
+                          );
+                        }}
+                      >
+                        <OptionText variant='body'>
+                          Miniature Thermal Emission Spectrometer (Mini-TES)
+                        </OptionText>
+                      </Option>
+                    </>
+                  )}
+                </>
+              )}
+              {dateTypeButtons && (
+                <>
+                  <Option onPress={() => handleDateTypeClick('sol')}>
+                    <OptionText variant='body'>
+                      Sol (Martian rotation or day)
+                    </OptionText>
+                  </Option>
+                  <Option onPress={() => handleDateTypeClick('earth_date')}>
+                    <OptionText variant='body'>Earth date</OptionText>
+                  </Option>
+                </>
+              )}
+              {dateButtons && (
+                <>
+                  {dateType === 'sol' && (
+                    <>
+                      <SolSelector
+                        maxSol={maxSol}
+                        date={date}
+                        setDate={setDate}
+                        handleDateClick={handleDateClick}
+                      />
+                      <Option onPress={() => handleDateClick(date)}>
+                        <OptionText variant='body'>Ok</OptionText>
+                      </Option>
+                    </>
+                  )}
+                  {dateType === 'earth_date' && (
+                    <>
+                      <EarthDateSelector
+                        maxEarth={maxEarth}
+                        landingDate={landingDate}
+                        setDate={setDate}
+                      />
+                      <Option onPress={() => handleDateClick(date)}>
+                        <OptionText variant='body'>Ok</OptionText>
+                      </Option>
+                    </>
+                  )}
+                </>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
                 </Option>
-                <Option onPress={() => handleRoverClick('opportunity')}>
-                  <OptionText variant='body'>Opportunity</OptionText>
+              )}
+              {showRover && roverTyping && (
+                <Option onPress={skipRoverText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-                <Option onPress={() => handleRoverClick('perseverance')}>
-                  <OptionText variant='body'>Perseverance</OptionText>
+              )}
+              {showCamera && cameraTyping && (
+                <Option onPress={skipCameraText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-                <Option onPress={() => handleRoverClick('spirit')}>
-                  <OptionText variant='body'>Spirit</OptionText>
+              )}
+              {showDateType && dateTypeTyping && (
+                <Option onPress={skipDateTypeText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-              </>
-            )}
-            {cameraButtons && (
-              <>
-                {selectedRover === 'curiosity' && (
-                  <>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('fhaz');
-                        setCameraFullName('Front Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Front Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('rhaz');
-                        setCameraFullName('Rear Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rear Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('mast');
-                        setCameraFullName('Mast Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Mast Camera</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('chemcam');
-                        setCameraFullName('Chemistry and Camera Complex');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Chemistry and Camera Complex
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('mahli');
-                        setCameraFullName('Mars Hand Lens Imager');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Mars Hand Lens Imager
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('mardi');
-                        setCameraFullName('Mars Descent Imager');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Mars Descent Imager
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('navcam');
-                        setCameraFullName('Navigation Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Navigation Camera</OptionText>
-                    </Option>
-                  </>
-                )}
-                {selectedRover === 'opportunity' && (
-                  <>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('fhaz');
-                        setCameraFullName('Front Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Front Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('rhaz');
-                        setCameraFullName('Rear Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rear Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('navcam');
-                        setCameraFullName('Navigation Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Navigation Camera</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('pancam');
-                        setCameraFullName('Panoramic Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Panoramic Camera</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('minites');
-                        setCameraFullName(
-                          'Miniature Thermal Emission Spectrometer (Mini-TES)'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Miniature Thermal Emission Spectrometer (Mini-TES)
-                      </OptionText>
-                    </Option>
-                  </>
-                )}
-                {selectedRover === 'perseverance' && (
-                  <>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('edl_rucam');
-                        setCameraFullName('Rover Up-Look Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rover Up-Look Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('edl_rdcam');
-                        setCameraFullName('Rover Down-Look Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rover Down-Look Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('edl_ddcam');
-                        setCameraFullName('Descent Stage Down-Look Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Descent Stage Down-Look Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('edl_pucam1');
-                        setCameraFullName('Parachute Up-Look Camera A');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Parachute Up-Look Camera A
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('edl_pucam2');
-                        setCameraFullName('Parachute Up-Look Camera B');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Parachute Up-Look Camera B
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('navcam_left');
-                        setCameraFullName('Navigation Camera - Left');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Navigation Camera - Left
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('navcam_right');
-                        setCameraFullName('Navigation Camera - Right');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Navigation Camera - Right
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('mcz_left');
-                        setCameraFullName('Mast Camera Zoom - Left');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Mast Camera Zoom - Left
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('mcz_right');
-                        setCameraFullName('Mast Camera Zoom - Right');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Mast Camera Zoom - Right
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('front_hazcam_left_a');
-                        setCameraFullName(
-                          'Front Hazard Avoidance Camera - Left'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Front Hazard Avoidance Camera - Left
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('front_hazcam_right_a');
-                        setCameraFullName(
-                          'Front Hazard Avoidance Camera - Right'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Front Hazard Avoidance Camera - Right
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('rear_hazcam_left');
-                        setCameraFullName(
-                          'Rear Hazard Avoidance Camera - Left'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rear Hazard Avoidance Camera - Left
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('rear_hazcam_right');
-                        setCameraFullName(
-                          'Rear Hazard Avoidance Camera - Right'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rear Hazard Avoidance Camera - Right
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('skycam');
-                        setCameraFullName('MEDA Skycam');
-                      }}
-                    >
-                      <OptionText variant='body'>MEDA Skycam</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('sherloc_watson');
-                        setCameraFullName('Sherlock Watson Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Sherlock Watson Camera
-                      </OptionText>
-                    </Option>
-                  </>
-                )}
-                {selectedRover === 'spirit' && (
-                  <>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('fhaz');
-                        setCameraFullName('Front Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Front Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('rhaz');
-                        setCameraFullName('Rear Hazard Avoidance Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Rear Hazard Avoidance Camera
-                      </OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('navcam');
-                        setCameraFullName('Navigation Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Navigation Camera</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('pancam');
-                        setCameraFullName('Panoramic Camera');
-                      }}
-                    >
-                      <OptionText variant='body'>Panoramic Camera</OptionText>
-                    </Option>
-                    <Option
-                      onPress={() => {
-                        handleCameraClick('minites');
-                        setCameraFullName(
-                          'Miniature Thermal Emission Spectrometer (Mini-TES)'
-                        );
-                      }}
-                    >
-                      <OptionText variant='body'>
-                        Miniature Thermal Emission Spectrometer (Mini-TES)
-                      </OptionText>
-                    </Option>
-                  </>
-                )}
-              </>
-            )}
-            {dateTypeButtons && (
-              <>
-                <Option onPress={() => handleDateTypeClick('sol')}>
-                  <OptionText variant='body'>
-                    Sol (Martian rotation or day)
-                  </OptionText>
+              )}
+              {showDate && dateTyping && (
+                <Option onPress={skipDateText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-                <Option onPress={() => handleDateTypeClick('earth_date')}>
-                  <OptionText variant='body'>Earth date</OptionText>
+              )}
+              {showReady && readyTyping && (
+                <Option onPress={skipReadyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-              </>
-            )}
-            {dateButtons && (
-              <>
-                {dateType === 'sol' && (
-                  <>
-                    <SolSelector
-                      maxSol={maxSol}
-                      date={date}
-                      setDate={setDate}
-                      handleDateClick={handleDateClick}
-                    />
-                    <Option onPress={() => handleDateClick(date)}>
-                      <OptionText variant='body'>Ok</OptionText>
-                    </Option>
-                  </>
-                )}
-                {dateType === 'earth_date' && (
-                  <>
-                    <EarthDateSelector
-                      maxEarth={maxEarth}
-                      landingDate={landingDate}
-                      setDate={setDate}
-                    />
-                    <Option onPress={() => handleDateClick(date)}>
-                      <OptionText variant='body'>Ok</OptionText>
-                    </Option>
-                  </>
-                )}
-              </>
-            )}
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {showRover && roverTyping && (
-              <Option onPress={skipRoverText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showCamera && cameraTyping && (
-              <Option onPress={skipCameraText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showDateType && dateTypeTyping && (
-              <Option onPress={skipDateTypeText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showDate && dateTyping && (
-              <Option onPress={skipDateText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showReady && readyTyping && (
-              <Option onPress={skipReadyText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </ScrollView>
-    </SetupSafeArea>
+              )}
+            </OptionContainer>
+          </SetupContainer>
+        </ScrollView>
+      </SetupSafeArea>
+    </ImageBackground>
   );
 };

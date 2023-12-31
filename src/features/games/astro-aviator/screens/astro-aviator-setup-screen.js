@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { ImageBackground, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -141,43 +141,50 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
   };
 
   return (
-    <SetupSafeArea>
-      <IconsWrapper>
-        <TouchableOpacity
-          onPress={() => {
-            dispatch(DrawerActions.openDrawer());
-          }}
-        >
-          <Ionicons name='md-menu' size={30} color='#009999' />
-        </TouchableOpacity>
-      </IconsWrapper>
-      <SetupContainer>
-        <SpeechContainer>
-          <ImageContainer>
-            <Astronaut source={{ uri: images[0] }} />
-          </ImageContainer>
-          <SpeechBubble>
-            <MessageBubble mine text={renderCurrentStep()} />
-          </SpeechBubble>
-        </SpeechContainer>
-        <OptionContainer>
-          {okButton && (
-            <Option onPress={handleOkClick}>
-              <OptionText variant='body'>OK</OptionText>
-            </Option>
-          )}
-          {readyButton && (
-            <Option onPress={handleReadyClick}>
-              <OptionText variant='body'>Let's Go!</OptionText>
-            </Option>
-          )}
-          {showOk && typing && (
-            <Option onPress={skipText}>
-              <MaterialIcons name='double-arrow' size={20} color='#fff' />
-            </Option>
-          )}
-        </OptionContainer>
-      </SetupContainer>
-    </SetupSafeArea>
+    <ImageBackground
+      source={{
+        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
+      }}
+      style={{ flex: 1 }}
+    >
+      <SetupSafeArea>
+        <IconsWrapper>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(DrawerActions.openDrawer());
+            }}
+          >
+            <Ionicons name='md-menu' size={30} color='#009999' />
+          </TouchableOpacity>
+        </IconsWrapper>
+        <SetupContainer>
+          <SpeechContainer>
+            <ImageContainer>
+              <Astronaut source={{ uri: images[0] }} />
+            </ImageContainer>
+            <SpeechBubble>
+              <MessageBubble mine text={renderCurrentStep()} />
+            </SpeechBubble>
+          </SpeechContainer>
+          <OptionContainer>
+            {okButton && (
+              <Option onPress={handleOkClick}>
+                <OptionText variant='body'>OK</OptionText>
+              </Option>
+            )}
+            {readyButton && (
+              <Option onPress={handleReadyClick}>
+                <OptionText variant='body'>Let's Go!</OptionText>
+              </Option>
+            )}
+            {showOk && typing && (
+              <Option onPress={skipText}>
+                <MaterialIcons name='double-arrow' size={20} color='#fff' />
+              </Option>
+            )}
+          </OptionContainer>
+        </SetupContainer>
+      </SetupSafeArea>
+    </ImageBackground>
   );
 };

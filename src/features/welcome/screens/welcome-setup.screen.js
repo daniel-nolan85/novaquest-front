@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ImageBackground } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -196,51 +197,58 @@ export const WelcomeSetupScreen = ({ navigation }) => {
   };
 
   return (
-    <SetupSafeArea>
-      <SetupContainer>
-        <SpeechContainer>
-          <ImageContainer>
-            <Astronaut source={{ uri: images[0] }} />
-          </ImageContainer>
-          <SpeechBubble>
-            <MessageBubble mine text={renderCurrentStep()} />
-          </SpeechBubble>
-        </SpeechContainer>
-        <OptionContainer>
-          {nameEntry && (
-            <>
-              <Input
-                label={<Text variant='body'>What's your name?</Text>}
-                value={userName}
-                onChangeText={(text) => setUserName(text)}
-              />
-              <Option onPress={handleNameEntryClick}>
-                <OptionText variant='body'>Confirm</OptionText>
+    <ImageBackground
+      source={{
+        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
+      }}
+      style={{ flex: 1 }}
+    >
+      <SetupSafeArea>
+        <SetupContainer>
+          <SpeechContainer>
+            <ImageContainer>
+              <Astronaut source={{ uri: images[0] }} />
+            </ImageContainer>
+            <SpeechBubble>
+              <MessageBubble mine text={renderCurrentStep()} />
+            </SpeechBubble>
+          </SpeechContainer>
+          <OptionContainer>
+            {nameEntry && (
+              <>
+                <Input
+                  label={<Text variant='body'>What's your name?</Text>}
+                  value={userName}
+                  onChangeText={(text) => setUserName(text)}
+                />
+                <Option onPress={handleNameEntryClick}>
+                  <OptionText variant='body'>Confirm</OptionText>
+                </Option>
+              </>
+            )}
+            {okButton && (
+              <Option onPress={handleOkClick}>
+                <OptionText variant='body'>OK</OptionText>
               </Option>
-            </>
-          )}
-          {okButton && (
-            <Option onPress={handleOkClick}>
-              <OptionText variant='body'>OK</OptionText>
-            </Option>
-          )}
-          {readyButton && (
-            <Option onPress={handleReadyClick}>
-              <OptionText variant='body'>Let's Go!</OptionText>
-            </Option>
-          )}
-          {showName && nameTyping && (
-            <Option onPress={skipNameText}>
-              <MaterialIcons name='double-arrow' size={20} color='#fff' />
-            </Option>
-          )}
-          {showOk && typing && (
-            <Option onPress={skipText}>
-              <MaterialIcons name='double-arrow' size={20} color='#fff' />
-            </Option>
-          )}
-        </OptionContainer>
-      </SetupContainer>
-    </SetupSafeArea>
+            )}
+            {readyButton && (
+              <Option onPress={handleReadyClick}>
+                <OptionText variant='body'>Let's Go!</OptionText>
+              </Option>
+            )}
+            {showName && nameTyping && (
+              <Option onPress={skipNameText}>
+                <MaterialIcons name='double-arrow' size={20} color='#fff' />
+              </Option>
+            )}
+            {showOk && typing && (
+              <Option onPress={skipText}>
+                <MaterialIcons name='double-arrow' size={20} color='#fff' />
+              </Option>
+            )}
+          </OptionContainer>
+        </SetupContainer>
+      </SetupSafeArea>
+    </ImageBackground>
   );
 };
