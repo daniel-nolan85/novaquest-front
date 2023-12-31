@@ -141,7 +141,7 @@ export const RepairModal = ({ visible, setVisible }) => {
                 <BioWrapper>
                   <Input
                     label={<Text variant='body'>Bio</Text>}
-                    defaultValue={user.bio}
+                    defaultValue={user.bio || ''}
                     onChangeText={handleBioChange}
                     multiline
                     maxLength={250}
@@ -151,7 +151,7 @@ export const RepairModal = ({ visible, setVisible }) => {
                     visible={true}
                     style={{ textAlign: 'right' }}
                   >
-                    {(newBio || user.bio).length}/{maxLength}
+                    {(newBio || user.bio || '').length}/{maxLength}
                   </HelperText>
                 </BioWrapper>
               </ProfileInfoWrapper>

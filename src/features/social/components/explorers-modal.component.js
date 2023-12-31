@@ -10,6 +10,7 @@ import {
   ExplorersList,
   ExplorersWrapper,
   ExplorerImage,
+  Name,
   NoExplorers,
 } from '../styles/explorers-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
@@ -59,9 +60,9 @@ export const ExplorersModal = ({
         source={item.profileImage ? item.profileImage : defaultProfile}
         resizeMode='contain'
       />
-      <Text variant='title'>
+      <Name variant='title'>
         {item.rank} {item.name}
-      </Text>
+      </Name>
     </ExplorersWrapper>
   );
 

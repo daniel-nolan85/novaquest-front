@@ -10,6 +10,7 @@ import {
   AlliesList,
   AlliesWrapper,
   AllyImage,
+  Name,
   NoAllies,
 } from '../styles/allies-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
@@ -59,9 +60,9 @@ export const AlliesModal = ({
         source={item.profileImage ? item.profileImage : defaultProfile}
         resizeMode='contain'
       />
-      <Text variant='title'>
+      <Name variant='title'>
         {item.rank} {item.name}
-      </Text>
+      </Name>
     </AlliesWrapper>
   );
 

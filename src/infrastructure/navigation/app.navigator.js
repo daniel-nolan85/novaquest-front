@@ -7,7 +7,7 @@ import { DaysInSpaceScreen } from '../../features/welcome/screens/days-in-space.
 import { ImagesNavigator } from './images.navigator';
 import { PlanetsNavigator } from './planets.navigator';
 import { SocialNavigator } from './social.navigator';
-import { ProfileScreen } from '../../features/social/screens/profile.screen';
+import { ProfileNavigator } from './profile.navigator';
 import { GamesNavigator } from './games.navigator';
 import { SettingsScreen } from '../../features/settings/screens/settings.screen';
 import Telescope from '../../../assets/svg/telescope.svg';
@@ -117,7 +117,7 @@ export const AppNavigator = () => {
           />
           <Screen
             name='Profile'
-            component={ProfileScreen}
+            component={ProfileNavigator}
             options={{
               tabBarIcon: ({ focused }) =>
                 focused ? (

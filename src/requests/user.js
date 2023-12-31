@@ -292,3 +292,15 @@ export const updateProfile = async (authtoken, _id, name, bio) => {
     }
   );
 };
+
+export const fetchUsersAchievements = async (authtoken, _id) => {
+  return await axios.post(
+    `${API_BASE_URL}/users-achievements`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { View, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
@@ -37,12 +37,14 @@ import {
 import { CommentOptionsModal } from './comment-options-modal.component';
 import { CommentsModal } from './comments-modal.component';
 
-export const Post = ({ navigate, posts, newsFeed }) => {
+export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
   const [showComments, setShowComments] = useState(false);
   const [showCommentList, setShowCommentList] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
 
+  const postRef = useRef(null);
   const lastTapTimeRef = useRef(0);
+  const flatListRef = useRef(null);
 
   const { token, _id, profileImage } = useSelector((state) => state.user);
 
@@ -79,7 +81,6 @@ export const Post = ({ navigate, posts, newsFeed }) => {
   };
 
   const handleCommentSelect = (item, postId) => {
-    console.log(item, postId);
     setShowCommentList(false);
     addComment(token, _id, postId, item)
       .then((res) => {
@@ -89,7 +90,7 @@ export const Post = ({ navigate, posts, newsFeed }) => {
   };
 
   const renderItem = ({ item }) => (
-    <PostWrapper key={item._id}>
+    <PostWrapper key={item._id} ref={postRef}>
       <PostHeader>
         <PostCreator
           onPress={() => navigate('UserProfile', { userId: item.postedBy._id })}
@@ -195,10 +196,21 @@ export const Post = ({ navigate, posts, newsFeed }) => {
 
   return (
     <FlatList
+      ref={flatListRef}
       data={posts}
       renderItem={renderItem}
       keyExtractor={(item) => item._id}
       showsVerticalScrollIndicator={false}
+      initialScrollIndex={initialIndex}
+      onScrollToIndexFailed={(info) => {
+        const wait = new Promise((resolve) => setTimeout(resolve, 500));
+        wait.then(() => {
+          flatListRef.current?.scrollToIndex({
+            index: initialIndex,
+            animated: false,
+          });
+        });
+      }}
     />
   );
 };

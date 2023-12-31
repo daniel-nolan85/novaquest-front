@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -19,7 +18,14 @@ import { AllianceModal } from './alliance-modal.component';
 import { RevokeModal } from './revoke-modal.component';
 import { RepairModal } from './repair-modal.component';
 
-export const ProfileCard = ({ userId, profileImage, name, rank, bio }) => {
+export const ProfileCard = ({
+  userId,
+  profileImage,
+  name,
+  rank,
+  bio,
+  daysInSpace,
+}) => {
   const [visible, setVisible] = useState(false);
   const { _id, allies } = useSelector((state) => state.user);
 
@@ -44,6 +50,10 @@ export const ProfileCard = ({ userId, profileImage, name, rank, bio }) => {
       <ProfileInfoWrapper>
         <Name variant='title'>
           {rank} {name}
+        </Name>
+        <Name variant='title'>
+          {daysInSpace === 1 ? `${daysInSpace} day` : `${daysInSpace} days`} in
+          space
         </Name>
         <BioWrapper>
           <Text variant='body'>{bio}</Text>

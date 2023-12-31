@@ -11,7 +11,8 @@ import Star from '../../../../assets/svg/star.svg';
 import StarInactive from '../../../../assets/svg/star-inactive.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import AchievementsInactive from '../../../../assets/svg/achievements-inactive.svg';
-import { fetchUsersPosts } from '../../../requests/post';
+import { fetchUsersPosts, fetchUsersStars } from '../../../requests/post';
+import { fetchUsersAchievements } from '../../../requests/user';
 import { fetchThisUser } from '../../../requests/user';
 import { ProfileCard } from '../components/profile-card.component';
 import { ProfileButtons } from '../components/profile-buttons.component';
@@ -27,6 +28,8 @@ const SafeAreaView = styled(SafeArea)`
 export const UserProfileScreen = ({ navigation, route }) => {
   const [thisUser, setThisUser] = useState({});
   const [posts, setPosts] = useState([]);
+  const [stars, setStars] = useState([]);
+  const [achievements, setAchievements] = useState([]);
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {
@@ -56,11 +59,13 @@ export const UserProfileScreen = ({ navigation, route }) => {
   useEffect(() => {
     fetchUser();
     usersPosts();
+    usersStars();
+    usersAchievements();
   }, [userId]);
 
   const { token } = useSelector((state) => state.user);
 
-  const { profileImage, name, rank, bio } = thisUser;
+  const { profileImage, name, rank, bio, daysInSpace } = thisUser;
 
   const fetchUser = async () => {
     await fetchThisUser(token, userId)
@@ -78,10 +83,29 @@ export const UserProfileScreen = ({ navigation, route }) => {
       .catch((err) => console.error(err));
   };
 
+  const usersStars = async () => {
+    await fetchUsersStars(token, userId)
+      .then((res) => {
+        setStars(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const usersAchievements = async () => {
+    await fetchUsersAchievements(token, userId)
+      .then((res) => {
+        const trueAchievements = Object.keys(res.data).filter(
+          (key) => res.data[key] === true
+        );
+        setAchievements(trueAchievements);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const renderScene = SceneMap({
-    first: () => <PostsRoute posts={posts} />,
-    second: () => <StarsRoute />,
-    third: () => <AchievementsRoute />,
+    first: () => <PostsRoute posts={posts} navigate={navigate} />,
+    second: () => <StarsRoute stars={stars} navigate={navigate} />,
+    third: () => <AchievementsRoute achievements={achievements} />,
   });
 
   const layout = useWindowDimensions();
@@ -115,6 +139,7 @@ export const UserProfileScreen = ({ navigation, route }) => {
         name={name}
         rank={rank}
         bio={bio}
+        daysInSpace={daysInSpace}
       />
       <ProfileButtons
         userId={userId}

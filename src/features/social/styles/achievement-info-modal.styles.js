@@ -9,6 +9,7 @@ export const ModalWrapper = styled.View`
 `;
 
 export const ModalView = styled.View`
+  margin: 20px;
   background-color: white;
   border-radius: 20px;
   width: 100%;
@@ -33,28 +34,11 @@ export const CloseIcon = styled.TouchableOpacity`
   padding: ${(props) => props.theme.space[2]};
 `;
 
-export const AlliesList = styled.FlatList`
-  margin-top: 20px;
-`;
-
-export const AlliesWrapper = styled.TouchableOpacity`
-  flex-direction: row;
+export const AchievementWrapper = styled.View`
+  flex-direction: column;
   align-items: center;
 `;
 
-export const AllyImage = styled.Image`
-  height: 50px;
-  width: 50px;
-  margin-right: ${(props) => props.theme.space[3]};
-  border-radius: 80px;
-  border-width: 2px;
-  border-color: #fff;
-`;
-
 export const Name = styled(Text)`
-  font-size: 15px;
-`;
-
-export const NoAllies = styled(Text)`
-  margin-top: 20px;
+  margin: 20px 0;
 `;

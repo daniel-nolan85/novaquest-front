@@ -8,7 +8,7 @@ export const PostsList = styled.FlatList`
   margin-top: 5px;
 `;
 
-export const PostWrapper = styled.View`
+export const PostWrapper = styled.TouchableOpacity`
   aspect-ratio: 1;
   margin: 3px;
   width: 32%;

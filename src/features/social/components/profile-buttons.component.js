@@ -13,6 +13,7 @@ import { ExplorersModal } from './explorers-modal.component';
 export const ProfileButtons = ({ userId, name, rank, navigate }) => {
   const [showAllies, setShowAllies] = useState(false);
   const [showExplorers, setShowExplorers] = useState(false);
+
   return (
     <ProfileButtonsWrapper>
       <Option onPress={() => setShowAllies(true)}>

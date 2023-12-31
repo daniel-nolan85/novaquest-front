@@ -45,6 +45,18 @@ export const fetchUsersPosts = async (authtoken, _id) => {
   );
 };
 
+export const fetchUsersStars = async (authtoken, _id) => {
+  return await axios.post(
+    `${API_BASE_URL}/users-stars`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const handleLikePost = async (authtoken, _id, postId) => {
   return await axios.put(
     `${API_BASE_URL}/like-post`,

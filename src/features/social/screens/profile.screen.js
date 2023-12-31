@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
@@ -11,7 +12,8 @@ import Star from '../../../../assets/svg/star.svg';
 import StarInactive from '../../../../assets/svg/star-inactive.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import AchievementsInactive from '../../../../assets/svg/achievements-inactive.svg';
-import { fetchUsersPosts } from '../../../requests/post';
+import { fetchUsersPosts, fetchUsersStars } from '../../../requests/post';
+import { fetchUsersAchievements } from '../../../requests/user';
 import { ProfileCard } from '../components/profile-card.component';
 import { ProfileButtons } from '../components/profile-buttons.component';
 import { PostsRoute } from '../components/posts-route.component';
@@ -25,6 +27,8 @@ const SafeAreaView = styled(SafeArea)`
 
 export const ProfileScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
+  const [stars, setStars] = useState([]);
+  const [achievements, setAchievements] = useState([]);
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {
@@ -47,15 +51,16 @@ export const ProfileScreen = ({ navigation }) => {
     },
   ]);
 
-  useEffect(() => {
-    if (token) {
+  useFocusEffect(
+    useCallback(() => {
       usersPosts();
-    }
-  }, [token]);
-
-  const { token, _id, profileImage, name, rank, bio } = useSelector(
-    (state) => state.user
+      usersStars();
+      usersAchievements();
+    }, [])
   );
+
+  const { token, _id, profileImage, name, rank, bio, daysInSpace } =
+    useSelector((state) => state.user);
 
   const usersPosts = async () => {
     await fetchUsersPosts(token, _id)
@@ -65,10 +70,29 @@ export const ProfileScreen = ({ navigation }) => {
       .catch((err) => console.error(err));
   };
 
+  const usersStars = async () => {
+    await fetchUsersStars(token, _id)
+      .then((res) => {
+        setStars(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const usersAchievements = async () => {
+    await fetchUsersAchievements(token, _id)
+      .then((res) => {
+        const trueAchievements = Object.keys(res.data).filter(
+          (key) => res.data[key] === true
+        );
+        setAchievements(trueAchievements);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const renderScene = SceneMap({
-    first: () => <PostsRoute posts={posts} />,
-    second: () => <StarsRoute />,
-    third: () => <AchievementsRoute />,
+    first: () => <PostsRoute posts={posts} navigate={navigate} />,
+    second: () => <StarsRoute stars={stars} navigate={navigate} />,
+    third: () => <AchievementsRoute achievements={achievements} />,
   });
 
   const layout = useWindowDimensions();
@@ -104,6 +128,7 @@ export const ProfileScreen = ({ navigation }) => {
         name={name}
         rank={rank}
         bio={bio}
+        daysInSpace={daysInSpace}
       />
       <ProfileButtons
         userId={_id}

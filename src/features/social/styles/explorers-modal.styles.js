@@ -9,7 +9,6 @@ export const ModalWrapper = styled.View`
 `;
 
 export const ModalView = styled.View`
-  margin: 20px;
   background-color: white;
   border-radius: 20px;
   width: 100%;
@@ -50,6 +49,10 @@ export const ExplorerImage = styled.Image`
   border-radius: 80px;
   border-width: 2px;
   border-color: #fff;
+`;
+
+export const Name = styled(Text)`
+  font-size: 15px;
 `;
 
 export const NoExplorers = styled(Text)`
