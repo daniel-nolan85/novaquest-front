@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { fetchUsersPosts } from '../../../requests/post';
@@ -15,6 +15,7 @@ import {
   Timestamp,
   PostContentWrapper,
   PostImage,
+  PostVideo,
   ImageNumber,
   PostReactionWrapper,
   StarsAndComments,
@@ -179,9 +180,14 @@ export const UserPostsScreen = ({ navigation, route }) => {
                   </PostCreator>
                 </PostHeader>
 
-                <PostContentWrapper onPress={() => doubleTap(post)}>
-                  <Text variant='body'>{post.text}</Text>
-                  {post.images.length > 1 ? (
+                <PostContentWrapper>
+                  <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => doubleTap(post)}
+                  >
+                    <Text variant='body'>{post.text}</Text>
+                  </TouchableOpacity>
+                  {post.media.length > 1 ? (
                     <ScrollView
                       scrollEventThrottle={16}
                       showsHorizontalScrollIndicator={false}
@@ -192,18 +198,54 @@ export const UserPostsScreen = ({ navigation, route }) => {
                       snapToAlignment={'center'}
                       horizontal={true}
                     >
-                      {post.images.map((image, index) => (
-                        <View key={index}>
-                          <PostImage source={{ uri: image.url }} />
-                          <ImageNumber variant='title'>{`${index + 1}/${
-                            post.images.length
-                          }`}</ImageNumber>
-                        </View>
+                      {post.media.map((media, index) => (
+                        <TouchableOpacity
+                          key={index}
+                          activeOpacity={1}
+                          onPress={() => doubleTap(post)}
+                        >
+                          {media.type === 'image' ? (
+                            <>
+                              <PostImage source={{ uri: media.url }} />
+                              <ImageNumber variant='title'>{`${index + 1}/${
+                                post.media.length
+                              }`}</ImageNumber>
+                            </>
+                          ) : (
+                            <>
+                              <PostVideo
+                                source={{ uri: media.url }}
+                                shouldPlay={true}
+                                isMuted={true}
+                                resizeMode='cover'
+                                style={{ width: 350, height: 350 }}
+                              />
+                              <ImageNumber variant='title'>{`${index + 1}/${
+                                post.media.length
+                              }`}</ImageNumber>
+                            </>
+                          )}
+                        </TouchableOpacity>
                       ))}
                     </ScrollView>
                   ) : (
-                    post.images.length === 1 && (
-                      <PostImage source={{ uri: post.images[0].url }} />
+                    post.media.length === 1 && (
+                      <TouchableOpacity
+                        activeOpacity={1}
+                        onPress={() => doubleTap(post)}
+                      >
+                        {post.media[0].type === 'image' ? (
+                          <PostImage source={{ uri: post.media[0].url }} />
+                        ) : (
+                          <PostVideo
+                            source={{ uri: post.media[0].url }}
+                            shouldPlay={true}
+                            isMuted={true}
+                            resizeMode='cover'
+                            style={{ width: '100%', height: 300 }}
+                          />
+                        )}
+                      </TouchableOpacity>
                     )
                   )}
                 </PostContentWrapper>

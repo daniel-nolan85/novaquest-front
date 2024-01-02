@@ -71,6 +71,12 @@ export const PostIcons = styled.View`
   margin: 25px 0 10px 0;
 `;
 
+export const TrashIcon = styled.TouchableOpacity`
+  position: absolute;
+  top: ${(props) => props.theme.space[2]};
+  right: ${(props) => props.theme.space[2]};
+`;
+
 export const CameraIcon = styled.TouchableOpacity`
   margin-left: 10px;
 `;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Modal,
   View,
@@ -10,6 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import * as ImagePicker from 'expo-image-picker';
+import * as VideoThumbnails from 'expo-video-thumbnails';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {
   ModalWrapper,
@@ -21,25 +22,28 @@ import {
   CreatePostContainer,
   CreatePostBox,
   PostIcons,
+  TrashIcon,
   CameraIcon,
   SubmitIcon,
 } from '../styles/create-post-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
+import Trash from '../../../../assets/svg/trash.svg';
 import Camera from '../../../../assets/svg/camera.svg';
 import Submit from '../../../../assets/svg/submit.svg';
 import SubmitDisabled from '../../../../assets/svg/submit-disabled.svg';
-import { uploadImagesToCloudinary } from '../../../requests/cloudinary';
-import { submitPostWithImages, submitPost } from '../../../requests/post';
+import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
+import { submitPostWithMedia, submitPost } from '../../../requests/post';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
-const MAX_IMAGES = 9;
+const MAX_MEDIA = 9;
 
 export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
   const [postText, setPostText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingImages, setIsLoadingImages] = useState(false);
+  const [isLoadingMedia, setIsLoadingMedia] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedMedia, setSelectedMedia] = useState([]);
+  const [thumbnails, setThumbnails] = useState([]);
 
   const { token, _id, profileImage } = useSelector((state) => state.user);
 
@@ -57,66 +61,100 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    const generateThumbnails = async () => {
+      const thumbnailsArray = [];
+      for (const media of selectedMedia) {
+        const fileType = media.uri.split('.').pop();
+        if (['mp4', 'mov', 'avi'].includes(fileType.toLowerCase())) {
+          try {
+            const { uri } = await VideoThumbnails.getThumbnailAsync(media.uri);
+            thumbnailsArray.push(uri);
+          } catch (e) {
+            console.warn(e);
+            thumbnailsArray.push(null);
+          }
+        } else {
+          thumbnailsArray.push(null);
+        }
+      }
+      setThumbnails(thumbnailsArray);
+    };
+
+    generateThumbnails();
+  }, [selectedMedia]);
+
   const closeModal = () => {
     setVisible(false);
     setPostText('');
-    setSelectedImages([]);
+    setSelectedMedia([]);
   };
 
   const handleImagePicker = async () => {
     setTimeout(() => {
-      setIsLoadingImages(true);
+      setIsLoadingMedia(true);
     }, 500);
     await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsMultipleSelection: true,
     }).then((res) => {
       if (!res.canceled) {
-        if (selectedImages.length + res.assets.length > MAX_IMAGES) {
-          alert(`Maximum limit of ${MAX_IMAGES} images reached`);
-          setIsLoadingImages(false);
+        if (selectedMedia.length + res.assets.length > MAX_MEDIA) {
+          alert(`Maximum limit of ${MAX_MEDIA} media files reached`);
+          setIsLoadingMedia(false);
           return;
         }
-        setSelectedImages(res.assets.map((image) => ({ uri: image.uri })));
-        setIsLoadingImages(false);
+        setSelectedMedia(res.assets.map((image) => ({ uri: image.uri })));
+        setIsLoadingMedia(false);
       } else {
-        setIsLoadingImages(false);
+        setIsLoadingMedia(false);
       }
     });
   };
 
   const removeImage = (index) => {
-    const updatedImages = [...selectedImages];
-    updatedImages.splice(index, 1);
-    setSelectedImages(updatedImages);
+    const updatedMedia = [...selectedMedia];
+    updatedMedia.splice(index, 1);
+    setSelectedMedia(updatedMedia);
   };
 
-  const renderImageItem = (image, index) => (
-    <View key={index} style={{ position: 'relative' }}>
-      <Image
-        source={{ uri: image.uri }}
-        style={{ width: 100, height: 100, margin: 5 }}
-      />
-      <CloseIcon onPress={() => removeImage(index)}>
-        <Close />
-      </CloseIcon>
-    </View>
-  );
+  const renderImageItem = (media, index) => {
+    return (
+      <View key={index} style={{ position: 'relative' }}>
+        <Image
+          source={{ uri: thumbnails[index] || media.uri }}
+          style={{ width: 100, height: 100, margin: 5 }}
+        />
+        <TrashIcon onPress={() => removeImage(index)}>
+          <Trash height={24} width={24} />
+        </TrashIcon>
+      </View>
+    );
+  };
 
   const submit = async () => {
     setIsLoading(true);
     try {
-      if (selectedImages.length > 0) {
+      if (selectedMedia.length > 0) {
         const formData = new FormData();
-        selectedImages.forEach((image, index) => {
-          formData.append(`image-${index}`, {
-            uri: image.uri,
-            type: 'image/jpeg',
-            name: `image-${index}.jpg`,
-          });
+        selectedMedia.forEach((media, index) => {
+          const fileType = media.uri.split('.').pop();
+          if (['jpg', 'jpeg', 'png', 'gif'].includes(fileType.toLowerCase())) {
+            formData.append(`media-${index}`, {
+              uri: media.uri,
+              type: 'image/jpeg',
+              name: `image-${index}.jpg`,
+            });
+          } else if (['mp4', 'mov', 'avi'].includes(fileType.toLowerCase())) {
+            formData.append(`media-${index}`, {
+              uri: media.uri,
+              type: 'video/mp4',
+              name: `video-${index}.mp4`,
+            });
+          }
         });
-        const { data } = await uploadImagesToCloudinary(token, formData);
-        await submitPostWithImages(token, _id, postText, data);
+        const { data } = await uploadMediaToCloudinary(token, formData);
+        await submitPostWithMedia(token, _id, postText, data);
       } else {
         await submitPost(token, _id, postText);
       }
@@ -124,7 +162,7 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
       newsFeed();
       setVisible(false);
       setPostText('');
-      setSelectedImages([]);
+      setSelectedMedia([]);
       Toast.show({
         type: 'success',
         text1: 'Your cosmic moment is now part of the celestial journey.',
@@ -165,7 +203,7 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
                   </CreatePostBox>
 
                   <PostIcons>
-                    {isLoadingImages ? (
+                    {isLoadingMedia ? (
                       <ActivityIndicator size='large' color='#009999' />
                     ) : (
                       <CameraIcon onPress={handleImagePicker}>
@@ -185,8 +223,8 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
                 </CreatePostContainer>
               </CreatePostWrapper>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {selectedImages.map((image, index) =>
-                  renderImageItem(image, index)
+                {selectedMedia.map((media, index) =>
+                  renderImageItem(media, index)
                 )}
               </ScrollView>
             </CreateSection>

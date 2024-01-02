@@ -33,6 +33,7 @@ export const CloseIcon = styled.TouchableOpacity`
   top: ${(props) => props.theme.space[2]};
   right: ${(props) => props.theme.space[2]};
   padding: ${(props) => props.theme.space[2]};
+  z-index: 999;
 `;
 
 export const OptionContainer = styled.View`

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import * as VideoThumbnails from 'expo-video-thumbnails';
 import { Text } from '../../../components/typography/text.component';
 import {
   StarsRouteWrapper,
@@ -7,6 +9,34 @@ import {
 } from '../styles/stars-route.styles';
 
 export const StarsRoute = ({ stars, navigate }) => {
+  const [thumbnails, setThumbnails] = useState([]);
+
+  useEffect(() => {
+    const generateThumbnails = async () => {
+      const thumbnailsArray = [];
+
+      for (const star of stars) {
+        if (star.media.length > 0 && star.media[0].type === 'video') {
+          try {
+            const { uri } = await VideoThumbnails.getThumbnailAsync(
+              star.media[0].url
+            );
+            thumbnailsArray.push(uri);
+          } catch (e) {
+            console.warn(e);
+            thumbnailsArray.push(null);
+          }
+        } else {
+          thumbnailsArray.push(null);
+        }
+      }
+
+      setThumbnails(thumbnailsArray);
+    };
+
+    generateThumbnails();
+  }, [stars]);
+
   return (
     <StarsRouteWrapper>
       <StarsList
@@ -23,8 +53,10 @@ export const StarsRoute = ({ stars, navigate }) => {
                 })
               }
             >
-              {item.images.length ? (
-                <StarImage source={{ uri: item.images[0].url }} />
+              {item.media.length > 0 && item.media[0].type === 'video' ? (
+                <StarImage source={{ uri: thumbnails[index] }} />
+              ) : item.media.length > 0 && item.media[0].type === 'image' ? (
+                <StarImage source={{ uri: item.media[0].url }} />
               ) : (
                 <Text variant='title'>{item.text}</Text>
               )}

@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { View, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { useState, useRef } from 'react';
+import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { Text } from '../../../components/typography/text.component';
@@ -14,6 +14,7 @@ import {
   PostActions,
   PostContentWrapper,
   PostImage,
+  PostVideo,
   ImageNumber,
   PostReactionWrapper,
   StarsAndComments,
@@ -39,6 +40,8 @@ import {
 import { ActionsModal } from './actions-modal.component';
 import { CommentOptionsModal } from './comment-options-modal.component';
 import { CommentsModal } from './comments-modal.component';
+import { EditPostModal } from './edit-post-modal.component';
+import { DeletePostModal } from './delete-post-modal.component';
 
 export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
   const [showActions, setShowActions] = useState(false);
@@ -46,11 +49,12 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
   const [showCommentList, setShowCommentList] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [editable, setEditable] = useState(false);
+  const [deleteable, setDeleteable] = useState(false);
 
   const postRef = useRef(null);
   const lastTapTimeRef = useRef(0);
   const flatListRef = useRef(null);
-  const scrollViewRef = useRef(null);
 
   const { token, _id, profileImage } = useSelector((state) => state.user);
 
@@ -100,6 +104,18 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
       .catch((err) => console.error(err));
   };
 
+  const editPost = (post) => {
+    setEditable(true);
+    setShowActions(false);
+    setSelectedPost(post);
+  };
+
+  const deletePost = (post) => {
+    setDeleteable(true);
+    setShowActions(false);
+    setSelectedPost(post);
+  };
+
   const renderItem = ({ item }) => (
     <PostWrapper key={item._id} ref={postRef}>
       <PostHeader>
@@ -131,9 +147,8 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
         <TouchableOpacity activeOpacity={1} onPress={() => doubleTap(item)}>
           <Text variant='body'>{item.text}</Text>
         </TouchableOpacity>
-        {item.images.length > 1 ? (
+        {item.media.length > 1 ? (
           <ScrollView
-            ref={scrollViewRef}
             scrollEventThrottle={16}
             showsHorizontalScrollIndicator={false}
             decelerationRate={0.8}
@@ -143,23 +158,49 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
             snapToAlignment={'center'}
             horizontal={true}
           >
-            {item.images.map((image, index) => (
+            {item.media.map((media, index) => (
               <TouchableOpacity
                 key={index}
                 activeOpacity={1}
                 onPress={() => doubleTap(item)}
               >
-                <PostImage source={{ uri: image.url }} />
-                <ImageNumber variant='title'>{`${index + 1}/${
-                  item.images.length
-                }`}</ImageNumber>
+                {media.type === 'image' ? (
+                  <>
+                    <PostImage source={{ uri: media.url }} />
+                    <ImageNumber variant='title'>{`${index + 1}/${
+                      item.media.length
+                    }`}</ImageNumber>
+                  </>
+                ) : (
+                  <>
+                    <PostVideo
+                      source={{ uri: media.url }}
+                      shouldPlay={true}
+                      isMuted={true}
+                      resizeMode='cover'
+                    />
+                    <ImageNumber variant='title'>{`${index + 1}/${
+                      item.media.length
+                    }`}</ImageNumber>
+                  </>
+                )}
               </TouchableOpacity>
             ))}
           </ScrollView>
         ) : (
-          item.images.length === 1 && (
+          item.media.length === 1 && (
             <TouchableOpacity activeOpacity={1} onPress={() => doubleTap(item)}>
-              <PostImage source={{ uri: item.images[0].url }} />
+              {item.media[0].type === 'image' ? (
+                <PostImage source={{ uri: item.media[0].url }} />
+              ) : (
+                <PostVideo
+                  source={{ uri: item.media[0].url }}
+                  shouldPlay={true}
+                  isMuted={true}
+                  resizeMode='cover'
+                  onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
+                />
+              )}
             </TouchableOpacity>
           )
         )}
@@ -207,7 +248,20 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
         setVisible={setShowActions}
         post={selectedPost}
         newsFeed={newsFeed}
+        editPost={editPost}
+        deletePost={deletePost}
       />
+      <EditPostModal
+        visible={editable}
+        setVisible={setEditable}
+        post={selectedPost}
+        newsFeed={newsFeed}
+      />
+      {/* <DeletePostModal
+        visible={deleteable}
+        setVisible={setDeleteable}
+        post={selectedPost}
+      /> */}
       <CommentsModal
         visible={showComments}
         setVisible={setShowComments}

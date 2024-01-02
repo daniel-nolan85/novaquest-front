@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
-export const submitPostWithImages = async (authtoken, _id, text, images) => {
+export const submitPostWithMedia = async (authtoken, _id, text, media) => {
   return await axios.post(
-    `${API_BASE_URL}/submit-post-with-images`,
-    { _id, text, images },
+    `${API_BASE_URL}/submit-post-with-media`,
+    { _id, text, media },
     {
       headers: {
         authtoken,
@@ -17,6 +17,36 @@ export const submitPost = async (authtoken, _id, text) => {
   return await axios.post(
     `${API_BASE_URL}/submit-post`,
     { _id, text },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const editPostWithMedia = async (
+  authtoken,
+  text,
+  media,
+  mediaToDelete,
+  postId
+) => {
+  return await axios.put(
+    `${API_BASE_URL}/edit-post-with-media`,
+    { text, media, mediaToDelete, postId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const editPost = async (authtoken, text, mediaToDelete, postId) => {
+  return await axios.put(
+    `${API_BASE_URL}/edit-post`,
+    { text, mediaToDelete, postId },
     {
       headers: {
         authtoken,

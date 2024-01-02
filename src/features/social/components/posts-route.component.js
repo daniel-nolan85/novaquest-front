@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import * as VideoThumbnails from 'expo-video-thumbnails';
 import { Text } from '../../../components/typography/text.component';
 import {
   PostsRouteWrapper,
@@ -7,6 +9,36 @@ import {
 } from '../styles/posts-route.styles';
 
 export const PostsRoute = ({ posts, navigate }) => {
+  const [thumbnails, setThumbnails] = useState([]);
+
+  console.log('thumbnails => ', thumbnails);
+
+  useEffect(() => {
+    const generateThumbnails = async () => {
+      const thumbnailsArray = [];
+
+      for (const post of posts) {
+        if (post.media.length > 0 && post.media[0].type === 'video') {
+          try {
+            const { uri } = await VideoThumbnails.getThumbnailAsync(
+              post.media[0].url
+            );
+            thumbnailsArray.push(uri);
+          } catch (e) {
+            console.warn(e);
+            thumbnailsArray.push(null);
+          }
+        } else {
+          thumbnailsArray.push(null);
+        }
+      }
+
+      setThumbnails(thumbnailsArray);
+    };
+
+    generateThumbnails();
+  }, [posts]);
+
   return (
     <PostsRouteWrapper>
       <PostsList
@@ -23,8 +55,10 @@ export const PostsRoute = ({ posts, navigate }) => {
                 })
               }
             >
-              {item.images.length ? (
-                <PostImage source={{ uri: item.images[0].url }} />
+              {item.media.length > 0 && item.media[0].type === 'video' ? (
+                <PostImage source={{ uri: thumbnails[index] }} />
+              ) : item.media.length > 0 && item.media[0].type === 'image' ? (
+                <PostImage source={{ uri: item.media[0].url }} />
               ) : (
                 <Text variant='title'>{item.text}</Text>
               )}

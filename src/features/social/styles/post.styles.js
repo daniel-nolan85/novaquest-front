@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Video } from 'expo-av';
 import { Text } from '../../../components/typography/text.component';
 
 export const PostWrapper = styled.View`
@@ -57,6 +58,14 @@ export const PostImage = styled.Image`
   margin-top: 10px;
   width: 350px;
   height: 350px;
+  align-self: center;
+`;
+
+export const PostVideo = styled(Video)`
+  margin-top: 10px;
+  width: 350px;
+  height: 350px;
+  align-self: center;
 `;
 
 export const ImageNumber = styled(Text)`

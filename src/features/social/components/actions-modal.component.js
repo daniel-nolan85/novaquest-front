@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Modal } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Toast from 'react-native-toast-message';
+import moment from 'moment';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -13,27 +14,37 @@ import {
   GradientBackground,
   CancelGradientBackground,
   OptionText,
+  PostWrapper,
+  PostHeader,
+  PostCreator,
+  PostCreatorImage,
+  PostInfo,
+  Name,
+  Timestamp,
+  PostContentWrapper,
+  PostImage,
+  ImageNumber,
 } from '../styles/actions-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
 import EditWhite from '../../../../assets/svg/edit-white.svg';
 import TrashWhite from '../../../../assets/svg/trash-white.svg';
 import BlockWhite from '../../../../assets/svg/block-white.svg';
+import Save from '../../../../assets/svg/save.svg';
 import { blockMember } from '../../../requests/user';
 
-export const ActionsModal = ({ visible, setVisible, post, newsFeed }) => {
+export const ActionsModal = ({
+  visible,
+  setVisible,
+  post,
+  newsFeed,
+  editPost,
+  deletePost,
+}) => {
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
   const closeModal = () => {
     setVisible(false);
-  };
-
-  const editPost = (post) => {
-    console.log('edit => ', post._id);
-  };
-
-  const deletePost = (post) => {
-    console.log('delete => ', post._id);
   };
 
   const blockUser = async (u) => {
@@ -71,21 +82,13 @@ export const ActionsModal = ({ visible, setVisible, post, newsFeed }) => {
             </CloseIcon>
             {post !== null && post.postedBy._id === user._id ? (
               <OptionContainer>
-                <Option
-                  onPress={() => {
-                    editPost(post);
-                  }}
-                >
+                <Option onPress={() => editPost(post)}>
                   <GradientBackground>
                     <EditWhite height={32} width={32} />
                     <OptionText variant='body'>Edit</OptionText>
                   </GradientBackground>
                 </Option>
-                <Option
-                  onPress={() => {
-                    deletePost(post);
-                  }}
-                >
+                <Option onPress={() => deletePost(post)}>
                   <CancelGradientBackground>
                     <TrashWhite height={32} width={32} />
                     <OptionText variant='body'>Delete</OptionText>
