@@ -57,9 +57,7 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
 
   const MAX_MEDIA = 9 - displayedMedia.length;
 
-  const { token } = useSelector((state) => state.user);
-
-  console.log('MAX_MEDIA => ', MAX_MEDIA);
+  const { token, _id } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (post !== null) {
@@ -156,7 +154,6 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
     setIsLoading(true);
     try {
       if (selectedMedia.length > 0) {
-        console.log('Uploading media:', selectedMedia);
         const formData = new FormData();
         selectedMedia.forEach((media, index) => {
           const fileType = media.uri.split('.').pop();
@@ -175,18 +172,16 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
           }
         });
         const { data } = await uploadMediaToCloudinary(token, formData);
-        console.log('Editing post with media:', postText, formData);
         await editPostWithMedia(
           token,
+          _id,
           postText,
           data,
           removedPublicIds,
           post._id
         );
       } else {
-        console.log('Editing post without media:', postText);
-
-        await editPost(token, postText, removedPublicIds, post._id);
+        await editPost(token, _id, postText, removedPublicIds, post._id);
       }
       setIsLoading(false);
       newsFeed();
@@ -316,7 +311,6 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
                       renderImageItem(media, index)
                     )}
                   </ScrollView>
-
                   <OptionContainer>
                     <Option onPress={saveEdits}>
                       <GradientBackground>

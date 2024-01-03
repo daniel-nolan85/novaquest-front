@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { fetchUsersStars } from '../../../requests/post';
@@ -13,6 +13,7 @@ import {
   PostInfo,
   Name,
   Timestamp,
+  PostActions,
   PostContentWrapper,
   PostImage,
   ImageNumber,
@@ -27,6 +28,7 @@ import {
   CommentBox,
   Placeholder,
 } from '../styles/post.styles';
+import Ellipsis from '../../../../assets/svg/ellipsis.svg';
 import Star from '../../../../assets/svg/star.svg';
 import GoldStar from '../../../../assets/svg/gold-star.svg';
 import Comment from '../../../../assets/svg/comment.svg';
@@ -36,8 +38,11 @@ import {
   handleUnlikePost,
   addComment,
 } from '../../../requests/post';
+import { ActionsModal } from '../components/actions-modal.component';
 import { CommentOptionsModal } from '../components/comment-options-modal.component';
 import { CommentsModal } from '../components/comments-modal.component';
+import { EditPostModal } from '../components/edit-post-modal.component';
+import { DeletePostModal } from '../components/delete-post-modal.component';
 
 export const UserStarsScreen = ({ navigation, route }) => {
   const [posts, setPosts] = useState([]);
@@ -45,6 +50,10 @@ export const UserStarsScreen = ({ navigation, route }) => {
   const [showCommentList, setShowCommentList] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [postLayouts, setPostLayouts] = useState([]);
+  const [showActions, setShowActions] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [editable, setEditable] = useState(false);
+  const [deleteable, setDeleteable] = useState(false);
 
   const { navigate } = navigation;
   const { userId, initialIndex } = route.params;
@@ -103,6 +112,11 @@ export const UserStarsScreen = ({ navigation, route }) => {
     }
   };
 
+  const handlePostActions = (post) => {
+    setSelectedPost(post);
+    setShowActions(true);
+  };
+
   const doubleTap = (item) => {
     const currentTime = new Date().getTime();
     const delta = currentTime - lastTapTimeRef.current;
@@ -144,6 +158,18 @@ export const UserStarsScreen = ({ navigation, route }) => {
       .catch((err) => console.error(err));
   };
 
+  const editPost = (post) => {
+    setEditable(true);
+    setShowActions(false);
+    setSelectedPost(post);
+  };
+
+  const deletePost = (post) => {
+    setDeleteable(true);
+    setShowActions(false);
+    setSelectedPost(post);
+  };
+
   return (
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
@@ -177,6 +203,9 @@ export const UserStarsScreen = ({ navigation, route }) => {
                       </Timestamp>
                     </PostInfo>
                   </PostCreator>
+                  <PostActions onPress={() => handlePostActions(post)}>
+                    <Ellipsis width={24} height={24} />
+                  </PostActions>
                 </PostHeader>
 
                 <PostContentWrapper>
@@ -290,6 +319,26 @@ export const UserStarsScreen = ({ navigation, route }) => {
                   </CommentBox>
                 </CommentSection>
 
+                <ActionsModal
+                  visible={showActions}
+                  setVisible={setShowActions}
+                  post={selectedPost}
+                  newsFeed={fetchPosts}
+                  editPost={editPost}
+                  deletePost={deletePost}
+                />
+                <EditPostModal
+                  visible={editable}
+                  setVisible={setEditable}
+                  post={selectedPost}
+                  newsFeed={fetchPosts}
+                />
+                <DeletePostModal
+                  visible={deleteable}
+                  setVisible={setDeleteable}
+                  post={selectedPost}
+                  newsFeed={fetchPosts}
+                />
                 <CommentsModal
                   visible={showComments}
                   setVisible={setShowComments}

@@ -31,21 +31,25 @@ import Trash from '../../../../assets/svg/trash.svg';
 import Camera from '../../../../assets/svg/camera.svg';
 import Submit from '../../../../assets/svg/submit.svg';
 import SubmitDisabled from '../../../../assets/svg/submit-disabled.svg';
-import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
-import { submitPostWithMedia, submitPost } from '../../../requests/post';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
 const MAX_MEDIA = 9;
 
-export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
-  const [postText, setPostText] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+export const CreatePostModal = ({
+  visible,
+  setVisible,
+  selectedMedia,
+  setSelectedMedia,
+  submit,
+  postText,
+  setPostText,
+}) => {
   const [isLoadingMedia, setIsLoadingMedia] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [selectedMedia, setSelectedMedia] = useState([]);
+
   const [thumbnails, setThumbnails] = useState([]);
 
-  const { token, _id, profileImage } = useSelector((state) => state.user);
+  const { profileImage } = useSelector((state) => state.user);
 
   useEffect(() => {
     setDisabled(postText.trim() === '');
@@ -132,51 +136,6 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
     );
   };
 
-  const submit = async () => {
-    setIsLoading(true);
-    try {
-      if (selectedMedia.length > 0) {
-        const formData = new FormData();
-        selectedMedia.forEach((media, index) => {
-          const fileType = media.uri.split('.').pop();
-          if (['jpg', 'jpeg', 'png', 'gif'].includes(fileType.toLowerCase())) {
-            formData.append(`media-${index}`, {
-              uri: media.uri,
-              type: 'image/jpeg',
-              name: `image-${index}.jpg`,
-            });
-          } else if (['mp4', 'mov', 'avi'].includes(fileType.toLowerCase())) {
-            formData.append(`media-${index}`, {
-              uri: media.uri,
-              type: 'video/mp4',
-              name: `video-${index}.mp4`,
-            });
-          }
-        });
-        const { data } = await uploadMediaToCloudinary(token, formData);
-        await submitPostWithMedia(token, _id, postText, data);
-      } else {
-        await submitPost(token, _id, postText);
-      }
-      setIsLoading(false);
-      newsFeed();
-      setVisible(false);
-      setPostText('');
-      setSelectedMedia([]);
-      Toast.show({
-        type: 'success',
-        text1: 'Your cosmic moment is now part of the celestial journey.',
-        text2: 'Keep exploring and sharing the wonders of the universe!',
-        style: {
-          width: '100%',
-        },
-      });
-    } catch (error) {
-      setIsLoading(false);
-      console.error('Error in submit function:', error);
-    }
-  };
-
   return (
     <SafeArea>
       <Modal visible={visible} transparent={true} animationType='slide'>
@@ -212,8 +171,6 @@ export const CreatePostModal = ({ visible, setVisible, newsFeed }) => {
                     )}
                     {disabled ? (
                       <SubmitDisabled width={32} height={32} />
-                    ) : isLoading ? (
-                      <ActivityIndicator size='large' color='#009999' />
                     ) : (
                       <SubmitIcon onPress={submit}>
                         <Submit width={32} height={32} />

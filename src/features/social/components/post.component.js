@@ -257,11 +257,12 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
         post={selectedPost}
         newsFeed={newsFeed}
       />
-      {/* <DeletePostModal
+      <DeletePostModal
         visible={deleteable}
         setVisible={setDeleteable}
         post={selectedPost}
-      /> */}
+        newsFeed={newsFeed}
+      />
       <CommentsModal
         visible={showComments}
         setVisible={setShowComments}

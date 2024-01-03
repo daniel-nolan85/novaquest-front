@@ -27,6 +27,7 @@ export const submitPost = async (authtoken, _id, text) => {
 
 export const editPostWithMedia = async (
   authtoken,
+  _id,
   text,
   media,
   mediaToDelete,
@@ -34,7 +35,7 @@ export const editPostWithMedia = async (
 ) => {
   return await axios.put(
     `${API_BASE_URL}/edit-post-with-media`,
-    { text, media, mediaToDelete, postId },
+    { _id, text, media, mediaToDelete, postId },
     {
       headers: {
         authtoken,
@@ -43,10 +44,22 @@ export const editPostWithMedia = async (
   );
 };
 
-export const editPost = async (authtoken, text, mediaToDelete, postId) => {
+export const editPost = async (authtoken, _id, text, mediaToDelete, postId) => {
   return await axios.put(
     `${API_BASE_URL}/edit-post`,
-    { text, mediaToDelete, postId },
+    { _id, text, mediaToDelete, postId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const deletePost = async (authtoken, _id, postId) => {
+  return await axios.put(
+    `${API_BASE_URL}/delete-post`,
+    { _id, postId },
     {
       headers: {
         authtoken,

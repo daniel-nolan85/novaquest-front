@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
 import { Modal } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Toast from 'react-native-toast-message';
-import moment from 'moment';
 import { SafeArea } from '../../../components/utils/safe-area.component';
-import { Text } from '../../../components/typography/text.component';
 import {
   ModalWrapper,
   ModalView,
@@ -14,22 +11,11 @@ import {
   GradientBackground,
   CancelGradientBackground,
   OptionText,
-  PostWrapper,
-  PostHeader,
-  PostCreator,
-  PostCreatorImage,
-  PostInfo,
-  Name,
-  Timestamp,
-  PostContentWrapper,
-  PostImage,
-  ImageNumber,
 } from '../styles/actions-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
 import EditWhite from '../../../../assets/svg/edit-white.svg';
 import TrashWhite from '../../../../assets/svg/trash-white.svg';
 import BlockWhite from '../../../../assets/svg/block-white.svg';
-import Save from '../../../../assets/svg/save.svg';
 import { blockMember } from '../../../requests/user';
 
 export const ActionsModal = ({
