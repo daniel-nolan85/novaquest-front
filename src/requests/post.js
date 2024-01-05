@@ -80,6 +80,18 @@ export const fetchPosts = async (authtoken, _id) => {
   );
 };
 
+export const fetchSinglePost = async (authtoken, postId) => {
+  return await axios.post(
+    `${API_BASE_URL}/single-post`,
+    { postId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const fetchUsersPosts = async (authtoken, _id) => {
   return await axios.post(
     `${API_BASE_URL}/users-posts`,

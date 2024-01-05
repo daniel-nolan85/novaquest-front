@@ -316,3 +316,39 @@ export const blockMember = async (authtoken, _id, userId) => {
     }
   );
 };
+
+export const incrementNotifsCount = async (authtoken, _id, userId, message) => {
+  return await axios.put(
+    `${API_BASE_URL}/increment-new-notifications-count`,
+    { _id, userId, message },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const resetNotifsCount = async (authtoken, _id) => {
+  return await axios.put(
+    `${API_BASE_URL}/reset-new-notifications-count`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const fetchUsersSignals = async (authtoken, _id) => {
+  return await axios.post(
+    `${API_BASE_URL}/fetch-user-notifications`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

@@ -64,14 +64,6 @@ export const GradientBackground = styled(LinearGradient).attrs({
   ${baseGradientStyle}
 `;
 
-export const CancelGradientBackground = styled(LinearGradient).attrs({
-  colors: ['#C0392B', '#E74C3C'],
-  start: { x: 0, y: 0 },
-  end: { x: 1, y: 0 },
-})`
-  ${baseGradientStyle}
-`;
-
 export const OptionText = styled(Text)`
   color: ${(props) => props.theme.colors.text.inverse};
   text-transform: uppercase;

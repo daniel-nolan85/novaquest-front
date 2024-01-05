@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import io from 'socket.io-client';
 import { Text } from '../../../components/typography/text.component';
 import {
   PostWrapper,
@@ -43,7 +44,7 @@ import { CommentsModal } from './comments-modal.component';
 import { EditPostModal } from './edit-post-modal.component';
 import { DeletePostModal } from './delete-post-modal.component';
 
-export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
+export const Post = ({ navigate, posts, newsFeed }) => {
   const [showActions, setShowActions] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showCommentList, setShowCommentList] = useState(false);
@@ -52,11 +53,18 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
   const [editable, setEditable] = useState(false);
   const [deleteable, setDeleteable] = useState(false);
 
-  const postRef = useRef(null);
   const lastTapTimeRef = useRef(0);
-  const flatListRef = useRef(null);
 
   const { token, _id, profileImage } = useSelector((state) => state.user);
+
+  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+
+  useEffect(() => {
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const handlePostActions = (post) => {
     setSelectedPost(post);
@@ -78,6 +86,9 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
     await handleLikePost(token, _id, postId)
       .then((res) => {
         newsFeed();
+        if (res.data.postedBy !== _id) {
+          socket.emit('like post', { _id, ownerId: res.data.postedBy });
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -100,6 +111,10 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
     addComment(token, _id, postId, item)
       .then((res) => {
         newsFeed();
+        console.log('res.data => ', res.data);
+        if (res.data.postedBy !== _id) {
+          socket.emit('new comment', { _id, ownerId: res.data.postedBy });
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -117,7 +132,7 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
   };
 
   const renderItem = ({ item }) => (
-    <PostWrapper key={item._id} ref={postRef}>
+    <PostWrapper key={item._id}>
       <PostHeader>
         <PostCreator
           onPress={() => navigate('UserProfile', { userId: item.postedBy._id })}
@@ -280,21 +295,10 @@ export const Post = ({ navigate, posts, newsFeed, initialIndex }) => {
 
   return (
     <FlatList
-      ref={flatListRef}
       data={posts}
       renderItem={renderItem}
       keyExtractor={(item) => item._id}
       showsVerticalScrollIndicator={false}
-      initialScrollIndex={initialIndex}
-      onScrollToIndexFailed={(info) => {
-        const wait = new Promise((resolve) => setTimeout(resolve, 500));
-        wait.then(() => {
-          flatListRef.current?.scrollToIndex({
-            index: initialIndex,
-            animated: false,
-          });
-        });
-      }}
     />
   );
 };

@@ -4,6 +4,7 @@ import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import Toast from 'react-native-toast-message';
+import * as Notifications from 'expo-notifications';
 import { Text } from '../../../components/typography/text.component';
 import { images } from '../../../services/trivia/trivia.data.json';
 import { MessageBubble } from '../../../components/message-bubble.component';
@@ -20,25 +21,35 @@ import {
   Input,
 } from '../styles/welcome.styles';
 import { updateUserName } from '../../../requests/user';
+import { storeNotifToken } from '../../../requests/auth';
 
 export const WelcomeSetupScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [nameEntry, setNameEntry] = useState(false);
+  const [notificationsEntry, setNotificationsEntry] = useState(false);
   const [userName, setUserName] = useState('');
   const [okButton, setOkButton] = useState(false);
   const [readyButton, setReadyButton] = useState(false);
   const [nameTyping, setNameTyping] = useState(true);
+  const [notificationsTyping, setNotificationsTyping] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showName, setShowName] = useState(true);
+  const [showNotifications, setShowNotifications] = useState(false);
   const [showOk, setShowOk] = useState(false);
   const [text1] = useState(
-    `Greetings, Commander. Welcome to the cosmic wonders of Astro Sense, your celestial guide through the mysteries of the universe! Before we embark on this interstellar journey, may we know the name of the intrepid explorer steering the spacecraft?`
+    `Greetings, Commander. Welcome to the cosmic wonders of Nova Quest, your celestial guide through the mysteries of the universe! Before we embark on this interstellar journey, may we know the name of the intrepid explorer steering the spacecraft?`
   );
   const [text2, setText2] = useState('');
   const [text3] = useState(
-    `Embark on a celestial adventure as you navigate the solar system and venture into the outer reaches of the galaxy. Earn experience points and badges by unlocking achievements throughout the application. Your cosmic exploration is not just a journey; it's an odyssey filled with discovery and celestial wonders.`
+    `Addionally, immerse yourself in the social galaxy, where you can share your cosmic experiences, form alliances with fellow explorers, and contribute to the vibrant community of celestial enthusiasts.`
   );
-  const [text4, setText4] = useState('');
+  const [text4] = useState(
+    `Embark on a celestial adventure as you navigate the solar system and venture into the outer reaches of the galaxy. Earn experience points, unlock badges, and ascend through the ranks from a Space Cadet to a Cosmic Sovereign. Your cosmic exploration is not just a journey; it's an odyssey filled with discovery and celestial wonders.`
+  );
+  const [text5] = useState(
+    `As you commence this cosmic journey, would you like to receive celestial signals for each interaction in the vast cosmos? Enable notifications to stay informed about likes, comments, and new posts from your alliances. Stay connected with the cosmic community, as we share the wonders of the universe with you.`
+  );
+  const [text6, setText6] = useState('');
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
@@ -48,9 +59,9 @@ export const WelcomeSetupScreen = ({ navigation }) => {
   useEffect(() => {
     if (user && user.name) {
       setText2(
-        `Welcome to the cosmos, Commander ${user.name}! In this stellar app, your journey through the universe is boundless. Explore the Red Planet through the lenses of various rovers, witness the cosmic beauty with a daily astronomy picture, track asteroids that venture close to Earth, and immerse yourself in a cosmic gaming experience.`
+        `Welcome to the cosmos, Commander ${user.name}! In this stellar app, your journey through the universe is boundless. Explore the Red Planet through the lenses of various rovers, witness the cosmic beauty with a daily astronomy picture, track asteroids that venture close to Earth, immerse yourself in a cosmic gaming experience, and keep a watchful eye on the International Space Station's current location as it orbits the Earth.`
       );
-      setText4(
+      setText6(
         `Prepare for lift-off, Commander ${user.name}, as we delve into the mysteries of the cosmos together. Let the exploration begin!`
       );
     }
@@ -62,11 +73,19 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     setNameEntry(true);
   };
 
+  const skipNotificationsText = () => {
+    setShowNotifications(false);
+    setNotificationsTyping(false);
+    setNotificationsEntry(true);
+  };
+
   const skipText = () => {
     setShowOk(false);
     setTyping(false);
-    if (currentStep < 4) {
+    if (currentStep < 5) {
       setOkButton(true);
+    } else if (currentStep === 5) {
+      setNotificationsEntry(true);
     } else {
       setReadyButton(true);
     }
@@ -76,6 +95,12 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     setShowName(false);
     setNameTyping(false);
     setNameEntry(true);
+  };
+
+  const handleTypingEndNotifications = () => {
+    setShowNotifications(false);
+    setNotificationsTyping(false);
+    setNotificationsEntry(true);
   };
 
   const handleNameEntryClick = () => {
@@ -115,11 +140,60 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     setTyping(true);
   };
 
+  const handleNotificationsEntryClick = async (choice) => {
+    if (choice === 'yes') {
+      if (user.role === 'guest') {
+        Toast.show({
+          type: 'error',
+          text1: `Signal permissions are exclusive to registered commanders.`,
+          text2: `Register to unlock the full cosmic experience and receive stellar updates!`,
+        });
+      } else {
+        const { status } = await Notifications.requestPermissionsAsync();
+        if (status === 'granted') {
+          Toast.show({
+            type: 'success',
+            text1: `Signals enabled!`,
+            text2: `Stay tuned for cosmic updates and interactions.`,
+          });
+          const projectId = '5f022167-f010-423e-8f6f-eee7821ba543';
+          const token = (
+            await Notifications.getExpoPushTokenAsync({ projectId })
+          ).data;
+          await storeNotifToken(user.token, user._id, token)
+            .then((res) => {
+              dispatch({
+                type: 'LOGGED_IN_USER',
+                payload: {
+                  ...user,
+                  noficationToken: res.data.noficationToken,
+                },
+              });
+            })
+            .catch((err) => console.error(err));
+        }
+      }
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: `No signals will be sent for now.`,
+        text2: `Explore the cosmos at your own pace.`,
+      });
+    }
+    setShowOk(true);
+    setNotificationsEntry(false);
+    setCurrentStep(currentStep + 1);
+    setOkButton(false);
+    setTyping(true);
+  };
+
   const handleTypingEnd = () => {
     setShowOk(false);
     setTyping(false);
-    if (currentStep < 4) {
+    if (currentStep < 5) {
       setOkButton(true);
+    } else if (currentStep === 5) {
+      setNotificationsEntry(true);
     } else {
       setReadyButton(true);
     }
@@ -191,6 +265,32 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             {text4}
           </TypeWriter>
         );
+      case 5:
+        return !typing ? (
+          <Text variant='speech'>{text5}</Text>
+        ) : (
+          <TypeWriter
+            typing={typing ? 1 : 0}
+            maxDelay={user.textSpeed}
+            onTypingEnd={handleTypingEndNotifications}
+            style={{ fontFamily: 'Audiowide_400Regular' }}
+          >
+            {text5}
+          </TypeWriter>
+        );
+      case 6:
+        return !typing ? (
+          <Text variant='speech'>{text6}</Text>
+        ) : (
+          <TypeWriter
+            typing={typing ? 1 : 0}
+            maxDelay={user.textSpeed}
+            onTypingEnd={handleTypingEnd}
+            style={{ fontFamily: 'Audiowide_400Regular' }}
+          >
+            {text6}
+          </TypeWriter>
+        );
       default:
         return null;
     }
@@ -226,6 +326,16 @@ export const WelcomeSetupScreen = ({ navigation }) => {
                 </Option>
               </>
             )}
+            {notificationsEntry && (
+              <>
+                <Option onPress={() => handleNotificationsEntryClick('yes')}>
+                  <OptionText variant='body'>Enable Signals</OptionText>
+                </Option>
+                <Option onPress={() => handleNotificationsEntryClick('no')}>
+                  <OptionText variant='body'>Not Now</OptionText>
+                </Option>
+              </>
+            )}
             {okButton && (
               <Option onPress={handleOkClick}>
                 <OptionText variant='body'>OK</OptionText>
@@ -238,6 +348,11 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             )}
             {showName && nameTyping && (
               <Option onPress={skipNameText}>
+                <MaterialIcons name='double-arrow' size={20} color='#fff' />
+              </Option>
+            )}
+            {showNotifications && notificationsTyping && (
+              <Option onPress={skipNotificationsText}>
                 <MaterialIcons name='double-arrow' size={20} color='#fff' />
               </Option>
             )}

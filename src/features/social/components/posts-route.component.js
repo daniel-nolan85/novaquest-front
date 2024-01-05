@@ -11,8 +11,6 @@ import {
 export const PostsRoute = ({ posts, navigate }) => {
   const [thumbnails, setThumbnails] = useState([]);
 
-  console.log('thumbnails => ', thumbnails);
-
   useEffect(() => {
     const generateThumbnails = async () => {
       const thumbnailsArray = [];

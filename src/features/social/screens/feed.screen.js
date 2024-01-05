@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { ScrollView, View } from 'react-native';
+import { useState, useCallback } from 'react';
+import { View, ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { CreatePost } from '../components/create-post.component';
@@ -13,11 +14,11 @@ export const FeedScreen = ({ navigation }) => {
 
   const { token, _id } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (token) {
+  useFocusEffect(
+    useCallback(() => {
       newsFeed();
-    }
-  }, [token]);
+    }, [])
+  );
 
   const { navigate } = navigation;
 

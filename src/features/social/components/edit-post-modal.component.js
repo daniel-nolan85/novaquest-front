@@ -20,7 +20,6 @@ import {
   OptionContainer,
   Option,
   GradientBackground,
-  CancelGradientBackground,
   OptionText,
   PostWrapper,
   PostHeader,
@@ -38,7 +37,6 @@ import {
   CameraIcon,
 } from '../styles/edit-post-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
-import CloseWhite from '../../../../assets/svg/close-white.svg';
 import Trash from '../../../../assets/svg/trash.svg';
 import Camera from '../../../../assets/svg/camera.svg';
 import SaveWhite from '../../../../assets/svg/save-white.svg';
@@ -323,12 +321,6 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
                           </>
                         )}
                       </GradientBackground>
-                    </Option>
-                    <Option onPress={closeModal}>
-                      <CancelGradientBackground>
-                        <CloseWhite height={32} width={32} />
-                        <OptionText variant='body'>Cancel</OptionText>
-                      </CancelGradientBackground>
                     </Option>
                   </OptionContainer>
                 </PostWrapper>

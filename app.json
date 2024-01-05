@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AstroSense",
-    "slug": "AstroSense",
+    "name": "NovaQuest",
+    "slug": "NovaQuest",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/img/icon.png",
@@ -19,6 +19,10 @@
         "foregroundImage": "./assets/img/icon.png",
         "backgroundColor": "#ffffff"
       }
+    },
+    "notification": {
+      "icon": "./assets/img/icon.png",
+      "color": "#009999"
     }
   }
 }

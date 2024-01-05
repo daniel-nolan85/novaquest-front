@@ -13,12 +13,10 @@ import {
   Title,
   OptionContainer,
   Option,
-  GradientBackground,
   CancelGradientBackground,
   OptionText,
 } from '../styles/delete-post-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
-import CloseWhite from '../../../../assets/svg/close-white.svg';
 import TrashWhite from '../../../../assets/svg/trash-white';
 import { deletePost } from '../../../requests/post';
 
@@ -73,7 +71,7 @@ export const DeletePostModal = ({ visible, setVisible, post, newsFeed }) => {
                 source={require('../../../../assets/animation/delete.json')}
               />
             </AnimationWrapper>
-            <Title variant='title' style={{ textAlign: 'center' }}>
+            <Title variant='title'>
               Are you sure you want to delete this post?
             </Title>
             <Text variant='body'>
@@ -82,7 +80,7 @@ export const DeletePostModal = ({ visible, setVisible, post, newsFeed }) => {
             </Text>
             <OptionContainer>
               <Option onPress={handleDeletePost}>
-                <GradientBackground>
+                <CancelGradientBackground>
                   {isLoading ? (
                     <ActivityIndicator size='large' color='#fff' />
                   ) : (
@@ -91,12 +89,6 @@ export const DeletePostModal = ({ visible, setVisible, post, newsFeed }) => {
                       <OptionText variant='body'>Delete Post</OptionText>
                     </>
                   )}
-                </GradientBackground>
-              </Option>
-              <Option onPress={closeModal}>
-                <CancelGradientBackground>
-                  <CloseWhite height={32} width={32} />
-                  <OptionText variant='body'>Cancel</OptionText>
                 </CancelGradientBackground>
               </Option>
             </OptionContainer>

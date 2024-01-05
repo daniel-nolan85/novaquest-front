@@ -36,7 +36,6 @@ export const ActionsModal = ({
   const blockUser = async (u) => {
     await blockMember(user.token, user._id, u._id)
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

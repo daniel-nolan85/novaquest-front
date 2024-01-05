@@ -16,13 +16,12 @@ export const ModalWrapper = styled.View`
   margin: ${(props) => props.theme.space[3]};
 `;
 
-export const ModalView = styled.View`
+export const ModalView = styled.ScrollView`
   margin: 20px;
   background-color: white;
   border-radius: 20px;
   width: 100%;
   padding: 35px;
-  align-items: center;
   shadow-color: #000;
   shadow-offset: {
     width: 0;
@@ -37,6 +36,7 @@ export const CloseIcon = styled.TouchableOpacity`
   width: 55px;
   height: 55px;
   position: absolute;
+  z-index: 999;
   top: ${(props) => props.theme.space[2]};
   right: ${(props) => props.theme.space[2]};
   padding: ${(props) => props.theme.space[2]};
@@ -110,7 +110,7 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
     <SafeArea>
       <Modal visible={rankUp} transparent={true} animationType='slide'>
         <ModalWrapper>
-          <ModalView>
+          <ModalView contentContainerStyle={{ alignItems: 'center' }}>
             <CloseIcon onPress={() => setRankUp(false)}>
               <Close />
             </CloseIcon>

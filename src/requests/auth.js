@@ -24,3 +24,15 @@ export const currentUser = async (authtoken) => {
     }
   );
 };
+
+export const storeNotifToken = async (authtoken, _id, notificationToken) => {
+  return await axios.put(
+    `${API_BASE_URL}/store-notification-token`,
+    { _id, notificationToken },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
