@@ -113,7 +113,6 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
   const likePost = async (postId) => {
     await handleLikePost(token, _id, postId)
       .then((res) => {
-        console.log('like post => ', res.data);
         fetchPost();
         if (res.data.postedBy !== _id) {
           socket.emit('like post', { _id, ownerId: res.data.postedBy });
@@ -155,8 +154,6 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
     setShowActions(false);
     setSelectedPost(post);
   };
-
-  console.log('post => ', post);
 
   return (
     <SafeArea>

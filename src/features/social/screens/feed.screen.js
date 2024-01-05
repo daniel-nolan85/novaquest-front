@@ -12,7 +12,7 @@ import { fetchPosts } from '../../../requests/post';
 export const FeedScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, allies } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -36,7 +36,7 @@ export const FeedScreen = ({ navigation }) => {
         <FeedHeader navigate={navigate} />
         <ScrollView>
           <CreatePost newsFeed={newsFeed} />
-          <AlliesScroll navigate={navigate} />
+          {allies.length > 0 && <AlliesScroll navigate={navigate} />}
           <Post navigate={navigate} posts={posts} newsFeed={newsFeed} />
         </ScrollView>
       </View>

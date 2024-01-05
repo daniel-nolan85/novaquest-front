@@ -48,6 +48,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   bio: res.data.bio,
                   profileImage: res.data.profileImage,
                   lastLoginDate: res.data.lastLoginDate,
+                  createdAt: res.data.createdAt,
                   daysInSpace: res.data.daysInSpace,
                   name: res.data.name,
                   allies: res.data.allies,

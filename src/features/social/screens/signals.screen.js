@@ -8,7 +8,7 @@ import { SafeArea } from '../../../components/utils/safe-area.component';
 import { SignalsHeader } from '../components/signals-header.component';
 
 export const SignalsScreen = ({ navigation }) => {
-  const [signals, setSignals] = useState([]);
+  const [filteredSignals, setFilteredSignals] = useState([]);
 
   const { token, _id } = useSelector((state) => state.user);
 
@@ -23,7 +23,7 @@ export const SignalsScreen = ({ navigation }) => {
   const usersSignals = async () => {
     await fetchUsersSignals(token, _id)
       .then((res) => {
-        setSignals(res.data.notifications);
+        setFilteredSignals(res.data.notifications);
       })
       .catch((err) => console.error(err));
   };
@@ -31,9 +31,9 @@ export const SignalsScreen = ({ navigation }) => {
   return (
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
-        <SignalsHeader />
+        <SignalsHeader setFilteredSignals={setFilteredSignals} />
         <ScrollView>
-          <SignalList navigate={navigate} signals={signals} />
+          <SignalList navigate={navigate} signals={filteredSignals} />
         </ScrollView>
       </View>
     </SafeArea>

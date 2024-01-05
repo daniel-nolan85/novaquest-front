@@ -111,7 +111,6 @@ export const Post = ({ navigate, posts, newsFeed }) => {
     addComment(token, _id, postId, item)
       .then((res) => {
         newsFeed();
-        console.log('res.data => ', res.data);
         if (res.data.postedBy !== _id) {
           socket.emit('new comment', { _id, ownerId: res.data.postedBy });
         }
