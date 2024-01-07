@@ -22,7 +22,10 @@ import Camera from '../../../../assets/svg/camera.svg';
 import Save from '../../../../assets/svg/save.svg';
 import { UpdatePhotoModal } from './update-photo-modal.component';
 import { updateProfileWithImage, updateProfile } from '../../../requests/user';
-import { uploadImagesToCloudinary } from '../../../requests/cloudinary';
+import {
+  uploadMediaToCloudinary,
+  destroyMediaFromCloudinary,
+} from '../../../requests/cloudinary';
 
 export const RepairModal = ({ visible, setVisible }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +66,12 @@ export const RepairModal = ({ visible, setVisible }) => {
           type: 'image/jpeg',
           name: 'image.jpg',
         });
-        const { data } = await uploadImagesToCloudinary(user.token, formData);
+        if (user.profileImage && user.profileImage.length > 0)
+          await destroyMediaFromCloudinary(
+            user.token,
+            user.profileImage[0].public_id
+          );
+        const { data } = await uploadMediaToCloudinary(user.token, formData);
         await updateProfileWithImage(
           user.token,
           user._id,

@@ -35,7 +35,8 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
   const [maxEarth, setMaxEarth] = useState(null);
   const [isEditable, setIsEditable] = useState(false);
 
-  const { setSelectedRover, setDateType, setDate } = useContext(ImagesContext);
+  const { selectedRover, setSelectedRover, dateType, setDateType, setDate } =
+    useContext(ImagesContext);
 
   useEffect(() => {
     retrieveDates();

@@ -93,8 +93,9 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
     ],
   };
 
+  console.log('selectedRover, dateType => ', selectedRover, dateType);
+
   useEffect(() => {
-    console.log('selectedRover => ', selectedRover);
     const selectedRoverCameras = roverCameras[selectedRover] || [];
     setCameras(selectedRoverCameras);
   }, [selectedRover]);
