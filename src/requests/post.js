@@ -163,3 +163,15 @@ export const getComments = async (authtoken, postId) => {
     }
   );
 };
+
+export const reportContent = async (authtoken, postId) => {
+  return await axios.post(
+    `${API_BASE_URL}/report-post`,
+    { postId },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

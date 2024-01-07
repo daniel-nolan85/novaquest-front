@@ -1,6 +1,6 @@
 import { Modal } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import Toast from 'react-native-toast-message';
+import Toast, { BaseToast } from 'react-native-toast-message';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {
   ModalWrapper,
@@ -15,8 +15,10 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import EditWhite from '../../../../assets/svg/edit-white.svg';
 import TrashWhite from '../../../../assets/svg/trash-white.svg';
+import FlagWhite from '../../../../assets/svg/flag-white.svg';
 import BlockWhite from '../../../../assets/svg/block-white.svg';
 import { blockMember } from '../../../requests/user';
+import { reportContent } from '../../../requests/post';
 
 export const ActionsModal = ({
   visible,
@@ -31,6 +33,20 @@ export const ActionsModal = ({
 
   const closeModal = () => {
     setVisible(false);
+  };
+
+  const reportPost = async (postId) => {
+    await reportContent(user.token, postId)
+      .then((res) => {
+        Toast.show({
+          type: 'error',
+          text1: `Cosmic Alert!`,
+          text2: `Post Reported and Forwarded to Cosmic Security. Stay Vigilant!`,
+        });
+        showReportToast();
+        setVisible(false);
+      })
+      .catch((err) => console.error(err));
   };
 
   const blockUser = async (u) => {
@@ -84,6 +100,16 @@ export const ActionsModal = ({
               post !== null &&
               post.postedBy._id !== user._id && (
                 <OptionContainer>
+                  <Option
+                    onPress={() => {
+                      reportPost(post._id);
+                    }}
+                  >
+                    <CancelGradientBackground>
+                      <FlagWhite height={32} width={32} />
+                      <OptionText variant='body'>Report post?</OptionText>
+                    </CancelGradientBackground>
+                  </Option>
                   <Option
                     onPress={() => {
                       blockUser(post.postedBy);
