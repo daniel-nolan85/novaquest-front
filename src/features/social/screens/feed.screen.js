@@ -34,7 +34,7 @@ export const FeedScreen = ({ navigation }) => {
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
         <FeedHeader navigate={navigate} setPosts={setPosts} />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <CreatePost newsFeed={newsFeed} />
           {allies.length > 0 && <AlliesScroll navigate={navigate} />}
           <Post navigate={navigate} posts={posts} newsFeed={newsFeed} />

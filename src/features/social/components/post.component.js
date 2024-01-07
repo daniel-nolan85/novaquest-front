@@ -192,6 +192,7 @@ export const Post = ({ navigate, posts, newsFeed }) => {
                       shouldPlay={true}
                       isMuted={true}
                       resizeMode='cover'
+                      useNativeControls
                     />
                     <ImageNumber variant='title'>{`${index + 1}/${
                       item.media.length
@@ -212,7 +213,7 @@ export const Post = ({ navigate, posts, newsFeed }) => {
                   shouldPlay={true}
                   isMuted={true}
                   resizeMode='cover'
-                  onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
+                  useNativeControls
                 />
               )}
             </TouchableOpacity>

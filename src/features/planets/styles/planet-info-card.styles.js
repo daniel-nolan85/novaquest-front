@@ -1,3 +1,4 @@
+import { Animated } from 'react-native';
 import { Card } from 'react-native-paper';
 import styled from 'styled-components/native';
 
@@ -7,6 +8,12 @@ export const PlanetCard = styled(Card)`
 `;
 
 export const PlanetCardCover = styled.Image`
+  padding: ${(props) => props.theme.space[3]};
+  aspect-ratio: 1;
+  width: 100%;
+`;
+
+export const PlanetCardCoverZoom = styled(Animated.Image)`
   padding: ${(props) => props.theme.space[3]};
   aspect-ratio: 1;
   width: 100%;

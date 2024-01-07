@@ -1,3 +1,4 @@
+import { Animated } from 'react-native';
 import { Card } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Text } from '../../../../components/typography/text.component';
@@ -9,7 +10,7 @@ export const ApodCard = styled(Card)`
   height: 90%;
 `;
 
-export const ApodCardCover = styled.Image`
+export const ApodCardCover = styled(Animated.Image)`
   padding: ${(props) => props.theme.space[3]};
   aspect-ratio: 1;
   width: 100%;

@@ -57,14 +57,14 @@ export const PostActions = styled.TouchableOpacity``;
 export const PostImage = styled.Image`
   margin-top: 10px;
   width: 350px;
-  height: 350px;
+  height: 450px;
   align-self: center;
 `;
 
 export const PostVideo = styled(Video)`
   margin-top: 10px;
   width: 350px;
-  height: 350px;
+  height: 450px;
   align-self: center;
 `;
 

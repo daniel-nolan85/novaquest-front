@@ -1,14 +1,15 @@
-import { ScrollView, Animated } from 'react-native';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
+import { Animated } from 'react-native';
+import { Text } from '../../../components/typography/text.component';
 import {
-  ApodCard,
-  ApodCardCover,
+  PlanetCard,
+  PlanetCardCoverZoom,
   Info,
-  Title,
-  Body,
-} from '../styles/apod-card.styles';
+} from '../styles/planet-info-card.styles';
 
-export const ApodInfoCard = ({ image, title, explanation }) => {
+export const PlanetInfoCardZoom = ({ planet }) => {
+  const { name, photo, type } = planet;
+
   scale = new Animated.Value(1);
 
   const zoomImage = Animated.event(
@@ -29,25 +30,27 @@ export const ApodInfoCard = ({ image, title, explanation }) => {
     }
   };
 
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
-    <ApodCard elevation={5}>
+    <PlanetCard elevation={5}>
       <PinchGestureHandler
         onGestureEvent={zoomImage}
         onHandlerStateChange={zoomState}
       >
-        <ApodCardCover
-          key={title}
-          source={{ uri: image }}
+        <PlanetCardCoverZoom
+          key={name}
+          source={{ uri: photo }}
           style={{ transform: [{ scale }] }}
           resizeMode={'contain'}
         />
       </PinchGestureHandler>
-      <ScrollView>
-        <Info>
-          <Title variant='title'>{title}</Title>
-          <Body variant='body'>{explanation}</Body>
-        </Info>
-      </ScrollView>
-    </ApodCard>
+      <Info>
+        <Text variant='title'>{capitalizeFirstLetter(name)}</Text>
+        <Text variant='body'>{capitalizeFirstLetter(type)}</Text>
+      </Info>
+    </PlanetCard>
   );
 };

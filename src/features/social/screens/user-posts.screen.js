@@ -174,7 +174,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
   return (
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
-        <ScrollView ref={scrollViewRef}>
+        <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
           {postLayouts &&
             posts.map((post, index) => (
               <PostWrapper
@@ -248,6 +248,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
                                 isMuted={true}
                                 resizeMode='cover'
                                 style={{ width: 350, height: 350 }}
+                                useNativeControls
                               />
                               <ImageNumber variant='title'>{`${index + 1}/${
                                 post.media.length
@@ -272,6 +273,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
                             isMuted={true}
                             resizeMode='cover'
                             style={{ width: '100%', height: 300 }}
+                            useNativeControls
                           />
                         )}
                       </TouchableOpacity>
