@@ -175,3 +175,15 @@ export const reportContent = async (authtoken, postId) => {
     }
   );
 };
+
+export const filterPostsByQuery = async (authtoken, query) => {
+  return await axios.post(
+    `${API_BASE_URL}/filter-posts-by-query`,
+    { query },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

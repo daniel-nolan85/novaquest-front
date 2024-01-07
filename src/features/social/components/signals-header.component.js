@@ -22,7 +22,6 @@ import {
   filterSignalsByDate,
   filterSignalsByQuery,
 } from '../../../requests/signals';
-import { Text } from '../../../components/typography/text.component';
 
 export const SignalsHeader = ({ setFilteredSignals }) => {
   const [open, setOpen] = useState(false);
