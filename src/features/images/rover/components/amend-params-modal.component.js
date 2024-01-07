@@ -9,12 +9,14 @@ import { ImagesContext } from '../../../../services/images/images.context';
 import {
   ModalWrapper,
   ModalView,
+  CloseIcon,
   Option,
   OptionText,
+  Title,
   AmendedOption,
 } from '../styles/amend-params-modal.styles';
+import Close from '../../../../../assets/svg/close.svg';
 import Rover from '../../../../../assets/svg/rover.svg';
-import Camera from '../../../../../assets/svg/camera.svg';
 import Mars from '../../../../../assets/svg/mars.svg';
 import Earth from '../../../../../assets/svg/earth.svg';
 import { Text } from '../../../../components/typography/text.component';
@@ -23,14 +25,9 @@ const { Item } = Picker;
 
 export const AmendParamsModal = ({ open, handleFilters }) => {
   const [showRoverPicker, setShowRoverPicker] = useState(false);
-  const [showCameraPicker, setShowCameraPicker] = useState(false);
   const [showSolSlider, setShowSolSlider] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [amendedRover, setAmendedRover] = useState('');
-  const [amendedCamera, setAmendedCamera] = useState({
-    code: '',
-    fullName: '',
-  });
   const [marsDate, setMarsDate] = useState(null);
   const [earthDate, setEarthDate] = useState(null);
   const [landingDate, setLandingDate] = useState(null);
@@ -38,13 +35,7 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
   const [maxEarth, setMaxEarth] = useState(null);
   const [isEditable, setIsEditable] = useState(false);
 
-  const {
-    setSelectedRover,
-    setCamera,
-    setDateType,
-    setDate,
-    setCameraFullName,
-  } = useContext(ImagesContext);
+  const { setSelectedRover, setDateType, setDate } = useContext(ImagesContext);
 
   useEffect(() => {
     retrieveDates();
@@ -62,10 +53,8 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
       });
   };
 
-  const setNewParams = () => {
+  const setNewParams = async () => {
     setSelectedRover(amendedRover);
-    setCamera(amendedCamera.code);
-    setCameraFullName(amendedCamera.fullName);
     if (marsDate) {
       setDateType('sol');
       setDate(marsDate);
@@ -75,10 +64,6 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
       setDate(earthDate);
     }
     setAmendedRover('');
-    setAmendedCamera({
-      code: '',
-      fullName: '',
-    });
     setMarsDate(null);
     setEarthDate(null);
     handleFilters();
@@ -91,81 +76,6 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
   const handleDateChange = (d) => {
     const selectedDate = d.replace(/\//g, '-');
     setEarthDate(selectedDate);
-  };
-
-  const getCameraOptions = (rover) => {
-    switch (rover) {
-      case 'curiosity':
-        return [
-          { code: 'fhaz', fullName: 'Front Hazard Avoidance Camera' },
-          { code: 'rhaz', fullName: 'Rear Hazard Avoidance Camera' },
-          { code: 'mast', fullName: 'Mast Camera' },
-          { code: 'chemcam', fullName: 'Chemistry and Camera Complex' },
-          { code: 'mahli', fullName: 'Mars Hand Lens Imager' },
-          { code: 'mardi', fullName: 'Mars Descent Imager' },
-          { code: 'navcam', fullName: 'Navigation Camera' },
-        ];
-      case 'opportunity':
-        return [
-          { code: 'fhaz', fullName: 'Front Hazard Avoidance Camera' },
-          { code: 'rhaz', fullName: 'Rear Hazard Avoidance Camera' },
-          { code: 'navcam', fullName: 'Navigation Camera' },
-          { code: 'pancam', fullName: 'Panoramic Camera' },
-          {
-            code: 'minites',
-            fullName: 'Miniature Thermal Emission Spectrometer (Mini-TES)',
-          },
-        ];
-      case 'perseverance':
-        return [
-          { code: 'edl_rucam', fullName: 'Rover Up-Look Camera' },
-          { code: 'edl_rdcam', fullName: 'Rover Down-Look Camera' },
-          { code: 'edl_ddcam', fullName: 'Descent Stage Down-Look Camera' },
-          { code: 'edl_pucam1', fullName: 'Parachute Up-Look Camera A' },
-          { code: 'edl_pucam2', fullName: 'Parachute Up-Look Camera B' },
-          { code: 'navcam_left', fullName: 'Navigation Camera - Left' },
-          { code: 'navcam_right', fullName: 'Navigation Camera - Right' },
-          { code: 'mcz_left', fullName: 'Mast Camera Zoom - Left' },
-          { code: 'mcz_right', fullName: 'Mast Camera Zoom - Right' },
-          {
-            code: 'front_hazcam_left_a',
-            fullName: 'Front Hazard Avoidance Camera - Left',
-          },
-          {
-            code: 'front_hazcam_right_a',
-            fullName: 'Front Hazard Avoidance Camera - Right',
-          },
-          {
-            code: 'rear_hazcam_left',
-            fullName: 'Rear Hazard Avoidance Camera - Left',
-          },
-          {
-            code: 'rear_hazcam_right',
-            fullName: 'Rear Hazard Avoidance Camera - Right',
-          },
-          {
-            code: 'skycam',
-            fullName: 'MEDA Skycam',
-          },
-          {
-            code: 'sherloc_watson',
-            fullName: 'Sherlock Watson Camera',
-          },
-        ];
-      case 'spirit':
-        return [
-          { code: 'fhaz', fullName: 'Front Hazard Avoidance Camera' },
-          { code: 'rhaz', fullName: 'Rear Hazard Avoidance Camera' },
-          { code: 'navcam', fullName: 'Navigation Camera' },
-          { code: 'pancam', fullName: 'Panoramic Camera' },
-          {
-            code: 'minites',
-            fullName: 'Miniature Thermal Emission Spectrometer (Mini-TES)',
-          },
-        ];
-      default:
-        return [];
-    }
   };
 
   const handleTextInputChange = (text) => {
@@ -183,10 +93,13 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
     <Modal animationType='slide' transparent={true} visible={open}>
       <ModalWrapper>
         <ModalView>
+          <CloseIcon onPress={handleFilters}>
+            <Close />
+          </CloseIcon>
+          <Title variant='title'>Refine Parameters</Title>
           <AmendedOption
             onPress={() => {
               setShowRoverPicker(!showRoverPicker);
-              setShowCameraPicker(false);
               setShowSolSlider(false);
               setShowDatePicker(false);
             }}
@@ -201,7 +114,6 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
               onValueChange={(rover) => {
                 setShowRoverPicker(!showRoverPicker);
                 setAmendedRover(rover);
-                setAmendedCamera({ code: null, fullName: null });
                 setMarsDate(null);
                 setEarthDate(null);
               }}
@@ -212,140 +124,99 @@ export const AmendParamsModal = ({ open, handleFilters }) => {
               <Item label='Spirit' value='spirit' />
             </Picker>
           )}
-          {amendedRover && (
-            <>
-              <AmendedOption
-                onPress={() => {
-                  setShowCameraPicker(!showCameraPicker);
-                  setShowRoverPicker(false);
-                  setShowSolSlider(false);
-                  setShowDatePicker(false);
-                }}
-              >
-                <Camera width={48} height={48} />
-                <Text>{amendedCamera.fullName}</Text>
-              </AmendedOption>
-              {showCameraPicker && (
-                <Picker
-                  style={{ width: 350 }}
-                  selectedValue={amendedCamera.code}
-                  onValueChange={(cameraCode) => {
-                    const selectedCameraOption = getCameraOptions(
-                      amendedRover
-                    ).find((camera) => camera.code === cameraCode);
-                    setAmendedCamera(selectedCameraOption);
-                    setShowCameraPicker(!showCameraPicker);
-                  }}
-                >
-                  {getCameraOptions(amendedRover).map((cameraOption, index) => (
-                    <Item
-                      key={index}
-                      label={cameraOption.fullName}
-                      value={cameraOption.code}
-                    />
-                  ))}
-                </Picker>
-              )}
-              <AmendedOption
-                onPress={() => {
-                  setShowSolSlider(!showSolSlider);
-                  setShowCameraPicker(false);
-                  setShowRoverPicker(false);
-                  setShowDatePicker(false);
-                  setIsEditable(false);
-                }}
-              >
-                <Mars width={48} height={48} />
-                <Text>{marsDate}</Text>
-              </AmendedOption>
-              {showSolSlider && (
-                <View
+          <AmendedOption
+            onPress={() => {
+              setShowSolSlider(!showSolSlider);
+              setShowRoverPicker(false);
+              setShowDatePicker(false);
+              setIsEditable(false);
+            }}
+          >
+            <Mars width={48} height={48} />
+            <Text>{marsDate}</Text>
+          </AmendedOption>
+          {showSolSlider && (
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {isEditable ? (
+                <TextInput
                   style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    fontSize: 20,
+                    marginTop: 10,
+                    width: 50,
+                    textAlign: 'center',
+                    borderBottomWidth: 1,
                   }}
-                >
-                  {isEditable ? (
-                    <TextInput
-                      style={{
-                        fontSize: 20,
-                        marginTop: 10,
-                        width: 50,
-                        textAlign: 'center',
-                        borderBottomWidth: 1,
-                      }}
-                      keyboardType='numeric'
-                      value={marsDate}
-                      onChangeText={handleTextInputChange}
-                      onBlur={toggleEditable}
-                      autoFocus
-                    />
-                  ) : (
-                    <TouchableOpacity onPress={toggleEditable}>
-                      <Text
-                        style={{
-                          fontSize: 60,
-                          color: '#999',
-                          fontWeight: '400',
-                        }}
-                      >
-                        {marsDate}
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-                  <Slider
-                    style={{ width: 350, height: 15 }}
-                    minimumValue={1}
-                    maximumValue={maxSol}
-                    step={1}
-                    value={marsDate}
-                    minimumTrackTintColor='#111'
-                    maximumTrackTintColor='#111'
-                    thumbTintColor='#009999'
-                    onValueChange={(v) => {
-                      setEarthDate(null);
-                      setMarsDate(v);
-                    }}
-                    onSlidingComplete={(v) => {
-                      setShowSolSlider(!showSolSlider);
-                    }}
-                  />
-                </View>
-              )}
-              <AmendedOption
-                onPress={() => {
-                  setShowDatePicker(!showDatePicker);
-                  setShowSolSlider(false);
-                  setShowCameraPicker(false);
-                  setShowRoverPicker(false);
-                }}
-              >
-                <Earth width={48} height={48} />
-                <Text>{earthDate}</Text>
-              </AmendedOption>
-              {showDatePicker && (
-                <DatePicker
-                  mode='calendar'
-                  selected={maxEarth}
-                  onDateChange={(d) => {
-                    handleDateChange(d);
-                    setMarsDate(null);
-                    setShowDatePicker(!showDatePicker);
-                  }}
-                  minimumDate={landingDate}
-                  maximumDate={maxEarth}
+                  keyboardType='numeric'
+                  value={marsDate}
+                  onChangeText={handleTextInputChange}
+                  onBlur={toggleEditable}
+                  autoFocus
                 />
+              ) : (
+                <TouchableOpacity onPress={toggleEditable}>
+                  <Text
+                    style={{
+                      fontSize: 60,
+                      color: '#999',
+                      fontWeight: '400',
+                    }}
+                  >
+                    {marsDate}
+                  </Text>
+                </TouchableOpacity>
               )}
-            </>
+              <Slider
+                style={{ width: 350, height: 15 }}
+                minimumValue={1}
+                maximumValue={maxSol}
+                step={1}
+                value={marsDate}
+                minimumTrackTintColor='#111'
+                maximumTrackTintColor='#111'
+                thumbTintColor='#009999'
+                onValueChange={(v) => {
+                  setEarthDate(null);
+                  setMarsDate(v);
+                }}
+                onSlidingComplete={(v) => {
+                  setShowSolSlider(!showSolSlider);
+                }}
+              />
+            </View>
           )}
-          {amendedRover && amendedCamera.code && (marsDate || earthDate) && (
+          <AmendedOption
+            onPress={() => {
+              setShowDatePicker(!showDatePicker);
+              setShowSolSlider(false);
+              setShowRoverPicker(false);
+            }}
+          >
+            <Earth width={48} height={48} />
+            <Text>{earthDate}</Text>
+          </AmendedOption>
+          {showDatePicker && (
+            <DatePicker
+              mode='calendar'
+              selected={maxEarth}
+              onDateChange={(d) => {
+                handleDateChange(d);
+                setMarsDate(null);
+                setShowDatePicker(!showDatePicker);
+              }}
+              minimumDate={landingDate}
+              maximumDate={maxEarth}
+            />
+          )}
+          {amendedRover && (marsDate || earthDate) && (
             <Option onPress={setNewParams}>
               <OptionText>Search</OptionText>
             </Option>
           )}
-          <Option onPress={handleFilters}>
-            <OptionText>Close</OptionText>
-          </Option>
         </ModalView>
       </ModalWrapper>
     </Modal>

@@ -25,6 +25,19 @@ export const ModalView = styled.View`
   elevation: 5;
 `;
 
+export const CloseIcon = styled.TouchableOpacity`
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: ${(props) => props.theme.space[2]};
+  right: ${(props) => props.theme.space[2]};
+  padding: ${(props) => props.theme.space[2]};
+`;
+
+export const Title = styled(Text)`
+  margin: 20px;
+`;
+
 export const Option = styled.TouchableOpacity`
   padding: ${(props) => props.theme.space[3]};
   margin: 6px;

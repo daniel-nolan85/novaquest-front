@@ -10,6 +10,7 @@ import {
   ModalWrapper,
   ModalView,
   CloseIcon,
+  Title,
   OptionContainer,
   Option,
   GradientBackground,
@@ -21,6 +22,7 @@ import {
   filterSignalsByDate,
   filterSignalsByQuery,
 } from '../../../requests/signals';
+import { Text } from '../../../components/typography/text.component';
 
 export const SignalsHeader = ({ setFilteredSignals }) => {
   const [open, setOpen] = useState(false);
@@ -101,36 +103,39 @@ export const SignalsHeader = ({ setFilteredSignals }) => {
               <Close />
             </CloseIcon>
             {!showStartPicker && !showEndPicker && (
-              <OptionContainer>
-                <Option onPress={() => setShowStartPicker(true)}>
-                  <GradientBackground>
-                    <OptionText variant='body'>
-                      {startDate ? startDate : 'Set Start Date'}
-                    </OptionText>
-                  </GradientBackground>
-                </Option>
-                <Option
-                  onPress={() => setShowEndPicker(true)}
-                  disabled={!startDate}
-                >
-                  <GradientBackground>
-                    <OptionText variant='body'>
-                      {endDate ? endDate : 'Set End Date'}
-                    </OptionText>
-                  </GradientBackground>
-                </Option>
-                <Option onPress={setDates} disabled={!startDate || !endDate}>
-                  <GradientBackground>
-                    {isLoading ? (
-                      <ActivityIndicator size='large' color='#fff' />
-                    ) : (
-                      <>
-                        <OptionText variant='body'>Go</OptionText>
-                      </>
-                    )}
-                  </GradientBackground>
-                </Option>
-              </OptionContainer>
+              <>
+                <Title variant='title'>Filter signals by date</Title>
+                <OptionContainer>
+                  <Option onPress={() => setShowStartPicker(true)}>
+                    <GradientBackground>
+                      <OptionText variant='body'>
+                        {startDate ? startDate : 'Set Start Date'}
+                      </OptionText>
+                    </GradientBackground>
+                  </Option>
+                  <Option
+                    onPress={() => setShowEndPicker(true)}
+                    disabled={!startDate}
+                  >
+                    <GradientBackground>
+                      <OptionText variant='body'>
+                        {endDate ? endDate : 'Set End Date'}
+                      </OptionText>
+                    </GradientBackground>
+                  </Option>
+                  <Option onPress={setDates} disabled={!startDate || !endDate}>
+                    <GradientBackground>
+                      {isLoading ? (
+                        <ActivityIndicator size='large' color='#fff' />
+                      ) : (
+                        <>
+                          <OptionText variant='body'>Go</OptionText>
+                        </>
+                      )}
+                    </GradientBackground>
+                  </Option>
+                </OptionContainer>
+              </>
             )}
             {showStartPicker && (
               <DatePicker

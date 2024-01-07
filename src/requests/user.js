@@ -1,18 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
-export const updateUserName = async (authtoken, _id, name) => {
-  return await axios.put(
-    `${API_BASE_URL}/update-user-name`,
-    { _id, name },
-    {
-      headers: {
-        authtoken,
-      },
-    }
-  );
-};
-
 export const awardXP = async (authtoken, _id, xp) => {
   return await axios.put(
     `${API_BASE_URL}/award-xp`,
@@ -68,6 +56,7 @@ export const updateViewedRovers = async (
   camera,
   dateType
 ) => {
+  console.log('updateViewedRovers');
   return await axios.put(
     `${API_BASE_URL}/update-viewed-rovers`,
     { _id, rover, camera, dateType },
@@ -82,30 +71,30 @@ export const updateViewedRovers = async (
 export const updateGuestViewedRovers = async (user) => {
   const allRovers = ['curiosity', 'opportunity', 'perseverance', 'spirit'];
   const allCameras = [
-    'fhaz',
-    'rhaz',
-    'mast',
-    'chemcam',
-    'mahli',
-    'mardi',
-    'navcam',
-    'pancam',
-    'minites',
-    'edl_rucam',
-    'edl_rdcam',
-    'edl_ddcam',
-    'edl_pucam1',
-    'edl_pucam2',
-    'navcam_left',
-    'navcam_right',
-    'mcz_left',
-    'mcz_right',
-    'front_hazcam_left_a',
-    'front_hazcam_right_a',
-    'rear_hazcam_left',
-    'rear_hazcam_right',
-    'skycam',
-    'sherloc_watson',
+    'FHAZ',
+    'RHAZ',
+    'MAST',
+    'CHEMCAM',
+    'MAHLI',
+    'MARDI',
+    'NAVCAM',
+    'PANCAM',
+    'MINITES',
+    'EDL_RUCAM',
+    'EDL_RDCAM',
+    'EDL_DDCAM',
+    'EDL_PUCAM1',
+    'EDL_PUCAM2',
+    'NAVCAM_LEFT',
+    'NAVCAM_RIGHT',
+    'MCZ_RIGHT',
+    'MCZ_LEFT',
+    'FRONT_HAZCAM_LEFT_A',
+    'FRONT_HAZCAM_RIGHT_A',
+    'REAR_HAZCAM_LEFT',
+    'REAR_HAZCAM_RIGHT',
+    'SKYCAM',
+    'SHERLOC_WATSON',
   ];
   const allDateTypes = ['sol', 'earth_date'];
 

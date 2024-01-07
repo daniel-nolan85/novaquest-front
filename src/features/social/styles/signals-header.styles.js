@@ -58,6 +58,10 @@ export const CloseIcon = styled.TouchableOpacity`
   z-index: 999;
 `;
 
+export const Title = styled(Text)`
+  margin-top: 20px;
+`;
+
 export const OptionContainer = styled.View`
   margin: 20px 0;
   width: 100%;

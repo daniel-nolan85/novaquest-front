@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { List, Avatar, TextInput } from 'react-native-paper';
+import { List, Avatar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import { getAuth, signOut, updatePassword } from 'firebase/auth';
@@ -23,7 +22,6 @@ import { AchievementsModal } from '../components/achievements-modal.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { updateTextSpeed } from '../../../requests/user';
-import { updateUserName } from '../../../requests/user';
 
 export const SettingsScreen = () => {
   const [passwordIsLoading, setPasswordIsLoading] = useState(false);
@@ -34,8 +32,6 @@ export const SettingsScreen = () => {
   const [showTextSpeed, setShowTextSpeed] = useState(false);
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [userName, setUserName] = useState('');
 
   const { Icon } = Avatar;
   const { Section } = List;
@@ -54,35 +50,6 @@ export const SettingsScreen = () => {
   }, []);
 
   const auth = getAuth();
-
-  const handleEditPress = () => {
-    setIsEditing(true);
-  };
-
-  const handleSavePress = () => {
-    setIsEditing(false);
-    if (user.role !== 'guest') {
-      updateUserName(user.token, user._id, userName)
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              name: res.data.name,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          name: userName,
-        },
-      });
-    }
-  };
 
   const closeDaysInSpaceModal = () => {
     setShowDays(false);
@@ -189,20 +156,9 @@ export const SettingsScreen = () => {
         />
       </AvatarContainer>
       <UserInfoContainer>
-        {isEditing ? (
-          <TextInput
-            value={userName}
-            onChangeText={(text) => setUserName(text)}
-            onBlur={handleSavePress}
-            autoFocus
-          />
-        ) : (
-          <TouchableOpacity onPress={handleEditPress}>
-            <Text variant='title'>
-              {user.rank} {user.name}
-            </Text>
-          </TouchableOpacity>
-        )}
+        <Text variant='title'>
+          {user.rank} {user.name}
+        </Text>
       </UserInfoContainer>
       <Section>
         <SettingsItem
@@ -258,9 +214,3 @@ export const SettingsScreen = () => {
     </SafeArea>
   );
 };
-
-const styles = StyleSheet.create({
-  passwordContainer: {
-    overflow: 'hidden',
-  },
-});

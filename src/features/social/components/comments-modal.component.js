@@ -15,7 +15,6 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import { getComments } from '../../../requests/post';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
-import { Text } from '../../../components/typography/text.component';
 
 export const CommentsModal = ({ visible, setVisible, postId, navigate }) => {
   const [comments, setComments] = useState([]);
