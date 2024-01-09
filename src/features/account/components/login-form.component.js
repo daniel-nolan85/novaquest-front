@@ -13,7 +13,7 @@ import {
   Input,
 } from '../styles/account.styles';
 import { ForgotPasswordModal } from './forgot-password-modal.component';
-import { createOrUpdateUser } from '../../../requests/auth';
+import { checkBlockedList, createOrUpdateUser } from '../../../requests/auth';
 
 export const LoginForm = ({ handleGuestLogin }) => {
   const [email, setEmail] = useState('daniel@nolancode.com');
@@ -22,6 +22,25 @@ export const LoginForm = ({ handleGuestLogin }) => {
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
+
+  const checkBlocked = async () => {
+    await checkBlockedList(email).then((res) => {
+      if (res.data.length === 0) {
+        handleLogin();
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: `Oops! It seems like this email address has been blocked.`,
+          text2:
+            'Please use a different email to log in or contact support for assistance.',
+          style: {
+            width: '100%',
+          },
+        });
+        return;
+      }
+    });
+  };
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -152,7 +171,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
         secureTextEntry
       />
       <OptionContainer>
-        <Option onPress={handleLogin}>
+        <Option onPress={checkBlocked}>
           <GradientBackground>
             <OptionText variant='body'>Blast Off!</OptionText>
           </GradientBackground>

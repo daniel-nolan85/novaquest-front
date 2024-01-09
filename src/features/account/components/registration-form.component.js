@@ -16,10 +16,30 @@ import {
   Input,
   Info,
 } from '../styles/account.styles';
+import { checkBlockedList } from '../../../requests/auth';
 
 export const RegistrationForm = ({ handleGuestLogin }) => {
   const [email, setEmail] = useState('daniel@nolancode.com');
   const [password, setPassword] = useState('Lennon1027');
+
+  const checkBlocked = async () => {
+    await checkBlockedList(email).then((res) => {
+      if (res.data.length === 0) {
+        handleRegistration();
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: `Oops! It seems like this email address has been blocked.`,
+          text2:
+            'Please use a different email to log in or contact support for assistance.',
+          style: {
+            width: '100%',
+          },
+        });
+        return;
+      }
+    });
+  };
 
   const handleRegistration = async () => {
     const auth = getAuth();
@@ -97,7 +117,7 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
         secureTextEntry
       />
       <OptionContainer>
-        <Option onPress={handleRegistration}>
+        <Option onPress={checkBlocked}>
           <GradientBackground>
             <OptionText variant='body'>Prepare for Launch...</OptionText>
           </GradientBackground>

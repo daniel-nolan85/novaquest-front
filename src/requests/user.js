@@ -1,6 +1,18 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
+export const updateUserName = async (authtoken, _id, name) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-user-name`,
+    { _id, name },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const awardXP = async (authtoken, _id, xp) => {
   return await axios.put(
     `${API_BASE_URL}/award-xp`,

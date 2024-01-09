@@ -51,7 +51,7 @@ import { CommentsModal } from '../components/comments-modal.component';
 import { EditPostModal } from '../components/edit-post-modal.component';
 import { DeletePostModal } from '../components/delete-post-modal.component';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 export const UserStarsScreen = ({ navigation, route }) => {
   const [posts, setPosts] = useState([]);
@@ -100,7 +100,13 @@ export const UserStarsScreen = ({ navigation, route }) => {
 
   const fetchPosts = async () => {
     try {
-      const res = await fetchUsersStars(token, userId, page, PAGE_SIZE);
+      const res = await fetchUsersStars(
+        token,
+        userId,
+        page,
+        PAGE_SIZE,
+        initialIndex
+      );
       const newPosts = res.data;
 
       setPosts((prevPosts) => {
@@ -123,7 +129,13 @@ export const UserStarsScreen = ({ navigation, route }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersStars(token, userId, page + 1, PAGE_SIZE);
+      const res = await fetchUsersStars(
+        token,
+        userId,
+        page + 1,
+        PAGE_SIZE,
+        initialIndex
+      );
       if (res.data && Array.isArray(res.data)) {
         if (res.data.length === 0) {
           setAllPostsLoaded(true);
@@ -198,21 +210,6 @@ export const UserStarsScreen = ({ navigation, route }) => {
     lastTapTimeRef.current = currentTime;
   };
 
-  const likePost = async (postId) => {
-    try {
-      await handleLikePost(token, _id, postId);
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post._id === postId
-            ? { ...post, likes: [...post.likes, { _id }] }
-            : post
-        )
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const unlikePost = async (postId) => {
     try {
       await handleUnlikePost(token, _id, postId);
@@ -222,6 +219,7 @@ export const UserStarsScreen = ({ navigation, route }) => {
           likes: post.likes.filter((like) => like._id !== _id),
         }))
       );
+      fetchPosts();
     } catch (err) {
       console.error(err);
     }
@@ -445,7 +443,7 @@ export const UserStarsScreen = ({ navigation, route }) => {
                   visible={deleteable}
                   setVisible={setDeleteable}
                   post={selectedPost}
-                  newsFeed={fetchPosts}
+                  setPosts={setPosts}
                 />
                 <CommentsModal
                   visible={showComments}

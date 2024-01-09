@@ -12,20 +12,10 @@ import {
 } from '../styles/post-list.styles';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { PostModal } from './post-modal.component';
-import { fetchAllPosts } from '../../../requests/admin';
 
 export const PostsList = ({ navigate, posts, setPosts }) => {
   const [currentPost, setCurrentPost] = useState({});
   const [visible, setVisible] = useState(false);
-
-  const getPosts = async () => {
-    await fetchAllPosts(token)
-      .then((res) => {
-        console.log('posts => ', res.data);
-        setPosts(res.data);
-      })
-      .catch((err) => console.error(err));
-  };
 
   const renderItem = ({ item }) => (
     <PostWrapper key={item._id}>
@@ -53,7 +43,7 @@ export const PostsList = ({ navigate, posts, setPosts }) => {
         visible={visible}
         setVisible={setVisible}
         navigate={navigate}
-        newsFeed={getPosts}
+        setPosts={setPosts}
       />
     </PostWrapper>
   );

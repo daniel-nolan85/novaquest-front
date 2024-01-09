@@ -35,6 +35,7 @@ export const ProfileScreen = ({ navigation }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allPostsLoaded, setAllPostsLoaded] = useState(false);
+  const [allStarsLoaded, setAllStarsLoaded] = useState(false);
   const [routes] = useState([
     {
       key: 'first',
@@ -68,7 +69,7 @@ export const ProfileScreen = ({ navigation }) => {
     useSelector((state) => state.user);
 
   const usersPosts = async () => {
-    await fetchUsersPosts(token, _id, 1, PAGE_SIZE)
+    await fetchUsersPosts(token, _id, 1, PAGE_SIZE, 0)
       .then((res) => {
         setPosts(res.data);
       })
@@ -81,7 +82,7 @@ export const ProfileScreen = ({ navigation }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersPosts(token, _id, page + 1, PAGE_SIZE);
+      const res = await fetchUsersPosts(token, _id, page + 1, PAGE_SIZE, 0);
       if (res.data.length === 0) {
         setAllPostsLoaded(true);
       } else {
@@ -96,7 +97,7 @@ export const ProfileScreen = ({ navigation }) => {
   };
 
   const usersStars = async () => {
-    await fetchUsersStars(token, _id, 1, PAGE_SIZE)
+    await fetchUsersStars(token, _id, 1, PAGE_SIZE, 0)
       .then((res) => {
         setStars(res.data);
       })
@@ -104,14 +105,14 @@ export const ProfileScreen = ({ navigation }) => {
   };
 
   const loadMoreStars = async () => {
-    if (loading || allPostsLoaded) {
+    if (loading || allStarsLoaded) {
       return;
     }
     setLoading(true);
     try {
-      const res = await fetchUsersStars(token, _id, page + 1, PAGE_SIZE);
+      const res = await fetchUsersStars(token, _id, page + 1, PAGE_SIZE, 0);
       if (res.data.length === 0) {
-        setAllPostsLoaded(true);
+        setAllStarsLoaded(true);
       } else {
         setStars((prevPosts) => [...prevPosts, ...res.data]);
         setPage((prevPage) => prevPage + 1);
@@ -150,7 +151,7 @@ export const ProfileScreen = ({ navigation }) => {
         navigate={navigate}
         loadMoreStars={loadMoreStars}
         loading={loading}
-        allPostsLoaded={allPostsLoaded}
+        allStarsLoaded={allStarsLoaded}
       />
     ),
     third: () => <AchievementsRoute achievements={achievements} />,

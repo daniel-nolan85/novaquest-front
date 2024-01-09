@@ -73,7 +73,7 @@ export const PostsRoute = ({
         keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
         onEndReached={loadMorePosts}
-        onEndReachedThreshold={0.01}
+        onEndReachedThreshold={0.1}
         ListFooterComponent={
           loading &&
           !allPostsLoaded && <ActivityIndicator size='small' color='#009999' />

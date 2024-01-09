@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
@@ -38,7 +38,7 @@ export const FeedScreen = ({ navigation }) => {
             !newPosts.find((newPost) => newPost._id === prevPost._id)
         );
 
-        return [...filteredPosts, ...newPosts];
+        return [...newPosts, ...filteredPosts];
       });
     } catch (err) {
       console.error('Error fetching posts:', err.message);

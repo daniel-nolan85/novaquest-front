@@ -32,7 +32,7 @@ export const PostsScreen = ({ route }) => {
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
         <SearchContainer>
           <Searchbar
-            placeholder='Search  posts...'
+            placeholder='Search posts...'
             onChangeText={(query) => {
               setSearchQuery(query);
               handleSearch(query);

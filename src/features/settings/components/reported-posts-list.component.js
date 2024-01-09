@@ -18,15 +18,6 @@ export const ReportedPostsList = ({ navigate, posts, setReportedPosts }) => {
   const [currentPost, setCurrentPost] = useState({});
   const [visible, setVisible] = useState(false);
 
-  const getReportedPosts = async () => {
-    await fetchReportedPosts(token)
-      .then((res) => {
-        console.log('reportedPosts => ', res.data);
-        setReportedPosts(res.data);
-      })
-      .catch((err) => console.error(err));
-  };
-
   const renderItem = ({ item }) => (
     <RPWrapper key={item._id}>
       <RPHeader>
@@ -53,7 +44,7 @@ export const ReportedPostsList = ({ navigate, posts, setReportedPosts }) => {
         visible={visible}
         setVisible={setVisible}
         navigate={navigate}
-        newsFeed={getReportedPosts}
+        setPosts={setReportedPosts}
       />
     </RPWrapper>
   );

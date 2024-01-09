@@ -40,7 +40,7 @@ export const PostModal = ({
   visible,
   setVisible,
   navigate,
-  newsFeed,
+  setPosts,
 }) => {
   const [deleteable, setDeleteable] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -180,7 +180,8 @@ export const PostModal = ({
                   visible={deleteable}
                   setVisible={setDeleteable}
                   post={post}
-                  newsFeed={newsFeed}
+                  setPosts={setPosts}
+                  hidePostModal={closeModal}
                 />
                 <CommentsModal
                   visible={showComments}

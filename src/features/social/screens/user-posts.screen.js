@@ -50,7 +50,7 @@ import { CommentsModal } from '../components/comments-modal.component';
 import { EditPostModal } from '../components/edit-post-modal.component';
 import { DeletePostModal } from '../components/delete-post-modal.component';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 export const UserPostsScreen = ({ navigation, route }) => {
   const [posts, setPosts] = useState([]);
@@ -90,7 +90,13 @@ export const UserPostsScreen = ({ navigation, route }) => {
 
   const fetchPosts = async () => {
     try {
-      const res = await fetchUsersPosts(token, userId, page, PAGE_SIZE);
+      const res = await fetchUsersPosts(
+        token,
+        userId,
+        page,
+        PAGE_SIZE,
+        initialIndex
+      );
       const newPosts = res.data;
 
       setPosts((prevPosts) => {
@@ -114,7 +120,13 @@ export const UserPostsScreen = ({ navigation, route }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersPosts(token, userId, page + 1, PAGE_SIZE);
+      const res = await fetchUsersPosts(
+        token,
+        userId,
+        page + 1,
+        PAGE_SIZE,
+        initialIndex
+      );
       if (res.data && Array.isArray(res.data)) {
         if (res.data.length === 0) {
           setAllPostsLoaded(true);
@@ -433,7 +445,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
                   visible={deleteable}
                   setVisible={setDeleteable}
                   post={selectedPost}
-                  newsFeed={fetchPosts}
+                  setPosts={setPosts}
                 />
                 <CommentsModal
                   visible={showComments}

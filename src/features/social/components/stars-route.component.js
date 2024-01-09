@@ -14,7 +14,7 @@ export const StarsRoute = ({
   navigate,
   loadMoreStars,
   loading,
-  allPostsLoaded,
+  allStarsLoaded,
 }) => {
   const [thumbnails, setThumbnails] = useState([]);
 
@@ -73,10 +73,10 @@ export const StarsRoute = ({
         keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
         onEndReached={loadMoreStars}
-        onEndReachedThreshold={0.01}
+        onEndReachedThreshold={0.1}
         ListFooterComponent={
           loading &&
-          !allPostsLoaded && <ActivityIndicator size='small' color='#009999' />
+          !allStarsLoaded && <ActivityIndicator size='small' color='#009999' />
         }
       />
     </StarsRouteWrapper>

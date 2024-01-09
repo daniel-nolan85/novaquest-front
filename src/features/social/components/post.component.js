@@ -315,7 +315,7 @@ export const Post = ({
         visible={deleteable}
         setVisible={setDeleteable}
         post={selectedPost}
-        newsFeed={newsFeed}
+        setPosts={setPosts}
       />
       <CommentsModal
         visible={showComments}

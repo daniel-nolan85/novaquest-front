@@ -123,6 +123,13 @@ export const DaysDescription = styled(Text)`
 `;
 
 export const SearchContainer = styled.View`
-  flex: 1;
   padding-right: ${(props) => props.theme.space[2]};
+`;
+
+export const ScrollArea = styled.ScrollView`
+  height: 500px;
+`;
+
+export const Delete = styled(Text)`
+  color: #c0392b;
 `;

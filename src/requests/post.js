@@ -92,10 +92,16 @@ export const fetchSinglePost = async (authtoken, postId) => {
   );
 };
 
-export const fetchUsersPosts = async (authtoken, _id, page, pageSize) => {
+export const fetchUsersPosts = async (
+  authtoken,
+  _id,
+  page,
+  pageSize,
+  initialIndex
+) => {
   return await axios.post(
     `${API_BASE_URL}/users-posts`,
-    { _id, page, pageSize },
+    { _id, page, pageSize, initialIndex },
     {
       headers: {
         authtoken,
@@ -104,10 +110,16 @@ export const fetchUsersPosts = async (authtoken, _id, page, pageSize) => {
   );
 };
 
-export const fetchUsersStars = async (authtoken, _id, page, pageSize) => {
+export const fetchUsersStars = async (
+  authtoken,
+  _id,
+  page,
+  pageSize,
+  initialIndex
+) => {
   return await axios.post(
     `${API_BASE_URL}/users-stars`,
-    { _id, page, pageSize },
+    { _id, page, pageSize, initialIndex },
     {
       headers: {
         authtoken,
