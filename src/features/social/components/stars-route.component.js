@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
 import * as VideoThumbnails from 'expo-video-thumbnails';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -8,7 +9,13 @@ import {
   StarImage,
 } from '../styles/stars-route.styles';
 
-export const StarsRoute = ({ stars, navigate }) => {
+export const StarsRoute = ({
+  stars,
+  navigate,
+  loadMoreStars,
+  loading,
+  allPostsLoaded,
+}) => {
   const [thumbnails, setThumbnails] = useState([]);
 
   useEffect(() => {
@@ -63,6 +70,14 @@ export const StarsRoute = ({ stars, navigate }) => {
             </StarWrapper>
           );
         }}
+        keyExtractor={(item) => item._id}
+        showsVerticalScrollIndicator={false}
+        onEndReached={loadMoreStars}
+        onEndReachedThreshold={0.01}
+        ListFooterComponent={
+          loading &&
+          !allPostsLoaded && <ActivityIndicator size='small' color='#009999' />
+        }
       />
     </StarsRouteWrapper>
   );

@@ -19,6 +19,7 @@ import { theme } from './src/infrastructure/theme';
 import { PlanetsContextProvider } from './src/services/planets/planets.context';
 import { ImagesContextProvider } from './src/services/images/images.context';
 import { GamesContextProvider } from './src/services/games/games.context';
+import { SettingsContextProvider } from './src/services/settings/settings.context';
 import { Navigation } from './src/infrastructure/navigation';
 import { currentUser } from './src/requests/auth';
 import { incrementNotifsCount } from './src/requests/user';
@@ -136,13 +137,15 @@ export const AppComponents = () => {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <GamesContextProvider>
-          <PlanetsContextProvider>
-            <ImagesContextProvider>
-              <Navigation />
-            </ImagesContextProvider>
-          </PlanetsContextProvider>
-        </GamesContextProvider>
+        <SettingsContextProvider>
+          <GamesContextProvider>
+            <PlanetsContextProvider>
+              <ImagesContextProvider>
+                <Navigation />
+              </ImagesContextProvider>
+            </PlanetsContextProvider>
+          </GamesContextProvider>
+        </SettingsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />
       <Toast />

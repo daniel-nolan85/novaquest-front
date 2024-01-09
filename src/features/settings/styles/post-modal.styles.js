@@ -1,21 +1,20 @@
 import styled from 'styled-components/native';
 import { Video } from 'expo-av';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from '../../../components/typography/text.component';
 
 export const ModalWrapper = styled.View`
   align-items: center;
   justify-content: center;
   flex: 1;
-  position: relative;
-  margin-top: 20px;
+  margin: ${(props) => props.theme.space[3]};
 `;
 
 export const ModalView = styled.View`
   margin: 20px;
   background-color: white;
   border-radius: 20px;
-  width: 90%;
+  width: 100%;
+  padding: 10px;
   align-items: center;
   shadow-color: #000;
   shadow-offset: {
@@ -34,40 +33,6 @@ export const CloseIcon = styled.TouchableOpacity`
   top: ${(props) => props.theme.space[2]};
   right: ${(props) => props.theme.space[2]};
   padding: ${(props) => props.theme.space[2]};
-  z-index: 999;
-`;
-
-export const OptionContainer = styled.View`
-  margin: 20px 0;
-  width: 100%;
-`;
-
-export const Option = styled.TouchableOpacity`
-  margin: 0 ${(props) => props.theme.space[3]};
-  width: 90%;
-`;
-
-const baseGradientStyle = {
-  flexDirection: 'row',
-  padding: '16px',
-  margin: '6px',
-  borderRadius: '12px',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
-export const GradientBackground = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
-  start: { x: 0, y: 0 },
-  end: { x: 1, y: 0 },
-})`
-  ${baseGradientStyle}
-`;
-
-export const OptionText = styled(Text)`
-  color: ${(props) => props.theme.colors.text.inverse};
-  text-transform: uppercase;
-  margin-left: 10px;
 `;
 
 export const PostWrapper = styled.View`
@@ -81,7 +46,7 @@ export const PostWrapper = styled.View`
     width: 0;
     height: 4px;
   }
-  margin-top: 40px;
+  margin-top: 50px;
 `;
 
 export const PostHeader = styled.View`
@@ -94,7 +59,6 @@ export const PostHeader = styled.View`
 export const PostCreator = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
-  margin: 0 8px;
 `;
 
 export const PostCreatorImage = styled.Image`
@@ -116,30 +80,25 @@ export const Timestamp = styled(Text)`
   color: #009999;
 `;
 
-export const PostContentWrapper = styled.View`
-  margin: 8px;
+export const TrashIcon = styled.TouchableOpacity`
+  margin-right: 10px;
 `;
 
-export const CreatePostBox = styled.View`
-  border-radius: 26px;
-  border-width: 1px;
-  border-color: #ccc;
-  padding: 12px;
-  justify-content: center;
-  flex-grow: 1;
+export const PostContentWrapper = styled.View`
+  margin: 8px;
 `;
 
 export const PostImage = styled.Image`
   margin-top: 10px;
   width: 350px;
-  height: 350px;
+  height: 450px;
   align-self: center;
 `;
 
 export const PostVideo = styled(Video)`
   margin-top: 10px;
   width: 350px;
-  height: 350px;
+  height: 450px;
   align-self: center;
 `;
 
@@ -148,12 +107,63 @@ export const ImageNumber = styled(Text)`
   color: #009999;
 `;
 
-export const TrashIcon = styled.TouchableOpacity`
-  position: absolute;
-  top: ${(props) => props.theme.space[2]};
-  right: ${(props) => props.theme.space[2]};
+export const PostReactionWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
 `;
 
-export const CameraIcon = styled.TouchableOpacity`
-  align-self: center;
+export const StarsAndComments = styled.View`
+  flex-direction: row;
+`;
+
+export const Stars = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  margin-right: 12px;
+`;
+
+export const StarsNumber = styled(Text)`
+  margin-left: 2px;
+`;
+
+export const Comments = styled.TouchableOpacity`
+  margin-left: 20px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CommentsNumber = styled(Text)`
+  margin-left: 2px;
+`;
+
+export const CommentSection = styled.View`
+  flex-direction: row;
+  margin: 0 8px;
+  padding: 18px 0;
+  border-top-width: 1px;
+  border-top-color: #fdf6ed;
+`;
+
+export const UserImage = styled.Image`
+  height: 52px;
+  width: 52px;
+  border-radius: 26px;
+`;
+
+export const CommentBox = styled.TouchableOpacity`
+  flex: 1;
+  height: 52px;
+  border-radius: 26px;
+  border-width: 1px;
+  border-color: #ccc;
+  margin-left: 12px;
+  padding-left: 12px;
+  justify-content: center;
+`;
+
+export const Placeholder = styled(Text)`
+  color: #ccc;
+  font-size: 14px;
 `;

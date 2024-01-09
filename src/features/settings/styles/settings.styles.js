@@ -21,6 +21,11 @@ export const SettingsItem = styled(Item)`
   margin: 0 ${(props) => props.theme.space[1]};
 `;
 
+export const AdminWrapper = styled.View`
+  margin-top: 40px;
+  width: 100%;
+`;
+
 export const OptionContainer = styled.View`
   width: 100%;
 `;
@@ -115,4 +120,9 @@ export const Animation = styled(LottieView)`
 
 export const DaysDescription = styled(Text)`
   margin-top: 20px;
+`;
+
+export const SearchContainer = styled.View`
+  flex: 1;
+  padding-right: ${(props) => props.theme.space[2]};
 `;

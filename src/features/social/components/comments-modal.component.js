@@ -16,7 +16,13 @@ import Close from '../../../../assets/svg/close.svg';
 import { getComments } from '../../../requests/post';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
-export const CommentsModal = ({ visible, setVisible, postId, navigate }) => {
+export const CommentsModal = ({
+  visible,
+  setVisible,
+  postId,
+  navigate,
+  hidePostModal,
+}) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -46,6 +52,7 @@ export const CommentsModal = ({ visible, setVisible, postId, navigate }) => {
       onPress={() => {
         navigate('UserProfile', { userId: item.postedBy._id });
         setVisible(false);
+        hidePostModal && hidePostModal();
       }}
     >
       <CommentImage

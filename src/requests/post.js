@@ -68,10 +68,10 @@ export const deletePost = async (authtoken, _id, postId) => {
   );
 };
 
-export const fetchPosts = async (authtoken, _id) => {
+export const fetchPosts = async (authtoken, _id, page, pageSize) => {
   return await axios.post(
     `${API_BASE_URL}/news-feed`,
-    { _id },
+    { _id, page, pageSize },
     {
       headers: {
         authtoken,
@@ -92,10 +92,10 @@ export const fetchSinglePost = async (authtoken, postId) => {
   );
 };
 
-export const fetchUsersPosts = async (authtoken, _id) => {
+export const fetchUsersPosts = async (authtoken, _id, page, pageSize) => {
   return await axios.post(
     `${API_BASE_URL}/users-posts`,
-    { _id },
+    { _id, page, pageSize },
     {
       headers: {
         authtoken,
@@ -104,10 +104,10 @@ export const fetchUsersPosts = async (authtoken, _id) => {
   );
 };
 
-export const fetchUsersStars = async (authtoken, _id) => {
+export const fetchUsersStars = async (authtoken, _id, page, pageSize) => {
   return await axios.post(
     `${API_BASE_URL}/users-stars`,
-    { _id },
+    { _id, page, pageSize },
     {
       headers: {
         authtoken,

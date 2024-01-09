@@ -1,9 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import { ScrollView, View, TouchableOpacity } from 'react-native';
+import {
+  ScrollView,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { fetchUsersStars } from '../../../requests/post';
 import moment from 'moment';
+import io from 'socket.io-client';
 import { Text } from '../../../components/typography/text.component';
 import {
   PostWrapper,
@@ -16,6 +22,7 @@ import {
   PostActions,
   PostContentWrapper,
   PostImage,
+  PostVideo,
   ImageNumber,
   PostReactionWrapper,
   StarsAndComments,
@@ -44,6 +51,8 @@ import { CommentsModal } from '../components/comments-modal.component';
 import { EditPostModal } from '../components/edit-post-modal.component';
 import { DeletePostModal } from '../components/delete-post-modal.component';
 
+const PAGE_SIZE = 10;
+
 export const UserStarsScreen = ({ navigation, route }) => {
   const [posts, setPosts] = useState([]);
   const [showComments, setShowComments] = useState(false);
@@ -54,6 +63,10 @@ export const UserStarsScreen = ({ navigation, route }) => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [editable, setEditable] = useState(false);
   const [deleteable, setDeleteable] = useState(false);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [allPostsLoaded, setAllPostsLoaded] = useState(false);
+  const [shouldTriggerScroll, setShouldTriggerScroll] = useState(true);
 
   const { navigate } = navigation;
   const { userId, initialIndex } = route.params;
@@ -64,6 +77,15 @@ export const UserStarsScreen = ({ navigation, route }) => {
 
   const { token, _id, profileImage } = useSelector((state) => state.user);
 
+  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+
+  useEffect(() => {
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     if (token) {
       fetchPosts();
@@ -71,15 +93,63 @@ export const UserStarsScreen = ({ navigation, route }) => {
   }, [token]);
 
   useEffect(() => {
-    handleScrollToPost();
+    if (shouldTriggerScroll) {
+      handleScrollToPost();
+    }
   }, [postLayouts]);
 
   const fetchPosts = async () => {
-    await fetchUsersStars(token, userId)
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => console.error(err));
+    try {
+      const res = await fetchUsersStars(token, userId, page, PAGE_SIZE);
+      const newPosts = res.data;
+
+      setPosts((prevPosts) => {
+        const filteredPosts = prevPosts.filter(
+          (prevPost) =>
+            !newPosts.find((newPost) => newPost._id === prevPost._id)
+        );
+
+        return [...filteredPosts, ...newPosts];
+      });
+    } catch (err) {
+      console.error('Error fetching posts:', err.message);
+    }
+  };
+
+  const loadMorePosts = async () => {
+    setShouldTriggerScroll(false);
+    if (loading || allPostsLoaded) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetchUsersStars(token, userId, page + 1, PAGE_SIZE);
+      if (res.data && Array.isArray(res.data)) {
+        if (res.data.length === 0) {
+          setAllPostsLoaded(true);
+        } else {
+          setPosts((prevPosts) => [...prevPosts, ...res.data]);
+          setPage((prevPage) => prevPage + 1);
+        }
+      } else {
+        console.error('Invalid response format:', res);
+      }
+    } catch (error) {
+      console.error('Error fetching more posts:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleScroll = (event) => {
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const paddingToBottom = 20;
+    if (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    ) {
+      loadMorePosts();
+    }
   };
 
   const handleLayout = (event, index) => {
@@ -129,19 +199,32 @@ export const UserStarsScreen = ({ navigation, route }) => {
   };
 
   const likePost = async (postId) => {
-    await handleLikePost(token, _id, postId)
-      .then((res) => {
-        fetchPosts();
-      })
-      .catch((err) => console.error(err));
+    try {
+      await handleLikePost(token, _id, postId);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post._id === postId
+            ? { ...post, likes: [...post.likes, { _id }] }
+            : post
+        )
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const unlikePost = async (postId) => {
-    await handleUnlikePost(token, _id, postId)
-      .then((res) => {
-        fetchPosts();
-      })
-      .catch((err) => console.error(err));
+    try {
+      await handleUnlikePost(token, _id, postId);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => ({
+          ...post,
+          likes: post.likes.filter((like) => like._id !== _id),
+        }))
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const viewComments = (postId) => {
@@ -150,12 +233,30 @@ export const UserStarsScreen = ({ navigation, route }) => {
   };
 
   const handleCommentSelect = (item, postId) => {
-    setShowCommentList(false);
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post._id === postId
+          ? { ...post, comments: [...post.comments, item] }
+          : post
+      )
+    );
     addComment(token, _id, postId, item)
       .then((res) => {
-        fetchPosts();
+        setShowCommentList(false);
+        if (res.data.postedBy !== _id) {
+          socket.emit('new comment', { _id, ownerId: res.data.postedBy });
+        }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error('Error adding comment:', err);
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === postId
+              ? { ...post, comments: post.comments.slice(0, -1) }
+              : post
+          )
+        );
+      });
   };
 
   const editPost = (post) => {
@@ -173,7 +274,12 @@ export const UserStarsScreen = ({ navigation, route }) => {
   return (
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
-        <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          ref={scrollViewRef}
+          showsVerticalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
           {postLayouts &&
             posts.map((post, index) => (
               <PostWrapper
@@ -355,6 +461,9 @@ export const UserStarsScreen = ({ navigation, route }) => {
                 />
               </PostWrapper>
             ))}
+          {loading && !allPostsLoaded && (
+            <ActivityIndicator size='large' color='#009999' />
+          )}
         </ScrollView>
       </View>
     </SafeArea>

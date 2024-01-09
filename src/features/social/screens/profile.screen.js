@@ -25,11 +25,16 @@ const SafeAreaView = styled(SafeArea)`
   background-color: #fff;
 `;
 
+const PAGE_SIZE = 15;
+
 export const ProfileScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
   const [stars, setStars] = useState([]);
   const [achievements, setAchievements] = useState([]);
   const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [allPostsLoaded, setAllPostsLoaded] = useState(false);
   const [routes] = useState([
     {
       key: 'first',
@@ -63,19 +68,59 @@ export const ProfileScreen = ({ navigation }) => {
     useSelector((state) => state.user);
 
   const usersPosts = async () => {
-    await fetchUsersPosts(token, _id)
+    await fetchUsersPosts(token, _id, 1, PAGE_SIZE)
       .then((res) => {
         setPosts(res.data);
       })
       .catch((err) => console.error(err));
   };
 
+  const loadMorePosts = async () => {
+    if (loading || allPostsLoaded) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetchUsersPosts(token, _id, page + 1, PAGE_SIZE);
+      if (res.data.length === 0) {
+        setAllPostsLoaded(true);
+      } else {
+        setPosts((prevPosts) => [...prevPosts, ...res.data]);
+        setPage((prevPage) => prevPage + 1);
+      }
+    } catch (error) {
+      console.error('Error fetching more posts:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const usersStars = async () => {
-    await fetchUsersStars(token, _id)
+    await fetchUsersStars(token, _id, 1, PAGE_SIZE)
       .then((res) => {
         setStars(res.data);
       })
       .catch((err) => console.error(err));
+  };
+
+  const loadMoreStars = async () => {
+    if (loading || allPostsLoaded) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetchUsersStars(token, _id, page + 1, PAGE_SIZE);
+      if (res.data.length === 0) {
+        setAllPostsLoaded(true);
+      } else {
+        setStars((prevPosts) => [...prevPosts, ...res.data]);
+        setPage((prevPage) => prevPage + 1);
+      }
+    } catch (error) {
+      console.error('Error fetching more posts:', error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const usersAchievements = async () => {
@@ -90,8 +135,24 @@ export const ProfileScreen = ({ navigation }) => {
   };
 
   const renderScene = SceneMap({
-    first: () => <PostsRoute posts={posts} navigate={navigate} />,
-    second: () => <StarsRoute stars={stars} navigate={navigate} />,
+    first: () => (
+      <PostsRoute
+        posts={posts}
+        navigate={navigate}
+        loadMorePosts={loadMorePosts}
+        loading={loading}
+        allPostsLoaded={allPostsLoaded}
+      />
+    ),
+    second: () => (
+      <StarsRoute
+        stars={stars}
+        navigate={navigate}
+        loadMoreStars={loadMoreStars}
+        loading={loading}
+        allPostsLoaded={allPostsLoaded}
+      />
+    ),
     third: () => <AchievementsRoute achievements={achievements} />,
   });
 

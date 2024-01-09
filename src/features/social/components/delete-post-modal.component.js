@@ -59,7 +59,7 @@ export const DeletePostModal = ({ visible, setVisible, post, newsFeed }) => {
       <Modal visible={visible} transparent={true} animationType='slide'>
         <ModalWrapper>
           <ModalView>
-            <CloseIcon onPress={() => setVisible(false)}>
+            <CloseIcon onPress={closeModal}>
               <Close />
             </CloseIcon>
             <AnimationWrapper>

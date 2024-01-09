@@ -26,9 +26,7 @@ export const SignalList = ({ navigate, signals }) => {
           >
             <SignalUserImage
               source={
-                item.user.profileImage
-                  ? item.postedBy.profileImage
-                  : defaultProfile
+                item.user.profileImage ? item.user.profileImage : defaultProfile
               }
             />
           </TouchableOpacity>

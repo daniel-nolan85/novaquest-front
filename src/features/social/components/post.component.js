@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import io from 'socket.io-client';
@@ -44,7 +49,15 @@ import { CommentsModal } from './comments-modal.component';
 import { EditPostModal } from './edit-post-modal.component';
 import { DeletePostModal } from './delete-post-modal.component';
 
-export const Post = ({ navigate, posts, newsFeed }) => {
+export const Post = ({
+  navigate,
+  posts,
+  setPosts,
+  newsFeed,
+  loadMorePosts,
+  loading,
+  allPostsLoaded,
+}) => {
   const [showActions, setShowActions] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showCommentList, setShowCommentList] = useState(false);
@@ -83,22 +96,36 @@ export const Post = ({ navigate, posts, newsFeed }) => {
   };
 
   const likePost = async (postId) => {
-    await handleLikePost(token, _id, postId)
-      .then((res) => {
-        newsFeed();
+    try {
+      await handleLikePost(token, _id, postId).then((res) => {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === postId
+              ? { ...post, likes: [...post.likes, { _id }] }
+              : post
+          )
+        );
         if (res.data.postedBy !== _id) {
           socket.emit('like post', { _id, ownerId: res.data.postedBy });
         }
-      })
-      .catch((err) => console.error(err));
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const unlikePost = async (postId) => {
-    await handleUnlikePost(token, _id, postId)
-      .then((res) => {
-        newsFeed();
-      })
-      .catch((err) => console.error(err));
+    try {
+      await handleUnlikePost(token, _id, postId);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) => ({
+          ...post,
+          likes: post.likes.filter((like) => like._id !== _id),
+        }))
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const viewComments = (postId) => {
@@ -107,15 +134,27 @@ export const Post = ({ navigate, posts, newsFeed }) => {
   };
 
   const handleCommentSelect = (item, postId) => {
-    setShowCommentList(false);
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post._id === postId
+          ? { ...post, comments: [...post.comments, item] }
+          : post
+      )
+    );
     addComment(token, _id, postId, item)
       .then((res) => {
-        newsFeed();
-        if (res.data.postedBy !== _id) {
-          socket.emit('new comment', { _id, ownerId: res.data.postedBy });
-        }
+        setShowCommentList(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error('Error adding comment:', err);
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === postId
+              ? { ...post, comments: post.comments.slice(0, -1) }
+              : post
+          )
+        );
+      });
   };
 
   const editPost = (post) => {
@@ -299,6 +338,12 @@ export const Post = ({ navigate, posts, newsFeed }) => {
       renderItem={renderItem}
       keyExtractor={(item) => item._id}
       showsVerticalScrollIndicator={false}
+      onEndReached={loadMorePosts}
+      onEndReachedThreshold={0.1}
+      ListFooterComponent={
+        loading &&
+        !allPostsLoaded && <ActivityIndicator size='large' color='#009999' />
+      }
     />
   );
 };

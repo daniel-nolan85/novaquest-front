@@ -10,6 +10,7 @@ import {
   UserInfoContainer,
   SettingsItem,
 } from '../styles/settings.styles';
+import Admin from '../../../../assets/svg/admin.svg';
 import Rocket from '../../../../assets/svg/rocket.svg';
 import Astronaut from '../../../../assets/svg/astronaut.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
@@ -17,15 +18,17 @@ import Password from '../../../../assets/svg/password.svg';
 import Speech from '../../../../assets/svg/speech.svg';
 import Logout from '../../../../assets/svg/logout.svg';
 import { Text } from '../../../components/typography/text.component';
+import { AdminModal } from '../components/admin-modal.component';
 import { DaysInSpaceModal } from '../components/days-in-space-modal.component';
 import { AchievementsModal } from '../components/achievements-modal.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { updateTextSpeed } from '../../../requests/user';
 
-export const SettingsScreen = () => {
+export const SettingsScreen = ({ navigation }) => {
   const [passwordIsLoading, setPasswordIsLoading] = useState(false);
   const [textSpeedIsLoading, setTextSpeedIsLoading] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
   const [showDays, setShowDays] = useState(false);
   const [showAchievements, setShowAchievements] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -39,6 +42,8 @@ export const SettingsScreen = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
 
+  const { navigate } = navigation;
+
   useEffect(() => {
     if (user.textSpeed === 100) {
       setTextSpeed('slow');
@@ -50,6 +55,10 @@ export const SettingsScreen = () => {
   }, []);
 
   const auth = getAuth();
+
+  const closeAdminModal = () => {
+    setShowAdmin(false);
+  };
 
   const closeDaysInSpaceModal = () => {
     setShowDays(false);
@@ -161,6 +170,13 @@ export const SettingsScreen = () => {
         </Text>
       </UserInfoContainer>
       <Section>
+        {user.role === 'admin' && (
+          <SettingsItem
+            title={<Text variant='body'>Admin</Text>}
+            left={() => <Admin width={32} height={32} />}
+            onPress={() => setShowAdmin(true)}
+          />
+        )}
         <SettingsItem
           title={<Text variant='body'>Days in space</Text>}
           left={() => <Rocket width={32} height={32} />}
@@ -189,6 +205,11 @@ export const SettingsScreen = () => {
           onPress={logout}
         />
       </Section>
+      <AdminModal
+        showAdmin={showAdmin}
+        closeAdminModal={closeAdminModal}
+        navigate={navigate}
+      />
       <DaysInSpaceModal
         showDays={showDays}
         closeDaysInSpaceModal={closeDaysInSpaceModal}

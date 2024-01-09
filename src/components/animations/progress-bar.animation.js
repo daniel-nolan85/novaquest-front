@@ -32,7 +32,12 @@ export const AnimatedProgressBar = ({ isLoading }) => {
   return (
     <>
       {progressActive && (
-        <ProgressBar progress={progress} width={null} color={'#009999'} />
+        <ProgressBar
+          progress={progress}
+          width={null}
+          color={'#009999'}
+          style={{ marginBottom: 10 }}
+        />
       )}
     </>
   );

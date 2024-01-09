@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
 import * as VideoThumbnails from 'expo-video-thumbnails';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -8,7 +9,13 @@ import {
   PostImage,
 } from '../styles/posts-route.styles';
 
-export const PostsRoute = ({ posts, navigate }) => {
+export const PostsRoute = ({
+  posts,
+  navigate,
+  loadMorePosts,
+  loading,
+  allPostsLoaded,
+}) => {
   const [thumbnails, setThumbnails] = useState([]);
 
   useEffect(() => {
@@ -63,6 +70,14 @@ export const PostsRoute = ({ posts, navigate }) => {
             </PostWrapper>
           );
         }}
+        keyExtractor={(item) => item._id}
+        showsVerticalScrollIndicator={false}
+        onEndReached={loadMorePosts}
+        onEndReachedThreshold={0.01}
+        ListFooterComponent={
+          loading &&
+          !allPostsLoaded && <ActivityIndicator size='small' color='#009999' />
+        }
       />
     </PostsRouteWrapper>
   );

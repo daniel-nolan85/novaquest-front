@@ -9,7 +9,7 @@ import { PlanetsNavigator } from './planets.navigator';
 import { SocialNavigator } from './social.navigator';
 import { ProfileNavigator } from './profile.navigator';
 import { GamesNavigator } from './games.navigator';
-import { SettingsScreen } from '../../features/settings/screens/settings.screen';
+import { SettingsNavigator } from './settings.navigator';
 import Telescope from '../../../assets/svg/telescope.svg';
 import TelescopeInactive from '../../../assets/svg/telescope-inactive.svg';
 import Planets from '../../../assets/svg/planets.svg';
@@ -145,7 +145,7 @@ export const AppNavigator = () => {
           />
           <Screen
             name='Settings'
-            component={SettingsScreen}
+            component={SettingsNavigator}
             options={{
               tabBarIcon: ({ focused }) =>
                 focused ? (
