@@ -42,7 +42,6 @@ export const storeNotifToken = async (authtoken, _id, notificationToken) => {
 };
 
 export const deleteAccount = async (authtoken, userId) => {
-  console.log({ userId });
   return await axios.put(
     `${API_BASE_URL}/delete-account`,
     { userId },

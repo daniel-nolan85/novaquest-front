@@ -41,7 +41,6 @@ export const DeleteUserModal = ({
     setIsLoading(true);
     await deleteUser(token, userId)
       .then(async (res) => {
-        console.log(res.data);
         setUsers((prevUsers) =>
           prevUsers.filter((prevUser) => prevUser._id !== userId)
         );

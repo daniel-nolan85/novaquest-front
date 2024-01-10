@@ -37,7 +37,6 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   const getReportedPosts = async () => {
     await fetchReportedPosts(token)
       .then((res) => {
-        console.log('reportedPosts => ', res.data);
         setReportedPosts(res.data);
       })
       .catch((err) => console.error(err));
@@ -46,7 +45,6 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   const getPosts = async () => {
     await fetchAllPosts(token)
       .then((res) => {
-        console.log('posts => ', res.data);
         setPosts(res.data);
       })
       .catch((err) => console.error(err));
@@ -55,7 +53,6 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   const getUsers = async () => {
     await fetchAllUsers(token)
       .then((res) => {
-        console.log('users => ', res.data);
         setUsers(res.data);
       })
       .catch((err) => console.error(err));

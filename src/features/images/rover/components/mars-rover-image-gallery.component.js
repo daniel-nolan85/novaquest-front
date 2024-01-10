@@ -41,7 +41,6 @@ export const MarsRoverImageGallery = ({ cameraData, navigate }) => {
   }, [cameraData]);
 
   const handleCameraChange = async (newCamera) => {
-    console.log('newCamera => ', newCamera);
     setSelectedCamera(newCamera);
     if (user.role !== 'guest') {
       await updateViewedRovers(

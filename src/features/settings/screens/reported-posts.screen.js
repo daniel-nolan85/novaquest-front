@@ -21,7 +21,6 @@ export const ReportedPostsScreen = ({ route }) => {
   const handleSearch = async (query) => {
     await filterReportedPostsByQuery(token, _id, query)
       .then((res) => {
-        console.log(res.data);
         setReportedPosts(res.data);
       })
       .catch((err) => console.error(err));

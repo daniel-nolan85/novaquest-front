@@ -72,7 +72,6 @@ export const SignalsHeader = ({ setFilteredSignals }) => {
   const handleSearch = async (query) => {
     await filterSignalsByQuery(token, _id, query)
       .then((res) => {
-        console.log(res.data);
         setFilteredSignals(res.data);
       })
       .catch((err) => console.error(err));

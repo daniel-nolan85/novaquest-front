@@ -93,8 +93,6 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
     ],
   };
 
-  console.log('selectedRover, dateType => ', selectedRover, dateType);
-
   useEffect(() => {
     const selectedRoverCameras = roverCameras[selectedRover] || [];
     setCameras(selectedRoverCameras);
@@ -111,8 +109,6 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
       retrieveImages();
     }
   }, [newCamera]);
-
-  console.log('newCamera => ', newCamera);
 
   const retrieveImages = async () => {
     setIsLoading(true);

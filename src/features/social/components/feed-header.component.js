@@ -35,7 +35,6 @@ export const FeedHeader = ({ navigate, setPosts }) => {
   const handleSearch = async (query) => {
     await filterPostsByQuery(user.token, query)
       .then((res) => {
-        console.log(res.data);
         setPosts(res.data);
       })
       .catch((err) => console.error(err));

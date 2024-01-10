@@ -68,7 +68,6 @@ export const updateViewedRovers = async (
   camera,
   dateType
 ) => {
-  console.log('updateViewedRovers');
   return await axios.put(
     `${API_BASE_URL}/update-viewed-rovers`,
     { _id, rover, camera, dateType },

@@ -28,8 +28,6 @@ export const UserModal = ({
 }) => {
   const [deleteable, setDeleteable] = useState(false);
 
-  console.log({ user });
-
   const closeModal = () => {
     setVisible(false);
   };

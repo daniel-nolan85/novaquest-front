@@ -21,7 +21,6 @@ export const UsersScreen = ({ route }) => {
   const handleSearch = async (query) => {
     await filterAllUsersByQuery(token, _id, query)
       .then((res) => {
-        console.log(res.data);
         setUsers(res.data);
       })
       .catch((err) => console.error(err));

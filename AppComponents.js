@@ -1,5 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import {
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Easing,
+  TouchableOpacity,
+} from 'react-native';
 import { Snackbar } from 'react-native-paper';
+import {
+  GestureHandlerRootView,
+  PanGestureHandler,
+} from 'react-native-gesture-handler';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import {
@@ -24,15 +35,29 @@ import { Navigation } from './src/infrastructure/navigation';
 import { currentUser } from './src/requests/auth';
 import { incrementNotifsCount } from './src/requests/user';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Alien from './assets/svg/floaters/alien.svg';
+import Planet from './assets/svg/floaters/planet.svg';
+import Star from './assets/svg/floaters/star.svg';
+import Ufo from './assets/svg/floaters/ufo.svg';
+import { FactModal } from './src/components/modals/fact-modal';
+import { factsArray } from './src/services/facts/facts';
+
+const iconComponents = [Alien, Planet, Star, Ufo];
 
 export const AppComponents = () => {
   const [visible, setVisible] = useState(false);
   const [snack, setSnack] = useState('');
+  const [randomFact, setRandomFact] = useState('');
+  const [showFact, setShowFact] = useState(false);
+  const [showIcon, setShowIcon] = useState(true);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
   const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+
+  const translateY = useRef(new Animated.Value(0)).current;
+  const translateX = useRef(new Animated.Value(-200)).current;
 
   useEffect(() => {
     const auth = getAuth();
@@ -130,32 +155,157 @@ export const AppComponents = () => {
       .catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      animateImage();
+    }, 5 * 60 * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [showIcon]);
+
+  const animateImage = () => {
+    translateY.setValue(0);
+    translateX.setValue(-200);
+    Animated.parallel([
+      Animated.sequence([
+        Animated.timing(translateY, {
+          toValue: 50,
+          duration: 3000,
+          easing: Easing.bezier(0.17, 0.17, 0.17, 0.17),
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateY, {
+          toValue: -50,
+          duration: 4000,
+          easing: Easing.bezier(0.17, 0.17, 0.17, 0.17),
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateY, {
+          toValue: 50,
+          duration: 3000,
+          easing: Easing.bezier(0.17, 0.17, 0.17, 0.17),
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateY, {
+          toValue: -50,
+          duration: 4000,
+          easing: Easing.bezier(0.17, 0.17, 0.17, 0.17),
+          useNativeDriver: true,
+        }),
+      ]),
+      Animated.timing(translateX, {
+        toValue: Dimensions.get('window').width + 200,
+        duration: 10000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const ImageComponent = () => {
+    const RandomIconComponent =
+      iconComponents[Math.floor(Math.random() * iconComponents.length)];
+
+    return (
+      <PanGestureHandler>
+        <TouchableOpacity
+          onPress={handleIconPress}
+          style={styles.imageContainer}
+        >
+          {showIcon && (
+            <Animated.View
+              style={[
+                {
+                  transform: [
+                    {
+                      translateY: translateY.interpolate({
+                        inputRange: [-1, 0, 1],
+                        outputRange: [-5, 0, -5],
+                      }),
+                    },
+                    {
+                      translateX: translateX,
+                    },
+                  ],
+                },
+              ]}
+            >
+              {RandomIconComponent && (
+                <RandomIconComponent height={100} width={100} />
+              )}
+            </Animated.View>
+          )}
+        </TouchableOpacity>
+      </PanGestureHandler>
+    );
+  };
+
+  const handleIconPress = () => {
+    const randomIndex = Math.floor(Math.random() * factsArray.length);
+    setRandomFact(factsArray[randomIndex]);
+    setShowFact(true);
+    setShowIcon(false);
+  };
+
+  const handleModalClose = () => {
+    translateY.setValue(0);
+    translateX.setValue(-200);
+    setShowFact(false);
+    setShowIcon(true);
+    setRandomFact('');
+  };
+
   const [audiowideLoaded] = useAudiowide({ Audiowide_400Regular });
   const [questrialLoaded] = useQuestrial({ Questrial_400Regular });
   if (!audiowideLoaded || !questrialLoaded) return null;
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <SettingsContextProvider>
-          <GamesContextProvider>
-            <PlanetsContextProvider>
-              <ImagesContextProvider>
-                <Navigation />
-              </ImagesContextProvider>
-            </PlanetsContextProvider>
-          </GamesContextProvider>
-        </SettingsContextProvider>
-      </ThemeProvider>
-      <ExpoStatusBar style='auto' />
-      <Toast />
-      <Snackbar
-        wrapperStyle={{ top: 40 }}
-        visible={visible}
-        style={{ backgroundColor: '#009999', padding: 5 }}
-      >
-        {snack}
-      </Snackbar>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <SettingsContextProvider>
+            <GamesContextProvider>
+              <PlanetsContextProvider>
+                <ImagesContextProvider>
+                  <Navigation />
+                </ImagesContextProvider>
+              </PlanetsContextProvider>
+            </GamesContextProvider>
+          </SettingsContextProvider>
+        </ThemeProvider>
+        <Toast />
+        {randomFact ? (
+          <FactModal
+            showFact={showFact}
+            randomFact={randomFact}
+            handleModalClose={handleModalClose}
+          />
+        ) : (
+          <ImageComponent />
+        )}
+        <Snackbar
+          wrapperStyle={{ top: 40 }}
+          visible={visible}
+          style={{ backgroundColor: '#009999', padding: 5 }}
+        >
+          {snack}
+        </Snackbar>
+        <ExpoStatusBar style='auto' />
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageContainer: {
+    position: 'absolute',
+    top: Dimensions.get('window').height / 2 - 50,
+  },
+});

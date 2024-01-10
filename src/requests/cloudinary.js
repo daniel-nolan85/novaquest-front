@@ -10,7 +10,6 @@ export const uploadMediaToCloudinary = async (authtoken, formData) => {
 };
 
 export const destroyMediaFromCloudinary = async (authtoken, publicId) => {
-  console.log('public_id => ', publicId);
   return await axios.post(
     `${API_BASE_URL}/destroy-media`,
     { publicId },

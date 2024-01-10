@@ -33,7 +33,6 @@ export const DeleteAccountModal = ({
     setIsLoading(true);
     await deleteAccount(token, _id)
       .then(async (res) => {
-        console.log(res.data);
         Toast.show({
           type: 'success',
           text1: `Your account has been successfully deleted.`,

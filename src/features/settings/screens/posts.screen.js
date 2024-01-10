@@ -21,7 +21,6 @@ export const PostsScreen = ({ route }) => {
   const handleSearch = async (query) => {
     await filterAllPostsByQuery(token, _id, query)
       .then((res) => {
-        console.log(res.data);
         setPosts(res.data);
       })
       .catch((err) => console.error(err));

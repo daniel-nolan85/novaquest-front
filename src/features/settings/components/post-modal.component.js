@@ -45,8 +45,6 @@ export const PostModal = ({
   const [deleteable, setDeleteable] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
-  console.log({ post });
-
   const closeModal = () => {
     setVisible(false);
   };

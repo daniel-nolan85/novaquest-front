@@ -26,7 +26,6 @@ export const fetchAllUsers = async (authtoken) => {
 };
 
 export const deleteUser = async (authtoken, userId) => {
-  console.log({ userId });
   return await axios.put(
     `${API_BASE_URL}/delete-user`,
     { userId },
