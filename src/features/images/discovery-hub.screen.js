@@ -81,6 +81,13 @@ const DATA = [
     description:
       'Dive into the cosmic realm of Asteroid Almanac! Select a date to unveil information on all near-earth objects within a 7-day orbit. Explore the trajectories and details of these celestial travelers to enhance your understanding of the dynamic dance between Earth and asteroids.',
   },
+  {
+    title: 'ISS Tracker',
+    name: 'ISSTracker',
+    image:
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1704930733/space-station_wgocin.jpg',
+    description: `Embark on a real-time cosmic journey with our ISS Tracker! Stay connected with the International Space Station as you witness its live location updates against a map of Earth. Explore the Earth's orbit, track its current velocity, and follow the ISS as it speeds through the cosmos, bringing the wonders of space closer to you.`,
+  },
 ];
 
 const Item = ({

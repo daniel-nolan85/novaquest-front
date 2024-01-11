@@ -42,7 +42,7 @@ const AnimationWrapper = styled.View`
   height: 50%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 `;
 
 const Animation = styled(LottieView)`

@@ -3,6 +3,7 @@ import { DiscoveryHubScreen } from '../../features/images/discovery-hub.screen';
 import { ApodScreen } from '../../features/images/apod/screens/apod.screen';
 import { MarsRoverNavigator } from './rover.navigator';
 import { AsteroidAlmanacNavigator } from './asteroid-almanac.navigator';
+import { ISSTrackerNavigator } from './iss-tracker.navigator';
 import { Text } from '../../components/typography/text.component';
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -41,6 +42,14 @@ export const ImagesNavigator = () => {
         options={{
           headerShown: false,
           drawerLabel: () => <Text variant='body'>Asteroid Almanac</Text>,
+        }}
+      />
+      <Screen
+        name='ISSTracker'
+        component={ISSTrackerNavigator}
+        options={{
+          headerShown: false,
+          drawerLabel: () => <Text variant='body'>ISS Tracker</Text>,
         }}
       />
     </Navigator>

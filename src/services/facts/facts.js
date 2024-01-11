@@ -59,7 +59,8 @@ export const factsArray = [
   `Saturn's north pole has a hexagonal-shaped storm? This unique atmospheric feature is a mysterious and captivating hexagon.`,
   `Uranus rotates on its side at an almost 90-degree angle compared to its orbit around the Sun? This extreme tilt makes for some unusual seasons.`,
   `Earth has a mini-moon called 2020 CD3? It's an asteroid that got temporarily caught in Earth's gravitational pull, making it a natural satellite for a brief period.`,
-  `In 2017, astronomers detected an object from another star system passing through our solar system? Named 'Oumuamua, it was the first confirmed interstellar visitor.``the Cassini spacecraft, which studied Saturn and its moons for over 13 years, concluded its mission with a deliberate plunge into Saturn's atmosphere in 2017? It provided valuable data until the very end.`,
+  `In 2017, astronomers detected an object from another star system passing through our solar system? Named 'Oumuamua, it was the first confirmed interstellar visitor.`,
+  `The Cassini spacecraft, which studied Saturn and its moons for over 13 years, concluded its mission with a deliberate plunge into Saturn's atmosphere in 2017? It provided valuable data until the very end.`,
   `Pluto has a heart-shaped feature on its surface? Discovered by NASA's New Horizons mission in 2015, this heart-shaped region is informally named Tombaugh Regio after Pluto's discoverer, Clyde Tombaugh.`,
   `NASA's Voyager 1 spacecraft, launched in 1977, has ventured beyond our solar system into interstellar space? It's the farthest human-made object from Earth.`,
 ];
