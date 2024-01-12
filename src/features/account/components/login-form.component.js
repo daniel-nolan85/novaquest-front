@@ -74,6 +74,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   explorers: res.data.explorers,
                   blockeds: res.data.blockeds,
                   textSpeed: res.data.textSpeed,
+                  highScore: res.data.highScore,
                   viewedRovers: res.data.viewedRovers,
                   viewedRoverCameras: res.data.viewedRoverCameras,
                   viewedRoverDateTypes: res.data.viewedRoverDateTypes,

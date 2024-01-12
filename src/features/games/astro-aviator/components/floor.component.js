@@ -10,7 +10,7 @@ const Ground = (props) => {
   return (
     <View
       style={{
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
         position: 'absolute',
         left: xBody,
         top: yBody,

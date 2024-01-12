@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Modal, ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
@@ -9,7 +10,6 @@ import {
   AnimationWrapper,
   Animation,
   Title,
-  InfoTitleWrapper,
   InfoItem,
   InfoValue,
   InfoTitle,
@@ -22,6 +22,12 @@ import Performance from '../../../../../assets/svg/performance.svg';
 import Visibility from '../../../../../assets/svg/visibility.svg';
 
 export const ISSInfoModal = ({ visible, setVisible, issData }) => {
+  const [forceRerender, setForceRerender] = useState(false);
+
+  useEffect(() => {
+    setForceRerender(true);
+  }, []);
+
   const { altitude, footprint, velocity, visibility } = issData;
 
   const { Section } = List;
@@ -47,7 +53,7 @@ export const ISSInfoModal = ({ visible, setVisible, issData }) => {
                 source={require('../../../../../assets/animation/iss.json')}
               />
             </AnimationWrapper>
-            <Title variant='title'>ISS Info</Title>
+            <Title variant='title'>Live ISS Info</Title>
             {Object.keys(issData).length > 0 && (
               <ScrollView
                 horizontal={false}
@@ -56,15 +62,13 @@ export const ISSInfoModal = ({ visible, setVisible, issData }) => {
               >
                 <Section>
                   <InfoItem
-                    title={
-                      <InfoTitleWrapper>
-                        <InfoTitle variant='body'>Altitude</InfoTitle>
-                        <InfoValue variant='body'>
-                          {altitude.toFixed(2)} km
-                        </InfoValue>
-                      </InfoTitleWrapper>
+                    title={<InfoTitle variant='body'>Altitude</InfoTitle>}
+                    description={
+                      <InfoValue variant='body'>
+                        {altitude.toFixed(2)} km
+                      </InfoValue>
                     }
-                    left={() => <Altitude width={32} height={32} />}
+                    left={() => <Altitude width={40} height={40} />}
                   />
                   <InfoDescription variant='body'>
                     Altitude refers to the height of the ISS above Earth's
@@ -72,46 +76,40 @@ export const ISSInfoModal = ({ visible, setVisible, issData }) => {
                     Earth.
                   </InfoDescription>
                   <InfoItem
-                    title={
-                      <InfoTitleWrapper>
-                        <InfoTitle variant='body'>Footprint</InfoTitle>
-                        <InfoValue variant='body'>
-                          {footprint.toFixed(2)} km
-                        </InfoValue>
-                      </InfoTitleWrapper>
+                    title={<InfoTitle variant='body'>Footprint</InfoTitle>}
+                    description={
+                      <InfoValue variant='body'>
+                        {footprint.toFixed(2)} km
+                      </InfoValue>
                     }
-                    left={() => <Footprint width={32} height={32} />}
+                    left={() => <Footprint width={40} height={40} />}
                   />
                   <InfoDescription variant='body'>
                     Footprint in the ISS Tracker marks the area on Earth beneath
                     the International Space Station's orbital path.
                   </InfoDescription>
                   <InfoItem
-                    title={
-                      <InfoTitleWrapper>
-                        <InfoTitle variant='body'>Velocity</InfoTitle>
-                        <InfoValue variant='body'>
-                          {velocity.toFixed(2)} km
-                        </InfoValue>
-                      </InfoTitleWrapper>
+                    title={<InfoTitle variant='body'>Velocity</InfoTitle>}
+                    description={
+                      <InfoValue variant='body'>
+                        {velocity.toFixed(2)} km
+                      </InfoValue>
                     }
-                    left={() => <Performance width={32} height={32} />}
+                    left={() => <Performance width={40} height={40} />}
                   />
                   <InfoDescription variant='body'>
                     Velocity represents the current speed of the ISS as it
-                    orbits Earth, giving you insights into its rapid journey
+                    orbits Earth, giving you an insight into its rapid journey
                     across the cosmos.
                   </InfoDescription>
                   <InfoItem
-                    title={
-                      <InfoTitleWrapper>
-                        <InfoTitle variant='body'>Visibility</InfoTitle>
-                        <InfoValue variant='body'>
-                          {capitalizeFirstLetter(visibility)}
-                        </InfoValue>
-                      </InfoTitleWrapper>
+                    title={<InfoTitle variant='body'>Visibility</InfoTitle>}
+                    description={
+                      <InfoValue variant='body'>
+                        {capitalizeFirstLetter(visibility)}
+                      </InfoValue>
                     }
-                    left={() => <Visibility width={32} height={32} />}
+                    left={() => <Visibility width={40} height={40} />}
                   />
                   <InfoDescription variant='body'>
                     Visibility in the ISS Tracker indicates whether the

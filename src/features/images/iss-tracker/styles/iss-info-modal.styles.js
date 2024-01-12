@@ -60,18 +60,13 @@ export const InfoItem = styled(Item)`
   width: 280px;
 `;
 
-export const InfoTitleWrapper = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const InfoTitle = styled(Text)`
   font-size: 20px;
 `;
 
 export const InfoValue = styled(Text)`
   font-size: 20px;
+  color: #009999;
 `;
 
 export const InfoDescription = styled(Text)`

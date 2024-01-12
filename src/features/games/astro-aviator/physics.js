@@ -83,6 +83,16 @@ export const Physics = (entities, { touches, time, dispatch }) => {
         return;
       }
     }
+
+    const isCollision = pairs.some(
+      (pair) =>
+        (pair.bodyA.label === 'Rocket' && pair.bodyB.label === 'Roof') ||
+        (pair.bodyA.label === 'Roof' && pair.bodyB.label === 'Rocket')
+    );
+
+    if (isCollision) {
+      dispatch({ type: 'game_over' });
+    }
   });
 
   return entities;

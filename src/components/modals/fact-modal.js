@@ -16,6 +16,7 @@ const ModalView = styled.View`
   background-color: white;
   border-radius: 20px;
   width: 100%;
+  height: 420px;
   padding: 35px;
   align-items: center;
   shadow-color: #000;
@@ -57,7 +58,6 @@ const Title = styled.Text`
 `;
 
 const Fact = styled.Text`
-  margin-bottom: 16px;
   font-family: Questrial_400Regular;
   font-size: 16px;
 `;

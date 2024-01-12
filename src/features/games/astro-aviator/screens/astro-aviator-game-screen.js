@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GameEngine } from 'react-native-game-engine';
-import { TouchableOpacity, View, ImageBackground } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
 import { restart } from '../entities';
@@ -8,8 +9,10 @@ import { Physics } from '../physics';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { Text } from '../../../../components/typography/text.component';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
+import Crown from '../../../../../assets/svg/crown.svg';
 import { IconsWrapper } from '../styles/astro-aviator.styles';
 import { GameBackground } from '../styles/astro-aviator-game.styles';
+import { catchScore } from '../../../../requests/user';
 
 export const AstroAviatorGameScreen = ({ navigation }) => {
   const [running, setRunning] = useState(false);
@@ -17,11 +20,37 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
   const [currentPoints, setCurrentPoints] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setRunning(false);
-  }, []);
+  const isFirstRun = useRef(true);
 
-  const { dispatch } = navigation;
+  const user = useSelector((state) => state.user);
+  const reduxDispatch = useDispatch();
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    } else {
+      if (!running) {
+        saveScore();
+      }
+    }
+  }, [running]);
+
+  const saveScore = async () => {
+    await catchScore(user.token, user._id, currentPoints)
+      .then((res) => {
+        reduxDispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            highScore: res.data.highScore,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const { navigate, dispatch } = navigation;
 
   return (
     <GameBackground onLoadEnd={() => setIsLoading(false)}>
@@ -41,7 +70,28 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
             >
               <Ionicons name='md-menu' size={30} color='#009999' />
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigate('Leaderboard');
+              }}
+            >
+              <Crown height={30} width={30} />
+            </TouchableOpacity>
           </IconsWrapper>
+          {user.highScore && (
+            <Text
+              variant='title'
+              style={{
+                textAlign: 'center',
+                fontSize: 30,
+                fontWeight: 'bold',
+                color: '#009999',
+                marginTop: -20,
+              }}
+            >
+              High Score: {user.highScore}
+            </Text>
+          )}
           {currentPoints > 0 && (
             <Text
               variant='title'

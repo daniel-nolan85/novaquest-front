@@ -352,3 +352,15 @@ export const fetchUsersSignals = async (authtoken, _id) => {
     }
   );
 };
+
+export const catchScore = async (authtoken, _id, score) => {
+  return await axios.put(
+    `${API_BASE_URL}/catch-score`,
+    { _id, score },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
