@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -24,6 +24,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
   const dispatch = useDispatch();
 
   const checkBlocked = async () => {
+    setIsLoading(true);
     await checkBlockedList(email).then((res) => {
       if (res.data.length === 0) {
         handleLogin();
@@ -43,7 +44,6 @@ export const LoginForm = ({ handleGuestLogin }) => {
   };
 
   const handleLogin = async () => {
-    setIsLoading(true);
     const auth = getAuth();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -172,9 +172,13 @@ export const LoginForm = ({ handleGuestLogin }) => {
         secureTextEntry
       />
       <OptionContainer>
-        <Option onPress={checkBlocked}>
+        <Option onPress={checkBlocked} disabled={isLoading}>
           <GradientBackground>
-            <OptionText variant='body'>Blast Off!</OptionText>
+            {isLoading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <OptionText variant='body'>Blast Off!</OptionText>
+            )}
           </GradientBackground>
         </Option>
       </OptionContainer>
@@ -185,7 +189,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
       </TouchableOpacity>
       <ForgotPasswordModal visible={visible} setVisible={setVisible} />
       <OptionContainer>
-        <Option onPress={handleGuestLogin}>
+        <Option onPress={handleGuestLogin} disabled={isLoading}>
           <GradientBackground>
             <OptionText variant='body'>Embark as Guest Explorer</OptionText>
           </GradientBackground>

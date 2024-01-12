@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native';
 import { PlanetInfoCard } from '../components/planet-info-card.component';
-import { SafeArea } from '../../../components/utils/safe-area.component';
+import { SafeArea } from '../../../../components/utils/safe-area.component';
 import {
   Description,
   StatsWrapper,

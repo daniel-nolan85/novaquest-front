@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { PlanetsContext } from '../../../services/planets/planets.context';
+import { PlanetsContext } from '../../../../../services/planets/planets.context';
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};

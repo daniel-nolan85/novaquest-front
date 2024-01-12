@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import { PlanetInfoCard } from '../components/planet-info-card.component';
-import { Spacer } from '../../../components/spacer/spacer.component';
-import { SafeArea } from '../../../components/utils/safe-area.component';
-import { PlanetsContext } from '../../../services/planets/planets.context';
-import { Text } from '../../../components/typography/text.component';
-import { LoadingSpinner } from '../../../../assets/loading-spinner';
+import { Spacer } from '../../../../../components/spacer/spacer.component';
+import { SafeArea } from '../../../../../components/utils/safe-area.component';
+import { PlanetsContext } from '../../../../../services/planets/planets.context';
+import { Text } from '../../../../../components/typography/text.component';
+import { LoadingSpinner } from '../../../../../../assets/loading-spinner';
 import { Search } from '../components/search.component';
 
 const PlanetList = styled.FlatList.attrs({

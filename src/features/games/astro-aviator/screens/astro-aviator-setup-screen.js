@@ -19,8 +19,10 @@ import {
   OptionText,
 } from '../styles/astro-aviator-setup.styles';
 import { IconsWrapper } from '../styles/astro-aviator.styles';
+import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
 export const AstroAviatorSetupScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [okButton, setOkButton] = useState(false);
   const [readyButton, setReadyButton] = useState(false);
@@ -34,19 +36,39 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
     `Each successful passage through this perilous journey earns you points, bringing you one step closer to becoming the ultimate Astro Aviator. But be vigilant! A single collision could spell the end of your cosmic adventure.`
   );
   const [text4, setText4] = useState();
+  const [text1Key, setText1Key] = useState(0);
 
   useEffect(() => {
     setText1(
-      `Attention, Commander ${name}! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
+      `Attention, ${rank} ${name}! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
     );
     setText4(
-      `Prepare for lift-off, Commander ${name}, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
+      `Prepare for lift-off, ${rank} ${name}, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
     );
   }, []);
 
-  const { name, textSpeed } = useSelector((state) => state.user);
+  useEffect(() => {
+    const focusListener = addListener('focus', () => {
+      setText1Key((prevKey) => prevKey + 1);
+    });
 
-  const { navigate, dispatch } = navigation;
+    const blurListener = addListener('blur', () => {
+      setCurrentStep(1);
+      setOkButton(false);
+      setReadyButton(false);
+      setTyping(true);
+      setShowOk(true);
+    });
+
+    return () => {
+      focusListener();
+      blurListener();
+    };
+  }, [navigation]);
+
+  const { rank, name, textSpeed } = useSelector((state) => state.user);
+
+  const { navigate, dispatch, addListener } = navigation;
 
   const skipText = () => {
     setShowOk(false);
@@ -142,49 +164,54 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SetupSafeArea>
-        <IconsWrapper>
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(DrawerActions.openDrawer());
-            }}
-          >
-            <Ionicons name='md-menu' size={30} color='#009999' />
-          </TouchableOpacity>
-        </IconsWrapper>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {okButton && (
-              <Option onPress={handleOkClick}>
-                <OptionText variant='body'>OK</OptionText>
-              </Option>
-            )}
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {showOk && typing && (
-              <Option onPress={skipText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </SetupSafeArea>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SetupSafeArea>
+          <IconsWrapper>
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(DrawerActions.openDrawer());
+              }}
+            >
+              <Ionicons name='md-menu' size={30} color='#009999' />
+            </TouchableOpacity>
+          </IconsWrapper>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble>
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {okButton && (
+                <Option onPress={handleOkClick}>
+                  <OptionText variant='body'>OK</OptionText>
+                </Option>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
+                </Option>
+              )}
+              {showOk && typing && (
+                <Option onPress={skipText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+            </OptionContainer>
+          </SetupContainer>
+        </SetupSafeArea>
+      )}
     </ImageBackground>
   );
 };

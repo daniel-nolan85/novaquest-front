@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Text } from '../../../components/typography/text.component';
+import { Text } from '../../../../components/typography/text.component';
 
 export const Description = styled.Text`
   padding: 16px;

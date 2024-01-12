@@ -1,6 +1,6 @@
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import { Animated } from 'react-native';
-import { Text } from '../../../components/typography/text.component';
+import { Text } from '../../../../components/typography/text.component';
 import {
   PlanetCard,
   PlanetCardCoverZoom,

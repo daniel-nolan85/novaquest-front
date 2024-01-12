@@ -7,6 +7,7 @@ export const OptionContainer = styled.View``;
 
 export const Option = styled.TouchableOpacity`
   margin: ${(props) => props.theme.space[3]};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const GradientBackground = styled(LinearGradient).attrs({
@@ -22,7 +23,8 @@ export const GradientBackground = styled(LinearGradient).attrs({
 `;
 
 export const OptionText = styled(Text)`
-  color: ${(props) => props.theme.colors.text.inverse};
+  color: ${(props) =>
+    props.disabled ? '#666' : props.theme.colors.text.inverse};
   text-transform: uppercase;
 `;
 

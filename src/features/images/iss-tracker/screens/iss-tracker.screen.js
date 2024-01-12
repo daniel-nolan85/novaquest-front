@@ -84,7 +84,7 @@ export const ISSTrackerScreen = ({ navigation }) => {
       ) : (
         <>
           <MapView
-            style={{ flex: 1 }}
+            style={{ flex: 1, position: 'relative' }}
             region={region}
             onRegionChangeComplete={handleMapMovement}
           >

@@ -15,6 +15,7 @@ import Animated, {
 import styled from 'styled-components/native';
 import { Text } from '../../components/typography/text.component';
 import { SafeArea } from '../../components/utils/safe-area.component';
+import { LoadingSpinner } from '../../../assets/loading-spinner';
 
 const SRC_WIDTH = Dimensions.get('window').width;
 const CARD_SIZE = SRC_WIDTH * 0.8;
@@ -66,20 +67,20 @@ const DATA = [
       'Prepare for a cosmic challenge in Astro Aviator! Guide your spaceship through asteroid-filled space, aiming to surpass your highest score. Can you navigate the celestial obstacles and become a space-faring champion?',
   },
   {
-    title: 'Interstellar Assembly',
-    name: 'InterstellarAssembly',
-    image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/interstellar-assembly_bsuzax.jpg',
-    description:
-      'Embark on a planetary puzzle journey with Interstellar Assembly! Arrange the planets in the correct cosmic order and race against time to set new records. Sharpen your mind and assemble the celestial bodies with speed and precision!',
-  },
-  {
     title: 'Cosmic Conundrum',
     name: 'CosmicConundrum',
     image:
       'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/trivia_lm99oq.jpg',
     description:
       'Engage your cosmic intellect with Cosmic Conundrum! Customize your space quiz by selecting the difficulty and length. Face space-themed questions, earn points, and unlock your stellar knowledge. How high can you score in this cosmic challenge?',
+  },
+  {
+    title: 'Interstellar Assembly',
+    name: 'InterstellarAssembly',
+    image:
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/interstellar-assembly_bsuzax.jpg',
+    description:
+      'Embark on a planetary puzzle journey with Interstellar Assembly! Arrange the planets in the correct cosmic order and race against time to set new records. Sharpen your mind and assemble the celestial bodies with speed and precision!',
   },
 ];
 
@@ -156,47 +157,53 @@ const Item = ({
 };
 
 export const GamesHubScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [scrollX, setScrollX] = useState(0);
 
   const { navigate } = navigation;
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1703023132/space-journey_vqmxhi.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SafeAreaView>
-        <Title variant='title'>Games Hub</Title>
-        <AnimatedFlatList
-          scrollEventThrottle={16}
-          showsHorizontalScrollIndicator={false}
-          decelerationRate={0.8}
-          snapToInterval={CARD_SIZE + SPACING * 4}
-          disableIntervalMomentum={true}
-          disableScrollViewPanResponder={true}
-          snapToAlignment={'center'}
-          data={DATA}
-          horizontal={true}
-          renderItem={({ item, index }) => (
-            <Item
-              key={item.name}
-              index={index}
-              scrollX={scrollX}
-              title={item.title}
-              name={item.name}
-              imageUrl={item.image}
-              description={item.description}
-              navigate={navigate}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-          onScroll={(e) => {
-            setScrollX(e.nativeEvent.contentOffset.x);
-          }}
-        />
-      </SafeAreaView>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SafeAreaView>
+          <Title variant='title'>Games Hub</Title>
+          <AnimatedFlatList
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0.8}
+            snapToInterval={CARD_SIZE + SPACING * 4}
+            disableIntervalMomentum={true}
+            disableScrollViewPanResponder={true}
+            snapToAlignment={'center'}
+            data={DATA}
+            horizontal={true}
+            renderItem={({ item, index }) => (
+              <Item
+                key={item.name}
+                index={index}
+                scrollX={scrollX}
+                title={item.title}
+                name={item.name}
+                imageUrl={item.image}
+                description={item.description}
+                navigate={navigate}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            onScroll={(e) => {
+              setScrollX(e.nativeEvent.contentOffset.x);
+            }}
+          />
+        </SafeAreaView>
+      )}
     </ImageBackground>
   );
 };

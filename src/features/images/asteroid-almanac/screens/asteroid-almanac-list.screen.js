@@ -40,11 +40,11 @@ export const AsteroidAlmanacListScreen = ({ navigation, route }) => {
   const { date } = route.params;
 
   return (
-    <SafeArea>
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <SafeArea>
           {/* {!error ? ( */}
           <AsteroidList
             data={asteroids}
@@ -72,8 +72,8 @@ export const AsteroidAlmanacListScreen = ({ navigation, route }) => {
               <Text variant='error'>{error}</Text>
             </Spacer>
           )} */}
-        </>
+        </SafeArea>
       )}
-    </SafeArea>
+    </>
   );
 };

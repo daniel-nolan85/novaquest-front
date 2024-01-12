@@ -15,6 +15,7 @@ import Animated, {
 import styled from 'styled-components/native';
 import { Text } from '../../components/typography/text.component';
 import { SafeArea } from '../../components/utils/safe-area.component';
+import { LoadingSpinner } from '../../../assets/loading-spinner';
 
 const SRC_WIDTH = Dimensions.get('window').width;
 const CARD_SIZE = SRC_WIDTH * 0.8;
@@ -58,20 +59,12 @@ const CardDescription = styled(Text)`
 
 const DATA = [
   {
-    title: 'Astronomy Pic of the Day',
+    title: 'APOD',
     name: 'Apod',
     image:
       'https://res.cloudinary.com/daufzqlld/image/upload/v1703116574/apod_mkqqhb.jpg',
     description:
       'Embark on a daily cosmic journey with Astronomy Pic of the Day! Witness breathtaking space images accompanied by detailed descriptions. Feel free to explore the cosmos through time by selecting a date from the calendar and unveil the wonders of earlier Pics of the Day.',
-  },
-  {
-    title: 'Mars Rovers',
-    name: 'MarsRovers',
-    image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1699995097/opportunity_kgl72p.jpg',
-    description:
-      'Step into the shoes of a Martian explorer with Mars Rovers! Choose a rover, pick a camera to look through, and select a date to unveil real images captured on the Red Planet. Immerse yourself in the Martian landscapes and experience the wonders of interplanetary exploration.',
   },
   {
     title: 'Asteroid Almanac',
@@ -87,6 +80,22 @@ const DATA = [
     image:
       'https://res.cloudinary.com/daufzqlld/image/upload/v1704930733/space-station_wgocin.jpg',
     description: `Embark on a real-time cosmic journey with our ISS Tracker! Stay connected with the International Space Station as you witness its live location updates against a map of Earth. Explore the Earth's orbit, track its current velocity, and follow the ISS as it speeds through the cosmos, bringing the wonders of space closer to you.`,
+  },
+  {
+    title: 'Mars Rovers',
+    name: 'MarsRovers',
+    image:
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1699995097/opportunity_kgl72p.jpg',
+    description:
+      'Step into the shoes of a Martian explorer with Mars Rovers! Choose a rover, pick a camera to look through, and select a date to unveil real images captured on the Red Planet. Immerse yourself in the Martian landscapes and experience the wonders of interplanetary exploration.',
+  },
+  {
+    title: 'Planetarium',
+    name: 'Planets',
+    image:
+      'https://res.cloudinary.com/daufzqlld/image/upload/v1699559012/planetarium_yhesp0.jpg',
+    description:
+      'Explore the wonders of the cosmos in the Planetarium, a celestial archive that unveils fascinating facts, knowledge, and captivating images of planets and dwarfs in our solar system. Embark on a cosmic journey as you delve into the mysteries and unique characteristics of each celestial body.',
   },
 ];
 
@@ -163,47 +172,53 @@ const Item = ({
 };
 
 export const DiscoveryHubScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [scrollX, setScrollX] = useState(0);
 
   const { navigate } = navigation;
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1703023132/space-journey_vqmxhi.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SafeAreaView>
-        <Title variant='title'>Discovery Hub</Title>
-        <AnimatedFlatList
-          scrollEventThrottle={16}
-          showsHorizontalScrollIndicator={false}
-          decelerationRate={0.8}
-          snapToInterval={CARD_SIZE + SPACING * 4}
-          disableIntervalMomentum={true}
-          disableScrollViewPanResponder={true}
-          snapToAlignment={'center'}
-          data={DATA}
-          horizontal={true}
-          renderItem={({ item, index }) => (
-            <Item
-              key={item.name}
-              index={index}
-              scrollX={scrollX}
-              title={item.title}
-              name={item.name}
-              imageUrl={item.image}
-              description={item.description}
-              navigate={navigate}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-          onScroll={(e) => {
-            setScrollX(e.nativeEvent.contentOffset.x);
-          }}
-        />
-      </SafeAreaView>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SafeAreaView>
+          <Title variant='title'>Discovery Hub</Title>
+          <AnimatedFlatList
+            scrollEventThrottle={16}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0.8}
+            snapToInterval={CARD_SIZE + SPACING * 3.5}
+            disableIntervalMomentum={true}
+            disableScrollViewPanResponder={true}
+            snapToAlignment={'center'}
+            data={DATA}
+            horizontal={true}
+            renderItem={({ item, index }) => (
+              <Item
+                key={item.name}
+                index={index}
+                scrollX={scrollX}
+                title={item.title}
+                name={item.name}
+                imageUrl={item.image}
+                description={item.description}
+                navigate={navigate}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            onScroll={(e) => {
+              setScrollX(e.nativeEvent.contentOffset.x);
+            }}
+          />
+        </SafeAreaView>
+      )}
     </ImageBackground>
   );
 };

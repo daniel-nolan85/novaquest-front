@@ -81,7 +81,7 @@ export const InterstellarAssemblyGameScreen = ({ navigation }) => {
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1700521873/starry-bg_nl3ofp.jpg',
       }}
-      style={{ height: '100%' }}
+      style={{ flex: 1 }}
       onLoadEnd={() => setIsLoading(false)}
     >
       <Image

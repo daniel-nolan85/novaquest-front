@@ -19,13 +19,16 @@ import {
   OptionText,
 } from '../styles/iss-tracker-setup.styles';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
+import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
 export const ISSTrackerSetupScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [readyButton, setReadyButton] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showOk, setShowOk] = useState(true);
   const [text1, setText1] = useState();
+  const [text1Key, setText1Key] = useState(0);
 
   useEffect(() => {
     setText1(
@@ -33,9 +36,27 @@ export const ISSTrackerSetupScreen = ({ navigation }) => {
     );
   }, []);
 
+  useEffect(() => {
+    const focusListener = addListener('focus', () => {
+      setText1Key((prevKey) => prevKey + 1);
+    });
+
+    const blurListener = addListener('blur', () => {
+      setCurrentStep(1);
+      setReadyButton(false);
+      setTyping(true);
+      setShowOk(true);
+    });
+
+    return () => {
+      focusListener();
+      blurListener();
+    };
+  }, [navigation]);
+
   const { rank, name, textSpeed } = useSelector((state) => state.user);
 
-  const { navigate, dispatch } = navigation;
+  const { navigate, dispatch, addListener } = navigation;
 
   const skipText = () => {
     setShowOk(false);
@@ -76,44 +97,49 @@ export const ISSTrackerSetupScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SetupSafeArea>
-        <IconsWrapper>
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(DrawerActions.openDrawer());
-            }}
-          >
-            <Ionicons name='md-menu' size={30} color='#009999' />
-          </TouchableOpacity>
-        </IconsWrapper>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {showOk && typing && (
-              <Option onPress={skipText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </SetupSafeArea>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SetupSafeArea>
+          <IconsWrapper>
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(DrawerActions.openDrawer());
+              }}
+            >
+              <Ionicons name='md-menu' size={30} color='#009999' />
+            </TouchableOpacity>
+          </IconsWrapper>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble>
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
+                </Option>
+              )}
+              {showOk && typing && (
+                <Option onPress={skipText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+            </OptionContainer>
+          </SetupContainer>
+        </SetupSafeArea>
+      )}
     </ImageBackground>
   );
 };

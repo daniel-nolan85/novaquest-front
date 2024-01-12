@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import Toast from 'react-native-toast-message';
 import {
   getAuth,
@@ -21,8 +21,10 @@ import { checkBlockedList } from '../../../requests/auth';
 export const RegistrationForm = ({ handleGuestLogin }) => {
   const [email, setEmail] = useState('daniel@nolancode.com');
   const [password, setPassword] = useState('Lennon1027');
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkBlocked = async () => {
+    setIsLoading(true);
     await checkBlockedList(email).then((res) => {
       if (res.data.length === 0) {
         handleRegistration();
@@ -42,6 +44,21 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
   };
 
   const handleRegistration = async () => {
+    if (
+      password.length < 6 ||
+      !/\d/.test(password) ||
+      !/[a-zA-Z]/.test(password)
+    ) {
+      Toast.show({
+        type: 'error',
+        text1: 'Registration Failed',
+        text2:
+          'Password must be at least 6 characters and contain letters and numbers.',
+      });
+      setIsLoading(false);
+      return;
+    }
+
     const auth = getAuth();
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -57,6 +74,7 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
                 width: '100%',
               },
             });
+            setIsLoading(false);
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -65,6 +83,7 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
               text1: 'Error sending verification email:',
               text2: errorMessage,
             });
+            setIsLoading(false);
           });
       })
       .catch((error) => {
@@ -96,6 +115,7 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
             text2: errorMessage || 'An error occurred during registration.',
           });
         }
+        setIsLoading(false);
       });
   };
 
@@ -117,9 +137,13 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
         secureTextEntry
       />
       <OptionContainer>
-        <Option onPress={checkBlocked}>
+        <Option onPress={checkBlocked} disabled={isLoading}>
           <GradientBackground>
-            <OptionText variant='body'>Prepare for Launch...</OptionText>
+            {isLoading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <OptionText variant='body'>Prepare for Launch...</OptionText>
+            )}
           </GradientBackground>
         </Option>
       </OptionContainer>
@@ -128,7 +152,7 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
         your registration.
       </Info>
       <OptionContainer>
-        <Option onPress={handleGuestLogin}>
+        <Option onPress={handleGuestLogin} disabled={isLoading}>
           <GradientBackground>
             <OptionText variant='body'>Embark as Guest Explorer</OptionText>
           </GradientBackground>

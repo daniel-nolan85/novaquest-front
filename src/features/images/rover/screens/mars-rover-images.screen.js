@@ -210,11 +210,11 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeArea>
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <SafeArea>
           <IconsWrapper>
             <TouchableOpacity
               onPress={() => {
@@ -229,8 +229,8 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
           </IconsWrapper>
           <MarsRoverImageGallery cameraData={cameraData} navigate={navigate} />
           <AmendParamsModal handleFilters={handleFilters} open={open} />
-        </>
+        </SafeArea>
       )}
-    </SafeArea>
+    </>
   );
 };

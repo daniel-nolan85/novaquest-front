@@ -5,14 +5,14 @@ import { NASA_API_KEY } from '@env';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
 import { DrawerActions } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import Close from '../../../../../assets/svg/close.svg';
 import Calendar from '../../../../../assets/svg/calendar.svg';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { ApodInfoCard } from '../components/apod-card.component';
 import {
   ModalWrapper,
   ModalView,
-  Option,
-  OptionText,
+  CloseIcon,
 } from '../styles/apod-modal.styles';
 import { ApodSafeArea, IconsWrapper } from '../styles/apod.styles';
 
@@ -52,7 +52,7 @@ export const ApodScreen = ({ navigation }) => {
   };
 
   const fetchApodByDate = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     await axios
       .get(
         `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${date}`
@@ -76,11 +76,11 @@ export const ApodScreen = ({ navigation }) => {
   };
 
   return (
-    <ApodSafeArea>
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <ApodSafeArea>
           <IconsWrapper>
             <TouchableOpacity
               onPress={() => {
@@ -96,22 +96,23 @@ export const ApodScreen = ({ navigation }) => {
           <Modal animationType='slide' transparent={true} visible={open}>
             <ModalWrapper>
               <ModalView>
+                <CloseIcon onPress={handleCalendar}>
+                  <Close />
+                </CloseIcon>
                 <DatePicker
                   mode='calendar'
                   selected={date}
                   onDateChange={handleDateChange}
                   minimumDate='1995-06-17'
                   maximumDate={getToday()}
+                  style={{ marginTop: 20 }}
                 />
-                <Option onPress={handleCalendar}>
-                  <OptionText>Close</OptionText>
-                </Option>
               </ModalView>
             </ModalWrapper>
           </Modal>
           <ApodInfoCard image={image} title={title} explanation={explanation} />
-        </>
+        </ApodSafeArea>
       )}
-    </ApodSafeArea>
+    </>
   );
 };

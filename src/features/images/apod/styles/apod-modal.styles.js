@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Text } from '../../../../components/typography/text.component';
 
 export const ModalWrapper = styled.View`
   align-items: center;
@@ -25,15 +24,11 @@ export const ModalView = styled.View`
   elevation: 5;
 `;
 
-export const Option = styled.TouchableOpacity`
-  padding: ${(props) => props.theme.space[3]};
-  margin: 6px;
-  background-color: #009999;
-  border-radius: 12px;
-  align-items: center;
-  width: 100%;
-`;
-
-export const OptionText = styled(Text)`
-  color: ${(props) => props.theme.colors.text.inverse};
+export const CloseIcon = styled.TouchableOpacity`
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: ${(props) => props.theme.space[2]};
+  right: ${(props) => props.theme.space[2]};
+  padding: ${(props) => props.theme.space[2]};
 `;

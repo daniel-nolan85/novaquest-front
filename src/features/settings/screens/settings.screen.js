@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { Image } from 'react-native';
 import { List, Avatar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
@@ -166,17 +166,31 @@ export const SettingsScreen = ({ navigation }) => {
       payload: null,
     });
   };
+
   return (
     <SafeArea>
       <AvatarContainer>
-        <Icon
-          icon={() => <Astronaut width={180} height={180} />}
-          backgroundColor='#eeeeef'
-        />
+        {user.profileImage ? (
+          <Image
+            source={{ uri: user.profileImage[0].url }}
+            style={{ width: 180, height: 180, borderRadius: 90 }}
+          />
+        ) : (
+          <Icon
+            icon={() => <Astronaut width={180} height={180} />}
+            backgroundColor='#eeeeef'
+          />
+        )}
       </AvatarContainer>
       <UserInfoContainer>
         <Text variant='title'>
           {user.rank} {user.name}
+        </Text>
+        <Text variant='title'>
+          {user.daysInSpace === 1
+            ? `${user.daysInSpace} day`
+            : `${user.daysInSpace} days`}{' '}
+          in space
         </Text>
       </UserInfoContainer>
       <ScrollArea>

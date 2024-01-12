@@ -20,8 +20,10 @@ import {
 } from '../styles/trivia-setup.styles';
 import { IconsWrapper } from '../styles/trivia.styles';
 import { GamesContext } from '../../../../services/games/games.context';
+import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
 export const TriviaSetupScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [difficulty, setDifficulty] = useState('');
   const [duration, setDuration] = useState(0);
@@ -43,21 +45,51 @@ export const TriviaSetupScreen = ({ navigation }) => {
     `Next, decide the length of your journey — a brief orbit or an extended voyage through the cosmos.`
   );
   const [text4, setText4] = useState();
+  const [text1Key, setText1Key] = useState(0);
 
   useEffect(() => {
     setText1(
-      `Greetings, Commander ${name}! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
+      `Greetings, ${rank} ${name}! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
     );
     setText4(
-      `Commander ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
+      `${rank} ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
     );
   }, []);
 
+  useEffect(() => {
+    const focusListener = addListener('focus', () => {
+      setText1Key((prevKey) => prevKey + 1);
+    });
+
+    const blurListener = addListener('blur', () => {
+      setCurrentStep(1);
+      setDifficulty('');
+      setDuration(0);
+      setOkButton(false);
+      setDifficultyButtons(false);
+      setDurationButtons(false);
+      setReadyButton(false);
+      setDifficultyTyping(false);
+      setDurationTyping(false);
+      setReadyTyping(false);
+      setShowDifficulty(false);
+      setShowDuration(false);
+      setShowReady(false);
+      setOkTyping(true);
+      setShowOk(true);
+    });
+
+    return () => {
+      focusListener();
+      blurListener();
+    };
+  }, [navigation]);
+
   const { okTyping, setOkTyping, showOk, setShowOk } = useContext(GamesContext);
 
-  const { name, textSpeed } = useSelector((state) => state.user);
+  const { rank, name, textSpeed } = useSelector((state) => state.user);
 
-  const { navigate, dispatch } = navigation;
+  const { navigate, dispatch, addListener } = navigation;
 
   const skipOkText = () => {
     setShowOk(false);
@@ -209,98 +241,105 @@ export const TriviaSetupScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SetupSafeArea>
-        <IconsWrapper>
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(DrawerActions.openDrawer());
-            }}
-          >
-            <Ionicons name='md-menu' size={30} color='#009999' />
-          </TouchableOpacity>
-        </IconsWrapper>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {okButton && (
-              <Option onPress={handleOkClick}>
-                <OptionText variant='body'>OK</OptionText>
-              </Option>
-            )}
-            {difficultyButtons && (
-              <>
-                <Option onPress={() => handleDifficultyClick('easy')}>
-                  <OptionText variant='body'>Lunar Learner (Easy)</OptionText>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SetupSafeArea>
+          <IconsWrapper>
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(DrawerActions.openDrawer());
+              }}
+            >
+              <Ionicons name='md-menu' size={30} color='#009999' />
+            </TouchableOpacity>
+          </IconsWrapper>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble>
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {okButton && (
+                <Option onPress={handleOkClick}>
+                  <OptionText variant='body'>OK</OptionText>
                 </Option>
-                <Option onPress={() => handleDifficultyClick('medium')}>
-                  <OptionText variant='body'>Solar Seeker (Medium)</OptionText>
+              )}
+              {difficultyButtons && (
+                <>
+                  <Option onPress={() => handleDifficultyClick('easy')}>
+                    <OptionText variant='body'>Lunar Learner (Easy)</OptionText>
+                  </Option>
+                  <Option onPress={() => handleDifficultyClick('medium')}>
+                    <OptionText variant='body'>
+                      Solar Seeker (Medium)
+                    </OptionText>
+                  </Option>
+                  <Option onPress={() => handleDifficultyClick('hard')}>
+                    <OptionText variant='body'>
+                      Galactic Guardian (Hard)
+                    </OptionText>
+                  </Option>
+                </>
+              )}
+              {durationButtons && (
+                <>
+                  <Option onPress={() => handleDurationClick(10)}>
+                    <OptionText variant='body'>
+                      Cosmic Quickstep (10 questions)
+                    </OptionText>
+                  </Option>
+                  <Option onPress={() => handleDurationClick(20)}>
+                    <OptionText variant='body'>
+                      Galaxy Quest (20 questions)
+                    </OptionText>
+                  </Option>
+                  <Option onPress={() => handleDurationClick(30)}>
+                    <OptionText variant='body'>
+                      Infinity Expedition (30 questions)
+                    </OptionText>
+                  </Option>
+                </>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
                 </Option>
-                <Option onPress={() => handleDifficultyClick('hard')}>
-                  <OptionText variant='body'>
-                    Galactic Guardian (Hard)
-                  </OptionText>
+              )}
+              {showOk && okTyping && (
+                <Option onPress={skipOkText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-              </>
-            )}
-            {durationButtons && (
-              <>
-                <Option onPress={() => handleDurationClick(10)}>
-                  <OptionText variant='body'>
-                    Cosmic Quickstep (10 questions)
-                  </OptionText>
+              )}
+              {showDifficulty && difficultyTyping && (
+                <Option onPress={skipDifficultyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-                <Option onPress={() => handleDurationClick(20)}>
-                  <OptionText variant='body'>
-                    Galaxy Quest (20 questions)
-                  </OptionText>
+              )}
+              {showDuration && durationTyping && (
+                <Option onPress={skipDurationText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-                <Option onPress={() => handleDurationClick(30)}>
-                  <OptionText variant='body'>
-                    Infinity Expedition (30 questions)
-                  </OptionText>
+              )}
+              {showReady && readyTyping && (
+                <Option onPress={skipReadyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
                 </Option>
-              </>
-            )}
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {showOk && okTyping && (
-              <Option onPress={skipOkText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showDifficulty && difficultyTyping && (
-              <Option onPress={skipDifficultyText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showDuration && durationTyping && (
-              <Option onPress={skipDurationText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showReady && readyTyping && (
-              <Option onPress={skipReadyText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </SetupSafeArea>
+              )}
+            </OptionContainer>
+          </SetupContainer>
+        </SetupSafeArea>
+      )}
     </ImageBackground>
   );
 };

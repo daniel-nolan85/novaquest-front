@@ -17,26 +17,22 @@ import {
   OptionContainer,
   Option,
   OptionText,
-} from '../styles/interstellar-assembly-setup.styles';
-import { IconsWrapper } from '../styles/interstellar-assembly.styles';
+} from '../styles/planets-setup.styles';
+import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
-export const InterstellarAssemblySetupScreen = ({ navigation }) => {
+export const PlanetsSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
-  const [okButton, setOkButton] = useState(false);
   const [readyButton, setReadyButton] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showOk, setShowOk] = useState(true);
   const [text1, setText1] = useState();
-  const [text2] = useState(
-    `Brace yourself for an odyssey of celestial proportions as you explore the intricacies of our vast cosmos. The stars await your arrangement, and the galaxies beckon your strategic mind. Get ready to be the architect of your cosmic adventure — the 'Interstellar Assembly' begins now!`
-  );
   const [text1Key, setText1Key] = useState(0);
 
   useEffect(() => {
     setText1(
-      `Welcome, ${rank} ${name}, to a cosmic challenge like no other — 'Interstellar Assembly.' Prepare to embark on an interstellar journey where your wits and creativity will be put to the test. In this cosmic puzzle adventure, you have the unique opportunity to arrange planets, match moons to their celestial hosts, and assemble the wonders of the universe with a simple drag and drop.`
+      `Welcome to the Planetarium, ${rank} ${name}! Embark on a celestial journey through our cosmic database, where you can explore and uncover fascinating facts, images, and knowledge about the planets in our solar system. From the majestic gas giants to the enigmatic dwarf planets, the Planetarium is your portal to the wonders of the celestial neighborhood. Enjoy your exploration!`
     );
   }, []);
 
@@ -47,7 +43,6 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
 
     const blurListener = addListener('blur', () => {
       setCurrentStep(1);
-      setOkButton(false);
       setReadyButton(false);
       setTyping(true);
       setShowOk(true);
@@ -66,34 +61,18 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
   const skipText = () => {
     setShowOk(false);
     setTyping(false);
-    if (currentStep < 2) {
-      setOkButton(true);
-    } else {
-      setReadyButton(true);
-    }
+    setReadyButton(true);
   };
 
   const handleTypingEnd = () => {
     setShowOk(false);
     setTyping(true);
-    if (currentStep < 2) {
-      setOkButton(true);
-    } else {
-      setReadyButton(true);
-    }
-  };
-
-  const handleOkClick = () => {
-    setShowOk(true);
-    setCurrentStep(currentStep + 1);
-    setOkButton(false);
-    setTyping(true);
+    setReadyButton(true);
   };
 
   const handleReadyClick = () => {
     setCurrentStep(1);
-    setOkButton(false);
-    navigate('InterstellarAssemblyGame');
+    navigate('PlanetsList');
   };
 
   const renderCurrentStep = () => {
@@ -109,19 +88,6 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
             {text1}
-          </TypeWriter>
-        );
-      case 2:
-        return !typing ? (
-          <Text variant='speech'>{text2}</Text>
-        ) : (
-          <TypeWriter
-            typing={typing ? 1 : 0}
-            maxDelay={textSpeed}
-            onTypingEnd={handleTypingEnd}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
-          >
-            {text2}
           </TypeWriter>
         );
       default:
@@ -160,11 +126,6 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
               </SpeechBubble>
             </SpeechContainer>
             <OptionContainer>
-              {okButton && (
-                <Option onPress={handleOkClick}>
-                  <OptionText variant='body'>OK</OptionText>
-                </Option>
-              )}
               {readyButton && (
                 <Option onPress={handleReadyClick}>
                   <OptionText variant='body'>Let's Go!</OptionText>
