@@ -52,3 +52,15 @@ export const deleteAccount = async (authtoken, userId) => {
     }
   );
 };
+
+export const sendMessage = async (authtoken, name, email, subject, message) => {
+  return await axios.post(
+    `${API_BASE_URL}/send-email`,
+    { name, email, subject, message },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

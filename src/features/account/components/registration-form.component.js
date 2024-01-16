@@ -19,7 +19,7 @@ import {
 import { checkBlockedList } from '../../../requests/auth';
 
 export const RegistrationForm = ({ handleGuestLogin }) => {
-  const [email, setEmail] = useState('daniel@nolancode.com');
+  const [email, setEmail] = useState('jennjustice84@gmail.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
 

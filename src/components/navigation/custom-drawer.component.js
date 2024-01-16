@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuth, signOut } from 'firebase/auth';
@@ -8,9 +9,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import defaultProfile from '../../../assets/img/defaultProfile.png';
+import ContactUs from '../../../assets/svg/contact-us.svg';
 import Logout from '../../../assets/svg/logout.svg';
+import { ContactUsModal } from '../modals/contact-us-modal';
 
 export const CustomDrawer = (props) => {
+  const [visible, setVisible] = useState(false);
+
   const dispatch = useDispatch();
   const { profileImage, rank, name, daysInSpace, role } = useSelector(
     (state) => state.user
@@ -65,6 +70,22 @@ export const CustomDrawer = (props) => {
         style={{ padding: 20, borderTopWidth: 1, borderTopColor: '#009999' }}
       >
         <TouchableOpacity
+          onPress={() => setVisible(true)}
+          style={{
+            paddingVertical: 15,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <ContactUs height={24} width={24} />
+          <Text
+            variant='title'
+            style={{ fontSize: 18, marginLeft: 10, color: '#009999' }}
+          >
+            Contact Us
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={logout}
           style={{
             paddingVertical: 15,
@@ -72,15 +93,16 @@ export const CustomDrawer = (props) => {
             alignItems: 'center',
           }}
         >
-          <Logout height={32} width={32} />
+          <Logout height={24} width={24} />
           <Text
             variant='title'
-            style={{ fontSize: 20, marginLeft: 10, color: '#009999' }}
+            style={{ fontSize: 18, marginLeft: 10, color: '#009999' }}
           >
             Logout
           </Text>
         </TouchableOpacity>
       </View>
+      <ContactUsModal visible={visible} setVisible={setVisible} />
     </View>
   );
 };

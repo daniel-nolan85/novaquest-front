@@ -38,6 +38,7 @@ import GalaxyLuminary from '../../../../assets/svg/badges/galaxy-luminary.svg';
 import CosmicChronicler from '../../../../assets/svg/badges/cosmic-chronicler.svg';
 import StellarSupporter from '../../../../assets/svg/badges/stellar-supporter.svg';
 import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conversationalist.svg';
+import GalacticPlanetologist from '../../../../assets/svg/badges/galactic-planetologist.svg';
 
 export const AchievementsRoute = ({ achievements }) => {
   const [visible, setVisible] = useState(false);
@@ -47,8 +48,7 @@ export const AchievementsRoute = ({ achievements }) => {
     achievedCosmicPioneer: {
       icon: RocketLaunch,
       name: 'Cosmic Pioneer',
-      description:
-        'Complete the app introduction and launch your cosmic adventure!',
+      description: 'Complete introduction and launch your cosmic adventure.',
     },
     achievedAdventurousExplorer: {
       icon: AdventurousExplorer,
@@ -115,7 +115,7 @@ export const AchievementsRoute = ({ achievements }) => {
       icon: Calendar,
       name: 'Cosmic Chronologist',
       description:
-        'Navigate both Earth dates and Martian sols in Mars rover camera searches.',
+        'Navigate Earth dates and Martian sols in Mars rover searches.',
     },
     achievedCosmicCadet: {
       icon: CosmicCadet,
@@ -211,6 +211,11 @@ export const AchievementsRoute = ({ achievements }) => {
       icon: CosmicConversationalist,
       name: 'Cosmic Conversationalist',
       description: 'Comment on 300 posts in the Cosmic Community.',
+    },
+    achievedGalacticPlanetologist: {
+      icon: GalacticPlanetologist,
+      name: 'Galactic Planetologist',
+      description: 'Explore all planets within the Planetarium.',
     },
   };
 

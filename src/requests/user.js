@@ -366,10 +366,21 @@ export const catchScore = async (authtoken, _id, score) => {
 };
 
 export const awardAchievement = async (authtoken, _id, achievement) => {
-  console.log('awar achievement');
   return await axios.put(
     `${API_BASE_URL}/award-achievement`,
     { _id, achievement },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const updatePlanetsViewed = async (authtoken, _id, name) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-planets-viewed`,
+    { _id, name },
     {
       headers: {
         authtoken,

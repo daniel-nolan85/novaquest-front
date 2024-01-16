@@ -6,10 +6,10 @@ import {
   AchievementsModalView,
   AchievementsSection,
   AchievementsItem,
+  BadgeName,
 } from '../styles/settings.styles';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import Close from '../../../../assets/svg/close.svg';
-import { Text } from '../../../components/typography/text.component';
 import RocketLaunch from '../../../../assets/svg/badges/rocket-launch.svg';
 import AdventurousExplorer from '../../../../assets/svg/badges/adventurous-explorer.svg';
 import AdventurousExplorerGrey from '../../../../assets/svg/badges/adventurous-explorer-grey.svg';
@@ -75,6 +75,8 @@ import StellarSupporter from '../../../../assets/svg/badges/stellar-supporter.sv
 import StellarSupporterGrey from '../../../../assets/svg/badges/stellar-supporter-grey.svg';
 import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conversationalist.svg';
 import CosmicConversationalistGrey from '../../../../assets/svg/badges/cosmic-conversationalist-grey.svg';
+import GalacticPlanetologist from '../../../../assets/svg/badges/galactic-planetologist.svg';
+import GalacticPlanetologistGrey from '../../../../assets/svg/badges/galactic-planetologist-grey.svg';
 
 export const AchievementsModal = ({
   showAchievements,
@@ -113,6 +115,7 @@ export const AchievementsModal = ({
     achievedCosmicChronicler,
     achievedStellarSupporter,
     achievedCosmicConversationalist,
+    achievedGalacticPlanetologist,
   } = useSelector((state) => state.user);
 
   return (
@@ -130,12 +133,14 @@ export const AchievementsModal = ({
             <ScrollView>
               <AchievementsSection>
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Pioneer</Text>}
-                  description='Complete the app introduction and launch your cosmic adventure!'
+                  title={<BadgeName variant='title'>Cosmic Pioneer</BadgeName>}
+                  description='Complete introduction and launch your cosmic adventure.'
                   left={() => <RocketLaunch width={100} height={100} />}
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Adventurous Explorer</Text>}
+                  title={
+                    <BadgeName variant='title'>Adventurous Explorer</BadgeName>
+                  }
                   description='Explore the cosmos for 4 days.'
                   left={() =>
                     achievedAdventurousExplorer ? (
@@ -146,7 +151,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Stellar Voyager</Text>}
+                  title={<BadgeName variant='title'>Stellar Voyager</BadgeName>}
                   description='Explore the cosmos for 7 days.'
                   left={() =>
                     achievedStellarVoyager ? (
@@ -157,7 +162,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Astro Pioneer</Text>}
+                  title={<BadgeName variant='title'>Astro Pioneer</BadgeName>}
                   description='Explore the cosmos for 14 days.'
                   left={() =>
                     achievedAstroPioneer ? (
@@ -168,7 +173,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Trailblazer</Text>}
+                  title={
+                    <BadgeName variant='title'>Cosmic Trailblazer</BadgeName>
+                  }
                   description='Explore the cosmos for 30 days.'
                   left={() =>
                     achievedCosmicTrailblazer ? (
@@ -179,7 +186,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Celestial Nomad</Text>}
+                  title={<BadgeName variant='title'>Celestial Nomad</BadgeName>}
                   description='Explore the cosmos for 60 days.'
                   left={() =>
                     achievedCelestialNomad ? (
@@ -190,7 +197,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Galactic Wayfarer</Text>}
+                  title={
+                    <BadgeName variant='title'>Galactic Wayfarer</BadgeName>
+                  }
                   description='Explore the cosmos for 90 days.'
                   left={() =>
                     achievedGalacticWayfarer ? (
@@ -201,7 +210,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Interstellar Voyager</Text>}
+                  title={
+                    <BadgeName variant='title'>Interstellar Voyager</BadgeName>
+                  }
                   description='Explore the cosmos for 180 days.'
                   left={() =>
                     achievedInterstellarVoyager ? (
@@ -212,7 +223,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Stellar Centurion</Text>}
+                  title={
+                    <BadgeName variant='title'>Stellar Centurion</BadgeName>
+                  }
                   description='Explore the cosmos for 270 days.'
                   left={() =>
                     achievedStellarCenturion ? (
@@ -224,7 +237,9 @@ export const AchievementsModal = ({
                 />
                 <AchievementsItem
                   title={
-                    <Text variant='title'>Cosmic Voyager Extraordinaire</Text>
+                    <BadgeName variant='title'>
+                      Cosmic Voyager Extraordinaire
+                    </BadgeName>
                   }
                   description='Explore the cosmos for 365 days.'
                   left={() =>
@@ -236,7 +251,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Red Planet Voyager</Text>}
+                  title={
+                    <BadgeName variant='title'>Red Planet Voyager</BadgeName>
+                  }
                   description='Explore Mars with your first rover image view.'
                   left={() =>
                     achievedRedPlanetVoyager ? (
@@ -247,7 +264,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Mars Rover Maestro</Text>}
+                  title={
+                    <BadgeName variant='title'>Mars Rover Maestro</BadgeName>
+                  }
                   description='Master Martian landscapes by viewing images from all rovers.'
                   left={() =>
                     achievedMarsRoverMaestro ? (
@@ -258,7 +277,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Martian Lens Master</Text>}
+                  title={
+                    <BadgeName variant='title'>Martian Lens Master</BadgeName>
+                  }
                   description='Explore all available cameras on each Martian rover.'
                   left={() =>
                     achievedMartianLensMaster ? (
@@ -269,8 +290,10 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Chronologist</Text>}
-                  description='Navigate both Earth dates and Martian sols in Mars rover camera searches.'
+                  title={
+                    <BadgeName variant='title'>Cosmic Chronologist</BadgeName>
+                  }
+                  description='Navigate Earth dates and Martian sols in Mars rover searches.'
                   left={() =>
                     achievedCosmicChronologist ? (
                       <Calendar width={100} height={100} />
@@ -280,7 +303,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Cadet</Text>}
+                  title={<BadgeName variant='title'>Cosmic Cadet</BadgeName>}
                   description='Achieve more than 50% as a Lunar Learner.'
                   left={() =>
                     achievedCosmicCadet ? (
@@ -291,7 +314,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Star Navigator</Text>}
+                  title={<BadgeName variant='title'>Star Navigator</BadgeName>}
                   description='Score more than 50% as a Solar Seeker.'
                   left={() =>
                     achievedStarNavigator ? (
@@ -302,7 +325,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Galactic Sage</Text>}
+                  title={<BadgeName variant='title'>Galactic Sage</BadgeName>}
                   description='Exceed 50% as a Galactic Guardian.'
                   left={() =>
                     achievedGalacticSage ? (
@@ -313,7 +336,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Nova Scholar</Text>}
+                  title={<BadgeName variant='title'>Nova Scholar</BadgeName>}
                   description='Achieve 100% as a Lunar Learner.'
                   left={() =>
                     achievedNovaScholar ? (
@@ -324,7 +347,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Quasar Virtuoso</Text>}
+                  title={<BadgeName variant='title'>Quasar Virtuoso</BadgeName>}
                   description='Attain 100% as a Solar Seeker.'
                   left={() =>
                     achievedQuasarVirtuoso ? (
@@ -335,7 +358,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Supernova Savant</Text>}
+                  title={
+                    <BadgeName variant='title'>Supernova Savant</BadgeName>
+                  }
                   description='Score 100% as a Galactic Guardian.'
                   left={() =>
                     achievedSupernovaSavant ? (
@@ -346,7 +371,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Light Speed Explorer</Text>}
+                  title={
+                    <BadgeName variant='title'>Light Speed Explorer</BadgeName>
+                  }
                   description='Successfully complete a Cosmic Quickstep.'
                   left={() =>
                     achievedLightSpeedExplorer ? (
@@ -357,7 +384,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Odyssey Trailblazer</Text>}
+                  title={
+                    <BadgeName variant='title'>Odyssey Trailblazer</BadgeName>
+                  }
                   description='Successfully complete a Galaxy Quest.'
                   left={() =>
                     achievedOdysseyTrailblazer ? (
@@ -368,7 +397,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Infinity Voyager</Text>}
+                  title={
+                    <BadgeName variant='title'>Infinity Voyager</BadgeName>
+                  }
                   description='Successfully complete an Infinity Expedition.'
                   left={() =>
                     achievedInfinityVoyager ? (
@@ -379,7 +410,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Celestial Cadet</Text>}
+                  title={<BadgeName variant='title'>Celestial Cadet</BadgeName>}
                   description='Reach a score of 50 points on Astro Aviator.'
                   left={() =>
                     achievedCelestialCadet ? (
@@ -390,7 +421,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Astro Ace</Text>}
+                  title={<BadgeName variant='title'>Astro Ace</BadgeName>}
                   description='Reach a score of 100 points on Astro Aviator.'
                   left={() =>
                     achievedAstroAce ? (
@@ -401,7 +432,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Galactic Aviator</Text>}
+                  title={
+                    <BadgeName variant='title'>Galactic Aviator</BadgeName>
+                  }
                   description='Reach a score of 500 points on Astro Aviator.'
                   left={() =>
                     achievedGalacticAviator ? (
@@ -412,7 +445,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Arranger</Text>}
+                  title={<BadgeName variant='title'>Cosmic Arranger</BadgeName>}
                   description='Orchestrate the planets in perfect harmony.'
                   left={() =>
                     achievedCosmicArranger ? (
@@ -423,7 +456,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Celestial Contributor</Text>}
+                  title={
+                    <BadgeName variant='title'>Celestial Contributor</BadgeName>
+                  }
                   description='Create 1st post in the Cosmic Community.'
                   left={() =>
                     achievedCelestialContributor ? (
@@ -434,7 +469,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Prolific Explorer</Text>}
+                  title={
+                    <BadgeName variant='title'>Prolific Explorer</BadgeName>
+                  }
                   description='Create 10th post in the Cosmic Community.'
                   left={() =>
                     achievedProlificExplorer ? (
@@ -445,7 +482,7 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Galaxy Luminary</Text>}
+                  title={<BadgeName variant='title'>Galaxy Luminary</BadgeName>}
                   description='Create 50th post in the Cosmic Community.'
                   left={() =>
                     achievedGalaxyLuminary ? (
@@ -456,7 +493,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Chronicler</Text>}
+                  title={
+                    <BadgeName variant='title'>Cosmic Chronicler</BadgeName>
+                  }
                   description='Create 250th post in the Cosmic Community.'
                   left={() =>
                     achievedCosmicChronicler ? (
@@ -467,7 +506,9 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Stellar Supporter</Text>}
+                  title={
+                    <BadgeName variant='title'>Stellar Supporter</BadgeName>
+                  }
                   description='Star 300 posts in the Cosmic Community.'
                   left={() =>
                     achievedStellarSupporter ? (
@@ -478,13 +519,32 @@ export const AchievementsModal = ({
                   }
                 />
                 <AchievementsItem
-                  title={<Text variant='title'>Cosmic Conversationalist</Text>}
+                  title={
+                    <BadgeName variant='title'>
+                      Cosmic Conversationalist
+                    </BadgeName>
+                  }
                   description='Comment on 300 posts in the Cosmic Community.'
                   left={() =>
                     achievedCosmicConversationalist ? (
                       <CosmicConversationalist width={100} height={100} />
                     ) : (
                       <CosmicConversationalistGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={
+                    <BadgeName variant='title'>
+                      Galactic Planetologist
+                    </BadgeName>
+                  }
+                  description='Explore all planets within the Planetarium.'
+                  left={() =>
+                    achievedGalacticPlanetologist ? (
+                      <GalacticPlanetologist width={100} height={100} />
+                    ) : (
+                      <GalacticPlanetologistGrey width={100} height={100} />
                     )
                   }
                 />

@@ -132,3 +132,7 @@ export const ScrollArea = styled.ScrollView`
 export const Delete = styled(Text)`
   color: #c0392b;
 `;
+
+export const BadgeName = styled(Text)`
+  font-size: 16px;
+`;

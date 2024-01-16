@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import { PlanetInfoCard } from '../components/planet-info-card.component';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import {
@@ -10,6 +12,7 @@ import {
   StatsTitle,
   StatsItem,
 } from '../styles/planet-details.styles';
+import { updatePlanetsViewed } from '../../../../requests/user';
 
 const { Accordion, Icon } = List;
 
@@ -17,8 +20,25 @@ export const PlanetDetailsScreen = ({ route }) => {
   const [descExpanded, setDescExpanded] = useState(false);
   const [statsExpanded, setStatsExpanded] = useState(false);
 
-  const { planet } = route.params;
+  const { token, _id } = useSelector((state) => state.user);
+
+  useFocusEffect(
+    useCallback(() => {
+      updateViewedPlanets();
+    }, [])
+  );
+
+  const updateViewedPlanets = async () => {
+    await updatePlanetsViewed(token, _id, name)
+      .then((res) => {
+        if (res.data.achievement) navigate(res.data.achievement);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const { navigate, planet } = route.params;
   const {
+    name,
     description,
     avgDistFromSun,
     diameter,
