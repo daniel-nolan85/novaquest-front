@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -19,6 +19,7 @@ import {
   OptionContainer,
   Option,
   OptionText,
+  DateSelector,
 } from '../styles/mars-rover-images-setup.styles';
 import { SolSelector } from '../components/sol-selector.component';
 import { EarthDateSelector } from '../components/earth-date-selector.component';
@@ -51,6 +52,21 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   const [text3, setText3] = useState();
   const [text4, setText4] = useState();
   const [text1Key, setText1Key] = useState(0);
+  const [shrinkBubble, setShrinkBubble] = useState(false);
+
+  const scrollViewRef = useRef(null);
+
+  useEffect(() => {
+    if (shrinkBubble && scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  }, [shrinkBubble]);
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    if (shrinkBubble && scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  };
 
   useEffect(() => {
     setText1(
@@ -60,7 +76,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
       `Now, with your preferred time scale in mind, select the specific date you wish to explore. The cosmos awaits your chosen moment, ${user.rank} ${user.name}.`
     );
     setText4(
-      `${user.rank} ${user.name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, date, and temporal perspective with precision. As the countdown begins, know that you are the architect of this celestial odyssey. Brace yourself, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, ${user.rank} ${user.name}, and may your exploration of the cosmos be nothing short of extraordinary!`
+      `${user.rank} ${user.name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, date, and temporal perspective with precision. Brace yourself, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, ${user.rank} ${user.name}, and may your exploration of the cosmos be nothing short of extraordinary!`
     );
   }, []);
 
@@ -87,6 +103,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
       setShowDate(false);
       setShowReady(false);
       setLaunchDate(null);
+      setShrinkBubble(false);
     });
 
     return () => {
@@ -130,6 +147,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setShowRover(false);
     setRoverTyping(false);
     setRoverButtons(true);
+    setShrinkBubble(true);
   };
 
   const skipDateTypeText = () => {
@@ -154,6 +172,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setShowRover(false);
     setRoverButtons(true);
     setRoverTyping(false);
+    setShrinkBubble(true);
   };
 
   const handleTypingEndDateType = () => {
@@ -179,6 +198,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setShowRover(false);
     setCurrentStep(currentStep + 1);
     setRoverButtons(false);
+    setShrinkBubble(false);
     setDateTypeTyping(true);
     setSelectedRover(choice);
   };
@@ -291,102 +311,106 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
               <Ionicons name='md-menu' size={30} color='#009999' />
             </TouchableOpacity>
           </IconsWrapper>
-          <ScrollView>
-            <SetupContainer>
-              <SpeechContainer>
-                <ImageContainer>
-                  <Astronaut source={{ uri: images[0] }} />
-                </ImageContainer>
-                <SpeechBubble>
-                  <MessageBubble mine text={renderCurrentStep()} />
-                </SpeechBubble>
-              </SpeechContainer>
-              <OptionContainer>
-                {roverButtons && (
-                  <>
-                    <Option onPress={() => handleRoverClick('curiosity')}>
-                      <OptionText variant='body'>Curiosity</OptionText>
-                    </Option>
-                    <Option onPress={() => handleRoverClick('opportunity')}>
-                      <OptionText variant='body'>Opportunity</OptionText>
-                    </Option>
-                    <Option onPress={() => handleRoverClick('perseverance')}>
-                      <OptionText variant='body'>Perseverance</OptionText>
-                    </Option>
-                    <Option onPress={() => handleRoverClick('spirit')}>
-                      <OptionText variant='body'>Spirit</OptionText>
-                    </Option>
-                  </>
-                )}
-                {dateTypeButtons && (
-                  <>
-                    <Option onPress={() => handleDateTypeClick('sol')}>
-                      <OptionText variant='body'>
-                        Sol (Martian rotation or day)
-                      </OptionText>
-                    </Option>
-                    <Option onPress={() => handleDateTypeClick('earth_date')}>
-                      <OptionText variant='body'>Earth date</OptionText>
-                    </Option>
-                  </>
-                )}
-                {dateButtons && (
-                  <>
-                    {dateType === 'sol' && (
-                      <>
-                        <SolSelector
-                          maxSol={maxSol}
-                          date={date}
-                          setDate={setDate}
-                          handleDateClick={handleDateClick}
-                        />
-                        <Option onPress={() => handleDateClick(date)}>
-                          <OptionText variant='body'>Ok</OptionText>
-                        </Option>
-                      </>
-                    )}
-                    {dateType === 'earth_date' && (
-                      <>
-                        <EarthDateSelector
-                          maxEarth={maxEarth}
-                          landingDate={landingDate}
-                          setDate={setDate}
-                        />
-                        <Option onPress={() => handleDateClick(date)}>
-                          <OptionText variant='body'>Ok</OptionText>
-                        </Option>
-                      </>
-                    )}
-                  </>
-                )}
-                {readyButton && (
-                  <Option onPress={handleReadyClick}>
-                    <OptionText variant='body'>Let's Go!</OptionText>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble
+                ref={scrollViewRef}
+                shrinkBubble={shrinkBubble}
+                onContentSizeChange={(contentWidth, contentHeight) =>
+                  handleContentSizeChange(contentWidth, contentHeight)
+                }
+              >
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {roverButtons && (
+                <>
+                  <Option onPress={() => handleRoverClick('curiosity')}>
+                    <OptionText variant='body'>Curiosity</OptionText>
                   </Option>
-                )}
-                {showRover && roverTyping && (
-                  <Option onPress={skipRoverText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  <Option onPress={() => handleRoverClick('opportunity')}>
+                    <OptionText variant='body'>Opportunity</OptionText>
                   </Option>
-                )}
-                {showDateType && dateTypeTyping && (
-                  <Option onPress={skipDateTypeText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  <Option onPress={() => handleRoverClick('perseverance')}>
+                    <OptionText variant='body'>Perseverance</OptionText>
                   </Option>
-                )}
-                {showDate && dateTyping && (
-                  <Option onPress={skipDateText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  <Option onPress={() => handleRoverClick('spirit')}>
+                    <OptionText variant='body'>Spirit</OptionText>
                   </Option>
-                )}
-                {showReady && readyTyping && (
-                  <Option onPress={skipReadyText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </>
+              )}
+              {dateTypeButtons && (
+                <>
+                  <Option onPress={() => handleDateTypeClick('sol')}>
+                    <OptionText variant='body'>
+                      Sol (Martian rotation or day)
+                    </OptionText>
                   </Option>
-                )}
-              </OptionContainer>
-            </SetupContainer>
-          </ScrollView>
+                  <Option onPress={() => handleDateTypeClick('earth_date')}>
+                    <OptionText variant='body'>Earth date</OptionText>
+                  </Option>
+                </>
+              )}
+              {dateButtons && (
+                <>
+                  {dateType === 'sol' && (
+                    <>
+                      <SolSelector
+                        maxSol={maxSol}
+                        date={date}
+                        setDate={setDate}
+                        handleDateClick={handleDateClick}
+                      />
+                      <Option onPress={() => handleDateClick(date)}>
+                        <OptionText variant='body'>Ok</OptionText>
+                      </Option>
+                    </>
+                  )}
+                  {dateType === 'earth_date' && (
+                    <ScrollView style={{ height: 400 }}>
+                      <EarthDateSelector
+                        maxEarth={maxEarth}
+                        landingDate={landingDate}
+                        setDate={setDate}
+                      />
+                      <Option onPress={() => handleDateClick(date)}>
+                        <OptionText variant='body'>Ok</OptionText>
+                      </Option>
+                    </ScrollView>
+                  )}
+                </>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
+                </Option>
+              )}
+              {showRover && roverTyping && (
+                <Option onPress={skipRoverText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+              {showDateType && dateTypeTyping && (
+                <Option onPress={skipDateTypeText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+              {showDate && dateTyping && (
+                <Option onPress={skipDateText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+              {showReady && readyTyping && (
+                <Option onPress={skipReadyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+            </OptionContainer>
+          </SetupContainer>
         </SetupSafeArea>
       )}
     </ImageBackground>

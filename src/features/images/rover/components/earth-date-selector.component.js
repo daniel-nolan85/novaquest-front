@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import DatePicker from 'react-native-modern-datepicker';
 
 export const EarthDateSelector = ({ maxEarth, landingDate, setDate }) => {
@@ -8,20 +8,13 @@ export const EarthDateSelector = ({ maxEarth, landingDate, setDate }) => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <DatePicker
-        mode='calendar'
-        selected={maxEarth}
-        onDateChange={handleDateChange}
-        minimumDate={landingDate}
-        maximumDate={maxEarth}
-      />
-    </View>
+    <DatePicker
+      mode='calendar'
+      selected={maxEarth}
+      onDateChange={handleDateChange}
+      minimumDate={landingDate}
+      maximumDate={maxEarth}
+      style={{ alignSelf: 'center', borderRadius: 12, width: '95%' }}
+    />
   );
 };

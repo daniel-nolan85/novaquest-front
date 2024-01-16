@@ -10,10 +10,10 @@ import {
   OptionText,
 } from '../styles/interstellar-assembly-modal.styles';
 
-export const InterstellarAssemblyModal = ({ handlePlayAgain, isGameWon }) => {
+export const InterstellarAssemblyModal = ({ handlePlayAgain, visible }) => {
   return (
     <SafeArea>
-      <Modal visible={isGameWon} transparent={true} animationType='slide'>
+      <Modal visible={visible} transparent={true} animationType='slide'>
         <ModalWrapper>
           <ModalView>
             <AnimationWrapper>

@@ -3,6 +3,9 @@ import { AstroAviatorSetupScreen } from '../../features/games/astro-aviator/scre
 import { AstroAviatorGameScreen } from '../../features/games/astro-aviator/screens/astro-aviator-game-screen';
 import { LeaderboardScreen } from '../../features/games/astro-aviator/screens/leaderboard-screen';
 import { UserProfileScreen } from '../../features/social/screens/user-profile.screen';
+import { AstroScoreOver50Screen } from '../../features/games/astro-aviator/screens/astro-aviator-over-50.screen';
+import { AstroScoreOver100Screen } from '../../features/games/astro-aviator/screens/astro-aviator-over-100.screen';
+import { AstroScoreOver500Screen } from '../../features/games/astro-aviator/screens/astro-aviator-over-500.screen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -17,6 +20,9 @@ export const AstroAviatorNavigator = () => {
       <Screen name='AstroAviatorGame' component={AstroAviatorGameScreen} />
       <Screen name='Leaderboard' component={LeaderboardScreen} />
       <Screen name='UserProfile' component={UserProfileScreen} />
+      <Screen name='AstroScoreOver50' component={AstroScoreOver50Screen} />
+      <Screen name='AstroScoreOver100' component={AstroScoreOver100Screen} />
+      <Screen name='AstroScoreOver500' component={AstroScoreOver500Screen} />
     </Navigator>
   );
 };

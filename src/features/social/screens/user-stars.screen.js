@@ -241,9 +241,10 @@ export const UserStarsScreen = ({ navigation, route }) => {
     addComment(token, _id, postId, item)
       .then((res) => {
         setShowCommentList(false);
-        if (res.data.postedBy !== _id) {
-          socket.emit('new comment', { _id, ownerId: res.data.postedBy });
+        if (res.data.post.postedBy !== _id) {
+          socket.emit('new comment', { _id, ownerId: res.data.post.postedBy });
         }
+        if (res.data.achievement) navigate(res.data.achievement);
       })
       .catch((err) => {
         console.error('Error adding comment:', err);

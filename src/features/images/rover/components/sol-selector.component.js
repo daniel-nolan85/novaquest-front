@@ -20,9 +20,9 @@ export const SolSelector = ({ maxSol, date, setDate }) => {
   return (
     <View
       style={{
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 100,
       }}
     >
       {isEditable ? (
@@ -45,7 +45,7 @@ export const SolSelector = ({ maxSol, date, setDate }) => {
           <Text
             style={{
               fontSize: 60,
-              color: '#999',
+              color: '#fff',
               fontWeight: '400',
             }}
           >
@@ -59,8 +59,8 @@ export const SolSelector = ({ maxSol, date, setDate }) => {
         maximumValue={maxSol}
         step={1}
         value={date}
-        minimumTrackTintColor='#111'
-        maximumTrackTintColor='#111'
+        minimumTrackTintColor='#009999'
+        maximumTrackTintColor='#999'
         thumbTintColor='#009999'
         onValueChange={(v) => setDate(v)}
       />

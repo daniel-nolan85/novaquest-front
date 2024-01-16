@@ -13,7 +13,7 @@ import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
 import { submitPostWithMedia, submitPost } from '../../../requests/post';
 import { AnimatedProgressBar } from '../../../components/animations/progress-bar.animation';
 
-export const CreatePost = ({ newsFeed }) => {
+export const CreatePost = ({ newsFeed, navigate }) => {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState([]);
@@ -44,9 +44,17 @@ export const CreatePost = ({ newsFeed }) => {
           }
         });
         const { data } = await uploadMediaToCloudinary(token, formData);
-        await submitPostWithMedia(token, _id, postText, data);
+        await submitPostWithMedia(token, _id, postText, data)
+          .then((res) => {
+            if (res.data) navigate(res.data);
+          })
+          .catch((err) => console.error(err));
       } else {
-        await submitPost(token, _id, postText);
+        await submitPost(token, _id, postText)
+          .then((res) => {
+            if (res.data) navigate(res.data);
+          })
+          .catch((err) => console.error(err));
       }
       setIsLoading(false);
       newsFeed();

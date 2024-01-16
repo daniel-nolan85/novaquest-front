@@ -364,3 +364,16 @@ export const catchScore = async (authtoken, _id, score) => {
     }
   );
 };
+
+export const awardAchievement = async (authtoken, _id, achievement) => {
+  console.log('awar achievement');
+  return await axios.put(
+    `${API_BASE_URL}/award-achievement`,
+    { _id, achievement },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

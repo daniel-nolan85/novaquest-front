@@ -203,14 +203,19 @@ export const UserPostsScreen = ({ navigation, route }) => {
 
   const likePost = async (postId) => {
     try {
-      await handleLikePost(token, _id, postId);
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post._id === postId
-            ? { ...post, likes: [...post.likes, { _id }] }
-            : post
-        )
-      );
+      await handleLikePost(token, _id, postId).then((res) => {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === postId
+              ? { ...post, likes: [...post.likes, { _id }] }
+              : post
+          )
+        );
+        if (res.data.post.postedBy !== _id) {
+          socket.emit('like post', { _id, ownerId: res.data.post.postedBy });
+        }
+        if (res.data.achievement) navigate(res.data.achievement);
+      });
     } catch (err) {
       console.error(err);
     }
@@ -246,6 +251,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
     addComment(token, _id, postId, item)
       .then((res) => {
         setShowCommentList(false);
+        if (res.data.achievement) navigate(res.data.achievement);
       })
       .catch((err) => {
         console.error('Error adding comment:', err);

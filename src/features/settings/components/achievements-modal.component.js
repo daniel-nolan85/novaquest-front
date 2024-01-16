@@ -1,9 +1,7 @@
 import { Modal, ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import {
   ModalWrapper,
-  ModalView,
   CloseIcon,
   AchievementsModalView,
   AchievementsSection,
@@ -57,6 +55,26 @@ import Trailblazer from '../../../../assets/svg/badges/trailblazer.svg';
 import TrailblazerGrey from '../../../../assets/svg/badges/trailblazer-grey.svg';
 import Infinity from '../../../../assets/svg/badges/infinity.svg';
 import InfinityGrey from '../../../../assets/svg/badges/infinity-grey.svg';
+import CelestialCadet from '../../../../assets/svg/badges/celestial-cadet.svg';
+import CelestialCadetGrey from '../../../../assets/svg/badges/celestial-cadet-grey.svg';
+import AstroAce from '../../../../assets/svg/badges/astro-ace.svg';
+import AstroAceGrey from '../../../../assets/svg/badges/astro-ace-grey.svg';
+import GalacticAviator from '../../../../assets/svg/badges/galactic-aviator.svg';
+import GalacticAviatorGrey from '../../../../assets/svg/badges/galactic-aviator-grey.svg';
+import CosmicArranger from '../../../../assets/svg/badges/cosmic-arranger.svg';
+import CosmicArrangerGrey from '../../../../assets/svg/badges/cosmic-arranger-grey.svg';
+import CelestialContributor from '../../../../assets/svg/badges/celestial-contributor.svg';
+import CelestialContributorGrey from '../../../../assets/svg/badges/celestial-contributor-grey.svg';
+import ProlificExplorer from '../../../../assets/svg/badges/prolific-explorer.svg';
+import ProlificExplorerGrey from '../../../../assets/svg/badges/prolific-explorer-grey.svg';
+import GalaxyLuminary from '../../../../assets/svg/badges/galaxy-luminary.svg';
+import GalaxyLuminaryGrey from '../../../../assets/svg/badges/galaxy-luminary-grey.svg';
+import CosmicChronicler from '../../../../assets/svg/badges/cosmic-chronicler.svg';
+import CosmicChroniclerGrey from '../../../../assets/svg/badges/cosmic-chronicler-grey.svg';
+import StellarSupporter from '../../../../assets/svg/badges/stellar-supporter.svg';
+import StellarSupporterGrey from '../../../../assets/svg/badges/stellar-supporter-grey.svg';
+import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conversationalist.svg';
+import CosmicConversationalistGrey from '../../../../assets/svg/badges/cosmic-conversationalist-grey.svg';
 
 export const AchievementsModal = ({
   showAchievements,
@@ -85,6 +103,16 @@ export const AchievementsModal = ({
     achievedLightSpeedExplorer,
     achievedOdysseyTrailblazer,
     achievedInfinityVoyager,
+    achievedCelestialCadet,
+    achievedAstroAce,
+    achievedGalacticAviator,
+    achievedCosmicArranger,
+    achievedCelestialContributor,
+    achievedProlificExplorer,
+    achievedGalaxyLuminary,
+    achievedCosmicChronicler,
+    achievedStellarSupporter,
+    achievedCosmicConversationalist,
   } = useSelector((state) => state.user);
 
   return (
@@ -347,6 +375,116 @@ export const AchievementsModal = ({
                       <Infinity width={100} height={100} />
                     ) : (
                       <InfinityGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Celestial Cadet</Text>}
+                  description='Reach a score of 50 points on Astro Aviator.'
+                  left={() =>
+                    achievedCelestialCadet ? (
+                      <CelestialCadet width={100} height={100} />
+                    ) : (
+                      <CelestialCadetGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Astro Ace</Text>}
+                  description='Reach a score of 100 points on Astro Aviator.'
+                  left={() =>
+                    achievedAstroAce ? (
+                      <AstroAce width={100} height={100} />
+                    ) : (
+                      <AstroAceGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Galactic Aviator</Text>}
+                  description='Reach a score of 500 points on Astro Aviator.'
+                  left={() =>
+                    achievedGalacticAviator ? (
+                      <GalacticAviator width={100} height={100} />
+                    ) : (
+                      <GalacticAviatorGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Cosmic Arranger</Text>}
+                  description='Orchestrate the planets in perfect harmony.'
+                  left={() =>
+                    achievedCosmicArranger ? (
+                      <CosmicArranger width={100} height={100} />
+                    ) : (
+                      <CosmicArrangerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Celestial Contributor</Text>}
+                  description='Create 1st post in the Cosmic Community.'
+                  left={() =>
+                    achievedCelestialContributor ? (
+                      <CelestialContributor width={100} height={100} />
+                    ) : (
+                      <CelestialContributorGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Prolific Explorer</Text>}
+                  description='Create 10th post in the Cosmic Community.'
+                  left={() =>
+                    achievedProlificExplorer ? (
+                      <ProlificExplorer width={100} height={100} />
+                    ) : (
+                      <ProlificExplorerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Galaxy Luminary</Text>}
+                  description='Create 50th post in the Cosmic Community.'
+                  left={() =>
+                    achievedGalaxyLuminary ? (
+                      <GalaxyLuminary width={100} height={100} />
+                    ) : (
+                      <GalaxyLuminaryGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Cosmic Chronicler</Text>}
+                  description='Create 250th post in the Cosmic Community.'
+                  left={() =>
+                    achievedCosmicChronicler ? (
+                      <CosmicChronicler width={100} height={100} />
+                    ) : (
+                      <CosmicChroniclerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Stellar Supporter</Text>}
+                  description='Star 300 posts in the Cosmic Community.'
+                  left={() =>
+                    achievedStellarSupporter ? (
+                      <StellarSupporter width={100} height={100} />
+                    ) : (
+                      <StellarSupporterGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<Text variant='title'>Cosmic Conversationalist</Text>}
+                  description='Comment on 300 posts in the Cosmic Community.'
+                  left={() =>
+                    achievedCosmicConversationalist ? (
+                      <CosmicConversationalist width={100} height={100} />
+                    ) : (
+                      <CosmicConversationalistGrey width={100} height={100} />
                     )
                   }
                 />

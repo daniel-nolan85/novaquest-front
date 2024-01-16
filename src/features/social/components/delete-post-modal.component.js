@@ -53,7 +53,7 @@ export const DeletePostModal = ({
             width: '100%',
           },
         });
-        setIsLoading(true);
+        setIsLoading(false);
         setVisible(false);
         hidePostModal && hidePostModal();
       })

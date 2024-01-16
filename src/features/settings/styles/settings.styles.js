@@ -7,7 +7,6 @@ import { Text } from '../../../components/typography/text.component';
 const { Section, Item } = List;
 
 export const AvatarContainer = styled.View`
-  margin: ${(props) => props.theme.space[5]};
   align-items: center;
 `;
 
@@ -127,7 +126,7 @@ export const SearchContainer = styled.View`
 `;
 
 export const ScrollArea = styled.ScrollView`
-  height: 500px;
+  height: 480px;
 `;
 
 export const Delete = styled(Text)`

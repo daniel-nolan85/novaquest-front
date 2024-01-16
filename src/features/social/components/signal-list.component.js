@@ -21,7 +21,7 @@ export const SignalList = ({ navigate, signals }) => {
     <SignalWrapper key={item._id}>
       <SignalHeader>
         <SignalUser onPress={() => showSignal(item)}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => navigate('UserProfile', { userId: item.user._id })}
           >
             <SignalUserImage
@@ -29,7 +29,7 @@ export const SignalList = ({ navigate, signals }) => {
                 item.user.profileImage ? item.user.profileImage : defaultProfile
               }
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <SignalInfo onPress={() => showSignal(item)}>
             <Name variant='title'>{item.message}</Name>
           </SignalInfo>

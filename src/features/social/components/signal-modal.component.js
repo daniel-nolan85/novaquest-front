@@ -114,9 +114,10 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
     await handleLikePost(token, _id, postId)
       .then((res) => {
         fetchPost();
-        if (res.data.postedBy !== _id) {
-          socket.emit('like post', { _id, ownerId: res.data.postedBy });
+        if (res.data.post.postedBy !== _id) {
+          socket.emit('like post', { _id, ownerId: res.data.post.postedBy });
         }
+        if (res.data.achievement) navigate(res.data.achievement);
       })
       .catch((err) => console.error(err));
   };
@@ -139,6 +140,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
     addComment(token, _id, postId, item)
       .then((res) => {
         fetchPost();
+        if (res.data.achievement) navigate(res.data.achievement);
       })
       .catch((err) => console.error(err));
   };

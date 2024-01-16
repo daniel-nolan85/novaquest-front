@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Image } from 'react-native';
-import { List, Avatar } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 import { getAuth, signOut, updatePassword } from 'firebase/auth';
@@ -15,7 +15,6 @@ import {
 } from '../styles/settings.styles';
 import Admin from '../../../../assets/svg/admin.svg';
 import Rocket from '../../../../assets/svg/rocket.svg';
-import Astronaut from '../../../../assets/svg/astronaut.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import Password from '../../../../assets/svg/password.svg';
 import Speech from '../../../../assets/svg/speech.svg';
@@ -29,10 +28,10 @@ import { UpdatePasswordModal } from '../components/update-password-modal.compone
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { DeleteAccountModal } from '../components/delete-account-modal.component';
 import { updateTextSpeed } from '../../../requests/user';
+import defaultProfile from '../../../../assets/img/defaultProfile.png';
 
 export const SettingsScreen = ({ navigation }) => {
-  const [passwordIsLoading, setPasswordIsLoading] = useState(false);
-  const [textSpeedIsLoading, setTextSpeedIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
   const [showDays, setShowDays] = useState(false);
   const [showAchievements, setShowAchievements] = useState(false);
@@ -42,7 +41,6 @@ export const SettingsScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
 
-  const { Icon } = Avatar;
   const { Section } = List;
 
   const dispatch = useDispatch();
@@ -75,11 +73,24 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const updateUserPassword = async () => {
-    setPasswordIsLoading(true);
+    if (
+      password.length < 6 ||
+      !/\d/.test(password) ||
+      !/[a-zA-Z]/.test(password)
+    ) {
+      Toast.show({
+        type: 'error',
+        text1: 'Password Update Failed',
+        text2:
+          'Password must be at least 6 characters and contain letters and numbers.',
+      });
+      return;
+    }
+    setIsLoading(true);
     const fbUser = auth.currentUser;
     await updatePassword(fbUser, password)
       .then(() => {
-        setPasswordIsLoading(false);
+        setIsLoading(false);
         Toast.show({
           type: 'success',
           text1: 'Launch credentials updated successfully',
@@ -92,7 +103,7 @@ export const SettingsScreen = ({ navigation }) => {
         const errorCode = err.code;
         const errorMessage = err.message;
         console.error('errorMessage => ', errorMessage);
-        setPasswordIsLoading(false);
+        setIsLoading(false);
         setShowPassword(false);
         setPassword('');
         if (errorCode === 'auth/requires-recent-login') {
@@ -117,7 +128,6 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const updateUserTextSpeed = async () => {
-    setTextSpeedIsLoading(true);
     if (user.role !== 'guest') {
       updateTextSpeed(user.token, user._id, textSpeed)
         .then((res) => {
@@ -142,7 +152,6 @@ export const SettingsScreen = ({ navigation }) => {
       });
     }
     setShowTextSpeed(false);
-    setTextSpeedIsLoading(false);
     Toast.show({
       type: 'success',
       text1: 'Your cosmic reading speed has been adjusted',
@@ -170,17 +179,10 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <SafeArea>
       <AvatarContainer>
-        {user.profileImage ? (
-          <Image
-            source={{ uri: user.profileImage[0].url }}
-            style={{ width: 180, height: 180, borderRadius: 90 }}
-          />
-        ) : (
-          <Icon
-            icon={() => <Astronaut width={180} height={180} />}
-            backgroundColor='#eeeeef'
-          />
-        )}
+        <Image
+          source={user.profileImage ? user.profileImage : defaultProfile}
+          style={{ width: 180, height: 180, borderRadius: 90 }}
+        />
       </AvatarContainer>
       <UserInfoContainer>
         <Text variant='title'>
@@ -257,6 +259,7 @@ export const SettingsScreen = ({ navigation }) => {
         updateUserPassword={updateUserPassword}
         showPassword={showPassword}
         closePasswordModal={closePasswordModal}
+        isLoading={isLoading}
       />
       <TextSpeedModal
         textSpeed={textSpeed}

@@ -115,6 +115,18 @@ export const AppComponents = () => {
               achievedLightSpeedExplorer: res.data.achievedLightSpeedExplorer,
               achievedOdysseyTrailblazer: res.data.achievedOdysseyTrailblazer,
               achievedInfinityVoyager: res.data.achievedInfinityVoyager,
+              achievedCelestialCadet: res.data.achievedCelestialCadet,
+              achievedAstroAce: res.data.achievedAstroAce,
+              achievedGalacticAviator: res.data.achievedGalacticAviator,
+              achievedCosmicArranger: res.data.achievedCosmicArranger,
+              achievedCelestialContributor:
+                res.data.achievedCelestialContributor,
+              achievedProlificExplorer: res.data.achievedProlificExplorer,
+              achievedGalaxyLuminary: res.data.achievedGalaxyLuminary,
+              achievedCosmicChronicler: res.data.achievedCosmicChronicler,
+              achievedStellarSupporter: res.data.achievedStellarSupporter,
+              achievedCosmicConversationalist:
+                res.data.achievedCosmicConversationalist,
             },
           }).catch((err) => console.error(err));
         });

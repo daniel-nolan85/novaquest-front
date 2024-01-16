@@ -7,6 +7,8 @@ export const SetupSafeArea = styled(SafeArea)`
 `;
 
 export const SetupContainer = styled.View`
+  flex: 1;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
@@ -14,7 +16,6 @@ export const SpeechContainer = styled.View`
   flex-direction: row;
   align-items: flex-start;
   padding: 16px;
-  margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
 export const ImageContainer = styled.View`
@@ -27,11 +28,12 @@ export const Astronaut = styled.Image`
   resize-mode: cover;
 `;
 
-export const SpeechBubble = styled.View`
+export const SpeechBubble = styled.ScrollView`
   flex: 1;
   margin-left: 8px;
   position: relative;
   top: 30px;
+  max-height: ${(props) => (props.shrinkBubble ? '350px' : '100%')};
 `;
 
 export const OptionContainer = styled.View``;
@@ -47,3 +49,5 @@ export const Option = styled.TouchableOpacity`
 export const OptionText = styled(Text)`
   color: ${(props) => props.theme.colors.text.inverse};
 `;
+
+export const DateSelector = styled.View``;

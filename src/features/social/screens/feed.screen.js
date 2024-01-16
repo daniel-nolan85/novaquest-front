@@ -69,7 +69,7 @@ export const FeedScreen = ({ navigation }) => {
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
         <FeedHeader navigate={navigate} setPosts={setPosts} />
-        <CreatePost newsFeed={newsFeed} />
+        <CreatePost newsFeed={newsFeed} navigate={navigate} />
         {allies.length > 0 && <AlliesScroll navigate={navigate} />}
         <Post
           navigate={navigate}

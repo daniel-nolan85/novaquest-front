@@ -1,4 +1,4 @@
-import { Modal } from 'react-native';
+import { Modal, ActivityIndicator } from 'react-native';
 import {
   ModalWrapper,
   ModalView,
@@ -19,6 +19,7 @@ export const UpdatePasswordModal = ({
   setPassword,
   updateUserPassword,
   closePasswordModal,
+  isLoading,
 }) => {
   return (
     <>
@@ -39,9 +40,13 @@ export const UpdatePasswordModal = ({
               <OptionContainer>
                 <Option onPress={updateUserPassword}>
                   <GradientBackground>
-                    <OptionText variant='body'>
-                      Update Launch Credentials
-                    </OptionText>
+                    {isLoading ? (
+                      <ActivityIndicator size='small' color='#fff' />
+                    ) : (
+                      <OptionText variant='body'>
+                        Update Launch Credentials
+                      </OptionText>
+                    )}
                   </GradientBackground>
                 </Option>
               </OptionContainer>

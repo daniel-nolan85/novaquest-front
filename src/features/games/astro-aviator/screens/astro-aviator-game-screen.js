@@ -43,9 +43,17 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
           type: 'LOGGED_IN_USER',
           payload: {
             ...user,
-            highScore: res.data.highScore,
+            highScore: res.data.user.highScore,
           },
         });
+        if (res.data.achievement) {
+          navigate(res.data.achievement);
+        } else if (res.data.simultaneousAchievements) {
+          const firstAchievement = res.data.simultaneousAchievements[0];
+          const additionalAchievements =
+            res.data.simultaneousAchievements.slice(1);
+          navigate(firstAchievement, { additionalAchievements });
+        }
       })
       .catch((err) => console.error(err));
   };

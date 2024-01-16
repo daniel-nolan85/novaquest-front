@@ -28,6 +28,16 @@ import Supernova from '../../../../assets/svg/badges/supernova.svg';
 import LightSpeed from '../../../../assets/svg/badges/light-speed.svg';
 import Trailblazer from '../../../../assets/svg/badges/trailblazer.svg';
 import Infinity from '../../../../assets/svg/badges/infinity.svg';
+import CelestialCadet from '../../../../assets/svg/badges/celestial-cadet.svg';
+import AstroAce from '../../../../assets/svg/badges/astro-ace.svg';
+import GalacticAviator from '../../../../assets/svg/badges/galactic-aviator.svg';
+import CosmicArranger from '../../../../assets/svg/badges/cosmic-arranger.svg';
+import CelestialContributor from '../../../../assets/svg/badges/celestial-contributor.svg';
+import ProlificExplorer from '../../../../assets/svg/badges/prolific-explorer.svg';
+import GalaxyLuminary from '../../../../assets/svg/badges/galaxy-luminary.svg';
+import CosmicChronicler from '../../../../assets/svg/badges/cosmic-chronicler.svg';
+import StellarSupporter from '../../../../assets/svg/badges/stellar-supporter.svg';
+import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conversationalist.svg';
 
 export const AchievementsRoute = ({ achievements }) => {
   const [visible, setVisible] = useState(false);
@@ -151,6 +161,56 @@ export const AchievementsRoute = ({ achievements }) => {
       icon: Infinity,
       name: 'Infinity Voyager',
       description: 'Successfully complete an Infinity Expedition.',
+    },
+    achievedCelestialCadet: {
+      icon: CelestialCadet,
+      name: 'Celestial Cadet',
+      description: 'Reach a score of 50 points on Astro Aviator.',
+    },
+    achievedAstroAce: {
+      icon: AstroAce,
+      name: 'Astro Ace',
+      description: 'Reach a score of 100 points on Astro Aviator.',
+    },
+    achievedGalacticAviator: {
+      icon: GalacticAviator,
+      name: 'Galactic Aviator',
+      description: 'Reach a score of 500 points on Astro Aviator.',
+    },
+    achievedCosmicArranger: {
+      icon: CosmicArranger,
+      name: 'Cosmic Arranger',
+      description: 'Orchestrate the planets in perfect harmony.',
+    },
+    achievedCelestialContributor: {
+      icon: CelestialContributor,
+      name: 'Celestial Contributor',
+      description: 'Create 1st post in the Cosmic Community.',
+    },
+    achievedProlificExplorer: {
+      icon: ProlificExplorer,
+      name: 'Prolific Explorer',
+      description: 'Create 10th post in the Cosmic Community.',
+    },
+    achievedGalaxyLuminary: {
+      icon: GalaxyLuminary,
+      name: 'Galaxy Luminary',
+      description: 'Create 50th post in the Cosmic Community.',
+    },
+    achievedCosmicChronicler: {
+      icon: CosmicChronicler,
+      name: 'Cosmic Chronicler',
+      description: 'Create 250th post in the Cosmic Community.',
+    },
+    achievedStellarSupporter: {
+      icon: StellarSupporter,
+      name: 'Stellar Supporter',
+      description: 'Star 300 posts in the Cosmic Community.',
+    },
+    achievedCosmicConversationalist: {
+      icon: CosmicConversationalist,
+      name: 'Cosmic Conversationalist',
+      description: 'Comment on 300 posts in the Cosmic Community.',
     },
   };
 
