@@ -15,7 +15,7 @@ const ModalWrapper = styled.View`
   align-items: center;
   justify-content: center;
   flex: 1;
-  margin: ${(props) => props.theme.space[3]};
+  width: 100%;
 `;
 
 const ModalView = styled.ScrollView`
@@ -60,7 +60,7 @@ export const ContactUsTitle = styled(Text)`
 `;
 
 export const ContactUsText = styled(Text)`
-  margin-bottom: ${(props) => props.theme.space[3]};
+  margin: ${(props) => props.theme.space[3]};
 `;
 
 const OptionContainer = styled.View`

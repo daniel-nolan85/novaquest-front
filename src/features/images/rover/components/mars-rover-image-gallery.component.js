@@ -141,7 +141,7 @@ export const MarsRoverImageGallery = ({ cameraData, navigate }) => {
           <RoverImageCard elevation={5}>
             <RoverImageCardCover
               source={{
-                uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704572041/static_d6aloc.gif',
+                uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450725/static_i56eul.gif',
               }}
             />
             <Offline variant='title'>Martian Cam Offline</Offline>

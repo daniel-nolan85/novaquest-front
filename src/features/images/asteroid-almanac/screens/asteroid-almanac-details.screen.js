@@ -48,7 +48,7 @@ export const AsteroidAlmanacDetailsScreen = ({ route }) => {
     <ImageBackground
       onLoadEnd={() => setIsLoading(false)}
       source={{
-        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1700325802/asteroids_oknjzk.gif',
+        uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450510/asteroids_eb9a4y.gif',
       }}
     >
       {isLoading ? (

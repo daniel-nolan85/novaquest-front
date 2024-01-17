@@ -62,7 +62,7 @@ const DATA = [
     title: 'APOD',
     name: 'Apod',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703116574/apod_mkqqhb.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450501/apod_wjztgg.jpg',
     description:
       'Embark on a daily cosmic journey with Astronomy Pic of the Day! Witness breathtaking space images accompanied by detailed descriptions. Feel free to explore the cosmos through time by selecting a date from the calendar and unveil the wonders of earlier Pics of the Day.',
   },
@@ -70,7 +70,7 @@ const DATA = [
     title: 'Asteroid Almanac',
     name: 'AsteroidAlmanac',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703116367/asteroid-almanac_eunoqd.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450505/asteroid-almanac_fphagh.jpg',
     description:
       'Dive into the cosmic realm of Asteroid Almanac! Select a date to unveil information on all near-earth objects within a 7-day orbit. Explore the trajectories and details of these celestial travelers to enhance your understanding of the dynamic dance between Earth and asteroids.',
   },
@@ -78,14 +78,14 @@ const DATA = [
     title: 'ISS Tracker',
     name: 'ISSTracker',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1704930733/space-station_wgocin.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450723/space-station_xfynvu.jpg',
     description: `Embark on a real-time cosmic journey with our ISS Tracker! Stay connected with the International Space Station as you witness its live location updates against a map of Earth. Explore the Earth's orbit, track its current velocity, and follow the ISS as it speeds through the cosmos, bringing the wonders of space closer to you.`,
   },
   {
     title: 'Mars Rovers',
     name: 'MarsRovers',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1699995097/opportunity_kgl72p.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450682/opportunity_yfcpxp.jpg',
     description:
       'Step into the shoes of a Martian explorer with Mars Rovers! Choose a rover, pick a camera to look through, and select a date to unveil real images captured on the Red Planet. Immerse yourself in the Martian landscapes and experience the wonders of interplanetary exploration.',
   },
@@ -93,7 +93,7 @@ const DATA = [
     title: 'Planetarium',
     name: 'Planets',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1699559012/planetarium_yhesp0.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450683/planetarium_utndzz.jpg',
     description:
       'Explore the wonders of the cosmos in the Planetarium, a celestial archive that unveils fascinating facts, knowledge, and captivating images of planets and dwarfs in our solar system. Embark on a cosmic journey as you delve into the mysteries and unique characteristics of each celestial body.',
   },
@@ -181,7 +181,7 @@ export const DiscoveryHubScreen = ({ navigation }) => {
     <ImageBackground
       onLoadEnd={() => setIsLoading(false)}
       source={{
-        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1703023132/space-journey_vqmxhi.gif',
+        uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450723/space-journey_fknh88.gif',
       }}
       style={{ flex: 1 }}
     >

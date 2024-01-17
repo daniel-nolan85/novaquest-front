@@ -26,14 +26,14 @@ import { awardAchievement } from '../../../../requests/user';
 import { GamesContext } from '../../../../services/games/games.context';
 
 const imageUrls = [
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514767/mercury-nobg_e72zse.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514776/venus-nobg_ziczr8.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514822/earth-nobg_a8gcia.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514823/mars-nobg_cj4u36.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514823/jupiter-nobg_dplcy3.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700515858/saturn-nobg_cxzpx6.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514823/uranus-nobg_kzt67f.png',
-  'https://res.cloudinary.com/daufzqlld/image/upload/v1700514823/neptune-nobg_ff5xit.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450647/mercury-nobg_omo3qa.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450766/venus-nobg_efr88b.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450596/earth-nobg_btxhtw.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450646/mars-nobg_lqtoin.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450646/jupiter-nobg_uxx5qn.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450687/saturn-nobg_h2kdtc.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450726/uranus-nobg_kbb5n0.png',
+  'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450682/neptune-nobg_bjoszm.png',
 ];
 
 export const InterstellarAssemblyGameScreen = ({ navigation }) => {
@@ -107,14 +107,14 @@ export const InterstellarAssemblyGameScreen = ({ navigation }) => {
   return (
     <ImageBackground
       source={{
-        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1700521873/starry-bg_nl3ofp.jpg',
+        uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450724/starry-bg_avlfmi.jpg',
       }}
       style={{ flex: 1 }}
       onLoadEnd={() => setIsLoading(false)}
     >
       <Image
         source={{
-          uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1700522543/sun-bottom2_bu4jl4.png',
+          uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450725/sun-bottom2_qhi02l.png',
         }}
         style={{ width: '100%', height: 180, position: 'absolute' }}
       />

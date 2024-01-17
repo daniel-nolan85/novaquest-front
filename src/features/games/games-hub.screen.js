@@ -62,7 +62,7 @@ const DATA = [
     title: 'Astro Aviator',
     name: 'AstroAviator',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/astro-aviator_ppt6kx.heic',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450510/astro-aviator_bmtjpv.heic',
     description:
       'Prepare for a cosmic challenge in Astro Aviator! Guide your spaceship through asteroid-filled space, aiming to surpass your highest score. Can you navigate the celestial obstacles and become a space-faring champion?',
   },
@@ -70,7 +70,7 @@ const DATA = [
     title: 'Cosmic Conundrum',
     name: 'CosmicConundrum',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/trivia_lm99oq.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450725/trivia_ev3qfc.jpg',
     description:
       'Engage your cosmic intellect with Cosmic Conundrum! Customize your space quiz by selecting the difficulty and length. Face space-themed questions, earn points, and unlock your stellar knowledge. How high can you score in this cosmic challenge?',
   },
@@ -78,7 +78,7 @@ const DATA = [
     title: 'Interstellar Assembly',
     name: 'InterstellarAssembly',
     image:
-      'https://res.cloudinary.com/daufzqlld/image/upload/v1703017736/interstellar-assembly_bsuzax.jpg',
+      'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450597/interstellar-assembly_ihzlrq.jpg',
     description:
       'Embark on a planetary puzzle journey with Interstellar Assembly! Arrange the planets in the correct cosmic order and race against time to set new records. Sharpen your mind and assemble the celestial bodies with speed and precision!',
   },
@@ -166,7 +166,7 @@ export const GamesHubScreen = ({ navigation }) => {
     <ImageBackground
       onLoadEnd={() => setIsLoading(false)}
       source={{
-        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1703023132/space-journey_vqmxhi.gif',
+        uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450723/space-journey_fknh88.gif',
       }}
       style={{ flex: 1 }}
     >

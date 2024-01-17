@@ -84,23 +84,23 @@ export const ISSTrackerScreen = ({ navigation }) => {
       ) : (
         <>
           <MapView
-            style={{ flex: 1, position: 'relative' }}
+            style={{ flex: 1 }}
             region={region}
             onRegionChangeComplete={handleMapMovement}
           >
-            <MenuIcon
-              onPress={() => {
-                dispatch(DrawerActions.openDrawer());
-              }}
-            >
-              <Ionicons name='md-menu' size={30} color='#009999' />
-            </MenuIcon>
             <Callout onPress={() => setVisible(true)}>
               <Marker coordinate={position}>
                 <Satellite height={32} width={32} />
               </Marker>
             </Callout>
           </MapView>
+          <MenuIcon
+            onPress={() => {
+              dispatch(DrawerActions.openDrawer());
+            }}
+          >
+            <Ionicons name='md-menu' size={30} color='#009999' />
+          </MenuIcon>
         </>
       )}
       <ISSInfoModal

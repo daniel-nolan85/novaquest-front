@@ -166,7 +166,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
     <ImageBackground
       onLoadEnd={() => setIsLoading(false)}
       source={{
-        uri: 'https://res.cloudinary.com/daufzqlld/image/upload/v1704047788/cockpit_spyn2e.gif',
+        uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450541/cockpit_jsfiij.gif',
       }}
       style={{ flex: 1 }}
     >
