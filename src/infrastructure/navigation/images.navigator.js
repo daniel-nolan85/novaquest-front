@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DiscoveryHubScreen } from '../../features/images/discovery-hub.screen';
-import { ApodScreen } from '../../features/images/apod/screens/apod.screen';
+import { ApodNavigator } from './apod.navigator';
 import { PlanetsNavigator } from './planets.navigator';
 import { MarsRoverNavigator } from './rover.navigator';
 import { AsteroidAlmanacNavigator } from './asteroid-almanac.navigator';
@@ -50,7 +50,7 @@ export const ImagesNavigator = ({ navigation }) => {
       />
       <Screen
         name='Apod'
-        component={ApodScreen}
+        component={ApodNavigator}
         options={{
           headerShown: false,
           drawerLabel: ({ focused }) => (

@@ -388,3 +388,40 @@ export const updatePlanetsViewed = async (authtoken, _id, name) => {
     }
   );
 };
+
+export const updateNumOfApods = async (authtoken, _id) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-apods`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const updateNumOfAsteroids = async (authtoken, _id) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-asteroids`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
+export const updateNumOfFacts = async (authtoken, _id) => {
+  console.log('updating facts');
+  return await axios.put(
+    `${API_BASE_URL}/update-facts`,
+    { _id },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

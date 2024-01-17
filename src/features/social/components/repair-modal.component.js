@@ -66,11 +66,14 @@ export const RepairModal = ({ visible, setVisible }) => {
           type: 'image/jpeg',
           name: 'image.jpg',
         });
-        if (user.profileImage && user.profileImage.length > 0)
+        if (user.profileImage && user.profileImage.length > 0) {
           await destroyMediaFromCloudinary(
             user.token,
             user.profileImage[0].public_id
           );
+        } else {
+          // award achievement for adding first profile image
+        }
         const { data } = await uploadMediaToCloudinary(user.token, formData);
         await updateProfileWithImage(
           user.token,

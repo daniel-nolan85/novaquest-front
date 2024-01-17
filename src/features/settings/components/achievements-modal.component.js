@@ -77,6 +77,18 @@ import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conver
 import CosmicConversationalistGrey from '../../../../assets/svg/badges/cosmic-conversationalist-grey.svg';
 import GalacticPlanetologist from '../../../../assets/svg/badges/galactic-planetologist.svg';
 import GalacticPlanetologistGrey from '../../../../assets/svg/badges/galactic-planetologist-grey.svg';
+import CosmicObserver from '../../../../assets/svg/badges/cosmic-observer.svg';
+import CosmicObserverGrey from '../../../../assets/svg/badges/cosmic-observer-grey.svg';
+import NebulaGazer from '../../../../assets/svg/badges/nebula-gazer.svg';
+import NebulaGazerGrey from '../../../../assets/svg/badges/nebula-gazer-grey.svg';
+import GalacticVisionary from '../../../../assets/svg/badges/galactic-visionary.svg';
+import GalacticVisionaryGrey from '../../../../assets/svg/badges/galactic-visionary-grey.svg';
+import AsteroidScholar from '../../../../assets/svg/badges/asteroid-scholar.svg';
+import AsteroidScholarGrey from '../../../../assets/svg/badges/asteroid-scholar-grey.svg';
+import CelestialSavant from '../../../../assets/svg/badges/celestial-savant.svg';
+import CelestialSavantGrey from '../../../../assets/svg/badges/celestial-savant-grey.svg';
+import CosmicPersona from '../../../../assets/svg/badges/cosmic-persona.svg';
+import CosmicPersonaGrey from '../../../../assets/svg/badges/cosmic-persona-grey.svg';
 
 export const AchievementsModal = ({
   showAchievements,
@@ -116,6 +128,12 @@ export const AchievementsModal = ({
     achievedStellarSupporter,
     achievedCosmicConversationalist,
     achievedGalacticPlanetologist,
+    achievedCosmicObserver,
+    achievedNebulaGazer,
+    achievedGalacticVisionary,
+    achievedAsteroidScholar,
+    achievedCelestialSavant,
+    achievedCosmicPersona,
   } = useSelector((state) => state.user);
 
   return (
@@ -545,6 +563,78 @@ export const AchievementsModal = ({
                       <GalacticPlanetologist width={100} height={100} />
                     ) : (
                       <GalacticPlanetologistGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<BadgeName variant='title'>Cosmic Observer</BadgeName>}
+                  description='View 10 Astronomy Pictures of the Day.'
+                  left={() =>
+                    achievedCosmicObserver ? (
+                      <CosmicObserver width={100} height={100} />
+                    ) : (
+                      <CosmicObserverGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<BadgeName variant='title'>Nebula Gazer</BadgeName>}
+                  description='View 50 Astronomy Pictures of the Day.'
+                  left={() =>
+                    achievedNebulaGazer ? (
+                      <NebulaGazer width={100} height={100} />
+                    ) : (
+                      <NebulaGazerGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={
+                    <BadgeName variant='title'>Galactic Visionary</BadgeName>
+                  }
+                  description='View 250 Astronomy Pictures of the Day.'
+                  left={() =>
+                    achievedGalacticVisionary ? (
+                      <GalacticVisionary width={100} height={100} />
+                    ) : (
+                      <GalacticVisionaryGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={
+                    <BadgeName variant='title'>Asteroid Scholar</BadgeName>
+                  }
+                  description='Dive into the Asteroid Almanac 10 times.'
+                  left={() =>
+                    achievedAsteroidScholar ? (
+                      <AsteroidScholar width={100} height={100} />
+                    ) : (
+                      <AsteroidScholarGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={
+                    <BadgeName variant='title'>Celestial Savant</BadgeName>
+                  }
+                  description='Explore 100 space facts.'
+                  left={() =>
+                    achievedCelestialSavant ? (
+                      <CelestialSavant width={100} height={100} />
+                    ) : (
+                      <CelestialSavantGrey width={100} height={100} />
+                    )
+                  }
+                />
+                <AchievementsItem
+                  title={<BadgeName variant='title'>Cosmic Persona</BadgeName>}
+                  description='Tailor your cosmic identity with a new profile image.'
+                  left={() =>
+                    achievedCosmicPersona ? (
+                      <CosmicPersona width={100} height={100} />
+                    ) : (
+                      <CosmicPersonaGrey width={100} height={100} />
                     )
                   }
                 />

@@ -10,7 +10,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { Text } from '../../../../components/typography/text.component';
 import {
-  AsteroidCard,
   AsteroidHeaderCard,
   AsteroidDetailsCard,
 } from '../styles/asteroid-almanac-info-card.styles';
@@ -22,13 +21,15 @@ import {
   StatsItem,
 } from '../styles/asteroid-almanac-details.styles';
 import Size from '../../../../../assets/svg/size.svg';
+import Back from '../../../../../assets/svg/back.svg';
 import Performance from '../../../../../assets/svg/performance.svg';
 import Radar from '../../../../../assets/svg/radar.svg';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
+import { IconsWrapper } from '../../apod/styles/apod.styles';
 
-const { Accordion, Icon } = List;
+const { Accordion } = List;
 
-export const AsteroidAlmanacDetailsScreen = ({ route }) => {
+export const AsteroidAlmanacDetailsScreen = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [cardExpanded, setCardExpanded] = useState(false);
   const [sizeExpanded, setSizeExpanded] = useState(false);
@@ -42,6 +43,7 @@ export const AsteroidAlmanacDetailsScreen = ({ route }) => {
     setProximityExpanded(asteroids.map(() => false));
   }, [asteroids]);
 
+  const { goBack } = navigation;
   const { asteroids } = route.params;
 
   return (
@@ -55,6 +57,11 @@ export const AsteroidAlmanacDetailsScreen = ({ route }) => {
         <LoadingSpinner />
       ) : (
         <SafeArea>
+          <IconsWrapper>
+            <TouchableOpacity onPress={goBack}>
+              <Back height={48} width={48} />
+            </TouchableOpacity>
+          </IconsWrapper>
           <ScrollView>
             {asteroids.map((asteroid, index) => (
               <View style={{ margin: 10, position: 'relative' }}>

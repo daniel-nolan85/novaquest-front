@@ -39,6 +39,12 @@ import CosmicChronicler from '../../../../assets/svg/badges/cosmic-chronicler.sv
 import StellarSupporter from '../../../../assets/svg/badges/stellar-supporter.svg';
 import CosmicConversationalist from '../../../../assets/svg/badges/cosmic-conversationalist.svg';
 import GalacticPlanetologist from '../../../../assets/svg/badges/galactic-planetologist.svg';
+import CosmicObserver from '../../../../assets/svg/badges/cosmic-observer.svg';
+import NebulaGazer from '../../../../assets/svg/badges/nebula-gazer.svg';
+import GalacticVisionary from '../../../../assets/svg/badges/galactic-visionary.svg';
+import AsteroidScholar from '../../../../assets/svg/badges/asteroid-scholar.svg';
+import CelestialSavant from '../../../../assets/svg/badges/celestial-savant.svg';
+import CosmicPersona from '../../../../assets/svg/badges/cosmic-persona.svg';
 
 export const AchievementsRoute = ({ achievements }) => {
   const [visible, setVisible] = useState(false);
@@ -216,6 +222,36 @@ export const AchievementsRoute = ({ achievements }) => {
       icon: GalacticPlanetologist,
       name: 'Galactic Planetologist',
       description: 'Explore all planets within the Planetarium.',
+    },
+    achievedCosmicObserver: {
+      icon: CosmicObserver,
+      name: 'Cosmic Observer',
+      description: 'View 10 Astronomy Pictures of the Day.',
+    },
+    achievedNebulaGazer: {
+      icon: NebulaGazer,
+      name: 'Nebula Gazer',
+      description: 'View 50 Astronomy Pictures of the Day.',
+    },
+    achievedGalacticVisionary: {
+      icon: GalacticVisionary,
+      name: 'Galactic Visionary',
+      description: 'View 250 Astronomy Pictures of the Day.',
+    },
+    achievedAsteroidScholar: {
+      icon: AsteroidScholar,
+      name: 'Asteroid Scholar',
+      description: 'Dive into the Asteroid Almanac 10 times.',
+    },
+    achievedCelestialSavant: {
+      icon: CelestialSavant,
+      name: 'Celestial Savant',
+      description: 'Explore 100 space facts.',
+    },
+    achievedCosmicPersona: {
+      icon: CosmicPersona,
+      name: 'Cosmic Persona',
+      description: 'Tailor your cosmic identity with a new profile image.',
     },
   };
 

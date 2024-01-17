@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
@@ -15,6 +16,7 @@ import {
   CloseIcon,
 } from '../styles/apod-modal.styles';
 import { ApodSafeArea, IconsWrapper } from '../styles/apod.styles';
+import { updateNumOfApods } from '../../../../requests/user';
 
 export const ApodScreen = ({ navigation }) => {
   const [open, setOpen] = useState(false);
@@ -24,10 +26,17 @@ export const ApodScreen = ({ navigation }) => {
   const [explanation, setExplanation] = useState('');
   const [title, setTitle] = useState('');
 
+  const { token, _id, numOfApods } = useSelector((state) => state.user);
+
   const isFirstRun = useRef(true);
+
+  const { navigate, dispatch } = navigation;
 
   useEffect(() => {
     fetchApod();
+    if (numOfApods < 300) {
+      updateApods();
+    }
   }, []);
 
   useEffect(() => {
@@ -36,6 +45,9 @@ export const ApodScreen = ({ navigation }) => {
       return;
     } else {
       fetchApodByDate();
+      if (numOfApods < 300) {
+        updateApods();
+      }
     }
   }, [date]);
 
@@ -65,6 +77,15 @@ export const ApodScreen = ({ navigation }) => {
       });
   };
 
+  const updateApods = async () => {
+    await updateNumOfApods(token, _id)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.achievement) navigate(res.data.achievement);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleCalendar = () => {
     setOpen(!open);
   };
@@ -84,7 +105,7 @@ export const ApodScreen = ({ navigation }) => {
           <IconsWrapper>
             <TouchableOpacity
               onPress={() => {
-                navigation.dispatch(DrawerActions.openDrawer());
+                dispatch(DrawerActions.openDrawer());
               }}
             >
               <Ionicons name='md-menu' size={30} color='#009999' />

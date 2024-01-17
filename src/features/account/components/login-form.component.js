@@ -78,6 +78,13 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   viewedRovers: res.data.viewedRovers,
                   viewedRoverCameras: res.data.viewedRoverCameras,
                   viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+                  viewedPlanets: res.data.viewedPlanets,
+                  numOfPosts: res.data.numOfPosts,
+                  numOfStars: res.data.numOfStars,
+                  numOfComments: res.data.numOfComments,
+                  numOfApods: res.data.numOfApods,
+                  numOfFacts: res.data.numOfFacts,
+                  numOfAsteroids: res.data.numOfAsteroids,
                   achievedCosmicPioneer: res.data.achievedCosmicPioneer,
                   achievedAdventurousExplorer:
                     res.data.achievedAdventurousExplorer,
@@ -116,6 +123,17 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   achievedProlificExplorer: res.data.achievedProlificExplorer,
                   achievedGalaxyLuminary: res.data.achievedGalaxyLuminary,
                   achievedCosmicChronicler: res.data.achievedCosmicChronicler,
+                  achievedStellarSupporter: res.data.achievedStellarSupporter,
+                  achievedCosmicConversationalist:
+                    res.data.achievedCosmicConversationalist,
+                  achievedGalacticPlanetologist:
+                    res.data.achievedGalacticPlanetologist,
+                  achievedCosmicObserver: res.data.achievedCosmicObserver,
+                  achievedNebulaGazer: res.data.achievedNebulaGazer,
+                  achievedGalacticVisionary: res.data.achievedGalacticVisionary,
+                  achievedAsteroidScholar: res.data.achievedAsteroidScholar,
+                  achievedCelestialSavant: res.data.achievedCelestialSavant,
+                  achievedCosmicPersona: res.data.achievedCosmicPersona,
                 },
               });
             })

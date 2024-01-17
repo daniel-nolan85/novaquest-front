@@ -58,7 +58,6 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
       setReadyTyping(false);
       setShowDate(false);
       setShowReady(false);
-      setDate(1);
     });
 
     return () => {
@@ -98,6 +97,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
   };
 
   const handleDateClick = (choice) => {
+    console.log({ choice });
     setShowReady(true);
     setShowDate(false);
     setDate(choice);
@@ -111,7 +111,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
     setCurrentStep(1);
     setDateButtons(false);
     setReadyButton(false);
-    navigate('AsteroidAlmanacList', { date });
+    navigate('AsteroidAlmanacList');
   };
 
   const renderCurrentStep = () => {

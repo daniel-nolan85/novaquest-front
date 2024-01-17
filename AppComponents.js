@@ -41,6 +41,7 @@ import Star from './assets/svg/floaters/star.svg';
 import Ufo from './assets/svg/floaters/ufo.svg';
 import { FactModal } from './src/components/modals/fact-modal';
 import { factsArray } from './src/services/facts/facts';
+import { updateNumOfFacts } from './src/requests/user';
 
 const iconComponents = [Alien, Planet, Star, Ufo];
 
@@ -91,6 +92,13 @@ export const AppComponents = () => {
               viewedRovers: res.data.viewedRovers,
               viewedRoverCameras: res.data.viewedRoverCameras,
               viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+              viewedPlanets: res.data.viewedPlanets,
+              numOfPosts: res.data.numOfPosts,
+              numOfStars: res.data.numOfStars,
+              numOfComments: res.data.numOfComments,
+              numOfApods: res.data.numOfApods,
+              numOfFacts: res.data.numOfFacts,
+              numOfAsteroids: res.data.numOfAsteroids,
               achievedCosmicPioneer: res.data.achievedCosmicPioneer,
               achievedAdventurousExplorer: res.data.achievedAdventurousExplorer,
               achievedStellarVoyager: res.data.achievedStellarVoyager,
@@ -127,6 +135,14 @@ export const AppComponents = () => {
               achievedStellarSupporter: res.data.achievedStellarSupporter,
               achievedCosmicConversationalist:
                 res.data.achievedCosmicConversationalist,
+              achievedGalacticPlanetologist:
+                res.data.achievedGalacticPlanetologist,
+              achievedCosmicObserver: res.data.achievedCosmicObserver,
+              achievedNebulaGazer: res.data.achievedNebulaGazer,
+              achievedGalacticVisionary: res.data.achievedGalacticVisionary,
+              achievedAsteroidScholar: res.data.achievedAsteroidScholar,
+              achievedCelestialSavant: res.data.achievedCelestialSavant,
+              achievedCosmicPersona: res.data.achievedCosmicPersona,
             },
           }).catch((err) => console.error(err));
         });
@@ -171,7 +187,8 @@ export const AppComponents = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       animateImage();
-    }, 5 * 60 * 1000);
+      // }, 5 * 60 * 1000);
+    }, 5 * 1000);
 
     return () => {
       clearInterval(intervalId);
@@ -260,6 +277,11 @@ export const AppComponents = () => {
     setRandomFact(factsArray[randomIndex]);
     setShowFact(true);
     setShowIcon(false);
+    if (user && user.numOfFacts < 100) updateFacts();
+  };
+
+  const updateFacts = async () => {
+    await updateNumOfFacts(user.token, user._id);
   };
 
   const handleModalClose = () => {
