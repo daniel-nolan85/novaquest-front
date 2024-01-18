@@ -19,7 +19,6 @@ export const FirstPostScreen = ({ navigation }) => {
   const handleSubmit = () => {
     badgeUnlocked(user.token, user._id, 'achievedCelestialContributor')
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

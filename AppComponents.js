@@ -40,6 +40,7 @@ import Planet from './assets/svg/floaters/planet.svg';
 import Star from './assets/svg/floaters/star.svg';
 import Ufo from './assets/svg/floaters/ufo.svg';
 import { FactModal } from './src/components/modals/fact-modal';
+import { FactAchievementModal } from './src/components/modals/fact-achievement-modal';
 import { factsArray } from './src/services/facts/facts';
 import { updateNumOfFacts } from './src/requests/user';
 
@@ -50,6 +51,7 @@ export const AppComponents = () => {
   const [snack, setSnack] = useState('');
   const [randomFact, setRandomFact] = useState('');
   const [showFact, setShowFact] = useState(false);
+  const [showFactAchievement, setShowFactAchievement] = useState(false);
   const [showIcon, setShowIcon] = useState(true);
 
   const { user } = useSelector((state) => ({ ...state }));
@@ -187,8 +189,7 @@ export const AppComponents = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       animateImage();
-      // }, 5 * 60 * 1000);
-    }, 5 * 1000);
+    }, 5 * 60 * 1000);
 
     return () => {
       clearInterval(intervalId);
@@ -273,15 +274,20 @@ export const AppComponents = () => {
   };
 
   const handleIconPress = () => {
-    const randomIndex = Math.floor(Math.random() * factsArray.length);
-    setRandomFact(factsArray[randomIndex]);
-    setShowFact(true);
-    setShowIcon(false);
-    if (user && user.numOfFacts < 100) updateFacts();
+    if (user && user.numOfFacts < 101) {
+      updateFacts();
+    } else {
+      const randomIndex = Math.floor(Math.random() * factsArray.length);
+      setRandomFact(factsArray[randomIndex]);
+      setShowFact(true);
+      setShowIcon(false);
+    }
   };
 
   const updateFacts = async () => {
-    await updateNumOfFacts(user.token, user._id);
+    await updateNumOfFacts(user.token, user._id).then((res) => {
+      if (res.data) setShowFactAchievement(true);
+    });
   };
 
   const handleModalClose = () => {
@@ -290,6 +296,14 @@ export const AppComponents = () => {
     setShowFact(false);
     setShowIcon(true);
     setRandomFact('');
+  };
+
+  const handleAchievementClose = () => {
+    setShowFactAchievement(false);
+    const randomIndex = Math.floor(Math.random() * factsArray.length);
+    setRandomFact(factsArray[randomIndex]);
+    setShowFact(true);
+    setShowIcon(false);
   };
 
   const [audiowideLoaded] = useAudiowide({ Audiowide_400Regular });
@@ -319,6 +333,12 @@ export const AppComponents = () => {
           />
         ) : (
           <ImageComponent />
+        )}
+        {showFactAchievement && (
+          <FactAchievementModal
+            showFactAchievement={showFactAchievement}
+            handleAchievementClose={handleAchievementClose}
+          />
         )}
         <Snackbar
           wrapperStyle={{ top: 40 }}

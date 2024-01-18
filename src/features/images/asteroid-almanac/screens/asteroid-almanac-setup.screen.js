@@ -97,7 +97,6 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
   };
 
   const handleDateClick = (choice) => {
-    console.log({ choice });
     setShowReady(true);
     setShowDate(false);
     setDate(choice);

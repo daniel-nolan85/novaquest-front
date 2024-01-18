@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -17,6 +17,7 @@ import Repair from '../../../../assets/svg/repair.svg';
 import { AllianceModal } from './alliance-modal.component';
 import { RevokeModal } from './revoke-modal.component';
 import { RepairModal } from './repair-modal.component';
+import { awardAchievement } from '../../../requests/user';
 
 export const ProfileCard = ({
   userId,
@@ -25,9 +26,24 @@ export const ProfileCard = ({
   rank,
   bio,
   daysInSpace,
+  navigate,
 }) => {
   const [visible, setVisible] = useState(false);
-  const { _id, allies } = useSelector((state) => state.user);
+  const [firstProfileImage, setFirstProfileImage] = useState(false);
+
+  useEffect(() => {
+    if (!visible && firstProfileImage) {
+      awardAchievement(token, _id, 'achievedCosmicPersona')
+        .then((res) => {
+          setFirstProfileImage(false);
+          navigate('FirstProfileImage');
+        })
+        .catch((err) => console.error(err));
+      setFirstProfileImage(false);
+    }
+  }, [visible, firstProfileImage]);
+
+  const { token, _id, allies } = useSelector((state) => state.user);
 
   return (
     <ProfileCardWrapper>
@@ -79,7 +95,11 @@ export const ProfileCard = ({
           rank={rank}
         />
       ) : (
-        <RepairModal visible={visible} setVisible={setVisible} />
+        <RepairModal
+          visible={visible}
+          setVisible={setVisible}
+          setFirstProfileImage={setFirstProfileImage}
+        />
       )}
     </ProfileCardWrapper>
   );

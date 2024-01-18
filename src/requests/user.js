@@ -414,7 +414,6 @@ export const updateNumOfAsteroids = async (authtoken, _id) => {
 };
 
 export const updateNumOfFacts = async (authtoken, _id) => {
-  console.log('updating facts');
   return await axios.put(
     `${API_BASE_URL}/update-facts`,
     { _id },

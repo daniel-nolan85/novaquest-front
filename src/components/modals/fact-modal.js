@@ -1,4 +1,4 @@
-import { Modal, Text } from 'react-native';
+import { Modal } from 'react-native';
 import styled from 'styled-components/native';
 import LottieView from 'lottie-react-native';
 import { SafeArea } from '../utils/safe-area.component';

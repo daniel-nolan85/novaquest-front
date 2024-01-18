@@ -34,11 +34,7 @@ export const AsteroidAlmanacListScreen = ({ navigation }) => {
 
   const { token, _id, numOfAsteroids } = useSelector((state) => state.user);
 
-  console.log({ numOfAsteroids });
-
   const { date, setDate } = useContext(ImagesContext);
-
-  console.log({ date });
 
   useEffect(() => {
     fetchAsteroids();
@@ -64,7 +60,6 @@ export const AsteroidAlmanacListScreen = ({ navigation }) => {
   const updateAsteroids = async () => {
     await updateNumOfAsteroids(token, _id)
       .then((res) => {
-        console.log(res.data);
         if (res.data) navigate(res.data);
       })
       .catch((err) => console.error(err));

@@ -80,7 +80,6 @@ export const ApodScreen = ({ navigation }) => {
   const updateApods = async () => {
     await updateNumOfApods(token, _id)
       .then((res) => {
-        console.log(res.data);
         if (res.data.achievement) navigate(res.data.achievement);
       })
       .catch((err) => console.error(err));

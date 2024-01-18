@@ -5,6 +5,7 @@ import { UserPostsScreen } from '../../features/social/screens/user-posts.screen
 import { UserStarsScreen } from '../../features/social/screens/user-stars.screen';
 import { ThreeHundredStarsScreen } from '../../features/social/screens/three-hundred-stars.screen';
 import { ThreeHundredCommentsScreen } from '../../features/social/screens/three-hundred-comments.screen';
+import { FirstProfileImageScreen } from '../../features/social/screens/first-profile-image.screen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -23,5 +24,6 @@ export const ProfileNavigator = () => (
       name='ThreeHundredComments'
       component={ThreeHundredCommentsScreen}
     />
+    <Screen name='FirstProfileImage' component={FirstProfileImageScreen} />
   </Navigator>
 );

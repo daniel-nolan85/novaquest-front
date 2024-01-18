@@ -45,9 +45,6 @@ export const InterstellarAssemblyGameScreen = ({ navigation }) => {
 
   const isFirstRun = useRef(true);
 
-  console.log({ visible });
-  console.log({ isGameWon });
-
   const { visible, setVisible } = useContext(GamesContext);
 
   useEffect(() => {

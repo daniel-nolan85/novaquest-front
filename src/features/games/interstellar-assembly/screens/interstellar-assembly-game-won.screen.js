@@ -23,7 +23,6 @@ export const InterstellarAssemblyGameWonScreen = ({ navigation }) => {
   const handleSubmit = () => {
     badgeUnlocked(user.token, user._id, 'achievedCosmicArranger')
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

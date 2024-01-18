@@ -37,7 +37,7 @@ export const IconsContainer = styled.View`
   flex-direction: row;
   width: 100%;
   margin-top: 30px;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 export const IconWrapper = styled.TouchableOpacity``;

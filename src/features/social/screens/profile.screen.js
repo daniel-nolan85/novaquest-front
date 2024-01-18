@@ -191,6 +191,7 @@ export const ProfileScreen = ({ navigation }) => {
         rank={rank}
         bio={bio}
         daysInSpace={daysInSpace}
+        navigate={navigate}
       />
       <ProfileButtons
         userId={_id}

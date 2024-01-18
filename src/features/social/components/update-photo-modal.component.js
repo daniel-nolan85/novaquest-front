@@ -84,15 +84,15 @@ export const UpdatePhotoModal = ({
     }
   };
 
-  const removeImage = async () => {
-    try {
-      saveImage(null);
-    } catch ({ message }) {
-      console.error(message);
-      alert(`Error removing image: ${message}`);
-      setShowUpdatePhoto(false);
-    }
-  };
+  // const removeImage = async () => {
+  //   try {
+  //     saveImage(null);
+  //   } catch ({ message }) {
+  //     console.error(message);
+  //     alert(`Error removing image: ${message}`);
+  //     setShowUpdatePhoto(false);
+  //   }
+  // };
 
   const saveImage = async (image) => {
     try {
@@ -120,9 +120,9 @@ export const UpdatePhotoModal = ({
               <IconWrapper onPress={uploadGalleryImage}>
                 <Gallery width={48} height={48} />
               </IconWrapper>
-              <IconWrapper onPress={removeImage}>
+              {/* <IconWrapper onPress={removeImage}>
                 <Trash width={48} height={48} />
-              </IconWrapper>
+              </IconWrapper> */}
             </IconsContainer>
           </ModalView>
         </ModalWrapper>

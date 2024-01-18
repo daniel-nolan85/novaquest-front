@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../requests/user';
 import { BadgeAnimation } from '../../../components/animations/badge.animation';
-import CosmicChronicler from '../../../../assets/svg/badges/cosmic-chronicler.svg';
+import CosmicPersona from '../../../../assets/svg/badges/cosmic-persona.svg';
 
 const BadgeContainer = styled.View`
   flex: 1;
@@ -10,20 +10,20 @@ const BadgeContainer = styled.View`
   align-items: center;
 `;
 
-export const TwoHundredFiftiethPostScreen = ({ navigation }) => {
+export const FirstProfileImageScreen = ({ navigation }) => {
   const { goBack } = navigation;
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicChronicler')
+    badgeUnlocked(user.token, user._id, 'achievedCosmicPersona')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {
             ...user,
-            achievedCosmicChronicler: res.data.achievedCosmicChronicler,
+            achievedCosmicPersona: res.data.achievedCosmicPersona,
           },
         });
       })
@@ -34,9 +34,9 @@ export const TwoHundredFiftiethPostScreen = ({ navigation }) => {
   return (
     <BadgeContainer>
       <BadgeAnimation
-        svg={<CosmicChronicler width={380} height={380} />}
-        title='Cosmic Chronicler'
-        body={`${user.rank} ${user.name}, your cosmic chronicles are a saga of exploration and wonder! With your 250th post, you've earned the esteemed title of Cosmic Chronicler, documenting the cosmic tapestry in unparalleled detail.`}
+        svg={<CosmicPersona width={380} height={380} />}
+        title='Cosmic Persona'
+        body={`${user.rank} ${user.name},  you've earned the 'Cosmic Persona' badge! By updating your profile image, you've personalized your cosmic identity. Show the universe your unique presence in this celestial community!`}
         handleSubmit={handleSubmit}
       />
     </BadgeContainer>

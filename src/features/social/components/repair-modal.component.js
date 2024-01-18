@@ -27,7 +27,7 @@ import {
   destroyMediaFromCloudinary,
 } from '../../../requests/cloudinary';
 
-export const RepairModal = ({ visible, setVisible }) => {
+export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageIsLoading, setImageIsLoading] = useState(false);
   const [showUpdatePhoto, setShowUpdatePhoto] = useState(false);
@@ -72,7 +72,7 @@ export const RepairModal = ({ visible, setVisible }) => {
             user.profileImage[0].public_id
           );
         } else {
-          // award achievement for adding first profile image
+          setFirstProfileImage(true);
         }
         const { data } = await uploadMediaToCloudinary(user.token, formData);
         await updateProfileWithImage(

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
-import { Text } from '../typography/text.component';
 import { FadeInView } from './fade.animation';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -19,16 +18,24 @@ const TextWrapper = styled.View`
   position: absolute;
   bottom: 50px;
   z-index: 100;
-  padding: ${(props) => props.theme.space[3]};
+  padding: 16px;
 `;
 
-const Title = styled(Text)`
+const Title = styled.Text`
   align-self: center;
-  margin: ${(props) => props.theme.space[3]};
+  margin: 16px;
+  font-family: Audiowide_400Regular;
+  font-size: 20px;
+`;
+
+const Body = styled.Text`
+  font-family: Questrial_400Regular;
+  font-size: 16px;
+  margin: 0 10px;
 `;
 
 const Option = styled.TouchableOpacity`
-  margin: ${(props) => props.theme.space[3]} 0;
+  margin: 16px 0;
   width: 100%;
 `;
 
@@ -37,16 +44,17 @@ const GradientBackground = styled(LinearGradient).attrs({
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`
-  padding: ${(props) => props.theme.space[3]};
+  padding: 16px;
   margin: 6px;
   background-color: #009999;
   border-radius: 12px;
   align-items: center;
 `;
 
-const OptionText = styled(Text)`
-  color: ${(props) => props.theme.colors.text.inverse};
+const OptionText = styled.Text`
+  color: #fff;
   text-transform: uppercase;
+  font-family: Questrial_400Regular;
 `;
 
 export const BadgeAnimation = ({ svg, title, body, handleSubmit }) => {
@@ -84,11 +92,11 @@ export const BadgeAnimation = ({ svg, title, body, handleSubmit }) => {
       {showText && (
         <TextWrapper>
           <FadeInView>
-            <Title variant='title'>{title}</Title>
-            <Text variant='body'>{body}</Text>
+            <Title>{title}</Title>
+            <Body>{body}</Body>
             <Option onPress={handleSubmit}>
               <GradientBackground>
-                <OptionText variant='body'>Continue Odyssey</OptionText>
+                <OptionText>Continue Odyssey</OptionText>
               </GradientBackground>
             </Option>
           </FadeInView>
