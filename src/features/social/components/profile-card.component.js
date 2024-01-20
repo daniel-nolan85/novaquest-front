@@ -43,7 +43,7 @@ export const ProfileCard = ({
     }
   }, [visible, firstProfileImage]);
 
-  const { token, _id, allies } = useSelector((state) => state.user);
+  const { token, _id, allies, xp } = useSelector((state) => state.user);
 
   return (
     <ProfileCardWrapper>
@@ -67,6 +67,7 @@ export const ProfileCard = ({
         <Name variant='title'>
           {rank} {name}
         </Name>
+        <Name variant='title'>{xp} XP</Name>
         <Name variant='title'>
           {daysInSpace === 1 ? `${daysInSpace} day` : `${daysInSpace} days`} in
           space

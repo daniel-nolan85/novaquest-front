@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,8 +22,10 @@ import {
 } from '../styles/welcome.styles';
 import { updateUserName } from '../../../requests/user';
 import { storeNotifToken } from '../../../requests/auth';
+import { LoadingSpinner } from '../../../../assets/loading-spinner';
 
 export const WelcomeSetupScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [nameEntry, setNameEntry] = useState(false);
   const [notificationsEntry, setNotificationsEntry] = useState(false);
@@ -59,10 +61,10 @@ export const WelcomeSetupScreen = ({ navigation }) => {
   useEffect(() => {
     if (user && user.name) {
       setText2(
-        `Welcome to the cosmos, Commander ${user.name}! In this stellar app, your journey through the universe is boundless. Explore the Red Planet through the lenses of various rovers, witness the cosmic beauty with a daily astronomy picture, track asteroids that venture close to Earth, immerse yourself in a cosmic gaming experience, and keep a watchful eye on the International Space Station's current location as it orbits the Earth.`
+        `Welcome to the cosmos, ${user.rank} ${user.name}! In this stellar app, your journey through the universe is boundless. Explore the Red Planet through the lenses of various rovers, witness the cosmic beauty with a daily astronomy picture, track asteroids that venture close to Earth, immerse yourself in a cosmic gaming experience, and keep a watchful eye on the International Space Station's current location as it orbits the Earth.`
       );
       setText6(
-        `Prepare for lift-off, Commander ${user.name}, as we delve into the mysteries of the cosmos together. Let the exploration begin!`
+        `Prepare for lift-off, ${user.rank} ${user.name}, as we delve into the mysteries of the cosmos together. Let the exploration begin!`
       );
     }
   }, [user]);
@@ -298,72 +300,84 @@ export const WelcomeSetupScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
+      onLoadEnd={() => setIsLoading(false)}
       source={{
         uri: 'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450541/cockpit_jsfiij.gif',
       }}
       style={{ flex: 1 }}
     >
-      <SetupSafeArea>
-        <SetupContainer>
-          <SpeechContainer>
-            <ImageContainer>
-              <Astronaut source={{ uri: images[0] }} />
-            </ImageContainer>
-            <SpeechBubble>
-              <MessageBubble mine text={renderCurrentStep()} />
-            </SpeechBubble>
-          </SpeechContainer>
-          <OptionContainer>
-            {nameEntry && (
-              <>
-                <Input
-                  label={<Text variant='body'>What's your name?</Text>}
-                  value={userName}
-                  onChangeText={(text) => setUserName(text)}
-                />
-                <Option onPress={handleNameEntryClick}>
-                  <OptionText variant='body'>Confirm</OptionText>
-                </Option>
-              </>
-            )}
-            {notificationsEntry && (
-              <>
-                <Option onPress={() => handleNotificationsEntryClick('yes')}>
-                  <OptionText variant='body'>Enable Signals</OptionText>
-                </Option>
-                <Option onPress={() => handleNotificationsEntryClick('no')}>
-                  <OptionText variant='body'>Not Now</OptionText>
-                </Option>
-              </>
-            )}
-            {okButton && (
-              <Option onPress={handleOkClick}>
-                <OptionText variant='body'>OK</OptionText>
-              </Option>
-            )}
-            {readyButton && (
-              <Option onPress={handleReadyClick}>
-                <OptionText variant='body'>Let's Go!</OptionText>
-              </Option>
-            )}
-            {showName && nameTyping && (
-              <Option onPress={skipNameText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showNotifications && notificationsTyping && (
-              <Option onPress={skipNotificationsText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-            {showOk && typing && (
-              <Option onPress={skipText}>
-                <MaterialIcons name='double-arrow' size={20} color='#fff' />
-              </Option>
-            )}
-          </OptionContainer>
-        </SetupContainer>
-      </SetupSafeArea>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <SetupSafeArea>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}
+          >
+            <SetupContainer>
+              <SpeechContainer>
+                <ImageContainer>
+                  <Astronaut source={{ uri: images[0] }} />
+                </ImageContainer>
+                <SpeechBubble>
+                  <MessageBubble mine text={renderCurrentStep()} />
+                </SpeechBubble>
+              </SpeechContainer>
+              <OptionContainer>
+                {nameEntry && (
+                  <>
+                    <Input
+                      label={<Text variant='body'>What's your name?</Text>}
+                      value={userName}
+                      onChangeText={(text) => setUserName(text)}
+                    />
+                    <Option onPress={handleNameEntryClick}>
+                      <OptionText variant='body'>Confirm</OptionText>
+                    </Option>
+                  </>
+                )}
+                {notificationsEntry && (
+                  <>
+                    <Option
+                      onPress={() => handleNotificationsEntryClick('yes')}
+                    >
+                      <OptionText variant='body'>Enable Signals</OptionText>
+                    </Option>
+                    <Option onPress={() => handleNotificationsEntryClick('no')}>
+                      <OptionText variant='body'>Not Now</OptionText>
+                    </Option>
+                  </>
+                )}
+                {okButton && (
+                  <Option onPress={handleOkClick}>
+                    <OptionText variant='body'>OK</OptionText>
+                  </Option>
+                )}
+                {readyButton && (
+                  <Option onPress={handleReadyClick}>
+                    <OptionText variant='body'>Let's Go!</OptionText>
+                  </Option>
+                )}
+                {showName && nameTyping && (
+                  <Option onPress={skipNameText}>
+                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  </Option>
+                )}
+                {showNotifications && notificationsTyping && (
+                  <Option onPress={skipNotificationsText}>
+                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  </Option>
+                )}
+                {showOk && typing && (
+                  <Option onPress={skipText}>
+                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                  </Option>
+                )}
+              </OptionContainer>
+            </SetupContainer>
+          </KeyboardAvoidingView>
+        </SetupSafeArea>
+      )}
     </ImageBackground>
   );
 };

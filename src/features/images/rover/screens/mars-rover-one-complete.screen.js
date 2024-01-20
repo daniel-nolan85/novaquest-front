@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../../requests/user';
 import { BadgeAnimation } from '../../../../components/animations/badge.animation';
 import OneRover from '../../../../../assets/svg/badges/one-rover.svg';
+import { XPProgressAnimation } from '../../../../components/animations/xp-progress.animation';
 
 const BadgeContainer = styled.View`
   flex: 1;
@@ -11,11 +13,28 @@ const BadgeContainer = styled.View`
 `;
 
 export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
+  const [showXP, setShowXP] = useState(false);
+  const [initialXP, setInitialXP] = useState(0);
+
   const { navigate } = navigation;
   let additionalAchievements = route.params?.additionalAchievements || [];
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user && user.xp) {
+      setInitialXP(user.xp);
+    }
+  }, []);
+
+  useEffect(() => {
+    const delayTimeout = setTimeout(() => {
+      setShowXP(true);
+    }, 4000);
+
+    return () => clearTimeout(delayTimeout);
+  }, []);
 
   const handleSubmit = () => {
     if (user.role !== 'guest') {
@@ -58,6 +77,13 @@ export const MarsRoverOneCompleteScreen = ({ navigation, route }) => {
         body={`Congratulations, Commander ${user.name}! You've earned the esteemed 'Red Planet Voyager' badge, marking your exploration of captivating Martian landscapes captured by our intrepid rovers. Like a cosmic explorer gazing upon the Martian frontier, you've delved into the mysteries of the Red Planet. May your curiosity continue to propel you across the vast reaches of our celestial neighbor. Onward, Red Planet Voyager!`}
         handleSubmit={handleSubmit}
       />
+      {showXP && (
+        <XPProgressAnimation
+          earnedXP={100}
+          showXP={showXP}
+          initialXP={initialXP}
+        />
+      )}
     </BadgeContainer>
   );
 };

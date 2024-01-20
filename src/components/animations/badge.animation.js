@@ -11,6 +11,7 @@ const Animation = styled(Animatable.View)`
     scale: 0;
   }
   background-color: transparent;
+  margin-top: 100px;
 `;
 
 const TextWrapper = styled.View`

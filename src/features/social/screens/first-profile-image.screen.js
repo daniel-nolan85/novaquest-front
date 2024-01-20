@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../requests/user';
 import { BadgeAnimation } from '../../../components/animations/badge.animation';
 import CosmicPersona from '../../../../assets/svg/badges/cosmic-persona.svg';
+import { XPProgressAnimation } from '../../../components/animations/xp-progress.animation';
 
 const BadgeContainer = styled.View`
   flex: 1;
@@ -11,10 +13,27 @@ const BadgeContainer = styled.View`
 `;
 
 export const FirstProfileImageScreen = ({ navigation }) => {
+  const [showXP, setShowXP] = useState(false);
+  const [initialXP, setInitialXP] = useState(0);
+
   const { goBack } = navigation;
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user && user.xp) {
+      setInitialXP(user.xp);
+    }
+  }, []);
+
+  useEffect(() => {
+    const delayTimeout = setTimeout(() => {
+      setShowXP(true);
+    }, 4000);
+
+    return () => clearTimeout(delayTimeout);
+  }, []);
 
   const handleSubmit = () => {
     badgeUnlocked(user.token, user._id, 'achievedCosmicPersona')
@@ -39,6 +58,13 @@ export const FirstProfileImageScreen = ({ navigation }) => {
         body={`${user.rank} ${user.name},  you've earned the 'Cosmic Persona' badge! By updating your profile image, you've personalized your cosmic identity. Show the universe your unique presence in this celestial community!`}
         handleSubmit={handleSubmit}
       />
+      {showXP && (
+        <XPProgressAnimation
+          earnedXP={150}
+          showXP={showXP}
+          initialXP={initialXP}
+        />
+      )}
     </BadgeContainer>
   );
 };

@@ -17,6 +17,7 @@ export const WelcomeCompleteScreen = () => {
   const [text, setText] = useState();
 
   const { user } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const delayTimeout = setTimeout(() => {
@@ -32,8 +33,6 @@ export const WelcomeCompleteScreen = () => {
         `Congratulations, ${user.rank} ${user.name}! You've earned the illustrious 'Cosmic Pioneer' badge, signifying the launch of your extraordinary journey through the cosmos. Like a rocket soaring into the vast unknown, you've just begun to explore the wonders that await. May your celestial adventure be as limitless as the cosmos itself. Onward and upward, Cosmic Pioneer!`
       );
   }, [user.rank]);
-
-  const dispatch = useDispatch();
 
   const handleSubmit = () => {
     if (user.role !== 'guest') {
@@ -67,7 +66,9 @@ export const WelcomeCompleteScreen = () => {
         body={text}
         handleSubmit={handleSubmit}
       />
-      {showXP && <XPProgressAnimation earnedXP={50} showXP={showXP} />}
+      {showXP && (
+        <XPProgressAnimation earnedXP={50} showXP={showXP} initialXP={0} />
+      )}
     </BadgeContainer>
   );
 };

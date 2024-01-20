@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
@@ -13,7 +13,7 @@ export const ModalWrapper = styled.View`
   align-items: center;
   justify-content: center;
   flex: 1;
-  margin: ${(props) => props.theme.space[3]};
+  margin: 16px;
 `;
 
 export const ModalView = styled.ScrollView`
@@ -37,15 +37,15 @@ export const CloseIcon = styled.TouchableOpacity`
   height: 55px;
   position: absolute;
   z-index: 999;
-  top: ${(props) => props.theme.space[2]};
-  right: ${(props) => props.theme.space[2]};
-  padding: ${(props) => props.theme.space[2]};
+  top: 8px;
+  right: 8px;
+  padding: 8px;
 `;
 
 export const AnimationWrapper = styled.View`
   align-items: center;
   justify-content: center;
-  margin-bottom: ${(props) => props.theme.space[4]};
+  margin-bottom: 32px;
 `;
 
 export const Animation = styled(LottieView)`
@@ -55,13 +55,13 @@ export const Animation = styled(LottieView)`
 `;
 
 export const PromotionText = styled(Text)`
-  margin-bottom: ${(props) => props.theme.space[3]};
+  margin-bottom: 16px;
 `;
 
 export const RankUpModal = ({ rankUp, setRankUp }) => {
   const [promotedRank, setPromotedRank] = useState('');
 
-  const isFirstRun = useRef(true);
+  console.log({ promotedRank });
 
   useEffect(() => {
     if (user && user.rank) {
@@ -71,13 +71,11 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
   }, []);
 
   useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    } else {
+    if (rankUp) {
+      console.log('firing rankUpUser');
       rankUpUser();
     }
-  }, [promotedRank]);
+  }, [rankUp]);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
@@ -86,6 +84,7 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
     if (user.role !== 'guest') {
       await promoteUser(user.token, user._id, promotedRank)
         .then((res) => {
+          console.log('rankUpUser res.data => ', res.data);
           dispatch({
             type: 'LOGGED_IN_USER',
             payload: {

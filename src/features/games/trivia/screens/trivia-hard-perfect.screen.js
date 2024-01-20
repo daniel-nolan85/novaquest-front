@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { badgeUnlocked } from '../../../../requests/user';
 import { BadgeAnimation } from '../../../../components/animations/badge.animation';
 import Supernova from '../../../../../assets/svg/badges/supernova.svg';
+import { XPProgressAnimation } from '../../../../components/animations/xp-progress.animation';
 
 const BadgeContainer = styled.View`
   flex: 1;
@@ -11,11 +13,28 @@ const BadgeContainer = styled.View`
 `;
 
 export const TriviaPerfectHardScreen = ({ navigation, route }) => {
+  const [showXP, setShowXP] = useState(false);
+  const [initialXP, setInitialXP] = useState(0);
+
   const { navigate } = navigation;
   let additionalAchievements = route.params?.additionalAchievements || [];
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user && user.xp) {
+      setInitialXP(user.xp);
+    }
+  }, []);
+
+  useEffect(() => {
+    const delayTimeout = setTimeout(() => {
+      setShowXP(true);
+    }, 4000);
+
+    return () => clearTimeout(delayTimeout);
+  }, []);
 
   const handleSubmit = () => {
     if (user.role !== 'guest') {
@@ -58,6 +77,13 @@ export const TriviaPerfectHardScreen = ({ navigation, route }) => {
         body={`Unparalleled brilliance, Commander ${user.name}! As a 'Supernova Savant,' you've achieved a perfect score as a Galactic Guardian, cementing your status as a cosmic sage. Your intellect blazes with the intensity of a supernova, illuminating the cosmos with your knowledge.`}
         handleSubmit={handleSubmit}
       />
+      {showXP && (
+        <XPProgressAnimation
+          earnedXP={500}
+          showXP={showXP}
+          initialXP={initialXP}
+        />
+      )}
     </BadgeContainer>
   );
 };

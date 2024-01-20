@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import AnimateNumber from 'react-native-countup';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Text } from '../typography/text.component';
 import { SafeArea } from '../utils/safe-area.component';
 import { awardXP } from '../../requests/user';
 import ranks from '../../services/ranks/ranks.json';
@@ -17,11 +16,12 @@ const AnimationContainer = styled(SafeArea)`
   top: 60px;
   width: 80%;
 `;
-const ProgressText = styled(Text)`
+const ProgressText = styled.Text`
   text-align: center;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
+  font-family: Audiowide_400Regular;
 `;
 const ProgressBarContainer = styled.View`
   height: 20px;
@@ -37,27 +37,23 @@ const NumberContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
-const NumberText = styled(Text)`
+const NumberText = styled.Text`
   color: #009999;
   margin-top: 10px;
   margin-left: 10px;
+  font-family: Audiowide_400Regular;
 `;
 
-export const XPProgressAnimation = ({ earnedXP, showXP }) => {
+export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
   const [completed, setCompleted] = useState(false);
   const [progAnimated, setProgAnimated] = useState(false);
   const [numAnimated, setNumAnimated] = useState(false);
-  const [initialXP, setInitialXP] = useState(0);
   const [rankUp, setRankUp] = useState(false);
+
+  console.log({ rankUp });
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (user && user.xp) {
-      setInitialXP(user.xp);
-    }
-  }, []);
 
   useEffect(() => {
     if (!completed && showXP) {
@@ -85,9 +81,15 @@ export const XPProgressAnimation = ({ earnedXP, showXP }) => {
   }
 
   const animateProgressBar = () => {
-    const targetXP = user.xp + earnedXP;
+    setRankUp(false);
+    const targetXP = initialXP + earnedXP;
     const relativeXP = targetXP - currentRank.requiredXP;
     const progressPercentage = rankRange !== 0 ? relativeXP / rankRange : 1;
+    // console.log({ earnedXP });
+    // console.log({ initialXP });
+    // console.log({ targetXP });
+    // console.log({ relativeXP });
+    // console.log({ progressPercentage });
 
     Animated.timing(progress, {
       toValue: Math.min(progressPercentage, 1),
@@ -157,7 +159,7 @@ export const XPProgressAnimation = ({ earnedXP, showXP }) => {
         type: 'LOGGED_IN_USER',
         payload: {
           ...user,
-          xp: user.xp + earnedXP,
+          xp: initialXP + earnedXP,
         },
       });
     }
@@ -165,7 +167,7 @@ export const XPProgressAnimation = ({ earnedXP, showXP }) => {
 
   return (
     <AnimationContainer>
-      <ProgressText variant='title'>+{earnedXP} XP</ProgressText>
+      <ProgressText>+{earnedXP} XP</ProgressText>
       <ProgressBarContainer>
         <GradientProgressBar
           colors={['#009999', '#00cccc']}
@@ -196,7 +198,7 @@ export const XPProgressAnimation = ({ earnedXP, showXP }) => {
             marginTop: 10,
           }}
         />
-        <NumberText variant='title'>XP</NumberText>
+        <NumberText>XP</NumberText>
       </NumberContainer>
       <RankUpModal rankUp={rankUp} setRankUp={setRankUp} />
     </AnimationContainer>

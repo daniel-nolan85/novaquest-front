@@ -17,7 +17,7 @@ export const CustomDrawer = (props) => {
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const { profileImage, rank, name, daysInSpace, role } = useSelector(
+  const { profileImage, rank, name, daysInSpace, role, xp } = useSelector(
     (state) => state.user
   );
 
@@ -56,7 +56,18 @@ export const CustomDrawer = (props) => {
           </Text>
           <Text
             variant='title'
-            style={{ marginBottom: 10, color: '#fff', fontSize: 16 }}
+            style={{ marginTop: 10, color: '#fff', fontSize: 16 }}
+          >
+            {xp} XP
+          </Text>
+          <Text
+            variant='title'
+            style={{
+              marginTop: 10,
+              marginBottom: 10,
+              color: '#fff',
+              fontSize: 16,
+            }}
           >
             {daysInSpace === 1 ? `${daysInSpace} day` : `${daysInSpace} days`}{' '}
             in space

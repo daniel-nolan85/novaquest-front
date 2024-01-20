@@ -188,6 +188,7 @@ export const SettingsScreen = ({ navigation }) => {
         <Text variant='title'>
           {user.rank} {user.name}
         </Text>
+        <Text variant='title'>{user.xp} XP</Text>
         <Text variant='title'>
           {user.daysInSpace === 1
             ? `${user.daysInSpace} day`
