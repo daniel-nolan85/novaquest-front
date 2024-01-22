@@ -36,7 +36,7 @@ export const FirstProfileImageScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicPersona')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicPersona')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

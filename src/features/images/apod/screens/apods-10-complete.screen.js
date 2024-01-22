@@ -36,7 +36,7 @@ export const Apods10CompleteScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicObserver')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicObserver')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

@@ -13,13 +13,13 @@ export const PostsScreen = ({ route }) => {
 
   const { posts, setPosts } = useContext(SettingsContext);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const { params } = route;
   const { navigate } = params;
 
   const handleSearch = async (query) => {
-    await filterAllPostsByQuery(token, _id, query)
+    await filterAllPostsByQuery(token, _id, role, query)
       .then((res) => {
         setPosts(res.data);
       })

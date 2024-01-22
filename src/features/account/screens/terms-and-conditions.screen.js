@@ -124,7 +124,7 @@ export const TermsAndConditionsScreen = ({ navigation }) => {
                   <LinkText variant='body'>info@nolancode.com</LinkText>.
                 </NormalText>
                 <NormalText variant='body'>
-                  The Legal terms constitue a legally binding agreement made
+                  The Legal terms constitute a legally binding agreement made
                   between you, whether personally or on behalf of an entity ('
                   <BoldText variant='body'>you</BoldText>'), and Nolancode,
                   concerning your access to and use of the Services. You agree

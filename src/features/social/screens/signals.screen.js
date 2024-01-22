@@ -10,7 +10,7 @@ import { SignalsHeader } from '../components/signals-header.component';
 export const SignalsScreen = ({ navigation }) => {
   const [filteredSignals, setFilteredSignals] = useState([]);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const { navigate } = navigation;
 
@@ -21,7 +21,7 @@ export const SignalsScreen = ({ navigation }) => {
   );
 
   const usersSignals = async () => {
-    await fetchUsersSignals(token, _id)
+    await fetchUsersSignals(token, _id, role)
       .then((res) => {
         setFilteredSignals(res.data.notifications);
       })

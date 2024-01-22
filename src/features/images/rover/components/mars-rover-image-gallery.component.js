@@ -15,10 +15,7 @@ import {
 } from '../styles/mars-rover-image-card.styles';
 import Camera from '../../../../../assets/svg/camera.svg';
 import { CameraListModal } from './camera-list-modal.component';
-import {
-  updateViewedRovers,
-  updateGuestViewedRovers,
-} from '../../../../requests/user';
+import { updateViewedRovers } from '../../../../requests/user';
 
 const RoverImageList = styled.FlatList.attrs({
   contentContainerStyle: { paddingHorizontal: 16 },
@@ -42,73 +39,36 @@ export const MarsRoverImageGallery = ({ cameraData, navigate }) => {
 
   const handleCameraChange = async (newCamera) => {
     setSelectedCamera(newCamera);
-    if (user.role !== 'guest') {
-      await updateViewedRovers(
-        user.token,
-        user._id,
-        selectedRover,
-        newCamera,
-        dateType
-      )
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              viewedRovers: res.data.user.viewedRovers,
-              viewedRoverCameras: res.data.user.viewedRoverCameras,
-              viewedRoverDateTypes: res.data.user.viewedRoverDateTypes,
-            },
-          });
-          if (res.data.achievement) {
-            navigate(res.data.achievement);
-          } else if (res.data.simultaneousAchievements) {
-            const firstAchievement = res.data.simultaneousAchievements[0];
-            const additionalAchievements =
-              res.data.simultaneousAchievements.slice(1);
-            navigate(firstAchievement, { additionalAchievements });
-          } else if (res.data.noAchievements) {
-            navigate('MarsRoverImagesScreen');
-          }
-        })
-        .catch((err) => console.error(err));
-    } else {
-      if (
-        user &&
-        user.viewedRovers &&
-        !user.viewedRovers.includes(selectedRover) &&
-        user.viewedRoverCameras &&
-        !user.viewedRoverCameras.includes(newCamera) &&
-        user.viewedRoverDateTypes &&
-        !user.viewedRoverDateTypes.includes(dateType)
-      ) {
+    await updateViewedRovers(
+      user.token,
+      user._id,
+      user.role,
+      selectedRover,
+      newCamera,
+      dateType
+    )
+      .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {
             ...user,
-            viewedRovers: user.viewedRovers.includes(selectedRover)
-              ? user.viewedRovers
-              : [...user.viewedRovers, selectedRover],
-            viewedRoverCameras: user.viewedRoverCameras.includes(newCamera)
-              ? user.viewedRoverCameras
-              : [...user.viewedRoverCameras, newCamera],
-            viewedRoverDateTypes: user.viewedRoverDateTypes.includes(dateType)
-              ? user.viewedRoverDateTypes
-              : [...user.viewedRoverDateTypes, dateType],
+            viewedRovers: res.data.user.viewedRovers,
+            viewedRoverCameras: res.data.user.viewedRoverCameras,
+            viewedRoverDateTypes: res.data.user.viewedRoverDateTypes,
           },
         });
-      }
-      const achievements = await updateGuestViewedRovers(user);
-      if (achievements.length > 1) {
-        const firstAchievement = achievements[0];
-        const additionalAchievements = achievements.slice(1);
-        navigate(firstAchievement, { additionalAchievements });
-      } else if (achievements.length === 1) {
-        navigate(achievements[0]);
-      } else {
-        navigate('MarsRoverImagesScreen');
-      }
-    }
+        if (res.data.achievement) {
+          navigate(res.data.achievement);
+        } else if (res.data.simultaneousAchievements) {
+          const firstAchievement = res.data.simultaneousAchievements[0];
+          const additionalAchievements =
+            res.data.simultaneousAchievements.slice(1);
+          navigate(firstAchievement, { additionalAchievements });
+        } else if (res.data.noAchievements) {
+          navigate('MarsRoverImagesScreen');
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

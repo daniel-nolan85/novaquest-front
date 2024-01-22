@@ -1,10 +1,16 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
-export const submitPostWithMedia = async (authtoken, _id, text, media) => {
+export const submitPostWithMedia = async (
+  authtoken,
+  _id,
+  role,
+  text,
+  media
+) => {
   return await axios.post(
     `${API_BASE_URL}/submit-post-with-media`,
-    { _id, text, media },
+    { _id, role, text, media },
     {
       headers: {
         authtoken,
@@ -13,10 +19,10 @@ export const submitPostWithMedia = async (authtoken, _id, text, media) => {
   );
 };
 
-export const submitPost = async (authtoken, _id, text) => {
+export const submitPost = async (authtoken, _id, role, text) => {
   return await axios.post(
     `${API_BASE_URL}/submit-post`,
-    { _id, text },
+    { _id, role, text },
     {
       headers: {
         authtoken,
@@ -28,6 +34,7 @@ export const submitPost = async (authtoken, _id, text) => {
 export const editPostWithMedia = async (
   authtoken,
   _id,
+  role,
   text,
   media,
   mediaToDelete,
@@ -35,7 +42,7 @@ export const editPostWithMedia = async (
 ) => {
   return await axios.put(
     `${API_BASE_URL}/edit-post-with-media`,
-    { _id, text, media, mediaToDelete, postId },
+    { _id, role, text, media, mediaToDelete, postId },
     {
       headers: {
         authtoken,
@@ -44,10 +51,17 @@ export const editPostWithMedia = async (
   );
 };
 
-export const editPost = async (authtoken, _id, text, mediaToDelete, postId) => {
+export const editPost = async (
+  authtoken,
+  _id,
+  role,
+  text,
+  mediaToDelete,
+  postId
+) => {
   return await axios.put(
     `${API_BASE_URL}/edit-post`,
-    { _id, text, mediaToDelete, postId },
+    { _id, role, text, mediaToDelete, postId },
     {
       headers: {
         authtoken,
@@ -56,10 +70,10 @@ export const editPost = async (authtoken, _id, text, mediaToDelete, postId) => {
   );
 };
 
-export const deletePost = async (authtoken, _id, postId) => {
+export const deletePost = async (authtoken, _id, role, postId) => {
   return await axios.put(
     `${API_BASE_URL}/delete-post`,
-    { _id, postId },
+    { _id, role, postId },
     {
       headers: {
         authtoken,
@@ -68,10 +82,10 @@ export const deletePost = async (authtoken, _id, postId) => {
   );
 };
 
-export const fetchPosts = async (authtoken, _id, page, pageSize) => {
+export const fetchPosts = async (authtoken, _id, role, page, pageSize) => {
   return await axios.post(
     `${API_BASE_URL}/news-feed`,
-    { _id, page, pageSize },
+    { _id, role, page, pageSize },
     {
       headers: {
         authtoken,
@@ -80,10 +94,10 @@ export const fetchPosts = async (authtoken, _id, page, pageSize) => {
   );
 };
 
-export const fetchSinglePost = async (authtoken, postId) => {
+export const fetchSinglePost = async (authtoken, role, postId) => {
   return await axios.post(
     `${API_BASE_URL}/single-post`,
-    { postId },
+    { role, postId },
     {
       headers: {
         authtoken,
@@ -95,13 +109,14 @@ export const fetchSinglePost = async (authtoken, postId) => {
 export const fetchUsersPosts = async (
   authtoken,
   _id,
+  role,
   page,
   pageSize,
   initialIndex
 ) => {
   return await axios.post(
     `${API_BASE_URL}/users-posts`,
-    { _id, page, pageSize, initialIndex },
+    { _id, role, page, pageSize, initialIndex },
     {
       headers: {
         authtoken,
@@ -113,13 +128,14 @@ export const fetchUsersPosts = async (
 export const fetchUsersStars = async (
   authtoken,
   _id,
+  role,
   page,
   pageSize,
   initialIndex
 ) => {
   return await axios.post(
     `${API_BASE_URL}/users-stars`,
-    { _id, page, pageSize, initialIndex },
+    { _id, role, page, pageSize, initialIndex },
     {
       headers: {
         authtoken,
@@ -128,10 +144,10 @@ export const fetchUsersStars = async (
   );
 };
 
-export const handleLikePost = async (authtoken, _id, postId) => {
+export const handleLikePost = async (authtoken, _id, role, postId) => {
   return await axios.put(
     `${API_BASE_URL}/like-post`,
-    { _id, postId },
+    { _id, role, postId },
     {
       headers: {
         authtoken,
@@ -140,10 +156,10 @@ export const handleLikePost = async (authtoken, _id, postId) => {
   );
 };
 
-export const handleUnlikePost = async (authtoken, _id, postId) => {
+export const handleUnlikePost = async (authtoken, _id, role, postId) => {
   return await axios.put(
     `${API_BASE_URL}/unlike-post`,
-    { _id, postId },
+    { _id, role, postId },
     {
       headers: {
         authtoken,
@@ -152,10 +168,10 @@ export const handleUnlikePost = async (authtoken, _id, postId) => {
   );
 };
 
-export const addComment = async (authtoken, _id, postId, text) => {
+export const addComment = async (authtoken, _id, role, postId, text) => {
   return await axios.put(
     `${API_BASE_URL}/add-comment`,
-    { _id, postId, text },
+    { _id, role, postId, text },
     {
       headers: {
         authtoken,
@@ -164,10 +180,10 @@ export const addComment = async (authtoken, _id, postId, text) => {
   );
 };
 
-export const getComments = async (authtoken, postId) => {
+export const getComments = async (authtoken, role, postId) => {
   return await axios.post(
     `${API_BASE_URL}/get-comments`,
-    { postId },
+    { role, postId },
     {
       headers: {
         authtoken,
@@ -176,10 +192,10 @@ export const getComments = async (authtoken, postId) => {
   );
 };
 
-export const reportContent = async (authtoken, postId) => {
+export const reportContent = async (authtoken, role, postId) => {
   return await axios.post(
     `${API_BASE_URL}/report-post`,
-    { postId },
+    { role, postId },
     {
       headers: {
         authtoken,
@@ -188,10 +204,10 @@ export const reportContent = async (authtoken, postId) => {
   );
 };
 
-export const filterPostsByQuery = async (authtoken, query) => {
+export const filterPostsByQuery = async (authtoken, role, query) => {
   return await axios.post(
     `${API_BASE_URL}/filter-posts-by-query`,
-    { query },
+    { role, query },
     {
       headers: {
         authtoken,

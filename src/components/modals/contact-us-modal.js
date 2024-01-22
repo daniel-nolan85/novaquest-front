@@ -104,7 +104,7 @@ export const ContactUsModal = ({ visible, setVisible }) => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const { token, rank, name } = useSelector((state) => state.user);
+  const { token, role, rank, name } = useSelector((state) => state.user);
 
   const closeModal = () => {
     setUserName('');
@@ -116,7 +116,7 @@ export const ContactUsModal = ({ visible, setVisible }) => {
 
   const sendMail = async () => {
     setIsLoading(true);
-    await sendMessage(token, userName, email, subject, message)
+    await sendMessage(token, role, userName, email, subject, message)
       .then((res) => {
         setIsLoading(false);
         setUserName('');

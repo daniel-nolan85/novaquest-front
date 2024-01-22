@@ -36,7 +36,12 @@ export const PlanetsAllCompleteScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedGalacticPlanetologist')
+    badgeUnlocked(
+      user.token,
+      user._id,
+      user.role,
+      'achievedGalacticPlanetologist'
+    )
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

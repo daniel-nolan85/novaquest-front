@@ -128,29 +128,19 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const updateUserTextSpeed = async () => {
-    if (user.role !== 'guest') {
-      updateTextSpeed(user.token, user._id, textSpeed)
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              textSpeed: res.data.textSpeed,
-            },
-          });
-        })
-        .catch((err) => {
-          console.error(err);
+    updateTextSpeed(user.token, user._id, user.role, textSpeed)
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            textSpeed: res.data.textSpeed,
+          },
         });
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          textSpeed,
-        },
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }
     setShowTextSpeed(false);
     Toast.show({
       type: 'success',

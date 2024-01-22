@@ -37,7 +37,7 @@ export const AstroScoreOver500Screen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedGalacticAviator')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedGalacticAviator')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

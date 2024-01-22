@@ -36,7 +36,7 @@ export const TenthPostScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedProlificExplorer')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedProlificExplorer')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

@@ -13,13 +13,13 @@ export const UsersScreen = ({ route }) => {
 
   const { users, setUsers } = useContext(SettingsContext);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const { params } = route;
   const { navigate } = params;
 
   const handleSearch = async (query) => {
-    await filterAllUsersByQuery(token, _id, query)
+    await filterAllUsersByQuery(token, _id, role, query)
       .then((res) => {
         setUsers(res.data);
       })

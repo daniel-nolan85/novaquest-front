@@ -39,7 +39,7 @@ export const InterstellarAssemblyGameWonScreen = ({ navigation }) => {
   const { setVisible } = useContext(GamesContext);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicArranger')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicArranger')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

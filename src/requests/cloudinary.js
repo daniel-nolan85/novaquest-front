@@ -1,18 +1,22 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
-export const uploadMediaToCloudinary = async (authtoken, formData) => {
-  return await axios.post(`${API_BASE_URL}/upload-media`, formData, {
-    headers: {
-      authtoken,
-    },
-  });
+export const uploadMediaToCloudinary = async (authtoken, role, formData) => {
+  return await axios.post(
+    `${API_BASE_URL}/upload-media`,
+    { role, formData },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
 };
 
-export const destroyMediaFromCloudinary = async (authtoken, publicId) => {
+export const destroyMediaFromCloudinary = async (authtoken, role, publicId) => {
   return await axios.post(
     `${API_BASE_URL}/destroy-media`,
-    { publicId },
+    { role, publicId },
     {
       headers: {
         authtoken,

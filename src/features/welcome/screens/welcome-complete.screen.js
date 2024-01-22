@@ -35,27 +35,17 @@ export const WelcomeCompleteScreen = () => {
   }, [user.rank]);
 
   const handleSubmit = () => {
-    if (user.role !== 'guest') {
-      badgeUnlocked(user.token, user._id, 'achievedCosmicPioneer')
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              achievedCosmicPioneer: res.data.achievedCosmicPioneer,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          achievedCosmicPioneer: true,
-        },
-      });
-    }
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicPioneer')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            achievedCosmicPioneer: res.data.achievedCosmicPioneer,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

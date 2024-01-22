@@ -36,7 +36,7 @@ export const Apods50CompleteScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedNebulaGazer')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedNebulaGazer')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

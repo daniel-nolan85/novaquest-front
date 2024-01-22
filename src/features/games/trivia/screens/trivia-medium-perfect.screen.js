@@ -37,27 +37,17 @@ export const TriviaPerfectMediumScreen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    if (user.role !== 'guest') {
-      badgeUnlocked(user.token, user._id, 'achievedQuasarVirtuoso')
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              achievedQuasarVirtuoso: res.data.achievedQuasarVirtuoso,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          achievedQuasarVirtuoso: true,
-        },
-      });
-    }
+    badgeUnlocked(user.token, user._id, user.role, 'achievedQuasarVirtuoso')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            achievedQuasarVirtuoso: res.data.achievedQuasarVirtuoso,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
     if (additionalAchievements.length > 1) {
       const firstAchievement = additionalAchievements[0];
       additionalAchievements = additionalAchievements.slice(1);

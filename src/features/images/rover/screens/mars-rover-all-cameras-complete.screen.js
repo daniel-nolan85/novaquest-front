@@ -37,27 +37,17 @@ export const MarsRoverAllCamerasCompleteScreen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    if (user.role !== 'guest') {
-      badgeUnlocked(user.token, user._id, 'achievedMartianLensMaster')
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              achievedMartianLensMaster: res.data.achievedMartianLensMaster,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          achievedMartianLensMaster: true,
-        },
-      });
-    }
+    badgeUnlocked(user.token, user._id, user.role, 'achievedMartianLensMaster')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            achievedMartianLensMaster: res.data.achievedMartianLensMaster,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
     if (additionalAchievements.length > 1) {
       const firstAchievement = additionalAchievements[0];
       additionalAchievements = additionalAchievements.slice(1);

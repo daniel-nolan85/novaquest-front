@@ -45,7 +45,12 @@ export const DaysInSpaceScreen = ({ route }) => {
   }, []);
 
   const handleAdventurousExplorer = () => {
-    badgeUnlocked(user.token, user._id, 'achievedAdventurousExplorer')
+    badgeUnlocked(
+      user.token,
+      user._id,
+      user.role,
+      'achievedAdventurousExplorer'
+    )
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -60,7 +65,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleStellarVoyager = () => {
-    badgeUnlocked(user.token, user._id, 'achievedStellarVoyager')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedStellarVoyager')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -75,7 +80,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleAstroPioneer = () => {
-    badgeUnlocked(user.token, user._id, 'achievedAstroPioneer')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedAstroPioneer')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -90,7 +95,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleCosmicTrailblazer = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicTrailblazer')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicTrailblazer')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -105,7 +110,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleCelestialNomad = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCelestialNomad')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCelestialNomad')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -120,7 +125,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleGalacticWayfarer = () => {
-    badgeUnlocked(user.token, user._id, 'achievedGalacticWayfarer')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedGalacticWayfarer')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -135,7 +140,12 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleInterstellarVoyager = () => {
-    badgeUnlocked(user.token, user._id, 'achievedInterstellarVoyager')
+    badgeUnlocked(
+      user.token,
+      user._id,
+      user.role,
+      'achievedInterstellarVoyager'
+    )
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -150,7 +160,7 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleStellarCenturion = () => {
-    badgeUnlocked(user.token, user._id, 'achievedStellarCenturion')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedStellarCenturion')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -165,7 +175,12 @@ export const DaysInSpaceScreen = ({ route }) => {
   };
 
   const handleVoyagerExtraordinaire = () => {
-    badgeUnlocked(user.token, user._id, 'achievedVoyagerExtraordinaire')
+    badgeUnlocked(
+      user.token,
+      user._id,
+      user.role,
+      'achievedVoyagerExtraordinaire'
+    )
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

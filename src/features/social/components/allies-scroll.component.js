@@ -15,7 +15,7 @@ import defaultProfile from '../../../../assets/img/defaultProfile.png';
 export const AlliesScroll = ({ navigate }) => {
   const [allies, setAllies] = useState([]);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -24,7 +24,7 @@ export const AlliesScroll = ({ navigate }) => {
   );
 
   const fetchAllies = async () => {
-    await getAllies(token, _id)
+    await getAllies(token, _id, role)
       .then((res) => {
         setAllies(res.data.allies);
       })

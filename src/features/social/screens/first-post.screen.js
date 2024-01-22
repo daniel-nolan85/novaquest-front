@@ -36,7 +36,12 @@ export const FirstPostScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCelestialContributor')
+    badgeUnlocked(
+      user.token,
+      user._id,
+      user.role,
+      'achievedCelestialContributor'
+    )
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

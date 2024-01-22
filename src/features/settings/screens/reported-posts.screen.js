@@ -13,13 +13,13 @@ export const ReportedPostsScreen = ({ route }) => {
 
   const { reportedPosts, setReportedPosts } = useContext(SettingsContext);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const { params } = route;
   const { navigate } = params;
 
   const handleSearch = async (query) => {
-    await filterReportedPostsByQuery(token, _id, query)
+    await filterReportedPostsByQuery(token, _id, role, query)
       .then((res) => {
         setReportedPosts(res.data);
       })

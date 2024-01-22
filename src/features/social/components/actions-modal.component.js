@@ -36,7 +36,7 @@ export const ActionsModal = ({
   };
 
   const reportPost = async (postId) => {
-    await reportContent(user.token, postId)
+    await reportContent(user.token, user.role, postId)
       .then((res) => {
         Toast.show({
           type: 'error',
@@ -50,7 +50,7 @@ export const ActionsModal = ({
   };
 
   const blockUser = async (u) => {
-    await blockMember(user.token, user._id, u._id)
+    await blockMember(user.token, user._id, user.role, u._id)
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

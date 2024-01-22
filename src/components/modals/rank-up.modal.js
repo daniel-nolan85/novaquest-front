@@ -81,28 +81,18 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
   const dispatch = useDispatch();
 
   const rankUpUser = async () => {
-    if (user.role !== 'guest') {
-      await promoteUser(user.token, user._id, promotedRank)
-        .then((res) => {
-          console.log('rankUpUser res.data => ', res.data);
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              rank: res.data.rank,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          rank: promotedRank,
-        },
-      });
-    }
+    await promoteUser(user.token, user._id, user.role, promotedRank)
+      .then((res) => {
+        console.log('rankUpUser res.data => ', res.data);
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            rank: res.data.rank,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

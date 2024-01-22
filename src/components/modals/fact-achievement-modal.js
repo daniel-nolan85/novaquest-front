@@ -39,7 +39,7 @@ export const FactAchievementModal = ({
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCelestialSavant')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCelestialSavant')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

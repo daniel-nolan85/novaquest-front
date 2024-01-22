@@ -74,7 +74,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
   const lastTapTimeRef = useRef(0);
   const postRef = useRef(null);
 
-  const { token, _id, profileImage } = useSelector((state) => state.user);
+  const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (token) {
@@ -93,6 +93,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
       const res = await fetchUsersPosts(
         token,
         userId,
+        role,
         page,
         PAGE_SIZE,
         initialIndex
@@ -123,6 +124,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
       const res = await fetchUsersPosts(
         token,
         userId,
+        role,
         page + 1,
         PAGE_SIZE,
         initialIndex
@@ -203,7 +205,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
 
   const likePost = async (postId) => {
     try {
-      await handleLikePost(token, _id, postId).then((res) => {
+      await handleLikePost(token, _id, role, postId).then((res) => {
         setPosts((prevPosts) =>
           prevPosts.map((post) =>
             post._id === postId
@@ -223,7 +225,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
 
   const unlikePost = async (postId) => {
     try {
-      await handleUnlikePost(token, _id, postId);
+      await handleUnlikePost(token, _id, role, postId);
       setPosts((prevPosts) =>
         prevPosts.map((post) => ({
           ...post,
@@ -248,7 +250,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
           : post
       )
     );
-    addComment(token, _id, postId, item)
+    addComment(token, _id, role, postId, item)
       .then((res) => {
         setShowCommentList(false);
         if (res.data.achievement) navigate(res.data.achievement);

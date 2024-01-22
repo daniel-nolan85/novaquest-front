@@ -17,7 +17,7 @@ export const FeedScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [allPostsLoaded, setAllPostsLoaded] = useState(false);
 
-  const { token, _id, allies } = useSelector((state) => state.user);
+  const { token, _id, role, allies } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -29,7 +29,7 @@ export const FeedScreen = ({ navigation }) => {
 
   const newsFeed = async () => {
     try {
-      const res = await fetchPosts(token, _id, page, PAGE_SIZE);
+      const res = await fetchPosts(token, _id, role, page, PAGE_SIZE);
       const newPosts = res.data;
 
       setPosts((prevPosts) => {
@@ -51,7 +51,7 @@ export const FeedScreen = ({ navigation }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchPosts(token, _id, page + 1, PAGE_SIZE);
+      const res = await fetchPosts(token, _id, role, page + 1, PAGE_SIZE);
       if (res.data.length === 0) {
         setAllPostsLoaded(true);
       } else {

@@ -37,27 +37,17 @@ export const MarsRoverAllDateTypesCompleteScreen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    if (user.role !== 'guest') {
-      badgeUnlocked(user.token, user._id, 'achievedCosmicChronologist')
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              achievedCosmicChronologist: res.data.achievedCosmicChronologist,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          achievedCosmicChronologist: true,
-        },
-      });
-    }
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicChronologist')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            achievedCosmicChronologist: res.data.achievedCosmicChronologist,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
     if (additionalAchievements.length > 1) {
       const firstAchievement = additionalAchievements[0];
       additionalAchievements = additionalAchievements.slice(1);

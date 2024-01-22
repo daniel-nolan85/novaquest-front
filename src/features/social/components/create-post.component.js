@@ -19,7 +19,7 @@ export const CreatePost = ({ newsFeed, navigate }) => {
   const [selectedMedia, setSelectedMedia] = useState([]);
   const [postText, setPostText] = useState('');
 
-  const { token, _id, profileImage } = useSelector((state) => state.user);
+  const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
   const submit = async () => {
     setIsLoading(true);
@@ -43,14 +43,14 @@ export const CreatePost = ({ newsFeed, navigate }) => {
             });
           }
         });
-        const { data } = await uploadMediaToCloudinary(token, formData);
-        await submitPostWithMedia(token, _id, postText, data)
+        const { data } = await uploadMediaToCloudinary(token, role, formData);
+        await submitPostWithMedia(token, _id, role, postText, data)
           .then((res) => {
             if (res.data) navigate(res.data);
           })
           .catch((err) => console.error(err));
       } else {
-        await submitPost(token, _id, postText)
+        await submitPost(token, _id, role, postText)
           .then((res) => {
             if (res.data) navigate(res.data);
           })

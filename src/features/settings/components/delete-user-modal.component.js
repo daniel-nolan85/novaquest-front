@@ -29,7 +29,7 @@ export const DeleteUserModal = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   const closeModal = () => {
     if (!isLoading) {
@@ -39,7 +39,7 @@ export const DeleteUserModal = ({
 
   const handleDeleteUser = async () => {
     setIsLoading(true);
-    await deleteUser(token, userId)
+    await deleteUser(token, role, userId)
       .then(async (res) => {
         setUsers((prevUsers) =>
           prevUsers.filter((prevUser) => prevUser._id !== userId)

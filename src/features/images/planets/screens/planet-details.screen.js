@@ -20,7 +20,7 @@ export const PlanetDetailsScreen = ({ route }) => {
   const [descExpanded, setDescExpanded] = useState(false);
   const [statsExpanded, setStatsExpanded] = useState(false);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -29,7 +29,7 @@ export const PlanetDetailsScreen = ({ route }) => {
   );
 
   const updateViewedPlanets = async () => {
-    await updatePlanetsViewed(token, _id, name)
+    await updatePlanetsViewed(token, _id, role, name)
       .then((res) => {
         if (res.data.achievement) navigate(res.data.achievement);
       })

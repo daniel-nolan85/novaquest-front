@@ -36,7 +36,7 @@ export const Asteroids10CompleteScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedAsteroidScholar')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedAsteroidScholar')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

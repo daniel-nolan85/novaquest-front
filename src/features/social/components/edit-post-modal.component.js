@@ -55,7 +55,7 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
 
   const MAX_MEDIA = 9 - displayedMedia.length;
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (post !== null) {
@@ -169,17 +169,18 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
             });
           }
         });
-        const { data } = await uploadMediaToCloudinary(token, formData);
+        const { data } = await uploadMediaToCloudinary(token, role, formData);
         await editPostWithMedia(
           token,
           _id,
+          role,
           postText,
           data,
           removedPublicIds,
           post._id
         );
       } else {
-        await editPost(token, _id, postText, removedPublicIds, post._id);
+        await editPost(token, _id, role, postText, removedPublicIds, post._id);
       }
       setIsLoading(false);
       newsFeed();

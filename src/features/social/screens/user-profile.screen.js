@@ -69,12 +69,12 @@ export const UserProfileScreen = ({ navigation, route }) => {
     usersAchievements();
   }, [userId]);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const { profileImage, name, rank, bio, daysInSpace } = thisUser;
 
   const fetchUser = async () => {
-    await fetchThisUser(token, userId)
+    await fetchThisUser(token, role, userId)
       .then((res) => {
         setThisUser(res.data);
       })
@@ -82,7 +82,7 @@ export const UserProfileScreen = ({ navigation, route }) => {
   };
 
   const usersPosts = async () => {
-    await fetchUsersPosts(token, _id, 1, PAGE_SIZE, 0)
+    await fetchUsersPosts(token, _id, role, 1, PAGE_SIZE, 0)
       .then((res) => {
         setPosts(res.data);
       })
@@ -95,7 +95,14 @@ export const UserProfileScreen = ({ navigation, route }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersPosts(token, _id, page + 1, PAGE_SIZE, 0);
+      const res = await fetchUsersPosts(
+        token,
+        _id,
+        role,
+        page + 1,
+        PAGE_SIZE,
+        0
+      );
       if (res.data.length === 0) {
         setAllPostsLoaded(true);
       } else {
@@ -110,7 +117,7 @@ export const UserProfileScreen = ({ navigation, route }) => {
   };
 
   const usersStars = async () => {
-    await fetchUsersStars(token, _id, 1, PAGE_SIZE, 0)
+    await fetchUsersStars(token, _id, role, 1, PAGE_SIZE, 0)
       .then((res) => {
         setStars(res.data);
       })
@@ -123,7 +130,14 @@ export const UserProfileScreen = ({ navigation, route }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersStars(token, _id, page + 1, PAGE_SIZE, 0);
+      const res = await fetchUsersStars(
+        token,
+        _id,
+        role,
+        page + 1,
+        PAGE_SIZE,
+        0
+      );
       if (res.data.length === 0) {
         setAllStarsLoaded(true);
       } else {
@@ -138,7 +152,7 @@ export const UserProfileScreen = ({ navigation, route }) => {
   };
 
   const usersAchievements = async () => {
-    await fetchUsersAchievements(token, userId)
+    await fetchUsersAchievements(token, userId, role)
       .then((res) => {
         const trueAchievements = Object.keys(res.data).filter(
           (key) => res.data[key] === true
@@ -200,6 +214,7 @@ export const UserProfileScreen = ({ navigation, route }) => {
         profileImage={profileImage}
         name={name}
         rank={rank}
+        userRole={thisUser.role}
         bio={bio}
         daysInSpace={daysInSpace}
       />

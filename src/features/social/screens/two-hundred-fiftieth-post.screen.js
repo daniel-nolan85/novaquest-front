@@ -36,7 +36,7 @@ export const TwoHundredFiftiethPostScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedCosmicChronicler')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedCosmicChronicler')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

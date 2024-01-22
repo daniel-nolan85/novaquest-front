@@ -37,7 +37,7 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
   }, [running]);
 
   const saveScore = async () => {
-    await catchScore(user.token, user._id, currentPoints)
+    await catchScore(user.token, user._id, user.role, currentPoints)
       .then((res) => {
         reduxDispatch({
           type: 'LOGGED_IN_USER',

@@ -53,7 +53,12 @@ export const InterstellarAssemblyGameScreen = ({ navigation }) => {
       return;
     } else {
       if (user && !user.achievedCosmicArranger) {
-        awardAchievement(user.token, user._id, 'achievedCosmicArranger')
+        awardAchievement(
+          user.token,
+          user._id,
+          user.role,
+          'achievedCosmicArranger'
+        )
           .then((res) => {
             navigate('InterstellarAssemblyGameWon');
           })

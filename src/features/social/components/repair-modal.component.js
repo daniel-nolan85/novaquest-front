@@ -69,15 +69,21 @@ export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
         if (user.profileImage && user.profileImage.length > 0) {
           await destroyMediaFromCloudinary(
             user.token,
+            user.role,
             user.profileImage[0].public_id
           );
         } else {
           setFirstProfileImage(true);
         }
-        const { data } = await uploadMediaToCloudinary(user.token, formData);
+        const { data } = await uploadMediaToCloudinary(
+          user.token,
+          user.role,
+          formData
+        );
         await updateProfileWithImage(
           user.token,
           user._id,
+          user.role,
           newName,
           newBio,
           data
@@ -95,20 +101,24 @@ export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
           closeModal();
         });
       } else {
-        await updateProfile(user.token, user._id, newName, newBio).then(
-          (res) => {
-            setIsLoading(false);
-            dispatch({
-              type: 'LOGGED_IN_USER',
-              payload: {
-                ...user,
-                name: res.data.name,
-                bio: res.data.bio,
-              },
-            });
-            closeModal();
-          }
-        );
+        await updateProfile(
+          user.token,
+          user._id,
+          user.role,
+          newName,
+          newBio
+        ).then((res) => {
+          setIsLoading(false);
+          dispatch({
+            type: 'LOGGED_IN_USER',
+            payload: {
+              ...user,
+              name: res.data.name,
+              bio: res.data.bio,
+            },
+          });
+          closeModal();
+        });
       }
     } catch (error) {
       setIsLoading(false);

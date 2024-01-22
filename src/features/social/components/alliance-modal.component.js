@@ -37,7 +37,7 @@ export const AllianceModal = ({
 
   const formAlliance = async () => {
     setIsLoading(true);
-    await followMember(user.token, user._id, userId)
+    await followMember(user.token, user._id, user.role, userId)
       .then((res) => {
         setVisible(false);
         Toast.show({

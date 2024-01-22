@@ -114,27 +114,17 @@ export const WelcomeSetupScreen = ({ navigation }) => {
       });
       return;
     }
-    if (user.role !== 'guest') {
-      updateUserName(user.token, user._id, userName)
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              name: res.data.name,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          name: userName,
-        },
-      });
-    }
+    updateUserName(user.token, user._id, user.role, userName)
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            name: res.data.name,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
     setShowOk(true);
     setNameEntry(false);
     setCurrentStep(currentStep + 1);
@@ -162,7 +152,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
           const token = (
             await Notifications.getExpoPushTokenAsync({ projectId })
           ).data;
-          await storeNotifToken(user.token, user._id, token)
+          await storeNotifToken(user.token, user._id, user.role, token)
             .then((res) => {
               dispatch({
                 type: 'LOGGED_IN_USER',

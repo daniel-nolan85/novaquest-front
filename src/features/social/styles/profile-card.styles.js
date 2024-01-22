@@ -48,3 +48,20 @@ export const BioWrapper = styled.View`
   flex-direction: row;
   margin-top: 10px;
 `;
+
+export const ProfileImageContainer = styled.View`
+  position: relative;
+`;
+
+export const Banner = styled.View`
+  position: absolute;
+  background-color: #009999;
+  transform: rotate(45deg);
+  top: 15px;
+  left: 40px;
+  padding: 15px 50px;
+`;
+
+export const BannerText = styled(Text)`
+  color: #fff;
+`;

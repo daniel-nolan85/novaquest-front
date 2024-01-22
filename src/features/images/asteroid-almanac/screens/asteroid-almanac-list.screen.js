@@ -32,7 +32,9 @@ export const AsteroidAlmanacListScreen = ({ navigation }) => {
   const [asteroids, setAsteroids] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const { token, _id, numOfAsteroids } = useSelector((state) => state.user);
+  const { token, _id, role, numOfAsteroids } = useSelector(
+    (state) => state.user
+  );
 
   const { date, setDate } = useContext(ImagesContext);
 
@@ -58,7 +60,7 @@ export const AsteroidAlmanacListScreen = ({ navigation }) => {
   };
 
   const updateAsteroids = async () => {
-    await updateNumOfAsteroids(token, _id)
+    await updateNumOfAsteroids(token, _id, role)
       .then((res) => {
         if (res.data) navigate(res.data);
       })

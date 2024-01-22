@@ -60,7 +60,7 @@ export const LoginForm = ({ handleGuestLogin }) => {
                   email: res.data.email,
                   role: res.data.role,
                   noficationToken: res.data.noficationToken,
-                  nofications: res.data.nofications,
+                  notifications: res.data.notifications,
                   newNotificationsCount: res.data.newNotificationsCount,
                   xp: res.data.xp,
                   rank: res.data.rank,

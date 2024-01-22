@@ -37,27 +37,17 @@ export const TriviaComplete10QuestionScreen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    if (user.role !== 'guest') {
-      badgeUnlocked(user.token, user._id, 'achievedLightSpeedExplorer')
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              achievedLightSpeedExplorer: res.data.achievedLightSpeedExplorer,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          achievedLightSpeedExplorer: true,
-        },
-      });
-    }
+    badgeUnlocked(user.token, user._id, user.role, 'achievedLightSpeedExplorer')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            achievedLightSpeedExplorer: res.data.achievedLightSpeedExplorer,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
     if (additionalAchievements.length > 1) {
       const firstAchievement = additionalAchievements[0];
       additionalAchievements = additionalAchievements.slice(1);

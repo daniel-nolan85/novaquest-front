@@ -33,10 +33,10 @@ export const ExplorersModal = ({
     }
   }, [showExplorers, token, userId]);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const fetchExplorers = async () => {
-    getExplorers(token, userId)
+    getExplorers(token, role, userId)
       .then((res) => {
         setExplorers(res.data.explorers);
       })

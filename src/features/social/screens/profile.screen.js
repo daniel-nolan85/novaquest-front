@@ -65,11 +65,11 @@ export const ProfileScreen = ({ navigation }) => {
     }, [])
   );
 
-  const { token, _id, profileImage, name, rank, bio, daysInSpace } =
+  const { token, _id, role, profileImage, name, rank, bio, daysInSpace } =
     useSelector((state) => state.user);
 
   const usersPosts = async () => {
-    await fetchUsersPosts(token, _id, 1, PAGE_SIZE, 0)
+    await fetchUsersPosts(token, _id, role, 1, PAGE_SIZE, 0)
       .then((res) => {
         setPosts(res.data);
       })
@@ -82,7 +82,14 @@ export const ProfileScreen = ({ navigation }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersPosts(token, _id, page + 1, PAGE_SIZE, 0);
+      const res = await fetchUsersPosts(
+        token,
+        _id,
+        role,
+        page + 1,
+        PAGE_SIZE,
+        0
+      );
       if (res.data.length === 0) {
         setAllPostsLoaded(true);
       } else {
@@ -97,7 +104,7 @@ export const ProfileScreen = ({ navigation }) => {
   };
 
   const usersStars = async () => {
-    await fetchUsersStars(token, _id, 1, PAGE_SIZE, 0)
+    await fetchUsersStars(token, _id, role, 1, PAGE_SIZE, 0)
       .then((res) => {
         setStars(res.data);
       })
@@ -110,7 +117,14 @@ export const ProfileScreen = ({ navigation }) => {
     }
     setLoading(true);
     try {
-      const res = await fetchUsersStars(token, _id, page + 1, PAGE_SIZE, 0);
+      const res = await fetchUsersStars(
+        token,
+        _id,
+        role,
+        page + 1,
+        PAGE_SIZE,
+        0
+      );
       if (res.data.length === 0) {
         setAllStarsLoaded(true);
       } else {
@@ -125,7 +139,7 @@ export const ProfileScreen = ({ navigation }) => {
   };
 
   const usersAchievements = async () => {
-    await fetchUsersAchievements(token, _id)
+    await fetchUsersAchievements(token, _id, role)
       .then((res) => {
         const trueAchievements = Object.keys(res.data).filter(
           (key) => res.data[key] === true
@@ -190,6 +204,7 @@ export const ProfileScreen = ({ navigation }) => {
         name={name}
         rank={rank}
         bio={bio}
+        userRole={role}
         daysInSpace={daysInSpace}
         navigate={navigate}
       />

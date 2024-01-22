@@ -68,7 +68,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
 
   const lastTapTimeRef = useRef(0);
 
-  const { token, _id, profileImage } = useSelector((state) => state.user);
+  const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
   const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
 
@@ -77,7 +77,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
   }, [signal]);
 
   const fetchPost = async () => {
-    await fetchSinglePost(token, signal.postId)
+    await fetchSinglePost(token, role, signal.postId)
       .then((res) => {
         setPost(res.data);
       })
@@ -111,7 +111,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
   };
 
   const likePost = async (postId) => {
-    await handleLikePost(token, _id, postId)
+    await handleLikePost(token, _id, role, postId)
       .then((res) => {
         fetchPost();
         if (res.data.post.postedBy !== _id) {
@@ -123,7 +123,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
   };
 
   const unlikePost = async (postId) => {
-    await handleUnlikePost(token, _id, postId)
+    await handleUnlikePost(token, _id, role, postId)
       .then((res) => {
         fetchPost();
       })
@@ -137,7 +137,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
 
   const handleCommentSelect = (item, postId) => {
     setShowCommentList(false);
-    addComment(token, _id, postId, item)
+    addComment(token, _id, role, postId, item)
       .then((res) => {
         fetchPost();
         if (res.data.achievement) navigate(res.data.achievement);

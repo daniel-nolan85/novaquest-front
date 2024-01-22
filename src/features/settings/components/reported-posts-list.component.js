@@ -12,7 +12,6 @@ import {
 } from '../styles/reported-posts-list.styles';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { PostModal } from './post-modal.component';
-import { fetchReportedPosts } from '../../../requests/admin';
 
 export const ReportedPostsList = ({ navigate, posts, setReportedPosts }) => {
   const [currentPost, setCurrentPost] = useState({});

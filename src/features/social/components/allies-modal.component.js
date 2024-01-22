@@ -33,10 +33,10 @@ export const AlliesModal = ({
     }
   }, [showAllies, token, userId]);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const fetchAllies = async () => {
-    getAllies(token, userId)
+    getAllies(token, userId, role)
       .then((res) => {
         setAllies(res.data.allies);
       })

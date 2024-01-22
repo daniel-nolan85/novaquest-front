@@ -37,7 +37,7 @@ export const AstroScoreOver100Screen = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedAstroAce')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedAstroAce')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

@@ -36,7 +36,7 @@ export const ThreeHundredStarsScreen = ({ navigation }) => {
   }, []);
 
   const handleSubmit = () => {
-    badgeUnlocked(user.token, user._id, 'achievedStellarSupporter')
+    badgeUnlocked(user.token, user._id, user.role, 'achievedStellarSupporter')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',

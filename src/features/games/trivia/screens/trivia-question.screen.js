@@ -6,10 +6,7 @@ import { SafeArea } from '../../../../components/utils/safe-area.component';
 import { TriviaQuestionCard } from '../components/trivia-question-card.component';
 import { ProgressBar } from '../components/trivia-progress-bar.component';
 import { TriviaModal } from '../components/trivia-modal.component';
-import {
-  checkTriviaAchievements,
-  checkGuestTriviaAchievements,
-} from '../../../../requests/user';
+import { checkTriviaAchievements } from '../../../../requests/user';
 import { GamesContext } from '../../../../services/games/games.context';
 
 const shuffleArray = (array) => {
@@ -109,44 +106,27 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
   };
 
   const handleFinish = async () => {
-    if (user.role !== 'guest') {
-      await checkTriviaAchievements(
-        user.token,
-        user._id,
-        score,
-        level,
-        questionsAmount
-      )
-        .then((res) => {
-          if (res.data.achievement) {
-            navigate(res.data.achievement);
-          } else if (res.data.simultaneousAchievements) {
-            const firstAchievement = res.data.simultaneousAchievements[0];
-            const additionalAchievements =
-              res.data.simultaneousAchievements.slice(1);
-            navigate(firstAchievement, { additionalAchievements });
-          } else if (res.data.noAchievements) {
-            navigate('TriviaResult');
-          }
-        })
-        .catch((err) => console.error(err));
-    } else {
-      const achievements = await checkGuestTriviaAchievements(
-        user,
-        score,
-        level,
-        questionsAmount
-      );
-      if (achievements.length > 1) {
-        const firstAchievement = achievements[0];
-        const additionalAchievements = achievements.slice(1);
-        navigate(firstAchievement, { additionalAchievements });
-      } else if (achievements.length === 1) {
-        navigate(achievements[0]);
-      } else {
-        navigate('TriviaResult');
-      }
-    }
+    await checkTriviaAchievements(
+      user.token,
+      user._id,
+      user.role,
+      score,
+      level,
+      questionsAmount
+    )
+      .then((res) => {
+        if (res.data.achievement) {
+          navigate(res.data.achievement);
+        } else if (res.data.simultaneousAchievements) {
+          const firstAchievement = res.data.simultaneousAchievements[0];
+          const additionalAchievements =
+            res.data.simultaneousAchievements.slice(1);
+          navigate(firstAchievement, { additionalAchievements });
+        } else if (res.data.noAchievements) {
+          navigate('TriviaResult');
+        }
+      })
+      .catch((err) => console.error(err));
     setTimeout(() => {
       setVisible(false);
       setCorrect(false);

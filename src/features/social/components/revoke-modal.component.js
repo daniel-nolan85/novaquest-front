@@ -37,7 +37,7 @@ export const RevokeModal = ({
 
   const revokeAlliance = async () => {
     setIsLoading(true);
-    await unfollowMember(user.token, user._id, userId)
+    await unfollowMember(user.token, user._id, user.role, userId)
       .then((res) => {
         setVisible(false);
         Toast.show({

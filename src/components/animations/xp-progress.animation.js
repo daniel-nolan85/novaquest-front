@@ -142,27 +142,17 @@ export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
   const updateXP = async () => {
     setProgAnimated(false);
     setNumAnimated(false);
-    if (user.role !== 'guest') {
-      await awardXP(user.token, user._id, earnedXP)
-        .then((res) => {
-          dispatch({
-            type: 'LOGGED_IN_USER',
-            payload: {
-              ...user,
-              xp: res.data.xp,
-            },
-          });
-        })
-        .catch((err) => console.error(err));
-    } else {
-      dispatch({
-        type: 'LOGGED_IN_USER',
-        payload: {
-          ...user,
-          xp: initialXP + earnedXP,
-        },
-      });
-    }
+    await awardXP(user.token, user._id, user.role, earnedXP)
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            xp: res.data.xp,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

@@ -68,7 +68,7 @@ export const Post = ({
 
   const lastTapTimeRef = useRef(0);
 
-  const { token, _id, profileImage } = useSelector((state) => state.user);
+  const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
   const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
 
@@ -97,7 +97,7 @@ export const Post = ({
 
   const likePost = async (postId) => {
     try {
-      await handleLikePost(token, _id, postId).then((res) => {
+      await handleLikePost(token, _id, role, postId).then((res) => {
         setPosts((prevPosts) =>
           prevPosts.map((post) =>
             post._id === postId
@@ -117,7 +117,7 @@ export const Post = ({
 
   const unlikePost = async (postId) => {
     try {
-      await handleUnlikePost(token, _id, postId);
+      await handleUnlikePost(token, _id, role, postId);
       setPosts((prevPosts) =>
         prevPosts.map((post) => ({
           ...post,
@@ -142,7 +142,7 @@ export const Post = ({
           : post
       )
     );
-    addComment(token, _id, postId, item)
+    addComment(token, _id, role, postId, item)
       .then((res) => {
         setShowCommentList(false);
         if (res.data.achievement) navigate(res.data.achievement);

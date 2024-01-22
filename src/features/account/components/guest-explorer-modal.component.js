@@ -13,6 +13,7 @@ import {
   OptionText,
 } from '../styles/forgot-password-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
+import { createGuestUser } from '../../../requests/auth';
 
 export const GuestExplorerModal = ({ visible, setVisible }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,15 +22,85 @@ export const GuestExplorerModal = ({ visible, setVisible }) => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    dispatch({
-      type: 'LOGGED_IN_USER',
-      payload: {
-        role: 'guest',
-        daysInSpace: 1,
-        rank: 'Space Explorer',
-        xp: 0,
-      },
-    });
+    await createGuestUser('guest')
+      .then((res) => {
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            _id: res.data._id,
+            role: res.data.role,
+            notifications: res.data.notifications,
+            newNotificationsCount: res.data.newNotificationsCount,
+            xp: res.data.xp,
+            rank: res.data.rank,
+            bio: res.data.bio,
+            profileImage: res.data.profileImage,
+            lastLoginDate: res.data.lastLoginDate,
+            createdAt: res.data.createdAt,
+            daysInSpace: res.data.daysInSpace,
+            name: res.data.name,
+            allies: res.data.allies,
+            explorers: res.data.explorers,
+            blockeds: res.data.blockeds,
+            textSpeed: res.data.textSpeed,
+            highScore: res.data.highScore,
+            viewedRovers: res.data.viewedRovers,
+            viewedRoverCameras: res.data.viewedRoverCameras,
+            viewedRoverDateTypes: res.data.viewedRoverDateTypes,
+            viewedPlanets: res.data.viewedPlanets,
+            numOfPosts: res.data.numOfPosts,
+            numOfStars: res.data.numOfStars,
+            numOfComments: res.data.numOfComments,
+            numOfApods: res.data.numOfApods,
+            numOfFacts: res.data.numOfFacts,
+            numOfAsteroids: res.data.numOfAsteroids,
+            achievedCosmicPioneer: res.data.achievedCosmicPioneer,
+            achievedAdventurousExplorer: res.data.achievedAdventurousExplorer,
+            achievedStellarVoyager: res.data.achievedStellarVoyager,
+            achievedAstroPioneer: res.data.achievedAstroPioneer,
+            achievedCosmicTrailblazer: res.data.achievedCosmicTrailblazer,
+            achievedCelestialNomad: res.data.achievedCelestialNomad,
+            achievedGalacticWayfarer: res.data.achievedGalacticWayfarer,
+            achievedInterstellarVoyager: res.data.achievedInterstellarVoyager,
+            achievedStellarCenturion: res.data.achievedStellarCenturion,
+            achievedVoyagerExtraordinaire:
+              res.data.achievedVoyagerExtraordinaire,
+            achievedRedPlanetVoyager: res.data.achievedRedPlanetVoyager,
+            achievedMarsRoverMaestro: res.data.achievedMarsRoverMaestro,
+            achievedMartianLensMaster: res.data.achievedMartianLensMaster,
+            achievedCosmicChronologist: res.data.achievedCosmicChronologist,
+            achievedCosmicCadet: res.data.achievedCosmicCadet,
+            achievedStarNavigator: res.data.achievedStarNavigator,
+            achievedGalacticSage: res.data.achievedGalacticSage,
+            achievedNovaScholar: res.data.achievedNovaScholar,
+            achievedQuasarVirtuoso: res.data.achievedQuasarVirtuoso,
+            achievedSupernovaSavant: res.data.achievedSupernovaSavant,
+            achievedLightSpeedExplorer: res.data.achievedLightSpeedExplorer,
+            achievedOdysseyTrailblazer: res.data.achievedOdysseyTrailblazer,
+            achievedInfinityVoyager: res.data.achievedInfinityVoyager,
+            achievedCelestialCadet: res.data.achievedCelestialCadet,
+            achievedAstroAce: res.data.achievedAstroAce,
+            achievedGalacticAviator: res.data.achievedGalacticAviator,
+            achievedCosmicArranger: res.data.achievedCosmicArranger,
+            achievedCelestialContributor: res.data.achievedCelestialContributor,
+            achievedProlificExplorer: res.data.achievedProlificExplorer,
+            achievedGalaxyLuminary: res.data.achievedGalaxyLuminary,
+            achievedCosmicChronicler: res.data.achievedCosmicChronicler,
+            achievedStellarSupporter: res.data.achievedStellarSupporter,
+            achievedCosmicConversationalist:
+              res.data.achievedCosmicConversationalist,
+            achievedGalacticPlanetologist:
+              res.data.achievedGalacticPlanetologist,
+            achievedCosmicObserver: res.data.achievedCosmicObserver,
+            achievedNebulaGazer: res.data.achievedNebulaGazer,
+            achievedGalacticVisionary: res.data.achievedGalacticVisionary,
+            achievedAsteroidScholar: res.data.achievedAsteroidScholar,
+            achievedCelestialSavant: res.data.achievedCelestialSavant,
+            achievedCosmicPersona: res.data.achievedCosmicPersona,
+          },
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

@@ -7,10 +7,10 @@ import { filterPlayersByQuery } from '../../../../requests/games';
 export const LeaderboardHeader = ({ setTopScores }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   const handleSearch = async (query) => {
-    await filterPlayersByQuery(token, query)
+    await filterPlayersByQuery(token, role, query)
       .then((res) => {
         setTopScores(res.data);
       })

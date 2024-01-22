@@ -18,7 +18,7 @@ export const FeedHeader = ({ navigate, setPosts }) => {
   const dispatch = useDispatch();
 
   const showNotifications = async () => {
-    await resetNotifsCount(user.token, user._id)
+    await resetNotifsCount(user.token, user._id, user.role)
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -33,7 +33,7 @@ export const FeedHeader = ({ navigate, setPosts }) => {
   };
 
   const handleSearch = async (query) => {
-    await filterPostsByQuery(user.token, query)
+    await filterPostsByQuery(user.token, user.role, query)
       .then((res) => {
         setPosts(res.data);
       })

@@ -10,7 +10,7 @@ import { LeaderboardList } from '../components/leaderboard-list.component';
 export const LeaderboardScreen = ({ navigation }) => {
   const [topScores, setTopScores] = useState([]);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   const { navigate } = navigation;
 
@@ -21,7 +21,7 @@ export const LeaderboardScreen = ({ navigation }) => {
   );
 
   const getLeaderboard = async () => {
-    await fetchLeaderboard(token)
+    await fetchLeaderboard(token, role)
       .then((res) => {
         setTopScores(res.data);
       })

@@ -32,7 +32,7 @@ export const SignalsHeader = ({ setFilteredSignals }) => {
   const [showEndPicker, setShowEndPicker] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { token, _id, createdAt } = useSelector((state) => state.user);
+  const { token, _id, role, createdAt } = useSelector((state) => state.user);
 
   const handleCalendar = () => {
     setStartDate(null);
@@ -52,7 +52,7 @@ export const SignalsHeader = ({ setFilteredSignals }) => {
 
   const setDates = async () => {
     setIsLoading(true);
-    await filterSignalsByDate(token, _id, startDate, endDate)
+    await filterSignalsByDate(token, _id, role, startDate, endDate)
       .then((res) => {
         if (res.data !== null) {
           setFilteredSignals(res.data.notifications);
@@ -70,7 +70,7 @@ export const SignalsHeader = ({ setFilteredSignals }) => {
   };
 
   const handleSearch = async (query) => {
-    await filterSignalsByQuery(token, _id, query)
+    await filterSignalsByQuery(token, _id, role, query)
       .then((res) => {
         setFilteredSignals(res.data);
       })

@@ -17,6 +17,10 @@ export const createOrUpdateUser = async (authtoken) => {
   );
 };
 
+export const createGuestUser = async (role) => {
+  return await axios.post(`${API_BASE_URL}/create-guest-user`, { role });
+};
+
 export const currentUser = async (authtoken) => {
   return await axios.post(
     `${API_BASE_URL}/current-user`,
@@ -29,10 +33,15 @@ export const currentUser = async (authtoken) => {
   );
 };
 
-export const storeNotifToken = async (authtoken, _id, notificationToken) => {
+export const storeNotifToken = async (
+  authtoken,
+  _id,
+  role,
+  notificationToken
+) => {
   return await axios.put(
     `${API_BASE_URL}/store-notification-token`,
-    { _id, notificationToken },
+    { _id, role, notificationToken },
     {
       headers: {
         authtoken,
@@ -41,10 +50,10 @@ export const storeNotifToken = async (authtoken, _id, notificationToken) => {
   );
 };
 
-export const deleteAccount = async (authtoken, userId) => {
+export const deleteAccount = async (authtoken, userId, role) => {
   return await axios.put(
     `${API_BASE_URL}/delete-account`,
-    { userId },
+    { userId, role },
     {
       headers: {
         authtoken,
@@ -53,10 +62,17 @@ export const deleteAccount = async (authtoken, userId) => {
   );
 };
 
-export const sendMessage = async (authtoken, name, email, subject, message) => {
+export const sendMessage = async (
+  authtoken,
+  role,
+  name,
+  email,
+  subject,
+  message
+) => {
   return await axios.post(
     `${API_BASE_URL}/send-email`,
-    { name, email, subject, message },
+    { role, name, email, subject, message },
     {
       headers: {
         authtoken,

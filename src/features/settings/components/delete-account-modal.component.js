@@ -27,11 +27,11 @@ export const DeleteAccountModal = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const handleDeleteAccount = async () => {
     setIsLoading(true);
-    await deleteAccount(token, _id)
+    await deleteAccount(token, _id, role)
       .then(async (res) => {
         Toast.show({
           type: 'success',

@@ -9,6 +9,9 @@ import {
   ProfileInfoWrapper,
   Name,
   BioWrapper,
+  ProfileImageContainer,
+  Banner,
+  BannerText,
 } from '../styles/profile-card.styles';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import Alliance from '../../../../assets/svg/alliance.svg';
@@ -24,6 +27,7 @@ export const ProfileCard = ({
   profileImage,
   name,
   rank,
+  userRole,
   bio,
   daysInSpace,
   navigate,
@@ -31,9 +35,11 @@ export const ProfileCard = ({
   const [visible, setVisible] = useState(false);
   const [firstProfileImage, setFirstProfileImage] = useState(false);
 
+  console.log({ userRole });
+
   useEffect(() => {
     if (!visible && firstProfileImage) {
-      awardAchievement(token, _id, 'achievedCosmicPersona')
+      awardAchievement(token, _id, role, 'achievedCosmicPersona')
         .then((res) => {
           setFirstProfileImage(false);
           navigate('FirstProfileImage');
@@ -43,7 +49,7 @@ export const ProfileCard = ({
     }
   }, [visible, firstProfileImage]);
 
-  const { token, _id, allies, xp } = useSelector((state) => state.user);
+  const { token, _id, role, allies, xp } = useSelector((state) => state.user);
 
   return (
     <ProfileCardWrapper>
@@ -57,10 +63,17 @@ export const ProfileCard = ({
             <Repair width={48} height={48} />
           )}
         </IconContainer>
-        <ProfileImage
-          source={profileImage ? profileImage : defaultProfile}
-          resizeMode='contain'
-        />
+        <ProfileImageContainer>
+          <ProfileImage
+            source={profileImage ? profileImage : defaultProfile}
+            resizeMode='contain'
+          />
+          {userRole === 'guest' && (
+            <Banner>
+              <BannerText variant='title'>Guest Explorer</BannerText>
+            </Banner>
+          )}
+        </ProfileImageContainer>
       </ProfileImageWrapper>
 
       <ProfileInfoWrapper>

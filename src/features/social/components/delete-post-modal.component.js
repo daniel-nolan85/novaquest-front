@@ -29,7 +29,7 @@ export const DeletePostModal = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { token, _id } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
   const closeModal = () => {
     if (!isLoading) {
@@ -39,7 +39,7 @@ export const DeletePostModal = ({
 
   const handleDeletePost = async () => {
     setIsLoading(true);
-    await deletePost(token, _id, post._id)
+    await deletePost(token, _id, role, post._id)
       .then((res) => {
         setPosts((prevPosts) =>
           prevPosts.filter((prevPost) => prevPost._id !== post._id)

@@ -31,10 +31,10 @@ export const CommentsModal = ({
     }
   }, [visible, token]);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   const fetchComments = async () => {
-    getComments(token, postId)
+    getComments(token, role, postId)
       .then((res) => {
         setComments(res.data.comments);
       })

@@ -76,7 +76,7 @@ export const AppComponents = () => {
               email: res.data.email,
               role: res.data.role,
               noficationToken: res.data.noficationToken,
-              nofications: res.data.nofications,
+              notifications: res.data.notifications,
               newNotificationsCount: res.data.newNotificationsCount,
               xp: res.data.xp,
               rank: res.data.rank,
@@ -166,7 +166,7 @@ export const AppComponents = () => {
   }, [user && user.token]);
 
   const incrementNotifsNum = async (userId, message) => {
-    await incrementNotifsCount(user.token, user._id, userId, message)
+    await incrementNotifsCount(user.token, user._id, user.role, userId, message)
       .then((res) => {
         const newNotifications = res.data.newNotificationsCount;
         setSnack(newNotifications[newNotifications.length - 1].message);
@@ -285,7 +285,7 @@ export const AppComponents = () => {
   };
 
   const updateFacts = async () => {
-    await updateNumOfFacts(user.token, user._id).then((res) => {
+    await updateNumOfFacts(user.token, user._id, user.role).then((res) => {
       if (res.data) setShowFactAchievement(true);
     });
   };

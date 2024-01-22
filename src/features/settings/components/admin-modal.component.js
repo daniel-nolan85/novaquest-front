@@ -24,7 +24,7 @@ import { SettingsContext } from '../../../services/settings/settings.context';
 export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   const { setReportedPosts, setPosts, setUsers } = useContext(SettingsContext);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -35,7 +35,7 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   );
 
   const getReportedPosts = async () => {
-    await fetchReportedPosts(token)
+    await fetchReportedPosts(token, role)
       .then((res) => {
         setReportedPosts(res.data);
       })
@@ -43,7 +43,7 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   };
 
   const getPosts = async () => {
-    await fetchAllPosts(token)
+    await fetchAllPosts(token, role)
       .then((res) => {
         setPosts(res.data);
       })
@@ -51,7 +51,7 @@ export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   };
 
   const getUsers = async () => {
-    await fetchAllUsers(token)
+    await fetchAllUsers(token, role)
       .then((res) => {
         setUsers(res.data);
       })

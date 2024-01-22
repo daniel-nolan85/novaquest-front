@@ -26,7 +26,7 @@ export const ApodScreen = ({ navigation }) => {
   const [explanation, setExplanation] = useState('');
   const [title, setTitle] = useState('');
 
-  const { token, _id, numOfApods } = useSelector((state) => state.user);
+  const { token, _id, role, numOfApods } = useSelector((state) => state.user);
 
   const isFirstRun = useRef(true);
 
@@ -78,7 +78,7 @@ export const ApodScreen = ({ navigation }) => {
   };
 
   const updateApods = async () => {
-    await updateNumOfApods(token, _id)
+    await updateNumOfApods(token, _id, role)
       .then((res) => {
         if (res.data.achievement) navigate(res.data.achievement);
       })
