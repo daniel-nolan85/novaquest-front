@@ -6,8 +6,10 @@ import { LoginForm } from '../components/login-form.component';
 import { RegistrationForm } from '../components/registration-form.component';
 import { GuestExplorerModal } from '../components/guest-explorer-modal.component';
 
-export const AccountScreen = () => {
+export const AccountScreen = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
+
+  const { navigate } = navigation;
 
   const handleGuestLogin = () => {
     setVisible(true);
@@ -25,7 +27,10 @@ export const AccountScreen = () => {
           activeDotStyle={styles.activeDot}
         >
           <LoginForm handleGuestLogin={handleGuestLogin} />
-          <RegistrationForm handleGuestLogin={handleGuestLogin} />
+          <RegistrationForm
+            handleGuestLogin={handleGuestLogin}
+            navigate={navigate}
+          />
           <GuestExplorerModal visible={visible} setVisible={setVisible} />
         </Swiper>
       </View>

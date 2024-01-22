@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, TouchableOpacity } from 'react-native';
 import Toast from 'react-native-toast-message';
 import {
   getAuth,
@@ -15,10 +15,13 @@ import {
   OptionText,
   Input,
   Info,
+  LegalView,
+  Legal,
+  LegalDoc,
 } from '../styles/account.styles';
 import { checkBlockedList } from '../../../requests/auth';
 
-export const RegistrationForm = ({ handleGuestLogin }) => {
+export const RegistrationForm = ({ handleGuestLogin, navigate }) => {
   const [email, setEmail] = useState('jennjustice84@gmail.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
@@ -119,6 +122,18 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
       });
   };
 
+  const showTerms = () => {
+    navigate('TermsAndConditions');
+  };
+
+  const showPrivacy = () => {
+    navigate('PrivacyPolicy');
+  };
+
+  const showCookies = () => {
+    navigate('CookiesPolicy');
+  };
+
   return (
     <View>
       <Text variant='title' style={{ textAlign: 'center' }}>
@@ -158,6 +173,26 @@ export const RegistrationForm = ({ handleGuestLogin }) => {
           </GradientBackground>
         </Option>
       </OptionContainer>
+      <LegalView>
+        <Legal variant='body'>
+          Your stellar journey is guided by our
+          <LegalDoc variant='body' onPress={showTerms}>
+            {' '}
+            Terms
+          </LegalDoc>
+          ,
+          <LegalDoc variant='body' onPress={showPrivacy}>
+            {' '}
+            Privacy
+          </LegalDoc>
+          , and
+          <LegalDoc variant='body' onPress={showCookies}>
+            {' '}
+            Cookies
+          </LegalDoc>{' '}
+          policies.
+        </Legal>
+      </LegalView>
     </View>
   );
 };
