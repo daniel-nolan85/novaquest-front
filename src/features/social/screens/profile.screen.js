@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { useFocusEffect } from '@react-navigation/native';
@@ -19,6 +19,7 @@ import { ProfileButtons } from '../components/profile-buttons.component';
 import { PostsRoute } from '../components/posts-route.component';
 import { StarsRoute } from '../components/stars-route.component';
 import { AchievementsRoute } from '../components/achievements-route.component';
+import { AudioContext } from '../../../services/audio/audio.context';
 
 const SafeAreaView = styled(SafeArea)`
   flex: 1;
@@ -57,8 +58,11 @@ export const ProfileScreen = ({ navigation }) => {
     },
   ]);
 
+  const { stopGameMusic } = useContext(AudioContext);
+
   useFocusEffect(
     useCallback(() => {
+      stopGameMusic();
       usersPosts();
       usersStars();
       usersAchievements();

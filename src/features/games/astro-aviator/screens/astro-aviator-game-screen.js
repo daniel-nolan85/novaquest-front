@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { GameEngine } from 'react-native-game-engine';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, Vibration } from 'react-native';
+import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
@@ -13,17 +15,28 @@ import Crown from '../../../../../assets/svg/crown.svg';
 import { IconsWrapper } from '../styles/astro-aviator.styles';
 import { GameBackground } from '../styles/astro-aviator-game.styles';
 import { catchScore } from '../../../../requests/user';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const AstroAviatorGameScreen = ({ navigation }) => {
   const [running, setRunning] = useState(false);
   const [gameEngine, setGameEngine] = useState(null);
   const [currentPoints, setCurrentPoints] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
+  const [gameMusic, setGameMusic] = useState();
+  const [gameOverSound, setGameOverSound] = useState();
 
   const isFirstRun = useRef(true);
 
   const user = useSelector((state) => state.user);
   const reduxDispatch = useDispatch();
+
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     if (isFirstRun.current) {
@@ -35,6 +48,50 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
       }
     }
   }, [running]);
+
+  const playAstroMusic = async () => {
+    try {
+      if (user.soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../../../assets/sounds/astro-aviator.wav'),
+          { isLooping: true }
+        );
+        setGameMusic(sound);
+        await sound.playAsync();
+      }
+    } catch (error) {
+      console.error('Error playing sound:', error);
+    }
+  };
+
+  const stopAstroMusic = () => {
+    try {
+      if (gameMusic) {
+        gameMusic.stopAsync().then(() => {
+          gameMusic.unloadAsync();
+          playGameOverSound();
+        });
+      }
+    } catch (error) {
+      console.error('Error stopping game music:', error);
+    }
+  };
+
+  const playGameOverSound = async () => {
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        require('../../../../../assets/sounds/game-over.wav')
+      );
+      setGameOverSound(sound);
+      const status = await sound.playAsync();
+      if (!status.isLoaded) {
+        console.error('Error loading game over sound:', status.error);
+      }
+      Vibration.vibrate([500, 100, 500]);
+    } catch (error) {
+      console.error('Error playing game over sound:', error);
+    }
+  };
 
   const saveScore = async () => {
     await catchScore(user.token, user._id, user.role, currentPoints)
@@ -125,6 +182,7 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
                 case 'game_over':
                   setRunning(false);
                   gameEngine.stop();
+                  stopAstroMusic();
                   break;
                 case 'new_point':
                   setCurrentPoints(currentPoints + 1);
@@ -158,6 +216,7 @@ export const AstroAviatorGameScreen = ({ navigation }) => {
                   setCurrentPoints(-1);
                   setRunning(true);
                   gameEngine.swap(restart());
+                  playAstroMusic();
                 }}
               >
                 <Text

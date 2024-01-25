@@ -20,6 +20,7 @@ import {
 } from '../styles/trivia-setup.styles';
 import { IconsWrapper } from '../styles/trivia.styles';
 import { GamesContext } from '../../../../services/games/games.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
 export const TriviaSetupScreen = ({ navigation }) => {
@@ -47,18 +48,18 @@ export const TriviaSetupScreen = ({ navigation }) => {
   const [text4, setText4] = useState();
   const [text1Key, setText1Key] = useState(0);
 
-  useEffect(() => {
-    setText1(
-      `Greetings, ${rank} ${name}! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
-    );
-    setText4(
-      `${rank} ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
-    );
-  }, []);
+  const { playGameMusic } = useContext(AudioContext);
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
+      if (soundEffects) playGameMusic();
+      setText1(
+        `Greetings, ${rank} ${name}! A cosmic challenge awaits you as we navigate the vast reaches of space. Our interstellar journey has encountered some celestial intricacies, and your astute mind is needed to unravel the mysteries that lie ahead.`
+      );
+      setText4(
+        `${rank} ${name}, with your cosmic wisdom, you've crafted a unique mission tailored to your expertise. As we prepare to delve into the wonders of the universe, your choices will guide us through the cosmos. Brace yourself for an astronomical adventure—you've shaped this cosmic journey, and the universe eagerly awaits your exploration!`
+      );
     });
 
     const blurListener = addListener('blur', () => {
@@ -83,11 +84,13 @@ export const TriviaSetupScreen = ({ navigation }) => {
       focusListener();
       blurListener();
     };
-  }, [navigation]);
+  }, [navigation, soundEffects]);
 
   const { okTyping, setOkTyping, showOk, setShowOk } = useContext(GamesContext);
 
-  const { rank, name, textSpeed } = useSelector((state) => state.user);
+  const { rank, name, textSpeed, soundEffects } = useSelector(
+    (state) => state.user
+  );
 
   const { navigate, dispatch, addListener } = navigation;
 

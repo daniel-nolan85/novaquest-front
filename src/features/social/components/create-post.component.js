@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
+import { Audio } from 'expo-av';
 import {
   CreateSection,
   UserImage,
@@ -19,7 +20,22 @@ export const CreatePost = ({ newsFeed, navigate }) => {
   const [selectedMedia, setSelectedMedia] = useState([]);
   const [postText, setPostText] = useState('');
 
-  const { token, _id, role, profileImage } = useSelector((state) => state.user);
+  const { token, _id, role, profileImage, soundEffects } = useSelector(
+    (state) => state.user
+  );
+
+  const playPostSound = async () => {
+    try {
+      if (soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../../assets/sounds/post.wav')
+        );
+        await sound.playAsync();
+      }
+    } catch (error) {
+      console.error('Error playing sound:', error);
+    }
+  };
 
   const submit = async () => {
     setIsLoading(true);
@@ -43,7 +59,8 @@ export const CreatePost = ({ newsFeed, navigate }) => {
             });
           }
         });
-        const { data } = await uploadMediaToCloudinary(token, role, formData);
+        const { data } = await uploadMediaToCloudinary(formData);
+        console.log({ data });
         await submitPostWithMedia(token, _id, role, postText, data)
           .then((res) => {
             if (res.data) navigate(res.data);
@@ -60,6 +77,7 @@ export const CreatePost = ({ newsFeed, navigate }) => {
       newsFeed();
       setPostText('');
       setSelectedMedia([]);
+      playPostSound();
       Toast.show({
         type: 'success',
         text1: 'Your cosmic moment is now part of the celestial journey.',

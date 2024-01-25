@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Modal, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { Audio } from 'expo-av';
 import styled from 'styled-components/native';
 import LottieView from 'lottie-react-native';
 import { SafeArea } from '../../components/utils/safe-area.component';
@@ -72,8 +73,8 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
 
   useEffect(() => {
     if (rankUp) {
-      console.log('firing rankUpUser');
       rankUpUser();
+      playSoundEffect();
     }
   }, [rankUp]);
 
@@ -93,6 +94,19 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
         });
       })
       .catch((err) => console.error(err));
+  };
+
+  const playSoundEffect = async () => {
+    try {
+      if (user.soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../assets/sounds/rank-up.wav')
+        );
+        await sound.playAsync();
+      }
+    } catch (error) {
+      console.error('Error playing sound:', error);
+    }
   };
 
   return (

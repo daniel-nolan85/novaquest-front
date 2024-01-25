@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   View,
   StyleSheet,
@@ -24,6 +25,7 @@ import { IconsWrapper } from '../styles/interstellar-assembly.styles';
 import { InterstellarAssemblyModal } from '../components/interstellar-assembly-modal.component';
 import { awardAchievement } from '../../../../requests/user';
 import { GamesContext } from '../../../../services/games/games.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 const imageUrls = [
   'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450647/mercury-nobg_omo3qa.png',
@@ -46,6 +48,13 @@ export const InterstellarAssemblyGameScreen = ({ navigation }) => {
   const isFirstRun = useRef(true);
 
   const { visible, setVisible } = useContext(GamesContext);
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     if (isFirstRun.current) {

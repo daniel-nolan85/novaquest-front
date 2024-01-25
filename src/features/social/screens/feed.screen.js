@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { FeedHeader } from '../components/feed-header.component';
 import { AlliesScroll } from '../components/allies-scroll.component';
 import { Post } from '../components/post.component';
 import { fetchPosts } from '../../../requests/post';
+import { AudioContext } from '../../../services/audio/audio.context';
 
 const PAGE_SIZE = 10;
 
@@ -19,8 +20,11 @@ export const FeedScreen = ({ navigation }) => {
 
   const { token, _id, role, allies } = useSelector((state) => state.user);
 
+  const { stopGameMusic } = useContext(AudioContext);
+
   useFocusEffect(
     useCallback(() => {
+      stopGameMusic();
       newsFeed();
     }, [])
   );

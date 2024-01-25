@@ -61,6 +61,23 @@ export const updateTextSpeed = async (authtoken, _id, role, textSpeed) => {
   );
 };
 
+export const updateSoundEffects = async (
+  authtoken,
+  _id,
+  role,
+  soundEffects
+) => {
+  return await axios.put(
+    `${API_BASE_URL}/update-sound-effects`,
+    { _id, role, soundEffects },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const updateViewedRovers = async (
   authtoken,
   _id,

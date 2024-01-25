@@ -43,6 +43,7 @@ export const GuestExplorerModal = ({ visible, setVisible }) => {
             explorers: res.data.explorers,
             blockeds: res.data.blockeds,
             textSpeed: res.data.textSpeed,
+            soundEffects: res.data.soundEffects,
             highScore: res.data.highScore,
             viewedRovers: res.data.viewedRovers,
             viewedRoverCameras: res.data.viewedRoverCameras,

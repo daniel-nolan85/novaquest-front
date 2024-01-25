@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ImageBackground, KeyboardAvoidingView } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -23,6 +23,7 @@ import {
 import { updateUserName } from '../../../requests/user';
 import { storeNotifToken } from '../../../requests/auth';
 import { LoadingSpinner } from '../../../../assets/loading-spinner';
+import { AudioContext } from '../../../services/audio/audio.context';
 
 export const WelcomeSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,10 +54,16 @@ export const WelcomeSetupScreen = ({ navigation }) => {
   );
   const [text6, setText6] = useState('');
 
+  const { playGameMusic, stopGameMusic } = useContext(AudioContext);
+
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
 
   const { navigate } = navigation;
+
+  useEffect(() => {
+    playGameMusic();
+  }, []);
 
   useEffect(() => {
     if (user && user.name) {
@@ -200,6 +207,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
 
   const handleReadyClick = () => {
     setOkButton(false);
+    stopGameMusic();
     navigate('WelcomeComplete');
   };
 

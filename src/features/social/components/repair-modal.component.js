@@ -75,11 +75,7 @@ export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
         } else {
           setFirstProfileImage(true);
         }
-        const { data } = await uploadMediaToCloudinary(
-          user.token,
-          user.role,
-          formData
-        );
+        const { data } = await uploadMediaToCloudinary(formData);
         await updateProfileWithImage(
           user.token,
           user._id,

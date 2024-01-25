@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { Animated } from 'react-native';
+import { Audio } from 'expo-av';
 import { useSelector } from 'react-redux';
 import data from '../../../../services/trivia/trivia.data.json';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
@@ -8,6 +10,7 @@ import { ProgressBar } from '../components/trivia-progress-bar.component';
 import { TriviaModal } from '../components/trivia-modal.component';
 import { checkTriviaAchievements } from '../../../../requests/user';
 import { GamesContext } from '../../../../services/games/games.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -30,6 +33,13 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
 
   const { score, setScore, questionsAmount, setQuestionsAmount } =
     useContext(GamesContext);
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     setLevel(difficulty);
@@ -82,11 +92,24 @@ export const TriviaQuestionScreen = ({ navigation, route }) => {
     return options;
   };
 
-  const handleSelectedOption = (_option) => {
+  const handleSelectedOption = async (_option) => {
     setVisible(true);
     if (_option === questions[questionNum].correctAnswer) {
       setScore(score + 10);
       setCorrect(true);
+      if (user.soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../../../assets/sounds/correct.wav')
+        );
+        await sound.playAsync();
+      }
+    } else {
+      if (user.soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../../../assets/sounds/incorrect.wav')
+        );
+        await sound.playAsync();
+      }
     }
   };
 

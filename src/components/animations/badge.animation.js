@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
+import { Audio } from 'expo-av';
+import { useSelector } from 'react-redux';
 import { FadeInView } from './fade.animation';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -61,6 +63,25 @@ const OptionText = styled.Text`
 export const BadgeAnimation = ({ svg, title, body, handleSubmit }) => {
   const [isZoomedIn, setIsZoomedIn] = useState(false);
   const [showText, setShowText] = useState(false);
+
+  const { soundEffects } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    playSoundEffect();
+  }, []);
+
+  const playSoundEffect = async () => {
+    try {
+      if (soundEffects) {
+        const { sound } = await Audio.Sound.createAsync(
+          require('../../../assets/sounds/achievement.wav')
+        );
+        await sound.playAsync();
+      }
+    } catch (error) {
+      console.error('Error playing sound:', error);
+    }
+  };
 
   const handleZoomOutAnimation = () => {
     setIsZoomedIn(true);

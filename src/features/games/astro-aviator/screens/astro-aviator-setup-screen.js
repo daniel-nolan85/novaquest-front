@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ImageBackground, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
@@ -20,6 +20,7 @@ import {
 } from '../styles/astro-aviator-setup.styles';
 import { IconsWrapper } from '../styles/astro-aviator.styles';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const AstroAviatorSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,18 +39,20 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
   const [text4, setText4] = useState();
   const [text1Key, setText1Key] = useState(0);
 
-  useEffect(() => {
-    setText1(
-      `Attention, ${rank} ${name}! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
-    );
-    setText4(
-      `Prepare for lift-off, ${rank} ${name}, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
-    );
-  }, []);
+  const { playGameMusic } = useContext(AudioContext);
+
+  const { stopGameMusic } = useContext(AudioContext);
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
+      if (soundEffects) playGameMusic();
+      setText1(
+        `Attention, ${rank} ${name}! Prepare for a daring journey as we navigate through a treacherous meteor shower. Only the most skilled and fearless Astro Aviators can successfully navigate through the celestial obstacles that lie ahead.`
+      );
+      setText4(
+        `Prepare for lift-off, ${rank} ${name}, and may your reflexes be as swift as the speed of light. The universe awaits your daring exploits in this thrilling space odyssey!`
+      );
     });
 
     const blurListener = addListener('blur', () => {
@@ -64,9 +67,11 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
       focusListener();
       blurListener();
     };
-  }, [navigation]);
+  }, [navigation, soundEffects]);
 
-  const { rank, name, textSpeed } = useSelector((state) => state.user);
+  const { rank, name, textSpeed, soundEffects } = useSelector(
+    (state) => state.user
+  );
 
   const { navigate, dispatch, addListener } = navigation;
 
@@ -100,6 +105,7 @@ export const AstroAviatorSetupScreen = ({ navigation }) => {
   const handleReadyClick = () => {
     setCurrentStep(1);
     setOkButton(false);
+    stopGameMusic();
     navigate('AstroAviatorGame');
   };
 

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { Image } from 'react-native';
 import { List } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ import Rocket from '../../../../assets/svg/rocket.svg';
 import Achievements from '../../../../assets/svg/achievements.svg';
 import Password from '../../../../assets/svg/password.svg';
 import Speech from '../../../../assets/svg/speech.svg';
+import SoundEffects from '../../../../assets/svg/sound-effects.svg';
 import Logout from '../../../../assets/svg/logout.svg';
 import Trash from '../../../../assets/svg/trash.svg';
 import { Text } from '../../../components/typography/text.component';
@@ -26,9 +28,11 @@ import { DaysInSpaceModal } from '../components/days-in-space-modal.component';
 import { AchievementsModal } from '../components/achievements-modal.component';
 import { UpdatePasswordModal } from '../components/update-password-modal.component';
 import { TextSpeedModal } from '../components/text-speed-modal.component';
+import { SoundEffectsModal } from '../components/sound-effects-modal.component';
 import { DeleteAccountModal } from '../components/delete-account-modal.component';
-import { updateTextSpeed } from '../../../requests/user';
+import { updateTextSpeed, updateSoundEffects } from '../../../requests/user';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
+import { AudioContext } from '../../../services/audio/audio.context';
 
 export const SettingsScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,9 +41,11 @@ export const SettingsScreen = ({ navigation }) => {
   const [showAchievements, setShowAchievements] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showTextSpeed, setShowTextSpeed] = useState(false);
+  const [showSoundEffects, setShowSoundEffects] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
+  const [soundEffects, setSoundEffects] = useState(null);
 
   const { Section } = List;
 
@@ -48,6 +54,14 @@ export const SettingsScreen = ({ navigation }) => {
 
   const { navigate } = navigation;
 
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
+
   useEffect(() => {
     if (user.textSpeed === 100) {
       setTextSpeed('slow');
@@ -55,6 +69,14 @@ export const SettingsScreen = ({ navigation }) => {
       setTextSpeed('medium');
     } else {
       setTextSpeed('fast');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user.soundEffects === true) {
+      setSoundEffects(true);
+    } else {
+      setSoundEffects(false);
     }
   }, []);
 
@@ -154,6 +176,34 @@ export const SettingsScreen = ({ navigation }) => {
     setShowTextSpeed(false);
   };
 
+  const updateUserSoundEffects = async () => {
+    updateSoundEffects(user.token, user._id, user.role, soundEffects)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: {
+            ...user,
+            soundEffects: res.data.soundEffects,
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    setShowSoundEffects(false);
+    Toast.show({
+      type: 'success',
+      text1: 'Your celestial soundtrack preferences have been tuned',
+      text2:
+        'Cosmic silence or surrounded by stellar sound, your adventure awaits.',
+    });
+  };
+
+  const closeSoundEffectsModal = () => {
+    setShowSoundEffects(false);
+  };
+
   const closeDeleteModal = () => {
     setShowDelete(false);
   };
@@ -218,6 +268,17 @@ export const SettingsScreen = ({ navigation }) => {
             onPress={() => setShowTextSpeed(true)}
           />
           <SettingsItem
+            title={
+              <Text variant='body'>
+                {user.soundEffects
+                  ? 'Turn off sound effects'
+                  : 'Turn on sound effects'}
+              </Text>
+            }
+            left={() => <SoundEffects width={32} height={32} />}
+            onPress={() => setShowSoundEffects(true)}
+          />
+          <SettingsItem
             title={<Text variant='body'>Logout</Text>}
             left={() => <Logout width={32} height={32} />}
             onPress={logout}
@@ -258,6 +319,13 @@ export const SettingsScreen = ({ navigation }) => {
         updateUserTextSpeed={updateUserTextSpeed}
         showTextSpeed={showTextSpeed}
         closeTextSpeedModal={closeTextSpeedModal}
+      />
+      <SoundEffectsModal
+        soundEffects={soundEffects}
+        setSoundEffects={setSoundEffects}
+        updateUserSoundEffects={updateUserSoundEffects}
+        showSoundEffects={showSoundEffects}
+        closeSoundEffectsModal={closeSoundEffectsModal}
       />
       <DeleteAccountModal
         showDelete={showDelete}

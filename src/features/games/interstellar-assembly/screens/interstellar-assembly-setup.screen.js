@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ImageBackground, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
@@ -20,6 +20,7 @@ import {
 } from '../styles/interstellar-assembly-setup.styles';
 import { IconsWrapper } from '../styles/interstellar-assembly.styles';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const InterstellarAssemblySetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,15 +35,15 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
   );
   const [text1Key, setText1Key] = useState(0);
 
-  useEffect(() => {
-    setText1(
-      `Welcome, ${rank} ${name}, to a cosmic challenge like no other — 'Interstellar Assembly.' Prepare to embark on an interstellar journey where your wits and creativity will be put to the test. In this cosmic puzzle adventure, you have the unique opportunity to arrange planets, match moons to their celestial hosts, and assemble the wonders of the universe with a simple drag and drop.`
-    );
-  }, []);
+  const { playGameMusic } = useContext(AudioContext);
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
+      if (soundEffects) playGameMusic();
+      setText1(
+        `Welcome, ${rank} ${name}, to a cosmic challenge like no other — 'Interstellar Assembly.' Prepare to embark on an interstellar journey where your wits and creativity will be put to the test. In this cosmic puzzle adventure, you have the unique opportunity to arrange planets, match moons to their celestial hosts, and assemble the wonders of the universe with a simple drag and drop.`
+      );
     });
 
     const blurListener = addListener('blur', () => {
@@ -57,9 +58,11 @@ export const InterstellarAssemblySetupScreen = ({ navigation }) => {
       focusListener();
       blurListener();
     };
-  }, [navigation]);
+  }, [navigation, soundEffects]);
 
-  const { rank, name, textSpeed } = useSelector((state) => state.user);
+  const { rank, name, textSpeed, soundEffects } = useSelector(
+    (state) => state.user
+  );
 
   const { navigate, dispatch, addListener } = navigation;
 

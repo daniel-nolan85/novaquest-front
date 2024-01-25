@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   ImageBackground,
   TouchableOpacity,
@@ -12,10 +12,12 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import { Text } from '../../components/typography/text.component';
 import { SafeArea } from '../../components/utils/safe-area.component';
 import { LoadingSpinner } from '../../../assets/loading-spinner';
+import { AudioContext } from '../../services/audio/audio.context';
 
 const SRC_WIDTH = Dimensions.get('window').width;
 const CARD_SIZE = SRC_WIDTH * 0.8;
@@ -160,7 +162,21 @@ export const GamesHubScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollX, setScrollX] = useState(0);
 
-  const { navigate } = navigation;
+  const { navigate, addListener } = navigation;
+
+  const { playGameMusic } = useContext(AudioContext);
+
+  const { soundEffects } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const focusListener = addListener('focus', () => {
+      if (soundEffects) playGameMusic();
+    });
+
+    return () => {
+      focusListener();
+    };
+  }, [navigation, soundEffects]);
 
   return (
     <ImageBackground

@@ -119,6 +119,7 @@ export const Animation = styled(LottieView)`
 
 export const DaysDescription = styled(Text)`
   margin-top: 20px;
+  line-height: 20px;
 `;
 
 export const SearchContainer = styled.View`
@@ -126,7 +127,7 @@ export const SearchContainer = styled.View`
 `;
 
 export const ScrollArea = styled.ScrollView`
-  height: 480px;
+  height: 460px;
 `;
 
 export const Delete = styled(Text)`
