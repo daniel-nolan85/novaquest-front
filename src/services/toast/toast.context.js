@@ -7,11 +7,10 @@ export const ToastContextProvider = ({ children }) => {
   const [showEmailErrorToast, setShowEmailErrorToast] = useState(false);
   const [showDeleteAccountToast, setShowDeleteAccountToast] = useState(false);
   const [deleteAccountBody, setDeleteAccountBody] = useState('');
-  const [showDeleteUserToast, setShowDeleteUserToast] = useState(false);
-  const [deleteUserTitle, setDeleteUserTitle] = useState('');
-  const [deleteUserBody, setDeleteUserBody] = useState('');
   const [blockUserBody, setBlockUserBody] = useState('');
+  const [showAllianceToast, setShowAllianceToast] = useState(false);
   const [allianceTitle, setAllianceTitle] = useState('');
+  const [showRevokeToast, setShowRevokeToast] = useState(false);
   const [revokeTitle, setRevokeTitle] = useState('');
 
   return (
@@ -25,16 +24,14 @@ export const ToastContextProvider = ({ children }) => {
         setShowDeleteAccountToast,
         deleteAccountBody,
         setDeleteAccountBody,
-        showDeleteUserToast,
-        setShowDeleteUserToast,
-        deleteUserTitle,
-        setDeleteUserTitle,
-        deleteUserBody,
-        setDeleteUserBody,
         blockUserBody,
         setBlockUserBody,
+        showAllianceToast,
+        setShowAllianceToast,
         allianceTitle,
         setAllianceTitle,
+        showRevokeToast,
+        setShowRevokeToast,
         revokeTitle,
         setRevokeTitle,
       }}

@@ -24,13 +24,15 @@ import { SettingsContext } from '../../../services/settings/settings.context';
 export const AdminModal = ({ showAdmin, closeAdminModal, navigate }) => {
   const { setReportedPosts, setPosts, setUsers } = useContext(SettingsContext);
 
-  const { token } = useSelector((state) => state.user);
+  const { token, role } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
-      getReportedPosts();
-      getPosts();
-      getUsers();
+      if (role === 'admin') {
+        getReportedPosts();
+        getPosts();
+        getUsers();
+      }
     }, [])
   );
 

@@ -13,12 +13,11 @@ import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
 import { submitPostWithMedia, submitPost } from '../../../requests/post';
 import { AnimatedProgressBar } from '../../../components/animations/progress-bar.animation';
 
-export const CreatePost = ({ newsFeed, navigate }) => {
+export const CreatePost = ({ newsFeed, navigate, setShowPostToast }) => {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState([]);
   const [postText, setPostText] = useState('');
-  const [showPostToast, setShowPostToast] = useState(false);
 
   const { token, _id, role, profileImage, soundEffects } = useSelector(
     (state) => state.user
@@ -88,12 +87,6 @@ export const CreatePost = ({ newsFeed, navigate }) => {
     }
   };
 
-  const postToastContent = {
-    type: 'success',
-    title: 'Your cosmic moment is now part of the celestial journey',
-    body: `Keep exploring and sharing the wonders of the universe!`,
-  };
-
   return (
     <>
       <CreateSection>
@@ -115,7 +108,6 @@ export const CreatePost = ({ newsFeed, navigate }) => {
         />
       </CreateSection>
       <AnimatedProgressBar isLoading={isLoading} />
-      {showPostToast && <ToastNotification {...postToastContent} />}
     </>
   );
 };

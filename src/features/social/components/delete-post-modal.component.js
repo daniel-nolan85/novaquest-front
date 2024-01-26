@@ -44,10 +44,11 @@ export const DeletePostModal = ({
         setPosts((prevPosts) =>
           prevPosts.filter((prevPost) => prevPost._id !== post._id)
         );
-        setShowDeletePostToast(true);
-        setTimeout(() => {
-          setShowDeletePostToast(false);
-        }, 3000);
+        setShowDeletePostToast && setShowDeletePostToast(true);
+        setShowDeletePostToast &&
+          setTimeout(() => {
+            setShowDeletePostToast(false);
+          }, 3000);
         setIsLoading(false);
         setVisible(false);
         hidePostModal && hidePostModal();

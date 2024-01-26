@@ -11,7 +11,7 @@ import {
   Option,
   GradientBackground,
   OptionText,
-} from '../styles/forgot-password-modal.styles';
+} from '../styles/guest-explorer-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
 import { checkBlockedList, createGuestUser } from '../../../requests/auth';
 

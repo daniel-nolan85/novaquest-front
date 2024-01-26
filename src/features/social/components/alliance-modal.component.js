@@ -29,14 +29,13 @@ export const AllianceModal = ({
   profileImage,
   name,
   rank,
-  setShowAllianceToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
-  const { setAllianceTitle } = useContext(ToastContext);
+  const { setShowAllianceToast, setAllianceTitle } = useContext(ToastContext);
 
   const formAlliance = async () => {
     setIsLoading(true);

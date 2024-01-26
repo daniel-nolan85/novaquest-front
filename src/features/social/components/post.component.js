@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   FlatList,
   ScrollView,
@@ -48,7 +48,6 @@ import { CommentOptionsModal } from './comment-options-modal.component';
 import { CommentsModal } from './comments-modal.component';
 import { EditPostModal } from './edit-post-modal.component';
 import { DeletePostModal } from './delete-post-modal.component';
-import { ToastContext } from '../../../services/toast/toast.context';
 
 export const Post = ({
   navigate,
@@ -58,6 +57,10 @@ export const Post = ({
   loadMorePosts,
   loading,
   allPostsLoaded,
+  setShowReportPostToast,
+  setShowBlockUserToast,
+  setShowDeletePostToast,
+  setShowEditPostToast,
 }) => {
   const [showActions, setShowActions] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -66,18 +69,12 @@ export const Post = ({
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [editable, setEditable] = useState(false);
   const [deleteable, setDeleteable] = useState(false);
-  const [showReportPostToast, setShowReportPostToast] = useState(false);
-  const [showBlockUserToast, setShowBlockUserToast] = useState(false);
-  const [showDeletePostToast, setShowDeletePostToast] = useState(false);
-  const [showEditPostToast, setShowEditPostToast] = useState(false);
 
   const lastTapTimeRef = useRef(0);
 
   const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
   const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
-
-  const { blockUserBody } = useContext(ToastContext);
 
   useEffect(() => {
     socket.connect();
@@ -176,30 +173,6 @@ export const Post = ({
     setDeleteable(true);
     setShowActions(false);
     setSelectedPost(post);
-  };
-
-  const reportPostToastContent = {
-    type: 'warning',
-    title: `Cosmic Alert!`,
-    body: 'Post Reported and Forwarded to Cosmic Security. Stay Vigilant!',
-  };
-
-  const blockUserToastContent = {
-    type: 'info',
-    title: `Your cosmic journey just got more tailored.`,
-    body: blockUserBody,
-  };
-
-  const deletePostToastContent = {
-    type: 'success',
-    title: 'Your cosmic moment has been cleared from the stars.',
-    body: 'Feel free to share more celestial moments on your space journey!',
-  };
-
-  const editPostToastContent = {
-    type: 'success',
-    title: 'Your cosmic moment has been updated successfully.',
-    body: 'Your cosmic insight now shines even brighter! Continue sharing your space adventures with the universe.',
   };
 
   const renderItem = ({ item }) => (
@@ -366,23 +339,17 @@ export const Post = ({
   );
 
   return (
-    <>
-      <FlatList
-        data={posts}
-        renderItem={renderItem}
-        keyExtractor={(item) => item._id}
-        showsVerticalScrollIndicator={false}
-        onEndReached={loadMorePosts}
-        onEndReachedThreshold={0.1}
-        ListFooterComponent={
-          loading &&
-          !allPostsLoaded && <ActivityIndicator size='large' color='#009999' />
-        }
-      />
-      {showReportPostToast && <ToastNotification {...reportPostToastContent} />}
-      {showBlockUserToast && <ToastNotification {...blockUserToastContent} />}
-      {showDeletePostToast && <ToastNotification {...deletePostToastContent} />}
-      {showEditPostToast && <ToastNotification {...editPostToastContent} />}
-    </>
+    <FlatList
+      data={posts}
+      renderItem={renderItem}
+      keyExtractor={(item) => item._id}
+      showsVerticalScrollIndicator={false}
+      onEndReached={loadMorePosts}
+      onEndReachedThreshold={0.1}
+      ListFooterComponent={
+        loading &&
+        !allPostsLoaded && <ActivityIndicator size='large' color='#009999' />
+      }
+    />
   );
 };

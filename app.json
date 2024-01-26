@@ -4,10 +4,10 @@
     "slug": "NovaQuest",
     "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./assets/img/icon.png",
+    "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/img/splash.jpg",
+      "image": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706309994/nolancode-portrait-long_amwnvp.png",
       "resizeMode": "cover"
     },
     "assetBundlePatterns": ["**/*"],
@@ -16,12 +16,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/img/icon.png",
+        "foregroundImage": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
         "backgroundColor": "#ffffff"
       }
     },
     "notification": {
-      "icon": "./assets/img/icon.png",
+      "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
       "color": "#009999"
     }
   }

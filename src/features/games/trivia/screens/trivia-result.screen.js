@@ -5,7 +5,10 @@ import {
   AnimationWrapper,
   Score,
   Result,
+  OptionContainer,
   Option,
+  PlayAgainGradientBackground,
+  QuitGradientBackground,
   OptionText,
 } from '../styles/trivia-result.styles';
 import { SafeArea } from '../../../../components/utils/safe-area.component';
@@ -45,16 +48,32 @@ export const TriviaResultScreen = ({ navigation }) => {
           />
         </AnimationWrapper>
         <Result variant='body'>{resultText}</Result>
-        <Option
-          onPress={() => {
-            setScore(0);
-            setOkTyping(true);
-            setShowOk(true);
-            navigate('TriviaSetup');
-          }}
-        >
-          <OptionText>Play Again</OptionText>
-        </Option>
+        <OptionContainer>
+          <Option
+            onPress={() => {
+              setScore(0);
+              setOkTyping(true);
+              setShowOk(true);
+              navigate('TriviaSetup');
+            }}
+          >
+            <PlayAgainGradientBackground>
+              <OptionText>Play Again</OptionText>
+            </PlayAgainGradientBackground>
+          </Option>
+          <Option
+            onPress={() => {
+              setScore(0);
+              setOkTyping(true);
+              setShowOk(true);
+              navigate('GamesHub');
+            }}
+          >
+            <QuitGradientBackground>
+              <OptionText>Quit</OptionText>
+            </QuitGradientBackground>
+          </Option>
+        </OptionContainer>
       </ResultsContainer>
     </SafeArea>
   );

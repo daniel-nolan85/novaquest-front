@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import { filterAllUsersByQuery } from '../../../requests/admin';

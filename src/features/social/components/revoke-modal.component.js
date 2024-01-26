@@ -29,14 +29,13 @@ export const RevokeModal = ({
   profileImage,
   name,
   rank,
-  setShowRevokeToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
-  const { setRevokeTitle } = useContext(ToastContext);
+  const { setShowRevokeToast, setRevokeTitle } = useContext(ToastContext);
 
   const revokeAlliance = async () => {
     setIsLoading(true);
