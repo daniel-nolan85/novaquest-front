@@ -30,7 +30,11 @@ import { UpdatePasswordModal } from '../components/update-password-modal.compone
 import { TextSpeedModal } from '../components/text-speed-modal.component';
 import { SoundEffectsModal } from '../components/sound-effects-modal.component';
 import { DeleteAccountModal } from '../components/delete-account-modal.component';
-import { updateTextSpeed, updateSoundEffects } from '../../../requests/user';
+import {
+  updateTextSpeed,
+  updateSoundEffects,
+  confirmUserEmail,
+} from '../../../requests/user';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { AudioContext } from '../../../services/audio/audio.context';
 import { ToastNotification } from '../../../components/animations/toast-notification.animation';
@@ -44,9 +48,12 @@ export const SettingsScreen = ({ navigation }) => {
   const [showTextSpeed, setShowTextSpeed] = useState(false);
   const [showSoundEffects, setShowSoundEffects] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
   const [soundEffects, setSoundEffects] = useState(null);
+  const [showEmailInvalidToast, setShowEmailInvalidToast] = useState(false);
+  const [showEmailMismatchToast, setShowEmailMismatchToast] = useState(false);
   const [showPasswordFailedToast, setShowPasswordFailedToast] = useState(false);
   const [showPasswordUpdateToast, setShowPasswordUpdateToast] = useState(false);
   const [showRecentLoginToast, setShowRecentLoginToast] = useState(false);
@@ -102,6 +109,14 @@ export const SettingsScreen = ({ navigation }) => {
   };
 
   const updateUserPassword = async () => {
+    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setShowEmailInvalidToast(true);
+      setTimeout(() => {
+        setShowEmailInvalidToast(false);
+      }, 3000);
+      return;
+    }
     if (
       password.length < 6 ||
       !/\d/.test(password) ||
@@ -114,40 +129,66 @@ export const SettingsScreen = ({ navigation }) => {
       return;
     }
     setIsLoading(true);
-    const fbUser = auth.currentUser;
-    await updatePassword(fbUser, password)
-      .then(() => {
-        setIsLoading(false);
-        setShowPasswordUpdateToast(true);
-        setTimeout(() => {
-          setShowPasswordUpdateToast(false);
-        }, 3000);
-        setShowPassword(false);
-        setPassword('');
-      })
-      .catch((err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        console.error('errorMessage => ', errorMessage);
-        setIsLoading(false);
-        setShowPassword(false);
-        setPassword('');
-        if (errorCode === 'auth/requires-recent-login') {
-          setShowRecentLoginToast(true);
-          setTimeout(() => {
-            setShowRecentLoginToast(false);
-          }, 3000);
+
+    try {
+      const normalizedEmail = email.toLowerCase();
+      await confirmUserEmail(
+        user.token,
+        user._id,
+        user.role,
+        normalizedEmail
+      ).then(async (res) => {
+        if (res.data.success) {
+          const fbUser = auth.currentUser;
+          await updatePassword(fbUser, password)
+            .then(() => {
+              setIsLoading(false);
+              setShowPasswordUpdateToast(true);
+              setTimeout(() => {
+                setShowPasswordUpdateToast(false);
+              }, 3000);
+              setShowPassword(false);
+              setEmail('');
+              setPassword('');
+            })
+            .catch((err) => {
+              const errorCode = err.code;
+              const errorMessage = err.message;
+              console.error('errorMessage => ', errorMessage);
+              setIsLoading(false);
+              setShowPassword(false);
+              setEmail('');
+              setPassword('');
+              if (errorCode === 'auth/requires-recent-login') {
+                setShowRecentLoginToast(true);
+                setTimeout(() => {
+                  setShowRecentLoginToast(false);
+                }, 3000);
+              } else {
+                setShowPasswordErrorToast(true);
+                setTimeout(() => {
+                  setShowPasswordErrorToast(false);
+                }, 3000);
+              }
+            });
         } else {
-          setShowPasswordErrorToast(true);
+          setIsLoading(false);
+          setShowEmailMismatchToast(true);
           setTimeout(() => {
-            setShowPasswordErrorToast(false);
+            setShowEmailMismatchToast(false);
           }, 3000);
+          console.error('Email verification failed');
         }
       });
+    } catch (err) {
+      setIsLoading(false);
+      console.error('API request error: ', err);
+    }
   };
 
   const closePasswordModal = () => {
     setShowPassword(false);
+    setEmail('');
     setPassword('');
   };
 
@@ -212,6 +253,18 @@ export const SettingsScreen = ({ navigation }) => {
       type: 'LOGOUT',
       payload: null,
     });
+  };
+
+  const emailInvalidToastContent = {
+    type: 'warning',
+    title: `${user.rank} ${user.name}, it seems there's a warp in the space-time email continuum! `,
+    body: 'Please enter a valid email address to continue your cosmic journey.',
+  };
+
+  const emailMismatchToastContent = {
+    type: 'warning',
+    title: `${user.rank} ${user.name}, the cosmic email coordinates are misaligned!`,
+    body: 'Please enter the correct email associated with your account to proceed.',
   };
 
   const passwordFailedToastContent = {
@@ -346,6 +399,8 @@ export const SettingsScreen = ({ navigation }) => {
         closeAchievementsModal={closeAchievementsModal}
       />
       <UpdatePasswordModal
+        email={email}
+        setEmail={setEmail}
         password={password}
         setPassword={setPassword}
         updateUserPassword={updateUserPassword}
@@ -372,6 +427,12 @@ export const SettingsScreen = ({ navigation }) => {
         closeDeleteModal={closeDeleteModal}
         logout={logout}
       />
+      {showEmailInvalidToast && (
+        <ToastNotification {...emailInvalidToastContent} />
+      )}
+      {showEmailMismatchToast && (
+        <ToastNotification {...emailMismatchToastContent} />
+      )}
       {showPasswordFailedToast && (
         <ToastNotification {...passwordFailedToastContent} />
       )}

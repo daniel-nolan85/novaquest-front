@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  ActivityIndicator,
+  KeyboardAvoidingView,
+} from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -20,6 +25,7 @@ export const LoginForm = ({
   ip,
   setShowBlockedToast,
   setShowPasswordLoginToast,
+  setShowEmailInvalidToast,
   setShowEmailNotVerifiedToast,
   setShowInvalidCredentialsToast,
   setShowInvalidEmailLoginToast,
@@ -53,6 +59,15 @@ export const LoginForm = ({
   };
 
   const handleLogin = async () => {
+    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setShowEmailInvalidToast(true);
+      setTimeout(() => {
+        setShowEmailInvalidToast(false);
+      }, 3000);
+      setIsLoading(false);
+      return;
+    }
     if (
       password.length < 6 ||
       !/\d/.test(password) ||
@@ -193,55 +208,58 @@ export const LoginForm = ({
 
   return (
     <View>
-      <Text variant='title' style={{ textAlign: 'center' }}>
-        Login
-      </Text>
-      <Input
-        label={<Text variant='body'>Email</Text>}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        keyboardType='email-address'
-      />
-      <Input
-        label={<Text variant='body'>Password</Text>}
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-      />
-      <OptionContainer>
-        <Option onPress={checkBlocked} disabled={isLoading}>
-          <GradientBackground>
-            {isLoading ? (
-              <ActivityIndicator size='small' color='#fff' />
-            ) : (
-              <OptionText variant='body'>Blast Off!</OptionText>
-            )}
-          </GradientBackground>
-        </Option>
-      </OptionContainer>
-      <TouchableOpacity onPress={() => setVisible(true)}>
-        <Text variant='body' style={{ textAlign: 'center' }}>
-          Forgot password?
+      <KeyboardAvoidingView>
+        <Text variant='title' style={{ textAlign: 'center' }}>
+          Login
         </Text>
-      </TouchableOpacity>
-      <ForgotPasswordModal
-        visible={visible}
-        setVisible={setVisible}
-        ip={ip}
-        setShowBlockedToast={setShowBlockedToast}
-        setShowInvalidCredentialsToast={setShowInvalidCredentialsToast}
-        setShowInvalidEmailLoginToast={setShowInvalidEmailLoginToast}
-        setShowErrorLoginToast={setShowErrorLoginToast}
-        setShowResetPasswordToast={setShowResetPasswordToast}
-        setResetPasswordTitle={setResetPasswordTitle}
-      />
-      <OptionContainer>
-        <Option onPress={handleGuestLogin} disabled={isLoading}>
-          <GradientBackground>
-            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
-          </GradientBackground>
-        </Option>
-      </OptionContainer>
+        <Input
+          label={<Text variant='body'>Email</Text>}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          keyboardType='email-address'
+        />
+        <Input
+          label={<Text variant='body'>Password</Text>}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry
+        />
+        <OptionContainer>
+          <Option onPress={checkBlocked} disabled={isLoading}>
+            <GradientBackground>
+              {isLoading ? (
+                <ActivityIndicator size='small' color='#fff' />
+              ) : (
+                <OptionText variant='body'>Blast Off!</OptionText>
+              )}
+            </GradientBackground>
+          </Option>
+        </OptionContainer>
+        <TouchableOpacity onPress={() => setVisible(true)}>
+          <Text variant='body' style={{ textAlign: 'center' }}>
+            Forgot password?
+          </Text>
+        </TouchableOpacity>
+        <ForgotPasswordModal
+          visible={visible}
+          setVisible={setVisible}
+          ip={ip}
+          setShowBlockedToast={setShowBlockedToast}
+          setShowEmailInvalidToast={setShowEmailInvalidToast}
+          setShowInvalidCredentialsToast={setShowInvalidCredentialsToast}
+          setShowInvalidEmailLoginToast={setShowInvalidEmailLoginToast}
+          setShowErrorLoginToast={setShowErrorLoginToast}
+          setShowResetPasswordToast={setShowResetPasswordToast}
+          setResetPasswordTitle={setResetPasswordTitle}
+        />
+        <OptionContainer>
+          <Option onPress={handleGuestLogin} disabled={isLoading}>
+            <GradientBackground>
+              <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+            </GradientBackground>
+          </Option>
+        </OptionContainer>
+      </KeyboardAvoidingView>
     </View>
   );
 };

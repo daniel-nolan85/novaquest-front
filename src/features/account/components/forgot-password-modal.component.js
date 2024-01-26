@@ -23,6 +23,7 @@ export const ForgotPasswordModal = ({
   setVisible,
   ip,
   setShowBlockedToast,
+  setShowEmailInvalidToast,
   setShowInvalidCredentialsToast,
   setShowInvalidEmailLoginToast,
   setShowErrorLoginToast,
@@ -49,6 +50,15 @@ export const ForgotPasswordModal = ({
   };
 
   const handleSubmit = async () => {
+    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setShowEmailInvalidToast(true);
+      setTimeout(() => {
+        setShowEmailInvalidToast(false);
+      }, 3000);
+      setIsLoading(false);
+      return;
+    }
     const auth = getAuth();
     await sendPasswordResetEmail(auth, email)
       .then(() => {

@@ -15,6 +15,7 @@ export const AccountScreen = ({ navigation }) => {
   const [showPasswordLoginToast, setShowPasswordLoginToast] = useState(false);
   const [showPasswordRegistrationToast, setShowPasswordRegistrationToast] =
     useState(false);
+  const [showEmailInvalidToast, setShowEmailInvalidToast] = useState(false);
   const [showEmailNotVerifiedToast, setShowEmailNotVerifiedToast] =
     useState(false);
   const [showInvalidCredentialsToast, setShowInvalidCredentialsToast] =
@@ -68,6 +69,12 @@ export const AccountScreen = ({ navigation }) => {
     type: 'warning',
     title: 'Registration Failed',
     body: 'Password must be at least 6 characters and contain letters and numbers.',
+  };
+
+  const emailInvalidToastContent = {
+    type: 'warning',
+    title: `Commander, it seems there's a warp in the space-time email continuum! `,
+    body: 'Please enter a valid email address to continue your cosmic journey.',
   };
 
   const emailNotVerifiedToastContent = {
@@ -146,6 +153,7 @@ export const AccountScreen = ({ navigation }) => {
             ip={ip}
             setShowBlockedToast={setShowBlockedToast}
             setShowPasswordLoginToast={setShowPasswordLoginToast}
+            setShowEmailInvalidToast={setShowEmailInvalidToast}
             setShowEmailNotVerifiedToast={setShowEmailNotVerifiedToast}
             setShowInvalidCredentialsToast={setShowInvalidCredentialsToast}
             setShowInvalidEmailLoginToast={setShowInvalidEmailLoginToast}
@@ -158,6 +166,7 @@ export const AccountScreen = ({ navigation }) => {
             navigate={navigate}
             ip={ip}
             setShowBlockedToast={setShowBlockedToast}
+            setShowEmailInvalidToast={setShowEmailInvalidToast}
             setShowPasswordRegistrationToast={setShowPasswordRegistrationToast}
             setShowVerificationSuccessToast={setShowVerificationSuccessToast}
             setShowVerificationErrorToast={setShowVerificationErrorToast}
@@ -182,6 +191,9 @@ export const AccountScreen = ({ navigation }) => {
       )}
       {showPasswordRegistrationToast && (
         <ToastNotification {...passwordRegistrationToastContent} />
+      )}
+      {showEmailInvalidToast && (
+        <ToastNotification {...emailInvalidToastContent} />
       )}
       {showEmailNotVerifiedToast && (
         <ToastNotification {...emailNotVerifiedToastContent} />

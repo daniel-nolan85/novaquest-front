@@ -54,6 +54,7 @@ export const ToastNotification = ({ type, title, body }) => {
         shadowRadius: 2,
         shadowOffset: { width: 0, height: 1 },
         elevation: 2,
+        zIndex: 99999,
       }}
     >
       {icon}

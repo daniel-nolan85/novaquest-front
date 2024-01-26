@@ -6,7 +6,7 @@ import { Text } from '../../../components/typography/text.component';
 
 export const ModalWrapper = styled.View`
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex: 1;
   margin: ${(props) => props.theme.space[3]};
 `;
@@ -26,6 +26,7 @@ export const ModalView = styled.View`
   shadow-opacity: 0.25;
   shadow-radius: 4px;
   elevation: 5;
+  height: 600px;
 `;
 
 export const CloseIcon = styled.TouchableOpacity`

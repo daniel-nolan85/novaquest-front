@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -25,6 +25,7 @@ export const RegistrationForm = ({
   navigate,
   ip,
   setShowBlockedToast,
+  setShowEmailInvalidToast,
   setShowPasswordRegistrationToast,
   setShowVerificationSuccessToast,
   setShowVerificationErrorToast,
@@ -54,6 +55,15 @@ export const RegistrationForm = ({
   };
 
   const handleRegistration = async () => {
+    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setShowEmailInvalidToast(true);
+      setTimeout(() => {
+        setShowEmailInvalidToast(false);
+      }, 3000);
+      setIsLoading(false);
+      return;
+    }
     if (
       password.length < 6 ||
       !/\d/.test(password) ||
@@ -128,63 +138,65 @@ export const RegistrationForm = ({
 
   return (
     <View>
-      <Text variant='title' style={{ textAlign: 'center' }}>
-        Register
-      </Text>
-      <Input
-        label={<Text variant='body'>Email</Text>}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        keyboardType='email-address'
-      />
-      <Input
-        label={<Text variant='body'>Password</Text>}
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-      />
-      <OptionContainer>
-        <Option onPress={checkBlocked} disabled={isLoading}>
-          <GradientBackground>
-            {isLoading ? (
-              <ActivityIndicator size='small' color='#fff' />
-            ) : (
-              <OptionText variant='body'>Prepare for Launch...</OptionText>
-            )}
-          </GradientBackground>
-        </Option>
-      </OptionContainer>
-      <Info variable='body'>
-        After signing up, please check your email and click the link to complete
-        your registration.
-      </Info>
-      <OptionContainer>
-        <Option onPress={handleGuestLogin} disabled={isLoading}>
-          <GradientBackground>
-            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
-          </GradientBackground>
-        </Option>
-      </OptionContainer>
-      <LegalView>
-        <Legal variant='body'>
-          Your stellar journey is guided by our
-          <LegalDoc variant='body' onPress={showTerms}>
-            {' '}
-            Terms
-          </LegalDoc>
-          ,
-          <LegalDoc variant='body' onPress={showPrivacy}>
-            {' '}
-            Privacy
-          </LegalDoc>
-          , and
-          <LegalDoc variant='body' onPress={showCookies}>
-            {' '}
-            Cookies
-          </LegalDoc>{' '}
-          policies.
-        </Legal>
-      </LegalView>
+      <KeyboardAvoidingView>
+        <Text variant='title' style={{ textAlign: 'center' }}>
+          Register
+        </Text>
+        <Input
+          label={<Text variant='body'>Email</Text>}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          keyboardType='email-address'
+        />
+        <Input
+          label={<Text variant='body'>Password</Text>}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry
+        />
+        <OptionContainer>
+          <Option onPress={checkBlocked} disabled={isLoading}>
+            <GradientBackground>
+              {isLoading ? (
+                <ActivityIndicator size='small' color='#fff' />
+              ) : (
+                <OptionText variant='body'>Prepare for Launch...</OptionText>
+              )}
+            </GradientBackground>
+          </Option>
+        </OptionContainer>
+        <Info variable='body'>
+          After signing up, please check your email and click the link to
+          complete your registration.
+        </Info>
+        <OptionContainer>
+          <Option onPress={handleGuestLogin} disabled={isLoading}>
+            <GradientBackground>
+              <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+            </GradientBackground>
+          </Option>
+        </OptionContainer>
+        <LegalView>
+          <Legal variant='body'>
+            Your stellar journey is guided by our
+            <LegalDoc variant='body' onPress={showTerms}>
+              {' '}
+              Terms
+            </LegalDoc>
+            ,
+            <LegalDoc variant='body' onPress={showPrivacy}>
+              {' '}
+              Privacy
+            </LegalDoc>
+            , and
+            <LegalDoc variant='body' onPress={showCookies}>
+              {' '}
+              Cookies
+            </LegalDoc>{' '}
+            policies.
+          </Legal>
+        </LegalView>
+      </KeyboardAvoidingView>
     </View>
   );
 };

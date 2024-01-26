@@ -78,6 +78,18 @@ export const updateSoundEffects = async (
   );
 };
 
+export const confirmUserEmail = async (authtoken, _id, role, email) => {
+  return await axios.put(
+    `${API_BASE_URL}/confirm-user-email`,
+    { _id, role, email },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+
 export const updateViewedRovers = async (
   authtoken,
   _id,
