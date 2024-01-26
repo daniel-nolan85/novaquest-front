@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Modal } from 'react-native';
-import Toast from 'react-native-toast-message';
+import { Modal, ActivityIndicator } from 'react-native';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { app } from '../../../../firebase';
 import { SafeArea } from '../../../components/utils/safe-area.component';
@@ -18,58 +17,75 @@ import {
   OptionText,
 } from '../styles/forgot-password-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
-
-export const ForgotPasswordModal = ({ visible, setVisible }) => {
+import { checkBlockedList } from '../../../requests/auth';
+export const ForgotPasswordModal = ({
+  visible,
+  setVisible,
+  ip,
+  setShowBlockedToast,
+  setShowInvalidCredentialsToast,
+  setShowInvalidEmailLoginToast,
+  setShowErrorLoginToast,
+  setShowResetPasswordToast,
+  setResetPasswordTitle,
+}) => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const checkBlocked = async () => {
     setIsLoading(true);
+    await checkBlockedList(ip, email).then((res) => {
+      if (res.data.length === 0) {
+        handleSubmit();
+      } else {
+        setIsLoading(false);
+        setShowBlockedToast(true);
+        setTimeout(() => {
+          setShowBlockedToast(false);
+        }, 3000);
+        return;
+      }
+    });
+  };
+
+  const handleSubmit = async () => {
     const auth = getAuth();
     await sendPasswordResetEmail(auth, email)
       .then(() => {
         setIsLoading(false);
+        setResetPasswordTitle(
+          `A reset password link has been sent to ${email}`
+        );
+        setShowResetPasswordToast(true);
+        setTimeout(() => {
+          setShowResetPasswordToast(false);
+        }, 3000);
         setEmail('');
         setVisible(false);
-        Toast.show({
-          type: 'success',
-          text1: `A reset password link has been sent to ${email}`,
-          text2: 'Please follow the instructions to reset your password.',
-          style: {
-            width: '100%',
-          },
-        });
       })
       .catch((error) => {
         setIsLoading(false);
         const errorCode = error.code;
-        const errorMessage = error.message;
-
         if (errorCode === 'auth/missing-email') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: 'Please enter a valid email.',
-          });
+          setShowInvalidEmailLoginToast(true);
+          setTimeout(() => {
+            setShowInvalidEmailLoginToast(false);
+          }, 3000);
         } else if (errorCode === 'auth/invalid-email') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: 'Please enter a valid email.',
-          });
+          setShowInvalidEmailLoginToast(true);
+          setTimeout(() => {
+            setShowInvalidEmailLoginToast(false);
+          }, 3000);
         } else if (errorCode === 'auth/invalid-login-credentials') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2:
-              'No account found with the provided credentials. Please check your email and password.',
-          });
+          setShowInvalidCredentialsToast(true);
+          setTimeout(() => {
+            setShowInvalidCredentialsToast(false);
+          }, 3000);
         } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: errorMessage || 'An error occurred during registration.',
-          });
+          setShowErrorLoginToast(true);
+          setTimeout(() => {
+            setShowErrorLoginToast(false);
+          }, 3000);
         }
       });
   };
@@ -102,11 +118,15 @@ export const ForgotPasswordModal = ({ visible, setVisible }) => {
               keyboardType='email-address'
             />
             <OptionContainer>
-              <Option onPress={handleSubmit}>
+              <Option onPress={checkBlocked}>
                 <GradientBackground>
-                  <OptionText variant='body'>
-                    Launch Password Recovery
-                  </OptionText>
+                  {isLoading ? (
+                    <ActivityIndicator size='small' color='#fff' />
+                  ) : (
+                    <OptionText variant='body'>
+                      Launch Password Recovery
+                    </OptionText>
+                  )}
                 </GradientBackground>
               </Option>
             </OptionContainer>

@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
@@ -17,6 +18,7 @@ import {
 } from '../styles/apod-modal.styles';
 import { ApodSafeArea, IconsWrapper } from '../styles/apod.styles';
 import { updateNumOfApods } from '../../../../requests/user';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const ApodScreen = ({ navigation }) => {
   const [open, setOpen] = useState(false);
@@ -31,6 +33,14 @@ export const ApodScreen = ({ navigation }) => {
   const isFirstRun = useRef(true);
 
   const { navigate, dispatch } = navigation;
+
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     fetchApod();

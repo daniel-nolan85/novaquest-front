@@ -8,15 +8,14 @@ import { SearchContainer } from '../styles/settings.styles';
 import { SettingsContext } from '../../../services/settings/settings.context';
 import { ReportedPostsList } from '../components/reported-posts-list.component';
 
-export const ReportedPostsScreen = ({ route }) => {
+export const ReportedPostsScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const { reportedPosts, setReportedPosts } = useContext(SettingsContext);
 
   const { token, _id, role } = useSelector((state) => state.user);
 
-  const { params } = route;
-  const { navigate } = params;
+  const { navigate } = navigation;
 
   const handleSearch = async (query) => {
     await filterReportedPostsByQuery(token, _id, role, query)

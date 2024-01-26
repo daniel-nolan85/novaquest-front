@@ -19,6 +19,7 @@ export const CreatePost = ({ newsFeed, navigate }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState([]);
   const [postText, setPostText] = useState('');
+  const [showPostToast, setShowPostToast] = useState(false);
 
   const { token, _id, role, profileImage, soundEffects } = useSelector(
     (state) => state.user
@@ -78,18 +79,20 @@ export const CreatePost = ({ newsFeed, navigate }) => {
       setPostText('');
       setSelectedMedia([]);
       playPostSound();
-      Toast.show({
-        type: 'success',
-        text1: 'Your cosmic moment is now part of the celestial journey.',
-        text2: 'Keep exploring and sharing the wonders of the universe!',
-        style: {
-          width: '100%',
-        },
-      });
+      setShowPostToast(true);
+      setTimeout(() => {
+        setShowPostToast(false);
+      }, 3000);
     } catch (error) {
       setIsLoading(false);
       console.error('Error in submit function:', error);
     }
+  };
+
+  const postToastContent = {
+    type: 'success',
+    title: 'Your cosmic moment is now part of the celestial journey',
+    body: `Keep exploring and sharing the wonders of the universe!`,
   };
 
   return (
@@ -113,6 +116,7 @@ export const CreatePost = ({ newsFeed, navigate }) => {
         />
       </CreateSection>
       <AnimatedProgressBar isLoading={isLoading} />
+      {showPostToast && <ToastNotification {...postToastContent} />}
     </>
   );
 };

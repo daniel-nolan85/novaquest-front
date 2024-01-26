@@ -8,15 +8,14 @@ import { SearchContainer } from '../styles/settings.styles';
 import { SettingsContext } from '../../../services/settings/settings.context';
 import { UsersList } from '../components/users-list.component';
 
-export const UsersScreen = ({ route }) => {
+export const UsersScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const { users, setUsers } = useContext(SettingsContext);
 
   const { token, _id, role } = useSelector((state) => state.user);
 
-  const { params } = route;
-  const { navigate } = params;
+  const { navigate } = navigation;
 
   const handleSearch = async (query) => {
     await filterAllUsersByQuery(token, _id, role, query)

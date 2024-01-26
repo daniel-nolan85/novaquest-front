@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { View, ActivityIndicator, TouchableOpacity } from 'react-native';
-import Toast from 'react-native-toast-message';
+import { View, ActivityIndicator } from 'react-native';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -21,26 +20,34 @@ import {
 } from '../styles/account.styles';
 import { checkBlockedList } from '../../../requests/auth';
 
-export const RegistrationForm = ({ handleGuestLogin, navigate }) => {
-  const [email, setEmail] = useState('jennjustice84@gmail.com');
+export const RegistrationForm = ({
+  handleGuestLogin,
+  navigate,
+  ip,
+  setShowBlockedToast,
+  setShowPasswordRegistrationToast,
+  setShowVerificationSuccessToast,
+  setShowVerificationErrorToast,
+  setShowEmailInUseToast,
+  setShowInvalidEmailRegistrationToast,
+  setShowErrorRegistrationToast,
+  setVerificationSuccessTitle,
+}) => {
+  const [email, setEmail] = useState('daniel@nolancode.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
 
   const checkBlocked = async () => {
     setIsLoading(true);
-    await checkBlockedList(email).then((res) => {
+    await checkBlockedList(ip, email).then((res) => {
       if (res.data.length === 0) {
         handleRegistration();
       } else {
-        Toast.show({
-          type: 'error',
-          text1: `Oops! It seems like this email address has been blocked.`,
-          text2:
-            'Please use a different email to log in or contact support for assistance.',
-          style: {
-            width: '100%',
-          },
-        });
+        setIsLoading(false);
+        setShowBlockedToast(true);
+        setTimeout(() => {
+          setShowBlockedToast(false);
+        }, 3000);
         return;
       }
     });
@@ -52,12 +59,10 @@ export const RegistrationForm = ({ handleGuestLogin, navigate }) => {
       !/\d/.test(password) ||
       !/[a-zA-Z]/.test(password)
     ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Registration Failed',
-        text2:
-          'Password must be at least 6 characters and contain letters and numbers.',
-      });
+      setShowPasswordRegistrationToast(true);
+      setTimeout(() => {
+        setShowPasswordRegistrationToast(false);
+      }, 3000);
       setIsLoading(false);
       return;
     }
@@ -67,56 +72,43 @@ export const RegistrationForm = ({ handleGuestLogin, navigate }) => {
       .then((userCredential) => {
         sendEmailVerification(userCredential.user)
           .then(() => {
+            setVerificationSuccessTitle(
+              `A verification email has been sent to ${email}`
+            );
+            setShowVerificationSuccessToast(true);
+            setTimeout(() => {
+              setShowVerificationSuccessToast(false);
+            }, 3000);
             setEmail('');
             setPassword('');
-            Toast.show({
-              type: 'success',
-              text1: `A verification email has been sent to ${email}`,
-              text2: 'Please click the link to complete your registration.',
-              style: {
-                width: '100%',
-              },
-            });
             setIsLoading(false);
           })
           .catch((error) => {
             const errorMessage = error.message;
-            Toast.show({
-              type: 'error',
-              text1: 'Error sending verification email:',
-              text2: errorMessage,
-            });
+            setShowVerificationErrorToast(true);
+            setTimeout(() => {
+              setShowVerificationErrorToast(false);
+            }, 3000);
             setIsLoading(false);
           });
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-
         if (errorCode === 'auth/email-already-in-use') {
-          Toast.show({
-            type: 'error',
-            text1: 'Registration Failed',
-            text2: 'The email address is already in use.',
-          });
+          setShowEmailInUseToast(true);
+          setTimeout(() => {
+            setShowEmailInUseToast(false);
+          }, 3000);
         } else if (errorCode === 'auth/invalid-email') {
-          Toast.show({
-            type: 'error',
-            text1: 'Registration Failed',
-            text2: 'Please enter a valid email.',
-          });
-        } else if (errorCode === 'auth/missing-password') {
-          Toast.show({
-            type: 'error',
-            text1: 'Registration Failed',
-            text2: 'Password must be at least 6 characters long.',
-          });
+          setShowInvalidEmailRegistrationToast(true);
+          setTimeout(() => {
+            setShowInvalidEmailRegistrationToast(false);
+          }, 3000);
         } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Registration Failed',
-            text2: errorMessage || 'An error occurred during registration.',
-          });
+          setShowErrorRegistrationToast(true);
+          setTimeout(() => {
+            setShowErrorRegistrationToast(false);
+          }, 3000);
         }
         setIsLoading(false);
       });

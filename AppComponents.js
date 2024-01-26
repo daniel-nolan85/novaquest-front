@@ -27,6 +27,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from './firebase';
 import io from 'socket.io-client';
 import { theme } from './src/infrastructure/theme';
+import { ToastContextProvider } from './src/services/toast/toast.context';
 import { AudioContextProvider } from './src/services/audio/audio.context';
 import { PlanetsContextProvider } from './src/services/planets/planets.context';
 import { ImagesContextProvider } from './src/services/images/images.context';
@@ -74,6 +75,7 @@ export const AppComponents = () => {
             payload: {
               token: idToken,
               _id: res.data._id,
+              ipAddresses: res.data.ipAddresses,
               email: res.data.email,
               role: res.data.role,
               noficationToken: res.data.noficationToken,
@@ -316,17 +318,19 @@ export const AppComponents = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <AudioContextProvider>
-            <SettingsContextProvider>
-              <GamesContextProvider>
-                <PlanetsContextProvider>
-                  <ImagesContextProvider>
-                    <Navigation />
-                  </ImagesContextProvider>
-                </PlanetsContextProvider>
-              </GamesContextProvider>
-            </SettingsContextProvider>
-          </AudioContextProvider>
+          <ToastContextProvider>
+            <AudioContextProvider>
+              <SettingsContextProvider>
+                <GamesContextProvider>
+                  <PlanetsContextProvider>
+                    <ImagesContextProvider>
+                      <Navigation />
+                    </ImagesContextProvider>
+                  </PlanetsContextProvider>
+                </GamesContextProvider>
+              </SettingsContextProvider>
+            </AudioContextProvider>
+          </ToastContextProvider>
         </ThemeProvider>
         <Toast />
         {randomFact ? (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useSelector } from 'react-redux';
@@ -19,6 +19,7 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import TrashWhite from '../../../../assets/svg/trash-white';
 import { deleteUser } from '../../../requests/admin';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const DeleteUserModal = ({
   visible,
@@ -29,7 +30,10 @@ export const DeleteUserModal = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { token, role } = useSelector((state) => state.user);
+  const { setDeleteUserTitle, setDeleteUserBody, setShowDeleteUserToast } =
+    useContext(ToastContext);
+
+  const { token } = useSelector((state) => state.user);
 
   const closeModal = () => {
     if (!isLoading) {
@@ -39,19 +43,19 @@ export const DeleteUserModal = ({
 
   const handleDeleteUser = async () => {
     setIsLoading(true);
-    await deleteUser(token, role, userId)
+    await deleteUser(token, userId)
       .then(async (res) => {
         setUsers((prevUsers) =>
           prevUsers.filter((prevUser) => prevUser._id !== userId)
         );
-        Toast.show({
-          type: 'success',
-          text1: `${res.data.rank} ${res.data.name} has been successfully deleted.`,
-          text2: `Farewell ${res.data.rank} ${res.data.name}.`,
-          style: {
-            width: '100%',
-          },
-        });
+        setDeleteUserTitle(
+          `${res.data.rank} ${res.data.name} has been successfully deleted.`
+        );
+        setDeleteUserBody(`Farewell ${res.data.rank} ${res.data.name}.`);
+        setShowDeleteUserToast(true);
+        setTimeout(() => {
+          setShowDeleteUserToast(false);
+        }, 3000);
         setIsLoading(true);
         setVisible(false);
         hideUserModal();

@@ -66,7 +66,7 @@ const DATA = [
     image:
       'https://res.cloudinary.com/dntxhyxtx/image/upload/v1705450501/apod_wjztgg.jpg',
     description:
-      'Embark on a daily cosmic journey with Astronomy Pic of the Day! Witness breathtaking space images accompanied by detailed descriptions. Feel free to explore the cosmos through time by selecting a date from the calendar and unveil the wonders of earlier Pics of the Day.',
+      'Embark on a daily cosmic journey with Astronomy Picture of the Day! Witness breathtaking space images accompanied by detailed descriptions. Feel free to explore the cosmos through time by selecting a date from the calendar and unveil the wonders of earlier Pics of the Day.',
   },
   {
     title: 'Asteroid Almanac',

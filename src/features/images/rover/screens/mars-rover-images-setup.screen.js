@@ -25,6 +25,7 @@ import { SolSelector } from '../components/sol-selector.component';
 import { EarthDateSelector } from '../components/earth-date-selector.component';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { ImagesContext } from '../../../../services/images/images.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 
 export const MarsRoverImagesSetupScreen = ({ navigation }) => {
@@ -56,6 +57,8 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
 
   const scrollViewRef = useRef(null);
 
+  const { playGameMusic, stopGameMusic } = useContext(AudioContext);
+
   useEffect(() => {
     if (shrinkBubble && scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true });
@@ -69,20 +72,18 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
-    setText1(
-      `Greetings ${user.rank} ${user.name}! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
-    );
-    setText3(
-      `Now, with your preferred time scale in mind, select the specific date you wish to explore. The cosmos awaits your chosen moment, ${user.rank} ${user.name}.`
-    );
-    setText4(
-      `${user.rank} ${user.name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, date, and temporal perspective with precision. Brace yourself, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, ${user.rank} ${user.name}, and may your exploration of the cosmos be nothing short of extraordinary!`
-    );
-  }, []);
-
-  useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
+      if (user.soundEffects) playGameMusic();
+      setText1(
+        `Greetings ${user.rank} ${user.name}! Are you ready to embark on a virtual journey to the Martian landscapes? Before you is a gallery of breathtaking images captured by the intrepid Mars Rovers. Choose your preferred rover to explore the Red Planet's wonders through the lens of these robotic pioneers. Each rover has its own unique perspective, so select wisely and uncover the mysteries of Mars at your fingertips!`
+      );
+      setText3(
+        `Now, with your preferred time scale in mind, select the specific date you wish to explore. The cosmos awaits your chosen moment, ${user.rank} ${user.name}.`
+      );
+      setText4(
+        `${user.rank} ${user.name}, your mission parameters are set, and the cosmic stage is primed. You've chosen your rover, date, and temporal perspective with precision. Brace yourself, for your journey to the Red Planet is about to commence. Initiating launch sequence now. Godspeed, ${user.rank} ${user.name}, and may your exploration of the cosmos be nothing short of extraordinary!`
+      );
     });
 
     const blurListener = addListener('blur', () => {
@@ -110,7 +111,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
       focusListener();
       blurListener();
     };
-  }, [navigation]);
+  }, [navigation, user?.soundEffects]);
 
   const { user } = useSelector((state) => ({ ...state }));
 
@@ -228,6 +229,7 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
     setDateTypeButtons(false);
     setDateButtons(false);
     setReadyButton(false);
+    stopGameMusic();
     navigate('MarsRoverImagesScreen');
   };
 

@@ -8,6 +8,7 @@ import { Text } from '../../../../components/typography/text.component';
 import { images } from '../../../../services/trivia/trivia.data.json';
 import { MessageBubble } from '../../../../components/message-bubble.component';
 import {
+  IconsWrapper,
   SetupSafeArea,
   SetupContainer,
   SpeechContainer,
@@ -17,33 +18,38 @@ import {
   OptionContainer,
   Option,
   OptionText,
-} from '../styles/planets-setup.styles';
-import { IconsWrapper } from '../../apod/styles/apod.styles';
+} from '../styles/apod.styles';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { AudioContext } from '../../../../services/audio/audio.context';
 
-export const PlanetsSetupScreen = ({ navigation }) => {
+export const ApodSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
+  const [okButton, setOkButton] = useState(false);
   const [readyButton, setReadyButton] = useState(false);
   const [typing, setTyping] = useState(true);
   const [showOk, setShowOk] = useState(true);
   const [text1, setText1] = useState();
+  const [text2, setText2] = useState();
   const [text1Key, setText1Key] = useState(0);
 
-  const { playGameMusic } = useContext(AudioContext);
+  const { playGameMusic, stopGameMusic } = useContext(AudioContext);
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
       if (soundEffects) playGameMusic();
       setText1(
-        `Welcome to the Planetarium, ${rank} ${name}! Embark on a celestial journey through our cosmic database, where you can explore and uncover fascinating facts, images, and knowledge about the planets in our solar system. From the majestic gas giants to the enigmatic dwarf planets, the Planetarium is your portal to the wonders of the celestial neighborhood. Enjoy your exploration!`
+        `${rank} ${name}, welcome to the Astronomy Picture of the Day (APOD) - your daily portal to the captivating wonders of the cosmos! Each day, you'll be treated to a stunning image captured from the depths of space, accompanied by a detailed description that unveils the secrets and stories behind these cosmic marvels.`
+      );
+      setText2(
+        `In addition, feel free to transcend time and explore the celestial archives by selecting a specific date. Dive into the vast cosmic history, and witness the breathtaking snapshots that have graced the cosmic stage on days gone by. Your journey through the cosmos awaits, ${rank} ${name},  as we unveil the mysteries and beauty of the universe together.`
       );
     });
 
     const blurListener = addListener('blur', () => {
       setCurrentStep(1);
+      setOkButton(false);
       setReadyButton(false);
       setTyping(true);
       setShowOk(true);
@@ -64,18 +70,35 @@ export const PlanetsSetupScreen = ({ navigation }) => {
   const skipText = () => {
     setShowOk(false);
     setTyping(false);
-    setReadyButton(true);
+    if (currentStep < 2) {
+      setOkButton(true);
+    } else {
+      setReadyButton(true);
+    }
   };
 
   const handleTypingEnd = () => {
     setShowOk(false);
     setTyping(true);
-    setReadyButton(true);
+    if (currentStep < 2) {
+      setOkButton(true);
+    } else {
+      setReadyButton(true);
+    }
+  };
+
+  const handleOkClick = () => {
+    setShowOk(true);
+    setCurrentStep(currentStep + 1);
+    setOkButton(false);
+    setTyping(true);
   };
 
   const handleReadyClick = () => {
     setCurrentStep(1);
-    navigate('PlanetsList');
+    setOkButton(false);
+    stopGameMusic();
+    navigate('ApodScreen');
   };
 
   const renderCurrentStep = () => {
@@ -91,6 +114,19 @@ export const PlanetsSetupScreen = ({ navigation }) => {
             style={{ fontFamily: 'Audiowide_400Regular' }}
           >
             {text1}
+          </TypeWriter>
+        );
+      case 2:
+        return !typing ? (
+          <Text variant='speech'>{text2}</Text>
+        ) : (
+          <TypeWriter
+            typing={typing ? 1 : 0}
+            maxDelay={textSpeed}
+            onTypingEnd={handleTypingEnd}
+            style={{ fontFamily: 'Audiowide_400Regular' }}
+          >
+            {text2}
           </TypeWriter>
         );
       default:
@@ -129,6 +165,11 @@ export const PlanetsSetupScreen = ({ navigation }) => {
               </SpeechBubble>
             </SpeechContainer>
             <OptionContainer>
+              {okButton && (
+                <Option onPress={handleOkClick}>
+                  <OptionText variant='body'>OK</OptionText>
+                </Option>
+              )}
               {readyButton && (
                 <Option onPress={handleReadyClick}>
                   <OptionText variant='body'>Let's Go!</OptionText>

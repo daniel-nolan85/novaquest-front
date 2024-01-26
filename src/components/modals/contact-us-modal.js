@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import styled from 'styled-components/native';
-import Toast from 'react-native-toast-message';
 import { TextInput } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +9,7 @@ import { SafeArea } from '../utils/safe-area.component';
 import { Text } from '../typography/text.component';
 import Close from '../../../assets/svg/close.svg';
 import { sendMessage } from '../../requests/auth';
+import { ToastContext } from '../../services/toast/toast.context';
 
 const ModalWrapper = styled.View`
   align-items: center;
@@ -104,6 +104,9 @@ export const ContactUsModal = ({ visible, setVisible }) => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const { setShowEmailSuccessToast, setShowEmailErrorToast } =
+    useContext(ToastContext);
+
   const { token, role, rank, name } = useSelector((state) => state.user);
 
   const closeModal = () => {
@@ -124,21 +127,17 @@ export const ContactUsModal = ({ visible, setVisible }) => {
         setSubject('');
         setMessage('');
         setVisible(false);
-        Toast.show({
-          type: 'success',
-          text1: `Transmission Successful, ${rank} ${name}!`,
-          text2:
-            'Your cosmic message has been sent across the stellar waves. Await our intergalactic response.',
-        });
+        setShowEmailSuccessToast(true);
+        setTimeout(() => {
+          setShowEmailSuccessToast(false);
+        }, 3000);
       })
       .catch((err) => {
         setIsLoading(false);
-        Toast.show({
-          type: 'error',
-          text1: `Error in the Cosmos, ${rank} ${name}!`,
-          text2:
-            'We encountered a glitch in the space-time email continuum. Please check your connection and try again.',
-        });
+        setShowEmailErrorToast(true);
+        setTimeout(() => {
+          setShowEmailErrorToast(false);
+        }, 3000);
         console.error(err);
       });
   };

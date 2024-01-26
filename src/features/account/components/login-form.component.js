@@ -15,7 +15,18 @@ import {
 import { ForgotPasswordModal } from './forgot-password-modal.component';
 import { checkBlockedList, createOrUpdateUser } from '../../../requests/auth';
 
-export const LoginForm = ({ handleGuestLogin }) => {
+export const LoginForm = ({
+  handleGuestLogin,
+  ip,
+  setShowBlockedToast,
+  setShowPasswordLoginToast,
+  setShowEmailNotVerifiedToast,
+  setShowInvalidCredentialsToast,
+  setShowInvalidEmailLoginToast,
+  setShowErrorLoginToast,
+  setShowResetPasswordToast,
+  setResetPasswordTitle,
+}) => {
   const [email, setEmail] = useState('daniel@nolancode.com');
   const [password, setPassword] = useState('Lennon1027');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,40 +34,52 @@ export const LoginForm = ({ handleGuestLogin }) => {
 
   const dispatch = useDispatch();
 
+  console.log({ ip });
+
   const checkBlocked = async () => {
     setIsLoading(true);
-    await checkBlockedList(email).then((res) => {
+    await checkBlockedList(ip, email).then((res) => {
       if (res.data.length === 0) {
         handleLogin();
       } else {
-        Toast.show({
-          type: 'error',
-          text1: `Oops! It seems like this email address has been blocked.`,
-          text2:
-            'Please use a different email to log in or contact support for assistance.',
-          style: {
-            width: '100%',
-          },
-        });
+        setIsLoading(false);
+        setShowBlockedToast(true);
+        setTimeout(() => {
+          setShowBlockedToast(false);
+        }, 3000);
         return;
       }
     });
   };
 
   const handleLogin = async () => {
+    if (
+      password.length < 6 ||
+      !/\d/.test(password) ||
+      !/[a-zA-Z]/.test(password)
+    ) {
+      setShowPasswordLoginToast(true);
+      setTimeout(() => {
+        setShowPasswordLoginToast(false);
+      }, 3000);
+      setIsLoading(false);
+      return;
+    }
+
     const auth = getAuth();
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         if (user.emailVerified) {
           const idToken = user.accessToken;
-          createOrUpdateUser(idToken)
+          createOrUpdateUser(idToken, ip)
             .then((res) => {
               dispatch({
                 type: 'LOGGED_IN_USER',
                 payload: {
                   token: idToken,
                   _id: res.data._id,
+                  ipAddresses: res.data.ipAddresses,
                   email: res.data.email,
                   role: res.data.role,
                   noficationToken: res.data.noficationToken,
@@ -140,44 +163,30 @@ export const LoginForm = ({ handleGuestLogin }) => {
             })
             .catch((err) => console.error(err));
         } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Email Not Verified',
-            text2:
-              'Please check your email and click the verification link to complete your registration.',
-          });
+          setShowEmailNotVerifiedToast(true);
+          setTimeout(() => {
+            setShowEmailNotVerifiedToast(false);
+          }, 3000);
         }
       })
       .catch((error) => {
         setIsLoading(false);
         const errorCode = error.code;
-        const errorMessage = error.message;
-
         if (errorCode === 'auth/invalid-email') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: 'Please enter a valid email.',
-          });
-        } else if (errorCode === 'auth/missing-password') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: 'Password must be at least 6 characters long.',
-          });
+          setShowInvalidEmailLoginToast(true);
+          setTimeout(() => {
+            setShowInvalidEmailLoginToast(false);
+          }, 3000);
         } else if (errorCode === 'auth/invalid-login-credentials') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2:
-              'No account found with the provided credentials. Please check your email and password.',
-          });
+          setShowInvalidCredentialsToast(true);
+          setTimeout(() => {
+            setShowInvalidCredentialsToast(false);
+          }, 3000);
         } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Login Failed',
-            text2: errorMessage || 'An error occurred during registration.',
-          });
+          setShowErrorLoginToast(true);
+          setTimeout(() => {
+            setShowErrorLoginToast(false);
+          }, 3000);
         }
       });
   };
@@ -215,7 +224,17 @@ export const LoginForm = ({ handleGuestLogin }) => {
           Forgot password?
         </Text>
       </TouchableOpacity>
-      <ForgotPasswordModal visible={visible} setVisible={setVisible} />
+      <ForgotPasswordModal
+        visible={visible}
+        setVisible={setVisible}
+        ip={ip}
+        setShowBlockedToast={setShowBlockedToast}
+        setShowInvalidCredentialsToast={setShowInvalidCredentialsToast}
+        setShowInvalidEmailLoginToast={setShowInvalidEmailLoginToast}
+        setShowErrorLoginToast={setShowErrorLoginToast}
+        setShowResetPasswordToast={setShowResetPasswordToast}
+        setResetPasswordTitle={setResetPasswordTitle}
+      />
       <OptionContainer>
         <Option onPress={handleGuestLogin} disabled={isLoading}>
           <GradientBackground>

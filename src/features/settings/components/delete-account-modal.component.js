@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
-import Toast from 'react-native-toast-message';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {
@@ -19,6 +18,7 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import TrashWhite from '../../../../assets/svg/trash-white';
 import { deleteAccount } from '../../../requests/auth';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const DeleteAccountModal = ({
   showDelete,
@@ -29,18 +29,18 @@ export const DeleteAccountModal = ({
 
   const { token, _id, role } = useSelector((state) => state.user);
 
+  const { setDeleteAccountBody, setShowDeleteAccountToast } =
+    useContext(ToastContext);
+
   const handleDeleteAccount = async () => {
     setIsLoading(true);
     await deleteAccount(token, _id, role)
       .then(async (res) => {
-        Toast.show({
-          type: 'success',
-          text1: `Your account has been successfully deleted.`,
-          text2: `Farewell ${res.data.rank} ${res.data.name}.`,
-          style: {
-            width: '100%',
-          },
-        });
+        setDeleteAccountBody(`Farewell ${res.data.rank} ${res.data.name}.`);
+        setShowDeleteAccountToast(true);
+        setTimeout(() => {
+          setShowDeleteAccountToast(false);
+        }, 3000);
         setIsLoading(true);
         closeDeleteModal();
         logout();

@@ -33,6 +33,7 @@ import { DeleteAccountModal } from '../components/delete-account-modal.component
 import { updateTextSpeed, updateSoundEffects } from '../../../requests/user';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { AudioContext } from '../../../services/audio/audio.context';
+import { ToastNotification } from '../../../components/animations/toast-notification.animation';
 
 export const SettingsScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +47,12 @@ export const SettingsScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [textSpeed, setTextSpeed] = useState('');
   const [soundEffects, setSoundEffects] = useState(null);
+  const [showPasswordFailedToast, setShowPasswordFailedToast] = useState(false);
+  const [showPasswordUpdateToast, setShowPasswordUpdateToast] = useState(false);
+  const [showRecentLoginToast, setShowRecentLoginToast] = useState(false);
+  const [showPasswordErrorToast, setShowPasswordErrorToast] = useState(false);
+  const [showTextSpeedToast, setShowTextSpeedToast] = useState(false);
+  const [showSoundEffectsToast, setShowSoundEffectsToast] = useState(false);
 
   const { Section } = List;
 
@@ -100,12 +107,10 @@ export const SettingsScreen = ({ navigation }) => {
       !/\d/.test(password) ||
       !/[a-zA-Z]/.test(password)
     ) {
-      Toast.show({
-        type: 'error',
-        text1: 'Password Update Failed',
-        text2:
-          'Password must be at least 6 characters and contain letters and numbers.',
-      });
+      setShowPasswordFailedToast(true);
+      setTimeout(() => {
+        setShowPasswordFailedToast(false);
+      }, 3000);
       return;
     }
     setIsLoading(true);
@@ -113,11 +118,10 @@ export const SettingsScreen = ({ navigation }) => {
     await updatePassword(fbUser, password)
       .then(() => {
         setIsLoading(false);
-        Toast.show({
-          type: 'success',
-          text1: 'Launch credentials updated successfully',
-          text2: `Your account is now fortified with a new password. Safe travels, Commander ${user.name}!`,
-        });
+        setShowPasswordUpdateToast(true);
+        setTimeout(() => {
+          setShowPasswordUpdateToast(false);
+        }, 3000);
         setShowPassword(false);
         setPassword('');
       })
@@ -129,17 +133,15 @@ export const SettingsScreen = ({ navigation }) => {
         setShowPassword(false);
         setPassword('');
         if (errorCode === 'auth/requires-recent-login') {
-          Toast.show({
-            type: 'error',
-            text1: 'Recent sign-in is required',
-            text2: 'Please sign in again to proceed with the password update.',
-          });
+          setShowRecentLoginToast(true);
+          setTimeout(() => {
+            setShowRecentLoginToast(false);
+          }, 3000);
         } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Update Failed',
-            text2: errorMessage || 'An error occurred during password update.',
-          });
+          setShowPasswordErrorToast(true);
+          setTimeout(() => {
+            setShowPasswordErrorToast(false);
+          }, 3000);
         }
       });
   };
@@ -164,12 +166,10 @@ export const SettingsScreen = ({ navigation }) => {
         console.error(err);
       });
     setShowTextSpeed(false);
-    Toast.show({
-      type: 'success',
-      text1: 'Your cosmic reading speed has been adjusted',
-      text2:
-        'Navigate through the cosmos at your own pace. Enjoy the journey, Commander!',
-    });
+    setShowTextSpeedToast(true);
+    setTimeout(() => {
+      setShowTextSpeedToast(false);
+    }, 3000);
   };
 
   const closeTextSpeedModal = () => {
@@ -192,12 +192,10 @@ export const SettingsScreen = ({ navigation }) => {
         console.error(err);
       });
     setShowSoundEffects(false);
-    Toast.show({
-      type: 'success',
-      text1: 'Your celestial soundtrack preferences have been tuned',
-      text2:
-        'Cosmic silence or surrounded by stellar sound, your adventure awaits.',
-    });
+    setShowSoundEffectsToast(true);
+    setTimeout(() => {
+      setShowSoundEffectsToast(false);
+    }, 3000);
   };
 
   const closeSoundEffectsModal = () => {
@@ -214,6 +212,48 @@ export const SettingsScreen = ({ navigation }) => {
       type: 'LOGOUT',
       payload: null,
     });
+  };
+
+  const passwordFailedToastContent = {
+    type: 'warning',
+    title: 'Password update failed',
+    body: 'Password must be at least 6 characters and contain letters and numbers.',
+  };
+
+  const passwordUpdateToastContent = {
+    type: 'success',
+    title: 'Launch credentials updated successfully',
+    body: `Your account is now fortified with a new password. Safe travels, ${user.rank} ${user.name}!`,
+  };
+
+  const recentLoginToastContent = {
+    type: 'warning',
+    title: 'Recent sign-in is required',
+    body: 'Please sign in again to proceed with the password update.',
+  };
+
+  const passwordErrorToastContent = {
+    type: 'error',
+    title: 'Password update failed',
+    body: `An error occurred during password update.`,
+  };
+
+  const textSpeedToastContent = {
+    type: 'success',
+    title: 'Your cosmic reading speed has been adjusted',
+    body: `Navigate through the cosmos at your own pace. Enjoy the journey, ${user.rank} ${user.name}!`,
+  };
+
+  const soundEffectsToastContent = {
+    type: 'success',
+    title: 'Your celestial soundtrack preferences have been tuned',
+    body: `Whether in cosmic silence or surrounded by stellar sound, your adventure awaits.`,
+  };
+
+  const deleteAccountToastContent = {
+    type: 'success',
+    title: 'Your account has been successfully deleted',
+    body: `Whether in cosmic silence or surrounded by stellar sound, your adventure awaits.`,
   };
 
   return (
@@ -332,6 +372,22 @@ export const SettingsScreen = ({ navigation }) => {
         closeDeleteModal={closeDeleteModal}
         logout={logout}
       />
+      {showPasswordFailedToast && (
+        <ToastNotification {...passwordFailedToastContent} />
+      )}
+      {showPasswordUpdateToast && (
+        <ToastNotification {...passwordUpdateToastContent} />
+      )}
+      {showRecentLoginToast && (
+        <ToastNotification {...recentLoginToastContent} />
+      )}
+      {showPasswordErrorToast && (
+        <ToastNotification {...passwordErrorToastContent} />
+      )}
+      {showTextSpeedToast && <ToastNotification {...textSpeedToastContent} />}
+      {showSoundEffectsToast && (
+        <ToastNotification {...soundEffectsToastContent} />
+      )}
     </SafeArea>
   );
 };

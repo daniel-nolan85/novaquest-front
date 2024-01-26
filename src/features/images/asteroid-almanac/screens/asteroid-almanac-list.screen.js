@@ -1,5 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { Modal, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { useSelector } from 'react-redux';
 import { DrawerActions } from '@react-navigation/native';
@@ -20,6 +21,7 @@ import {
   CloseIcon,
 } from '../../apod/styles/apod-modal.styles';
 import { ImagesContext } from '../../../../services/images/images.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 import { updateNumOfAsteroids } from '../../../../requests/user';
 
 const AsteroidList = styled.FlatList.attrs({
@@ -37,6 +39,13 @@ export const AsteroidAlmanacListScreen = ({ navigation }) => {
   );
 
   const { date, setDate } = useContext(ImagesContext);
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     fetchAsteroids();

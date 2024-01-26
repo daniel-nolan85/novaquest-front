@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import {
@@ -12,10 +12,21 @@ import {
 } from '../styles/users-list.styles';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { UserModal } from './user-modal.component';
+import { ToastContext } from '../../../services/toast/toast.context';
+import { ToastNotification } from '../../../components/animations/toast-notification.animation';
 
 export const UsersList = ({ navigate, users, setUsers }) => {
   const [currentUser, setCurrentUser] = useState({});
   const [visible, setVisible] = useState(false);
+
+  const { showDeleteUserToast, deleteUserTitle, deleteUserBody } =
+    useContext(ToastContext);
+
+  const deleteUserToastContent = {
+    type: 'success',
+    title: deleteUserTitle,
+    body: deleteUserBody,
+  };
 
   const renderItem = ({ item }) => (
     <UserWrapper key={item._id}>
@@ -52,11 +63,14 @@ export const UsersList = ({ navigate, users, setUsers }) => {
   };
 
   return (
-    <FlatList
-      data={users}
-      renderItem={renderItem}
-      keyExtractor={(item) => item._id}
-      showsVerticalScrollIndicator={false}
-    />
+    <>
+      <FlatList
+        data={users}
+        renderItem={renderItem}
+        keyExtractor={(item) => item._id}
+        showsVerticalScrollIndicator={false}
+      />
+      {showDeleteUserToast && <ToastNotification {...deleteUserToastContent} />}
+    </>
   );
 };

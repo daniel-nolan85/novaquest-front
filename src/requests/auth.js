@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
-export const checkBlockedList = async (email) => {
-  return await axios.get(`${API_BASE_URL}/check-blocked-list/${email}`);
+export const checkBlockedList = async (ip, email) => {
+  return await axios.post(`${API_BASE_URL}/check-blocked-list`, { ip, email });
 };
 
-export const createOrUpdateUser = async (authtoken) => {
+export const createOrUpdateUser = async (authtoken, ip) => {
   return await axios.post(
     `${API_BASE_URL}/create-or-update-user`,
-    {},
+    { ip },
     {
       headers: {
         authtoken,

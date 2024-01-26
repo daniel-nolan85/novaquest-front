@@ -1,11 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
+import { useFocusEffect } from '@react-navigation/native';
 import { DrawerActions } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import Satellite from '../../../../../assets/svg/satellite.svg';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { ISSInfoModal } from '../components/iss-info-modal.component';
 import { ISSTrackView, MenuIcon } from '../styles/iss-tracker.styles';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const ISSTrackerScreen = ({ navigation }) => {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
@@ -25,6 +27,14 @@ export const ISSTrackerScreen = ({ navigation }) => {
   const previousRegionRef = useRef(null);
 
   const { dispatch } = navigation;
+
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   useEffect(() => {
     if (!isMapMoving) {

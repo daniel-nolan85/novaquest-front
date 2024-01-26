@@ -1,9 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
 import styled from 'styled-components/native';
+import { useFocusEffect } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import { PlanetInfoCard } from '../components/planet-info-card.component';
 import { Spacer } from '../../../../components/spacer/spacer.component';
 import { PlanetsContext } from '../../../../services/planets/planets.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 import { Text } from '../../../../components/typography/text.component';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { Search } from '../components/search.component';
@@ -15,6 +17,14 @@ const PlanetList = styled.FlatList.attrs({
 
 export const PlanetsScreen = ({ navigation }) => {
   const { planets, isLoading, error } = useContext(PlanetsContext);
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
+
   const { navigate } = navigation;
   return (
     <SafeArea>

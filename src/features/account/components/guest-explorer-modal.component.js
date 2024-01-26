@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from 'react-native';
+import { Modal, ActivityIndicator } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { Text } from '../../../components/typography/text.component';
@@ -13,21 +13,42 @@ import {
   OptionText,
 } from '../styles/forgot-password-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
-import { createGuestUser } from '../../../requests/auth';
+import { checkBlockedList, createGuestUser } from '../../../requests/auth';
 
-export const GuestExplorerModal = ({ visible, setVisible }) => {
+export const GuestExplorerModal = ({
+  visible,
+  setVisible,
+  ip,
+  setShowBlockedToast,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleSubmit = async () => {
+  const checkBlocked = async () => {
     setIsLoading(true);
+    await checkBlockedList(ip).then((res) => {
+      if (res.data.length === 0) {
+        handleSubmit();
+      } else {
+        setIsLoading(false);
+        setShowBlockedToast(true);
+        setTimeout(() => {
+          setShowBlockedToast(false);
+        }, 3000);
+        return;
+      }
+    });
+  };
+
+  const handleSubmit = async () => {
     await createGuestUser('guest')
       .then((res) => {
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {
             _id: res.data._id,
+            ipAddresses: res.data.ipAddresses,
             role: res.data.role,
             notifications: res.data.notifications,
             newNotificationsCount: res.data.newNotificationsCount,
@@ -127,9 +148,15 @@ export const GuestExplorerModal = ({ visible, setVisible }) => {
               a Guest Explorer and let the cosmic adventure begin!
             </Text>
             <OptionContainer>
-              <Option onPress={handleSubmit}>
+              <Option onPress={checkBlocked}>
                 <GradientBackground>
-                  <OptionText variant='body'>Launch into the Cosmos</OptionText>
+                  {isLoading ? (
+                    <ActivityIndicator size='small' color='#fff' />
+                  ) : (
+                    <OptionText variant='body'>
+                      Launch into the Cosmos
+                    </OptionText>
+                  )}
                 </GradientBackground>
               </Option>
             </OptionContainer>

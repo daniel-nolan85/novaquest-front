@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ImageBackground, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { DrawerActions } from '@react-navigation/native';
@@ -20,6 +20,7 @@ import {
 } from '../styles/iss-tracker-setup.styles';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
+import { AudioContext } from '../../../../services/audio/audio.context';
 
 export const ISSTrackerSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,15 +31,15 @@ export const ISSTrackerSetupScreen = ({ navigation }) => {
   const [text1, setText1] = useState();
   const [text1Key, setText1Key] = useState(0);
 
-  useEffect(() => {
-    setText1(
-      `${rank} ${name}, prepare for an awe-inspiring experience with ISS Tracker! Explore the live location of the International Space Station (ISS) as it orbits our planet. Witness its journey against the backdrop of Earth's orbit, and marvel at the ISS's current velocity. Embark on a cosmic adventure and stay connected with the ISS in real-time. Enjoy the journey ${rank} ${name}!`
-    );
-  }, []);
+  const { playGameMusic } = useContext(AudioContext);
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       setText1Key((prevKey) => prevKey + 1);
+      if (soundEffects) playGameMusic();
+      setText1(
+        `${rank} ${name}, prepare for an awe-inspiring experience with ISS Tracker! Explore the live location of the International Space Station (ISS) as it orbits our planet. Witness its journey against the backdrop of Earth's orbit, and marvel at the ISS's current velocity. Embark on a cosmic adventure and stay connected with the ISS in real-time. Enjoy the journey ${rank} ${name}!`
+      );
     });
 
     const blurListener = addListener('blur', () => {
@@ -52,9 +53,11 @@ export const ISSTrackerSetupScreen = ({ navigation }) => {
       focusListener();
       blurListener();
     };
-  }, [navigation]);
+  }, [navigation, soundEffects]);
 
-  const { rank, name, textSpeed } = useSelector((state) => state.user);
+  const { rank, name, textSpeed, soundEffects } = useSelector(
+    (state) => state.user
+  );
 
   const { navigate, dispatch, addListener } = navigation;
 

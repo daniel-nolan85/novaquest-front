@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import styled from 'styled-components/native';
+import { useState, useEffect, useContext, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { NASA_API_KEY } from '@env';
@@ -10,6 +10,7 @@ import { SafeArea } from '../../../../components/utils/safe-area.component';
 import Filters from '../../../../../assets/svg/filters.svg';
 import { IconsWrapper } from '../../apod/styles/apod.styles';
 import { ImagesContext } from '../../../../services/images/images.context';
+import { AudioContext } from '../../../../services/audio/audio.context';
 import { AmendParamsModal } from '../components/amend-params-modal.component';
 import { LoadingSpinner } from '../../../../../assets/loading-spinner';
 import { MarsRoverImageGallery } from '../components/mars-rover-image-gallery.component';
@@ -28,6 +29,14 @@ export const MarsRoverImagesScreen = ({ navigation }) => {
   const reduxDispatch = useDispatch();
 
   const { navigate, dispatch } = navigation;
+
+  const { stopGameMusic } = useContext(AudioContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      stopGameMusic();
+    }, [])
+  );
 
   const roverCameras = {
     curiosity: [

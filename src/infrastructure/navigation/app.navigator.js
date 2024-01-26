@@ -19,6 +19,8 @@ import GameController from '../../../assets/svg/game-controller.svg';
 import GameControllerInactive from '../../../assets/svg/game-controller-inactive.svg';
 import Settings from '../../../assets/svg/settings.svg';
 import SettingsInactive from '../../../assets/svg/settings-inactive.svg';
+import { ToastContext } from '../../services/toast/toast.context';
+import { ToastNotification } from '../../components/animations/toast-notification.animation';
 
 const Stack = createStackNavigator();
 const { Navigator: StackNavigator, Screen: StackScreen } = Stack;
@@ -26,6 +28,8 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 export const AppNavigator = () => {
   const { renderDays, setRenderDays } = useContext(ImagesContext);
+  const { showEmailSuccessToast, showEmailErrorToast } =
+    useContext(ToastContext);
 
   const {
     daysInSpace,
@@ -38,6 +42,8 @@ export const AppNavigator = () => {
     achievedInterstellarVoyager,
     achievedStellarCenturion,
     achievedVoyagerExtraordinaire,
+    rank,
+    name,
   } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -54,6 +60,18 @@ export const AppNavigator = () => {
     )
       setRenderDays(true);
   }, []);
+
+  const emailSuccessToastContent = {
+    type: 'success',
+    title: `Transmission Successful, ${rank} ${name}!`,
+    body: 'Your cosmic message has been sent across the stellar waves. Await our intergalactic response.',
+  };
+
+  const emailErrorToastContent = {
+    type: 'error',
+    title: `Error in the Cosmos, ${rank} ${name}!`,
+    body: 'We encountered a glitch in the space-time email continuum. Please check your connection and try again.',
+  };
 
   return (
     <>
@@ -142,6 +160,10 @@ export const AppNavigator = () => {
           />
         </Navigator>
       )}
+      {showEmailSuccessToast && (
+        <ToastNotification {...emailSuccessToastContent} />
+      )}
+      {showEmailErrorToast && <ToastNotification {...emailErrorToastContent} />}
     </>
   );
 };

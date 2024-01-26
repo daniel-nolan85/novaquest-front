@@ -3,7 +3,6 @@ import { ImageBackground, KeyboardAvoidingView } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import Toast from 'react-native-toast-message';
 import * as Notifications from 'expo-notifications';
 import { Text } from '../../../components/typography/text.component';
 import { images } from '../../../services/trivia/trivia.data.json';
@@ -24,6 +23,8 @@ import { updateUserName } from '../../../requests/user';
 import { storeNotifToken } from '../../../requests/auth';
 import { LoadingSpinner } from '../../../../assets/loading-spinner';
 import { AudioContext } from '../../../services/audio/audio.context';
+import { ToastNotification } from '../../../components/animations/toast-notification.animation';
+import { PROJECT_ID } from '@env';
 
 export const WelcomeSetupScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +54,12 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     `As you commence this cosmic journey, would you like to receive celestial signals for each interaction in the vast cosmos? Enable notifications to stay informed about likes, comments, and new posts from your alliances. Stay connected with the cosmic community, as we share the wonders of the universe with you.`
   );
   const [text6, setText6] = useState('');
+  const [showNameEntryToast, setShowNameEntryToast] = useState(false);
+  const [showGuestMemberToast, setShowGuestMemberToast] = useState(false);
+  const [showSignalsAcceptedToast, setShowSignalsAcceptedToast] =
+    useState(false);
+  const [showSignalsRejectedToast, setShowSignalsRejectedToast] =
+    useState(false);
 
   const { playGameMusic, stopGameMusic } = useContext(AudioContext);
 
@@ -114,11 +121,10 @@ export const WelcomeSetupScreen = ({ navigation }) => {
 
   const handleNameEntryClick = () => {
     if (!userName) {
-      Toast.show({
-        type: 'error',
-        text1: `Commander, it seems we're missing a crucial piece of information!`,
-        text2: `Please enter your name before setting course on this cosmic adventure.`,
-      });
+      setShowNameEntryToast(true);
+      setTimeout(() => {
+        setShowNameEntryToast(false);
+      }, 3000);
       return;
     }
     updateUserName(user.token, user._id, user.role, userName)
@@ -142,22 +148,19 @@ export const WelcomeSetupScreen = ({ navigation }) => {
   const handleNotificationsEntryClick = async (choice) => {
     if (choice === 'yes') {
       if (user.role === 'guest') {
-        Toast.show({
-          type: 'error',
-          text1: `Signal permissions are exclusive to registered commanders.`,
-          text2: `Register to unlock the full cosmic experience and receive stellar updates!`,
-        });
+        setShowGuestMemberToast(true);
+        setTimeout(() => {
+          setShowGuestMemberToast(false);
+        }, 3000);
       } else {
         const { status } = await Notifications.requestPermissionsAsync();
         if (status === 'granted') {
-          Toast.show({
-            type: 'success',
-            text1: `Signals enabled!`,
-            text2: `Stay tuned for cosmic updates and interactions.`,
-          });
-          const projectId = '5f022167-f010-423e-8f6f-eee7821ba543';
+          setShowSignalsAcceptedToast(true);
+          setTimeout(() => {
+            setShowSignalsAcceptedToast(false);
+          }, 3000);
           const token = (
-            await Notifications.getExpoPushTokenAsync({ projectId })
+            await Notifications.getExpoPushTokenAsync({ projectId: PROJECT_ID })
           ).data;
           await storeNotifToken(user.token, user._id, user.role, token)
             .then((res) => {
@@ -173,11 +176,10 @@ export const WelcomeSetupScreen = ({ navigation }) => {
         }
       }
     } else {
-      Toast.show({
-        type: 'error',
-        text1: `No signals will be sent for now.`,
-        text2: `Explore the cosmos at your own pace.`,
-      });
+      setShowSignalsRejectedToast(true);
+      setTimeout(() => {
+        setShowSignalsRejectedToast(false);
+      }, 3000);
     }
     setShowOk(true);
     setNotificationsEntry(false);
@@ -209,6 +211,30 @@ export const WelcomeSetupScreen = ({ navigation }) => {
     setOkButton(false);
     stopGameMusic();
     navigate('WelcomeComplete');
+  };
+
+  const nameEntryToastContent = {
+    type: 'warning',
+    title: `Commander, it seems we're missing a crucial piece of information!`,
+    body: `Please enter your name before setting course on this cosmic adventure.`,
+  };
+
+  const guestMemberToastContent = {
+    type: 'info',
+    title: `Signal permissions are exclusive to registered Commanders.`,
+    body: `Register to unlock the full cosmic experience and receive stellar updates!`,
+  };
+
+  const signalsAcceptedToastContent = {
+    type: 'success',
+    title: 'Signals enabled!',
+    body: 'Stay tuned for cosmic updates and interactions.',
+  };
+
+  const signalsRejectedToastContent = {
+    type: 'info',
+    title: 'No signals will be sent for now.',
+    body: 'Explore the cosmos at your own pace.',
   };
 
   const renderCurrentStep = () => {
@@ -374,6 +400,18 @@ export const WelcomeSetupScreen = ({ navigation }) => {
               </OptionContainer>
             </SetupContainer>
           </KeyboardAvoidingView>
+          {showNameEntryToast && (
+            <ToastNotification {...nameEntryToastContent} />
+          )}
+          {showGuestMemberToast && (
+            <ToastNotification {...guestMemberToastContent} />
+          )}
+          {showSignalsAcceptedToast && (
+            <ToastNotification {...signalsAcceptedToastContent} />
+          )}
+          {showSignalsRejectedToast && (
+            <ToastNotification {...signalsRejectedToastContent} />
+          )}
         </SetupSafeArea>
       )}
     </ImageBackground>
