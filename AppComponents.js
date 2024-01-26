@@ -21,7 +21,6 @@ import {
   useFonts as useQuestrial,
   Questrial_400Regular,
 } from '@expo-google-fonts/questrial';
-import Toast from 'react-native-toast-message';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from './firebase';
@@ -332,7 +331,6 @@ export const AppComponents = () => {
             </AudioContextProvider>
           </ToastContextProvider>
         </ThemeProvider>
-        <Toast />
         {randomFact ? (
           <FactModal
             showFact={showFact}

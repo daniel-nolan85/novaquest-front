@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import Toast from 'react-native-toast-message';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -21,6 +20,7 @@ import RevokeWhite from '../../../../assets/svg/revoke-white.svg';
 import CloseWhite from '../../../../assets/svg/close-white.svg';
 import { unfollowMember } from '../../../requests/user';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const RevokeModal = ({
   visible,
@@ -29,25 +29,27 @@ export const RevokeModal = ({
   profileImage,
   name,
   rank,
+  setShowRevokeToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
+  const { setRevokeTitle } = useContext(ToastContext);
+
   const revokeAlliance = async () => {
     setIsLoading(true);
     await unfollowMember(user.token, user._id, user.role, userId)
       .then((res) => {
         setVisible(false);
-        Toast.show({
-          type: 'error',
-          text1: `Your cosmic connection with ${rank} ${name} has been severed.`,
-          text2: 'You will no longer receive signals about their posts.',
-          style: {
-            width: '100%',
-          },
-        });
+        setRevokeTitle(
+          `Your cosmic connection with ${rank} ${name} has been severed.`
+        );
+        setShowRevokeToast(true);
+        setTimeout(() => {
+          setShowRevokeToast(false);
+        }, 3000);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

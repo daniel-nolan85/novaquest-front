@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
-import Toast from 'react-native-toast-message';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {

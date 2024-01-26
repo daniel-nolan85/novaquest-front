@@ -8,7 +8,6 @@ import {
   TextInput,
 } from 'react-native';
 import { useSelector } from 'react-redux';
-import Toast from 'react-native-toast-message';
 import * as ImagePicker from 'expo-image-picker';
 import * as VideoThumbnails from 'expo-video-thumbnails';
 import moment from 'moment';
@@ -44,7 +43,13 @@ import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
 import { editPostWithMedia, editPost } from '../../../requests/post';
 
-export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
+export const EditPostModal = ({
+  visible,
+  setVisible,
+  post,
+  newsFeed,
+  setShowEditPostToast,
+}) => {
   const [displayedMedia, setDisplayedMedia] = useState([]);
   const [removedPublicIds, setRemovedPublicIds] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState([]);
@@ -189,15 +194,10 @@ export const EditPostModal = ({ visible, setVisible, post, newsFeed }) => {
       setSelectedMedia([]);
       setDisplayedMedia([]);
       setRemovedPublicIds([]);
-      Toast.show({
-        type: 'success',
-        text1: 'Your cosmic moment has been updated successfully.',
-        text2:
-          'Your cosmic insight now shines even brighter! Continue sharing your space adventures with the universe.',
-        style: {
-          width: '100%',
-        },
-      });
+      setShowEditPostToast(true);
+      setTimeout(() => {
+        setShowEditPostToast(false);
+      }, 3000);
     } catch (error) {
       setIsLoading(false);
       console.error('Error in save function:', error);

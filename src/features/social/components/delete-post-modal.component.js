@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
-import Toast from 'react-native-toast-message';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { Text } from '../../../components/typography/text.component';
@@ -26,6 +25,7 @@ export const DeletePostModal = ({
   post,
   setPosts,
   hidePostModal,
+  setShowDeletePostToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,15 +44,10 @@ export const DeletePostModal = ({
         setPosts((prevPosts) =>
           prevPosts.filter((prevPost) => prevPost._id !== post._id)
         );
-        Toast.show({
-          type: 'success',
-          text1: 'Your cosmic moment has been cleared from the stars.',
-          text2:
-            'Feel free to share more celestial moments on your space journey!',
-          style: {
-            width: '100%',
-          },
-        });
+        setShowDeletePostToast(true);
+        setTimeout(() => {
+          setShowDeletePostToast(false);
+        }, 3000);
         setIsLoading(false);
         setVisible(false);
         hidePostModal && hidePostModal();

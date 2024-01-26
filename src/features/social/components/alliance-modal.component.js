@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import Toast from 'react-native-toast-message';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -21,6 +20,7 @@ import AllianceWhite from '../../../../assets/svg/alliance-white.svg';
 import CloseWhite from '../../../../assets/svg/close-white.svg';
 import { followMember } from '../../../requests/user';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const AllianceModal = ({
   visible,
@@ -29,25 +29,27 @@ export const AllianceModal = ({
   profileImage,
   name,
   rank,
+  setShowAllianceToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
+  const { setAllianceTitle } = useContext(ToastContext);
+
   const formAlliance = async () => {
     setIsLoading(true);
     await followMember(user.token, user._id, user.role, userId)
       .then((res) => {
         setVisible(false);
-        Toast.show({
-          type: 'success',
-          text1: `You've successfully formed an alliance with ${rank} ${name}.`,
-          text2: 'Prepare to explore the cosmos together!',
-          style: {
-            width: '100%',
-          },
-        });
+        setAllianceTitle(
+          `You've successfully formed an alliance with ${rank} ${name}.`
+        );
+        setShowAllianceToast(true);
+        setTimeout(() => {
+          setShowAllianceToast(false);
+        }, 3000);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

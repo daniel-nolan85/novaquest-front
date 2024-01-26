@@ -10,6 +10,9 @@ export const ToastContextProvider = ({ children }) => {
   const [showDeleteUserToast, setShowDeleteUserToast] = useState(false);
   const [deleteUserTitle, setDeleteUserTitle] = useState('');
   const [deleteUserBody, setDeleteUserBody] = useState('');
+  const [blockUserBody, setBlockUserBody] = useState('');
+  const [allianceTitle, setAllianceTitle] = useState('');
+  const [revokeTitle, setRevokeTitle] = useState('');
 
   return (
     <ToastContext.Provider
@@ -28,6 +31,12 @@ export const ToastContextProvider = ({ children }) => {
         setDeleteUserTitle,
         deleteUserBody,
         setDeleteUserBody,
+        blockUserBody,
+        setBlockUserBody,
+        allianceTitle,
+        setAllianceTitle,
+        revokeTitle,
+        setRevokeTitle,
       }}
     >
       {children}

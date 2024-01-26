@@ -3,7 +3,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Image } from 'react-native';
 import { List } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import Toast from 'react-native-toast-message';
 import { getAuth, signOut, updatePassword } from 'firebase/auth';
 import { app } from '../../../../firebase';
 import { SafeArea } from '../../../components/utils/safe-area.component';

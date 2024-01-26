@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Text } from '../../../components/typography/text.component';
 import {
@@ -21,6 +21,7 @@ import { AllianceModal } from './alliance-modal.component';
 import { RevokeModal } from './revoke-modal.component';
 import { RepairModal } from './repair-modal.component';
 import { awardAchievement } from '../../../requests/user';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const ProfileCard = ({
   userId,
@@ -34,8 +35,10 @@ export const ProfileCard = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const [firstProfileImage, setFirstProfileImage] = useState(false);
+  const [showAllianceToast, setShowAllianceToast] = useState(false);
+  const [showRevokeToast, setShowRevokeToast] = useState(false);
 
-  console.log({ userRole });
+  const { allianceTitle, revokeTitle } = useContext(ToastContext);
 
   useEffect(() => {
     if (!visible && firstProfileImage) {
@@ -50,6 +53,18 @@ export const ProfileCard = ({
   }, [visible, firstProfileImage]);
 
   const { token, _id, role, allies, xp } = useSelector((state) => state.user);
+
+  const allianceToastContent = {
+    type: 'success',
+    title: allianceTitle,
+    body: 'Prepare to explore the cosmos together!',
+  };
+
+  const revokeToastContent = {
+    type: 'success',
+    title: revokeTitle,
+    body: 'You will no longer receive signals about their posts.',
+  };
 
   return (
     <ProfileCardWrapper>
@@ -98,6 +113,7 @@ export const ProfileCard = ({
           profileImage={profileImage}
           name={name}
           rank={rank}
+          setShowAllianceToast={setShowAllianceToast}
         />
       ) : _id !== userId && allies.includes(userId) ? (
         <RevokeModal
@@ -107,6 +123,7 @@ export const ProfileCard = ({
           profileImage={profileImage}
           name={name}
           rank={rank}
+          setShowRevokeToast={setShowRevokeToast}
         />
       ) : (
         <RepairModal
@@ -115,6 +132,8 @@ export const ProfileCard = ({
           setFirstProfileImage={setFirstProfileImage}
         />
       )}
+      {showAllianceToast && <ToastNotification {...allianceToastContent} />}
+      {showRevokeToast && <ToastNotification {...revokeToastContent} />}
     </ProfileCardWrapper>
   );
 };

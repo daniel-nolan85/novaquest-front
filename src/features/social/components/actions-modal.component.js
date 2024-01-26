@@ -1,6 +1,6 @@
+import { useContext } from 'react';
 import { Modal } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import Toast, { BaseToast } from 'react-native-toast-message';
+import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {
   ModalWrapper,
@@ -19,6 +19,7 @@ import FlagWhite from '../../../../assets/svg/flag-white.svg';
 import BlockWhite from '../../../../assets/svg/block-white.svg';
 import { blockMember } from '../../../requests/user';
 import { reportContent } from '../../../requests/post';
+import { ToastContext } from '../../../services/toast/toast.context';
 
 export const ActionsModal = ({
   visible,
@@ -27,9 +28,12 @@ export const ActionsModal = ({
   newsFeed,
   editPost,
   deletePost,
+  setShowReportPostToast,
+  setShowBlockUserToast,
 }) => {
   const { user } = useSelector((state) => ({ ...state }));
-  const dispatch = useDispatch();
+
+  const { setBlockUserBody } = useContext(ToastContext);
 
   const closeModal = () => {
     setVisible(false);
@@ -38,12 +42,10 @@ export const ActionsModal = ({
   const reportPost = async (postId) => {
     await reportContent(user.token, user.role, postId)
       .then((res) => {
-        Toast.show({
-          type: 'error',
-          text1: `Cosmic Alert!`,
-          text2: `Post Reported and Forwarded to Cosmic Security. Stay Vigilant!`,
-        });
-        showReportToast();
+        setShowReportPostToast(true);
+        setTimeout(() => {
+          setShowReportPostToast(false);
+        }, 3000);
         setVisible(false);
       })
       .catch((err) => console.error(err));
@@ -52,21 +54,13 @@ export const ActionsModal = ({
   const blockUser = async (u) => {
     await blockMember(user.token, user._id, user.role, u._id)
       .then((res) => {
-        dispatch({
-          type: 'LOGGED_IN_USER',
-          payload: {
-            ...user,
-            blockeds: res.data.blockeds,
-          },
-        });
-        Toast.show({
-          type: 'success',
-          text1: `Your cosmic journey just got more tailored.`,
-          text2: `You've successfully blocked posts from ${u.rank} ${u.name}.`,
-          style: {
-            width: '100%',
-          },
-        });
+        setBlockUserBody(
+          `You've successfully blocked posts from ${u.rank} ${u.name}.`
+        );
+        setShowBlockUserToast(true);
+        setTimeout(() => {
+          setShowBlockUserToast(false);
+        }, 3000);
         newsFeed();
         setVisible(false);
       })

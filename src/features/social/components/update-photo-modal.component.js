@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { Modal, ActivityIndicator } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import Toast from 'react-native-toast-message';
+import { Modal } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeArea } from '../../../components/utils/safe-area.component';
 import {
@@ -14,12 +11,10 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import CameraSquare from '../../../../assets/svg/camera-square.svg';
 import Gallery from '../../../../assets/svg/gallery.svg';
-import Trash from '../../../../assets/svg/trash.svg';
 
 export const UpdatePhotoModal = ({
   showUpdatePhoto,
   setShowUpdatePhoto,
-  newProfileImage,
   setNewProfileImage,
   setImageIsLoading,
 }) => {
@@ -84,16 +79,6 @@ export const UpdatePhotoModal = ({
     }
   };
 
-  // const removeImage = async () => {
-  //   try {
-  //     saveImage(null);
-  //   } catch ({ message }) {
-  //     console.error(message);
-  //     alert(`Error removing image: ${message}`);
-  //     setShowUpdatePhoto(false);
-  //   }
-  // };
-
   const saveImage = async (image) => {
     try {
       setNewProfileImage(image);
@@ -120,9 +105,6 @@ export const UpdatePhotoModal = ({
               <IconWrapper onPress={uploadGalleryImage}>
                 <Gallery width={48} height={48} />
               </IconWrapper>
-              {/* <IconWrapper onPress={removeImage}>
-                <Trash width={48} height={48} />
-              </IconWrapper> */}
             </IconsContainer>
           </ModalView>
         </ModalWrapper>
