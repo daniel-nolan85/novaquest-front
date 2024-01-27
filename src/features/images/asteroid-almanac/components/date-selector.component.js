@@ -1,10 +1,10 @@
 import { View } from 'react-native';
 import DatePicker, { getToday } from 'react-native-modern-datepicker';
 
-export const DateSelector = ({ setDate }) => {
+export const DateSelector = ({ handleDateClick }) => {
   const handleDateChange = (d) => {
     const selectedDate = d.replace(/\//g, '-');
-    setDate(selectedDate);
+    handleDateClick(selectedDate);
   };
 
   return (

@@ -9,13 +9,12 @@ export const AsteroidCard = styled.View`
 `;
 
 export const AsteroidHeaderCard = styled.View`
-  padding: ${(props) => props.theme.space[3]};
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const AsteroidDetailsCard = styled.View`
-  padding: ${(props) => props.theme.space[3]};
+  padding-top: ${(props) => props.theme.space[3]};
   border-radius: 0 0 12px 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin-top: -20px;

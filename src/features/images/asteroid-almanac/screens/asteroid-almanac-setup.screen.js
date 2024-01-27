@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -36,8 +36,23 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
   const [text1, setText1] = useState();
   const [text2, setText2] = useState();
   const [text1Key, setText1Key] = useState(0);
+  const [shrinkBubble, setShrinkBubble] = useState(false);
+
+  const scrollViewRef = useRef(null);
 
   const { playGameMusic, stopGameMusic } = useContext(AudioContext);
+
+  useEffect(() => {
+    if (shrinkBubble && scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  }, [shrinkBubble]);
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    if (shrinkBubble && scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  };
 
   useEffect(() => {
     const focusListener = addListener('focus', () => {
@@ -47,7 +62,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
         `${rank} ${name}, prepare for an exhilarating venture into the cosmic realm of 'Asteroid Almanac,' where the mysteries of our celestial neighbors come to life. Brace yourself for an adventure beyond the stars as you enter a specific date below. We will then unveil a curated collection of information on all the asteroids gracefully orbiting Earth within the chosen date range and the following 7 days.`
       );
       setText2(
-        `Be vigilant, ${rank} ${name}. Some of these celestial wanderers may be potentially hazardous, heightening the stakes in your cosmic exploration. Whether you're a seasoned stargazer or a commanding astronomer, 'Asteroid Almanac' offers a captivating journey through the cosmos, providing insights into both the wonders and potential challenges posed by these cosmic travelers. The universe awaits your exploration in this enthralling section dedicated to the asteroids of our cosmic neighborhood.`
+        `Be vigilant, ${rank} ${name}. Some of these celestial wanderers may be potentially hazardous, heightening the stakes in your cosmic exploration. Whether you're a seasoned stargazer or a commanding astronomer, 'Asteroid Almanac' offers a captivating journey through the cosmos, providing insights into both the wonders and potential challenges posed by these cosmic travelers.`
       );
     });
 
@@ -59,6 +74,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
       setReadyTyping(false);
       setShowDate(false);
       setShowReady(false);
+      setShrinkBubble(false);
     });
 
     return () => {
@@ -79,6 +95,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
     setShowDate(false);
     setDateTyping(false);
     setDateButtons(true);
+    setShrinkBubble(true);
   };
 
   const skipReadyText = () => {
@@ -92,6 +109,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
     setShowDate(false);
     setDateButtons(true);
     setReadyTyping(true);
+    setShrinkBubble(true);
   };
 
   const handleTypingEndReady = () => {
@@ -106,6 +124,7 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
     setCurrentStep(currentStep + 1);
     setDateButtons(false);
     setReadyTyping(true);
+    setShrinkBubble(false);
   };
 
   const handleReadyClick = () => {
@@ -171,43 +190,44 @@ export const AsteroidAlmanacSetupScreen = ({ navigation }) => {
               <Ionicons name='md-menu' size={30} color='#009999' />
             </TouchableOpacity>
           </IconsWrapper>
-          <ScrollView>
-            <SetupContainer>
-              <SpeechContainer>
-                <ImageContainer>
-                  <Astronaut source={{ uri: images[0] }} />
-                </ImageContainer>
-                <SpeechBubble>
-                  <MessageBubble mine text={renderCurrentStep()} />
-                </SpeechBubble>
-              </SpeechContainer>
-              <OptionContainer>
-                {dateButtons && (
-                  <>
-                    <DateSelector setDate={setDate} />
-                    <Option onPress={() => handleDateClick(date)}>
-                      <OptionText variant='body'>Ok</OptionText>
-                    </Option>
-                  </>
-                )}
-                {readyButton && (
-                  <Option onPress={handleReadyClick}>
-                    <OptionText variant='body'>Let's Go!</OptionText>
-                  </Option>
-                )}
-                {dateTyping && (
-                  <Option onPress={skipDateText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
-                  </Option>
-                )}
-                {showReady && readyTyping && (
-                  <Option onPress={skipReadyText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
-                  </Option>
-                )}
-              </OptionContainer>
-            </SetupContainer>
-          </ScrollView>
+          <SetupContainer>
+            <SpeechContainer>
+              <ImageContainer>
+                <Astronaut source={{ uri: images[0] }} />
+              </ImageContainer>
+              <SpeechBubble
+                ref={scrollViewRef}
+                shrinkBubble={shrinkBubble}
+                onContentSizeChange={(contentWidth, contentHeight) =>
+                  handleContentSizeChange(contentWidth, contentHeight)
+                }
+              >
+                <MessageBubble mine text={renderCurrentStep()} />
+              </SpeechBubble>
+            </SpeechContainer>
+            <OptionContainer>
+              {dateButtons && (
+                <ScrollView style={{ height: 400 }}>
+                  <DateSelector handleDateClick={handleDateClick} />
+                </ScrollView>
+              )}
+              {readyButton && (
+                <Option onPress={handleReadyClick}>
+                  <OptionText variant='body'>Let's Go!</OptionText>
+                </Option>
+              )}
+              {dateTyping && (
+                <Option onPress={skipDateText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+              {showReady && readyTyping && (
+                <Option onPress={skipReadyText}>
+                  <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                </Option>
+              )}
+            </OptionContainer>
+          </SetupContainer>
         </SetupSafeArea>
       )}
     </ImageBackground>

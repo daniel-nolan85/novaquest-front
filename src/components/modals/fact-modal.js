@@ -60,6 +60,7 @@ const Title = styled.Text`
 const Fact = styled.Text`
   font-family: Questrial_400Regular;
   font-size: 16px;
+  line-height: 20px;
 `;
 
 export const FactModal = ({ showFact, randomFact, handleModalClose }) => {

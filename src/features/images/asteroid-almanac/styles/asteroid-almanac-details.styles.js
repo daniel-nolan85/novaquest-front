@@ -7,6 +7,7 @@ export const CardWrapper = styled.View`
 
 export const StatsWrapper = styled.View`
   padding: 16px 16px 0 16px;
+  background-color: #fff;
 `;
 
 export const StatsContainer = styled.View`

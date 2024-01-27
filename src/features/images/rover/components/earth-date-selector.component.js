@@ -1,10 +1,14 @@
 import { ScrollView, View } from 'react-native';
 import DatePicker from 'react-native-modern-datepicker';
 
-export const EarthDateSelector = ({ maxEarth, landingDate, setDate }) => {
+export const EarthDateSelector = ({
+  maxEarth,
+  landingDate,
+  handleDateClick,
+}) => {
   const handleDateChange = (d) => {
     const selectedDate = d.replace(/\//g, '-');
-    setDate(selectedDate);
+    handleDateClick(selectedDate);
   };
 
   return (

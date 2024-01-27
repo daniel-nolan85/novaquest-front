@@ -365,7 +365,6 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
                         maxSol={maxSol}
                         date={date}
                         setDate={setDate}
-                        handleDateClick={handleDateClick}
                       />
                       <Option onPress={() => handleDateClick(date)}>
                         <OptionText variant='body'>Ok</OptionText>
@@ -377,11 +376,8 @@ export const MarsRoverImagesSetupScreen = ({ navigation }) => {
                       <EarthDateSelector
                         maxEarth={maxEarth}
                         landingDate={landingDate}
-                        setDate={setDate}
+                        handleDateClick={handleDateClick}
                       />
-                      <Option onPress={() => handleDateClick(date)}>
-                        <OptionText variant='body'>Ok</OptionText>
-                      </Option>
                     </ScrollView>
                   )}
                 </>
