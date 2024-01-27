@@ -8,12 +8,10 @@ import {
 import { app } from '../../../../firebase';
 import { Text } from '../../../components/typography/text.component';
 import {
-  OptionContainer,
   Option,
   GradientBackground,
   OptionText,
   Input,
-  Info,
   LegalView,
   Legal,
   LegalDoc,
@@ -154,28 +152,20 @@ export const RegistrationForm = ({
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
-        <OptionContainer>
-          <Option onPress={checkBlocked} disabled={isLoading}>
-            <GradientBackground>
-              {isLoading ? (
-                <ActivityIndicator size='small' color='#fff' />
-              ) : (
-                <OptionText variant='body'>Prepare for Launch...</OptionText>
-              )}
-            </GradientBackground>
-          </Option>
-        </OptionContainer>
-        <Info variable='body'>
-          After signing up, please check your email and click the link to
-          complete your registration.
-        </Info>
-        <OptionContainer>
-          <Option onPress={handleGuestLogin} disabled={isLoading}>
-            <GradientBackground>
-              <OptionText variant='body'>Embark as Guest Explorer</OptionText>
-            </GradientBackground>
-          </Option>
-        </OptionContainer>
+        <Option onPress={checkBlocked} disabled={isLoading}>
+          <GradientBackground>
+            {isLoading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <OptionText variant='body'>Prepare for Launch...</OptionText>
+            )}
+          </GradientBackground>
+        </Option>
+        <Option onPress={handleGuestLogin} disabled={isLoading}>
+          <GradientBackground>
+            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+          </GradientBackground>
+        </Option>
         <LegalView>
           <Legal variant='body'>
             Your stellar journey is guided by our

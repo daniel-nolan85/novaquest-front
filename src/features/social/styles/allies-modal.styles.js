@@ -57,4 +57,10 @@ export const Name = styled(Text)`
 
 export const NoAllies = styled(Text)`
   margin-top: 20px;
+  text-align: center;
+`;
+
+export const AlliesInfo = styled(Text)`
+  margin-top: 20px;
+  line-height: 20px;
 `;

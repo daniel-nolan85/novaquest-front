@@ -177,13 +177,13 @@ export const AccountScreen = ({ navigation }) => {
             setShowErrorRegistrationToast={setShowErrorRegistrationToast}
             setVerificationSuccessTitle={setVerificationSuccessTitle}
           />
-          <GuestExplorerModal
-            visible={visible}
-            setVisible={setVisible}
-            ip={ip}
-            setShowBlockedToast={setShowBlockedToast}
-          />
         </Swiper>
+        <GuestExplorerModal
+          visible={visible}
+          setVisible={setVisible}
+          ip={ip}
+          setShowBlockedToast={setShowBlockedToast}
+        />
       </View>
       {showBlockedToast && <ToastNotification {...blockedToastContent} />}
       {showPasswordLoginToast && (

@@ -57,6 +57,7 @@ export const Animation = styled(LottieView)`
 
 export const PromotionText = styled(Text)`
   margin-bottom: 16px;
+  line-height: 20px;
 `;
 
 export const RankUpModal = ({ rankUp, setRankUp }) => {

@@ -223,19 +223,25 @@ export const LoginForm = ({
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
-        <OptionContainer>
-          <Option onPress={checkBlocked} disabled={isLoading}>
-            <GradientBackground>
-              {isLoading ? (
-                <ActivityIndicator size='small' color='#fff' />
-              ) : (
-                <OptionText variant='body'>Blast Off!</OptionText>
-              )}
-            </GradientBackground>
-          </Option>
-        </OptionContainer>
+        <Option onPress={checkBlocked} disabled={isLoading}>
+          <GradientBackground>
+            {isLoading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <OptionText variant='body'>Blast Off!</OptionText>
+            )}
+          </GradientBackground>
+        </Option>
+        <Option onPress={handleGuestLogin} disabled={isLoading}>
+          <GradientBackground>
+            <OptionText variant='body'>Embark as Guest Explorer</OptionText>
+          </GradientBackground>
+        </Option>
         <TouchableOpacity onPress={() => setVisible(true)}>
-          <Text variant='body' style={{ textAlign: 'center' }}>
+          <Text
+            variant='body'
+            style={{ textAlign: 'center', color: '#009999' }}
+          >
             Forgot password?
           </Text>
         </TouchableOpacity>
@@ -251,13 +257,6 @@ export const LoginForm = ({
           setShowResetPasswordToast={setShowResetPasswordToast}
           setResetPasswordTitle={setResetPasswordTitle}
         />
-        <OptionContainer>
-          <Option onPress={handleGuestLogin} disabled={isLoading}>
-            <GradientBackground>
-              <OptionText variant='body'>Embark as Guest Explorer</OptionText>
-            </GradientBackground>
-          </Option>
-        </OptionContainer>
       </KeyboardAvoidingView>
     </View>
   );

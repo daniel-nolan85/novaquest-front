@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Modal } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
-import { Text } from '../../../components/typography/text.component';
 import {
   ModalWrapper,
   ModalView,
@@ -12,6 +11,7 @@ import {
   ExplorerImage,
   Name,
   NoExplorers,
+  ExplorersInfo,
 } from '../styles/explorers-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
@@ -82,9 +82,26 @@ export const ExplorersModal = ({
                 showsVerticalScrollIndicator={false}
               />
             ) : userId === _id ? (
-              <NoExplorers variant='title'>
-                You have not made any explorers yet
-              </NoExplorers>
+              <>
+                <NoExplorers variant='title'>
+                  You have not made any explorers yet
+                </NoExplorers>
+                <ExplorersInfo variant='body'>
+                  Explorers are intrepid travelers who have chosen to follow
+                  your cosmic adventures. As you share your celestial
+                  discoveries, they will receive signals for every new post you
+                  create. Foster a community of cosmic enthusiasts and let your
+                  explorations inspire others in the vast universe we traverse
+                  together.
+                </ExplorersInfo>
+                <ExplorersInfo variant='body'>
+                  As you share more of your cosmic adventures, you're likely to
+                  attract more Explorers. Your journey through the cosmos has
+                  the power to inspire and connect with fellow celestial
+                  enthusiasts. Create, share, and let your cosmic voice resonate
+                  across the vast expanse of our cosmic community!
+                </ExplorersInfo>
+              </>
             ) : (
               <NoExplorers variant='title'>
                 {rank} {name} has not made any explorers yet

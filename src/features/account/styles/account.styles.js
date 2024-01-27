@@ -9,7 +9,7 @@ const { height } = Dimensions.get('window');
 export const OptionContainer = styled.View``;
 
 export const Option = styled.TouchableOpacity`
-  margin: ${(props) => props.theme.space[3]};
+  margin: ${(props) => props.theme.space[2]};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 

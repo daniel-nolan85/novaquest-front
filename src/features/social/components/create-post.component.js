@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Audio } from 'expo-av';
+import io from 'socket.io-client';
 import {
   CreateSection,
   UserImage,
@@ -13,7 +14,12 @@ import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
 import { submitPostWithMedia, submitPost } from '../../../requests/post';
 import { AnimatedProgressBar } from '../../../components/animations/progress-bar.animation';
 
-export const CreatePost = ({ newsFeed, navigate, setShowPostToast }) => {
+export const CreatePost = ({
+  newsFeed,
+  navigate,
+  setShowPostToast,
+  explorers,
+}) => {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState([]);
@@ -22,6 +28,15 @@ export const CreatePost = ({ newsFeed, navigate, setShowPostToast }) => {
   const { token, _id, role, profileImage, soundEffects } = useSelector(
     (state) => state.user
   );
+
+  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+
+  useEffect(() => {
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const playPostSound = async () => {
     try {
@@ -60,14 +75,22 @@ export const CreatePost = ({ newsFeed, navigate, setShowPostToast }) => {
         });
         const { data } = await uploadMediaToCloudinary(formData);
         console.log({ data });
-        await submitPostWithMedia(token, _id, role, postText, data)
+        await submitPostWithMedia(token, _id, role, postText, data, explorers)
           .then((res) => {
+            for (const explorer of explorers) {
+              console.log({ explorer });
+              socket.emit('new post', { _id, explorer });
+            }
             if (res.data) navigate(res.data);
           })
           .catch((err) => console.error(err));
       } else {
-        await submitPost(token, _id, role, postText)
+        await submitPost(token, _id, role, postText, explorers)
           .then((res) => {
+            for (const explorer of explorers) {
+              console.log({ explorer });
+              socket.emit('new post', { _id, explorer });
+            }
             if (res.data) navigate(res.data);
           })
           .catch((err) => console.error(err));

@@ -57,4 +57,10 @@ export const Name = styled(Text)`
 
 export const NoExplorers = styled(Text)`
   margin-top: 20px;
+  text-align: center;
+`;
+
+export const ExplorersInfo = styled(Text)`
+  margin-top: 20px;
+  line-height: 20px;
 `;

@@ -165,6 +165,9 @@ export const AppComponents = () => {
       socket.on('comment added', (userId) => {
         incrementNotifsNum(userId, 'commented on your post');
       });
+      socket.on('post created', (userId) => {
+        incrementNotifsNum(userId, 'created a new post');
+      });
     }
   }, [user && user.token]);
 

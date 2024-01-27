@@ -12,6 +12,7 @@ import {
   AllyImage,
   Name,
   NoAllies,
+  AlliesInfo,
 } from '../styles/allies-modal.styles';
 import Close from '../../../../assets/svg/close.svg';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
@@ -82,9 +83,18 @@ export const AlliesModal = ({
                 showsVerticalScrollIndicator={false}
               />
             ) : userId === _id ? (
-              <NoAllies variant='title'>
-                You have not made any allies yet
-              </NoAllies>
+              <>
+                <NoAllies variant='title'>
+                  You have not made any allies yet
+                </NoAllies>
+                <AlliesInfo variant='body'>
+                  Allies are fellow cosmic explorers you've chosen to follow on
+                  your celestial journey. By forming alliances, you'll stay
+                  connected with their cosmic discoveries, receiving signals for
+                  every new post they share. Explore the universe together and
+                  forge cosmic connections with like-minded explorers.
+                </AlliesInfo>
+              </>
             ) : (
               <NoAllies variant='title'>
                 {rank} {name} has not made any allies yet

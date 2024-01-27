@@ -35,6 +35,7 @@ const Body = styled.Text`
   font-family: Questrial_400Regular;
   font-size: 16px;
   margin: 0 10px;
+  line-height: 20px;
 `;
 
 const Option = styled.TouchableOpacity`

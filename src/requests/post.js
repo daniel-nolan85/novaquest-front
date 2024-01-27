@@ -6,11 +6,12 @@ export const submitPostWithMedia = async (
   _id,
   role,
   text,
-  media
+  media,
+  explorers
 ) => {
   return await axios.post(
     `${API_BASE_URL}/submit-post-with-media`,
-    { _id, role, text, media },
+    { _id, role, text, media, explorers },
     {
       headers: {
         authtoken,
@@ -19,10 +20,10 @@ export const submitPostWithMedia = async (
   );
 };
 
-export const submitPost = async (authtoken, _id, role, text) => {
+export const submitPost = async (authtoken, _id, role, text, explorers) => {
   return await axios.post(
     `${API_BASE_URL}/submit-post`,
-    { _id, role, text },
+    { _id, role, text, explorers },
     {
       headers: {
         authtoken,

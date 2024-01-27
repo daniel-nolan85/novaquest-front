@@ -356,3 +356,15 @@ export const updateNumOfFacts = async (authtoken, _id, role) => {
     }
   );
 };
+
+export const fetchUserExplorers = async (authtoken, _id, role) => {
+  return await axios.post(
+    `${API_BASE_URL}/fetch-user-explorers`,
+    { _id, role },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};

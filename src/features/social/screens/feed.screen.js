@@ -11,6 +11,7 @@ import { fetchPosts } from '../../../requests/post';
 import { AudioContext } from '../../../services/audio/audio.context';
 import { ToastContext } from '../../../services/toast/toast.context';
 import { ToastNotification } from '../../../components/animations/toast-notification.animation';
+import { fetchUserExplorers } from '../../../requests/user';
 
 const PAGE_SIZE = 10;
 
@@ -24,6 +25,7 @@ export const FeedScreen = ({ navigation }) => {
   const [showBlockUserToast, setShowBlockUserToast] = useState(false);
   const [showDeletePostToast, setShowDeletePostToast] = useState(false);
   const [showEditPostToast, setShowEditPostToast] = useState(false);
+  const [explorers, setExplorers] = useState([]);
 
   const { token, _id, role, allies } = useSelector((state) => state.user);
 
@@ -34,6 +36,7 @@ export const FeedScreen = ({ navigation }) => {
     useCallback(() => {
       stopGameMusic();
       newsFeed();
+      fetchExplorers();
     }, [])
   );
 
@@ -77,6 +80,16 @@ export const FeedScreen = ({ navigation }) => {
     }
   };
 
+  const fetchExplorers = async () => {
+    await fetchUserExplorers(token, _id, role)
+      .then((res) => {
+        setExplorers(res.data.explorers);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const postToastContent = {
     type: 'success',
     title: 'Your cosmic moment is now part of the celestial journey',
@@ -116,6 +129,7 @@ export const FeedScreen = ({ navigation }) => {
             newsFeed={newsFeed}
             navigate={navigate}
             setShowPostToast={setShowPostToast}
+            explorers={explorers}
           />
           {allies.length > 0 && <AlliesScroll navigate={navigate} />}
           <Post
