@@ -12,24 +12,34 @@ import {
 } from '../styles/signal-list.styles';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { SignalModal } from './signal-modal.component';
+import { DeletedUserModal } from './deleted-user-modal.component';
 
 export const SignalList = ({ navigate, signals }) => {
   const [currentSignal, setCurrentSignal] = useState({});
   const [visible, setVisible] = useState(false);
+  const [showDeletedUser, setShowDeletedUser] = useState(false);
 
   const renderItem = ({ item }) => (
     <SignalWrapper key={item._id}>
       <SignalHeader>
         <SignalUser onPress={() => showSignal(item)}>
-          <TouchableOpacity
-            onPress={() => navigate('UserProfile', { userId: item.user._id })}
-          >
-            <SignalUserImage
-              source={
-                item.user.profileImage ? item.user.profileImage : defaultProfile
-              }
-            />
-          </TouchableOpacity>
+          {item.user ? (
+            <TouchableOpacity
+              onPress={() => navigate('UserProfile', { userId: item.user._id })}
+            >
+              <SignalUserImage
+                source={
+                  item.user.profileImage
+                    ? item.user.profileImage
+                    : defaultProfile
+                }
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => setShowDeletedUser(true)}>
+              <SignalUserImage source={defaultProfile} />
+            </TouchableOpacity>
+          )}
           <SignalInfo onPress={() => showSignal(item)}>
             <Name variant='title'>{item.message}</Name>
           </SignalInfo>
@@ -41,6 +51,10 @@ export const SignalList = ({ navigate, signals }) => {
         visible={visible}
         setVisible={setVisible}
         navigate={navigate}
+      />
+      <DeletedUserModal
+        showDeletedUser={showDeletedUser}
+        setShowDeletedUser={setShowDeletedUser}
       />
     </SignalWrapper>
   );

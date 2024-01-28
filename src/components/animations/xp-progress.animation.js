@@ -50,8 +50,6 @@ export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
   const [numAnimated, setNumAnimated] = useState(false);
   const [rankUp, setRankUp] = useState(false);
 
-  console.log({ rankUp });
-
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
@@ -85,11 +83,6 @@ export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
     const targetXP = initialXP + earnedXP;
     const relativeXP = targetXP - currentRank.requiredXP;
     const progressPercentage = rankRange !== 0 ? relativeXP / rankRange : 1;
-    // console.log({ earnedXP });
-    // console.log({ initialXP });
-    // console.log({ targetXP });
-    // console.log({ relativeXP });
-    // console.log({ progressPercentage });
 
     Animated.timing(progress, {
       toValue: Math.min(progressPercentage, 1),

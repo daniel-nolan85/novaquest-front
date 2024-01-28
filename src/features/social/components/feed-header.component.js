@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Searchbar, Badge } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,9 +10,12 @@ import {
 import Signals from '../../../../assets/svg/signals.svg';
 import { resetNotifsCount } from '../../../requests/user';
 import { filterPostsByQuery } from '../../../requests/post';
+import { SocialContext } from '../../../services/social/social.context';
 
-export const FeedHeader = ({ navigate, setPosts }) => {
+export const FeedHeader = ({ navigate }) => {
   const [searchQuery, setSearchQuery] = useState('');
+
+  const { setPosts } = useContext(SocialContext);
 
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();

@@ -109,6 +109,7 @@ export const PostInfo = styled.View`
 
 export const Name = styled(Text)`
   font-size: 15px;
+  width: 240px;
 `;
 
 export const Timestamp = styled(Text)`

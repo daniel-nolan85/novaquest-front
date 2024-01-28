@@ -32,14 +32,12 @@ export const LoginForm = ({
   setShowResetPasswordToast,
   setResetPasswordTitle,
 }) => {
-  const [email, setEmail] = useState('daniel@nolancode.com');
-  const [password, setPassword] = useState('Lennon1027');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
-
-  console.log({ ip });
 
   const checkBlocked = async () => {
     setIsLoading(true);

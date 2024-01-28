@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Modal, ActivityIndicator } from 'react-native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
@@ -18,18 +18,20 @@ import {
 import Close from '../../../../assets/svg/close.svg';
 import TrashWhite from '../../../../assets/svg/trash-white';
 import { deletePost } from '../../../requests/post';
+import { SocialContext } from '../../../services/social/social.context';
 
 export const DeletePostModal = ({
   visible,
   setVisible,
   post,
-  setPosts,
   hidePostModal,
   setShowDeletePostToast,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { token, _id, role } = useSelector((state) => state.user);
+
+  const { setPosts } = useContext(SocialContext);
 
   const closeModal = () => {
     if (!isLoading) {

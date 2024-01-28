@@ -63,8 +63,6 @@ export const PromotionText = styled(Text)`
 export const RankUpModal = ({ rankUp, setRankUp }) => {
   const [promotedRank, setPromotedRank] = useState('');
 
-  console.log({ promotedRank });
-
   useEffect(() => {
     if (user && user.rank) {
       const currentRankIndex = ranks.findIndex((r) => r.name === user.rank);
@@ -85,7 +83,6 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
   const rankUpUser = async () => {
     await promoteUser(user.token, user._id, user.role, promotedRank)
       .then((res) => {
-        console.log('rankUpUser res.data => ', res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

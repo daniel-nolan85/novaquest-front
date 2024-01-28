@@ -20,12 +20,12 @@ import BlockWhite from '../../../../assets/svg/block-white.svg';
 import { blockMember } from '../../../requests/user';
 import { reportContent } from '../../../requests/post';
 import { ToastContext } from '../../../services/toast/toast.context';
+import { SocialContext } from '../../../services/social/social.context';
 
 export const ActionsModal = ({
   visible,
   setVisible,
   post,
-  newsFeed,
   editPost,
   deletePost,
   setShowReportPostToast,
@@ -34,6 +34,7 @@ export const ActionsModal = ({
   const { user } = useSelector((state) => ({ ...state }));
 
   const { setBlockUserBody } = useContext(ToastContext);
+  const { setPosts } = useContext(SocialContext);
 
   const closeModal = () => {
     setVisible(false);
@@ -61,7 +62,9 @@ export const ActionsModal = ({
         setTimeout(() => {
           setShowBlockUserToast(false);
         }, 3000);
-        newsFeed();
+        setPosts((prevPosts) =>
+          prevPosts.filter((post) => post.postedBy._id !== u._id)
+        );
         setVisible(false);
       })
       .catch((err) => console.error(err));

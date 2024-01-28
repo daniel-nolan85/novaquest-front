@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext, useMemo } from 'react';
 import {
   FlatList,
   ScrollView,
@@ -48,11 +48,12 @@ import { CommentOptionsModal } from './comment-options-modal.component';
 import { CommentsModal } from './comments-modal.component';
 import { EditPostModal } from './edit-post-modal.component';
 import { DeletePostModal } from './delete-post-modal.component';
+import { CreatePost } from './create-post.component';
+import { AlliesScroll } from './allies-scroll.component';
+import { SocialContext } from '../../../services/social/social.context';
 
 export const Post = ({
   navigate,
-  posts,
-  setPosts,
   newsFeed,
   loadMorePosts,
   loading,
@@ -61,6 +62,8 @@ export const Post = ({
   setShowBlockUserToast,
   setShowDeletePostToast,
   setShowEditPostToast,
+  setShowPostToast,
+  explorers,
 }) => {
   const [showActions, setShowActions] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -72,7 +75,11 @@ export const Post = ({
 
   const lastTapTimeRef = useRef(0);
 
-  const { token, _id, role, profileImage } = useSelector((state) => state.user);
+  const { posts, setPosts } = useContext(SocialContext);
+
+  const { token, _id, role, profileImage, allies } = useSelector(
+    (state) => state.user
+  );
 
   const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
 
@@ -303,7 +310,6 @@ export const Post = ({
         visible={showActions}
         setVisible={setShowActions}
         post={selectedPost}
-        newsFeed={newsFeed}
         editPost={editPost}
         deletePost={deletePost}
         setShowReportPostToast={setShowReportPostToast}
@@ -313,14 +319,12 @@ export const Post = ({
         visible={editable}
         setVisible={setEditable}
         post={selectedPost}
-        newsFeed={newsFeed}
         setShowEditPostToast={setShowEditPostToast}
       />
       <DeletePostModal
         visible={deleteable}
         setVisible={setDeleteable}
         post={selectedPost}
-        setPosts={setPosts}
         setShowDeletePostToast={setShowDeletePostToast}
       />
       <CommentsModal
@@ -346,6 +350,17 @@ export const Post = ({
       showsVerticalScrollIndicator={false}
       onEndReached={loadMorePosts}
       onEndReachedThreshold={0.1}
+      ListHeaderComponent={() => (
+        <>
+          <CreatePost
+            newsFeed={newsFeed}
+            navigate={navigate}
+            setShowPostToast={setShowPostToast}
+            explorers={explorers}
+          />
+          {allies.length > 0 && <AlliesScroll navigate={navigate} />}
+        </>
+      )}
       ListFooterComponent={
         loading &&
         !allPostsLoaded && <ActivityIndicator size='large' color='#009999' />

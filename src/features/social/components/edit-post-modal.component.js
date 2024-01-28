@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   Modal,
   ScrollView,
@@ -42,12 +42,12 @@ import SaveWhite from '../../../../assets/svg/save-white.svg';
 import defaultProfile from '../../../../assets/img/defaultProfile.png';
 import { uploadMediaToCloudinary } from '../../../requests/cloudinary';
 import { editPostWithMedia, editPost } from '../../../requests/post';
+import { SocialContext } from '../../../services/social/social.context';
 
 export const EditPostModal = ({
   visible,
   setVisible,
   post,
-  newsFeed,
   setShowEditPostToast,
 }) => {
   const [displayedMedia, setDisplayedMedia] = useState([]);
@@ -61,6 +61,8 @@ export const EditPostModal = ({
   const MAX_MEDIA = 9 - displayedMedia.length;
 
   const { token, _id, role } = useSelector((state) => state.user);
+
+  const { setPosts } = useContext(SocialContext);
 
   useEffect(() => {
     if (post !== null) {
@@ -156,6 +158,7 @@ export const EditPostModal = ({
   const saveEdits = async () => {
     setIsLoading(true);
     try {
+      let updatedMediaArray = [];
       if (selectedMedia.length > 0) {
         const formData = new FormData();
         selectedMedia.forEach((media, index) => {
@@ -174,7 +177,8 @@ export const EditPostModal = ({
             });
           }
         });
-        const { data } = await uploadMediaToCloudinary(token, role, formData);
+        const { data } = await uploadMediaToCloudinary(formData);
+        updatedMediaArray = data;
         await editPostWithMedia(
           token,
           _id,
@@ -187,8 +191,14 @@ export const EditPostModal = ({
       } else {
         await editPost(token, _id, role, postText, removedPublicIds, post._id);
       }
+      setPosts((prevPosts) =>
+        prevPosts.map((prevPost) =>
+          prevPost._id === post._id
+            ? { ...prevPost, text: postText, media: updatedMediaArray }
+            : prevPost
+        )
+      );
       setIsLoading(false);
-      newsFeed();
       setVisible(false);
       setPostText('');
       setSelectedMedia([]);

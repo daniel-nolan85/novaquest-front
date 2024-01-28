@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import { View, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import { View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { fetchUsersSignals } from '../../../requests/user';
 import { SignalList } from '../components/signal-list.component';
@@ -32,9 +32,7 @@ export const SignalsScreen = ({ navigation }) => {
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
         <SignalsHeader setFilteredSignals={setFilteredSignals} />
-        <ScrollView>
-          <SignalList navigate={navigate} signals={filteredSignals} />
-        </ScrollView>
+        <SignalList navigate={navigate} signals={filteredSignals} />
       </View>
     </SafeArea>
   );

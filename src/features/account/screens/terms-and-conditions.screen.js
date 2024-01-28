@@ -59,7 +59,6 @@ export const TermsAndConditionsScreen = ({ navigation }) => {
   const scrollToSection = (index) => {
     const offsetY = sectionOffsets.current[index];
     if (offsetY !== undefined) {
-      console.log(`Scrolling to offset: ${offsetY}`);
       scrollViewRef.current.scrollTo({ y: offsetY, animated: true });
     }
   };

@@ -1,5 +1,5 @@
 import { useState, useCallback, useContext } from 'react';
-import { View, useWindowDimensions } from 'react-native';
+import { View, ScrollView, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -202,17 +202,20 @@ export const ProfileScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <ProfileCard
-        userId={_id}
-        profileImage={profileImage}
-        name={name}
-        rank={rank}
-        bio={bio}
-        userRole={role}
-        daysInSpace={daysInSpace}
-        navigate={navigate}
-      />
+      <ScrollView style={{ flex: 1 }}>
+        <ProfileCard
+          userId={_id}
+          profileImage={profileImage}
+          name={name}
+          rank={rank}
+          bio={bio}
+          userRole={role}
+          daysInSpace={daysInSpace}
+          navigate={navigate}
+        />
+      </ScrollView>
       <ProfileButtons
+        style={{ flex: 1 }}
         userId={_id}
         name={name}
         rank={rank}

@@ -20,6 +20,4 @@ export const AllyImage = styled.Image`
   width: 96px;
   height: 96px;
   border-radius: 80px;
-  border-width: 4px;
-  border-color: #fff;
 `;

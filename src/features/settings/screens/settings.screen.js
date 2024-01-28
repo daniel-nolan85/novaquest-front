@@ -219,7 +219,6 @@ export const SettingsScreen = ({ navigation }) => {
   const updateUserSoundEffects = async () => {
     updateSoundEffects(user.token, user._id, user.role, soundEffects)
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: 'LOGGED_IN_USER',
           payload: {

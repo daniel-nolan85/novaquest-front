@@ -1,22 +1,20 @@
 import { useState, useCallback, useContext } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { SafeArea } from '../../../components/utils/safe-area.component';
-import { CreatePost } from '../components/create-post.component';
 import { FeedHeader } from '../components/feed-header.component';
-import { AlliesScroll } from '../components/allies-scroll.component';
 import { Post } from '../components/post.component';
 import { fetchPosts } from '../../../requests/post';
 import { AudioContext } from '../../../services/audio/audio.context';
 import { ToastContext } from '../../../services/toast/toast.context';
+import { SocialContext } from '../../../services/social/social.context';
 import { ToastNotification } from '../../../components/animations/toast-notification.animation';
 import { fetchUserExplorers } from '../../../requests/user';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 export const FeedScreen = ({ navigation }) => {
-  const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allPostsLoaded, setAllPostsLoaded] = useState(false);
@@ -27,8 +25,9 @@ export const FeedScreen = ({ navigation }) => {
   const [showEditPostToast, setShowEditPostToast] = useState(false);
   const [explorers, setExplorers] = useState([]);
 
-  const { token, _id, role, allies } = useSelector((state) => state.user);
+  const { token, _id, role } = useSelector((state) => state.user);
 
+  const { posts, setPosts } = useContext(SocialContext);
   const { stopGameMusic } = useContext(AudioContext);
   const { blockUserBody } = useContext(ToastContext);
 
@@ -44,17 +43,8 @@ export const FeedScreen = ({ navigation }) => {
 
   const newsFeed = async () => {
     try {
-      const res = await fetchPosts(token, _id, role, page, PAGE_SIZE);
-      const newPosts = res.data;
-
-      setPosts((prevPosts) => {
-        const filteredPosts = prevPosts.filter(
-          (prevPost) =>
-            !newPosts.find((newPost) => newPost._id === prevPost._id)
-        );
-
-        return [...newPosts, ...filteredPosts];
-      });
+      const { data } = await fetchPosts(token, _id, role, 1, PAGE_SIZE);
+      setPosts(data);
     } catch (err) {
       console.error('Error fetching posts:', err.message);
     }
@@ -123,29 +113,22 @@ export const FeedScreen = ({ navigation }) => {
   return (
     <SafeArea style={{ flex: 1 }}>
       <View style={{ flex: 1, paddingHorizontal: 22 }}>
-        <FeedHeader navigate={navigate} setPosts={setPosts} />
-        <ScrollView>
-          <CreatePost
-            newsFeed={newsFeed}
-            navigate={navigate}
-            setShowPostToast={setShowPostToast}
-            explorers={explorers}
-          />
-          {allies.length > 0 && <AlliesScroll navigate={navigate} />}
-          <Post
-            navigate={navigate}
-            posts={posts}
-            setPosts={setPosts}
-            newsFeed={newsFeed}
-            loadMorePosts={loadMorePosts}
-            loading={loading}
-            allPostsLoaded={allPostsLoaded}
-            setShowReportPostToast={setShowReportPostToast}
-            setShowBlockUserToast={setShowBlockUserToast}
-            setShowDeletePostToast={setShowDeletePostToast}
-            setShowEditPostToast={setShowEditPostToast}
-          />
-        </ScrollView>
+        <FeedHeader navigate={navigate} />
+        <Post
+          navigate={navigate}
+          posts={posts}
+          setPosts={setPosts}
+          newsFeed={newsFeed}
+          loadMorePosts={loadMorePosts}
+          loading={loading}
+          allPostsLoaded={allPostsLoaded}
+          setShowReportPostToast={setShowReportPostToast}
+          setShowBlockUserToast={setShowBlockUserToast}
+          setShowDeletePostToast={setShowDeletePostToast}
+          setShowEditPostToast={setShowEditPostToast}
+          setShowPostToast={setShowPostToast}
+          explorers={explorers}
+        />
       </View>
       {showPostToast && <ToastNotification {...postToastContent} />}
       {showReportPostToast && <ToastNotification {...reportPostToastContent} />}

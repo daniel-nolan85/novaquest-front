@@ -183,8 +183,6 @@ export const DiscoveryHubScreen = ({ navigation }) => {
 
   const { soundEffects } = useSelector((state) => state.user);
 
-  console.log({ soundEffects });
-
   useEffect(() => {
     const focusListener = addListener('focus', () => {
       if (soundEffects) playGameMusic();

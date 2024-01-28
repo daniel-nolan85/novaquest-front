@@ -32,8 +32,8 @@ export const RegistrationForm = ({
   setShowErrorRegistrationToast,
   setVerificationSuccessTitle,
 }) => {
-  const [email, setEmail] = useState('daniel@nolancode.com');
-  const [password, setPassword] = useState('Lennon1027');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const checkBlocked = async () => {

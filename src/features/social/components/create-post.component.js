@@ -74,11 +74,9 @@ export const CreatePost = ({
           }
         });
         const { data } = await uploadMediaToCloudinary(formData);
-        console.log({ data });
         await submitPostWithMedia(token, _id, role, postText, data, explorers)
           .then((res) => {
             for (const explorer of explorers) {
-              console.log({ explorer });
               socket.emit('new post', { _id, explorer });
             }
             if (res.data) navigate(res.data);
@@ -88,7 +86,6 @@ export const CreatePost = ({
         await submitPost(token, _id, role, postText, explorers)
           .then((res) => {
             for (const explorer of explorers) {
-              console.log({ explorer });
               socket.emit('new post', { _id, explorer });
             }
             if (res.data) navigate(res.data);

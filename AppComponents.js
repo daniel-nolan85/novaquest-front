@@ -28,6 +28,7 @@ import io from 'socket.io-client';
 import { theme } from './src/infrastructure/theme';
 import { ToastContextProvider } from './src/services/toast/toast.context';
 import { AudioContextProvider } from './src/services/audio/audio.context';
+import { SocialContextProvider } from './src/services/social/social.context';
 import { PlanetsContextProvider } from './src/services/planets/planets.context';
 import { ImagesContextProvider } from './src/services/images/images.context';
 import { GamesContextProvider } from './src/services/games/games.context';
@@ -322,15 +323,17 @@ export const AppComponents = () => {
         <ThemeProvider theme={theme}>
           <ToastContextProvider>
             <AudioContextProvider>
-              <SettingsContextProvider>
-                <GamesContextProvider>
-                  <PlanetsContextProvider>
-                    <ImagesContextProvider>
-                      <Navigation />
-                    </ImagesContextProvider>
-                  </PlanetsContextProvider>
-                </GamesContextProvider>
-              </SettingsContextProvider>
+              <SocialContextProvider>
+                <SettingsContextProvider>
+                  <GamesContextProvider>
+                    <PlanetsContextProvider>
+                      <ImagesContextProvider>
+                        <Navigation />
+                      </ImagesContextProvider>
+                    </PlanetsContextProvider>
+                  </GamesContextProvider>
+                </SettingsContextProvider>
+              </SocialContextProvider>
             </AudioContextProvider>
           </ToastContextProvider>
         </ThemeProvider>

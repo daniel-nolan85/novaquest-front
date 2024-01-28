@@ -312,7 +312,7 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
                     visible={showActions}
                     setVisible={setShowActions}
                     post={selectedPost}
-                    newsFeed={fetchPost}
+                    fetchPost={fetchPost}
                     editPost={editPost}
                     deletePost={deletePost}
                   />
@@ -320,13 +320,13 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
                     visible={editable}
                     setVisible={setEditable}
                     post={selectedPost}
-                    newsFeed={fetchPost}
+                    fetchPost={fetchPost}
                   />
                   <DeletePostModal
                     visible={deleteable}
                     setVisible={setDeleteable}
                     post={selectedPost}
-                    newsFeed={fetchPost}
+                    fetchPost={fetchPost}
                   />
                   <CommentsModal
                     visible={showComments}
