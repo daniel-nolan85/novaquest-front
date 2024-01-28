@@ -50,7 +50,12 @@ export const CustomDrawer = (props) => {
           />
           <Text
             variant='title'
-            style={{ marginTop: 10, color: '#fff', fontSize: 16 }}
+            style={{
+              marginTop: 10,
+              color: '#fff',
+              fontSize: 16,
+              textAlign: 'center',
+            }}
           >
             {rank} {name}
           </Text>

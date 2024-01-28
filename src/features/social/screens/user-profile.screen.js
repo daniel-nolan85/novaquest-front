@@ -19,6 +19,7 @@ import { ProfileButtons } from '../components/profile-buttons.component';
 import { PostsRoute } from '../components/posts-route.component';
 import { StarsRoute } from '../components/stars-route.component';
 import { AchievementsRoute } from '../components/achievements-route.component';
+import { AdminCard } from '../components/admin-card.component';
 
 const SafeAreaView = styled(SafeArea)`
   flex: 1;
@@ -209,35 +210,46 @@ export const UserProfileScreen = ({ navigation, route }) => {
 
   return (
     <SafeAreaView>
-      <ProfileCard
-        userId={userId}
-        profileImage={profileImage}
-        name={name}
-        rank={rank}
-        userRole={thisUser.role}
-        bio={bio}
-        daysInSpace={daysInSpace}
-      />
-      <ProfileButtons
-        userId={userId}
-        name={name}
-        rank={rank}
-        navigate={navigate}
-      />
-      <View
-        style={{
-          flex: 1,
-          marginHorizontal: 22,
-        }}
-      >
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={{ width: layout.width }}
-          renderTabBar={renderTabBar}
+      {thisUser.role !== 'admin' ? (
+        <>
+          <ProfileCard
+            userId={userId}
+            profileImage={profileImage}
+            name={name}
+            rank={rank}
+            userRole={thisUser.role}
+            bio={bio}
+            daysInSpace={daysInSpace}
+          />
+          <ProfileButtons
+            userId={userId}
+            name={name}
+            rank={rank}
+            navigate={navigate}
+          />
+          <View
+            style={{
+              flex: 1,
+              marginHorizontal: 22,
+            }}
+          >
+            <TabView
+              navigationState={{ index, routes }}
+              renderScene={renderScene}
+              onIndexChange={setIndex}
+              initialLayout={{ width: layout.width }}
+              renderTabBar={renderTabBar}
+            />
+          </View>
+        </>
+      ) : (
+        <AdminCard
+          userId={userId}
+          profileImage={profileImage}
+          name={name}
+          bio={bio}
         />
-      </View>
+      )}
     </SafeAreaView>
   );
 };

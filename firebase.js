@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyATcB0-vBo2UojKYjoicjt07x98PTYC8Mo',
-  authDomain: 'astrosense-138bc.firebaseapp.com',
-  projectId: 'astrosense-138bc',
-  storageBucket: 'astrosense-138bc.appspot.com',
-  messagingSenderId: '821218969261',
-  appId: '1:821218969261:web:e60f4e0a9f32a7d5b7e824',
+  apiKey: 'AIzaSyDXHUPvbY8bGSl-E3xKz62gz6JbG7rf6VI',
+  authDomain: 'novaquest-app.firebaseapp.com',
+  projectId: 'novaquest-app',
+  storageBucket: 'novaquest-app.appspot.com',
+  messagingSenderId: '682310842234',
+  appId: '1:682310842234:web:bf3c0dafa0b8fd4458c8c3',
 };
 
 // Initialize Firebase

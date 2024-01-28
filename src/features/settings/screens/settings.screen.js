@@ -317,7 +317,7 @@ export const SettingsScreen = ({ navigation }) => {
         />
       </AvatarContainer>
       <UserInfoContainer>
-        <Text variant='title'>
+        <Text variant='title' style={{ textAlign: 'center', width: '90%' }}>
           {user.rank} {user.name}
         </Text>
         <Text variant='title'>{user.xp} XP</Text>

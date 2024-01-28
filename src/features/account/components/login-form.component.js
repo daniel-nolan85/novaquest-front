@@ -177,6 +177,7 @@ export const LoginForm = ({
             })
             .catch((err) => console.error(err));
         } else {
+          setIsLoading(false);
           setShowEmailNotVerifiedToast(true);
           setTimeout(() => {
             setShowEmailNotVerifiedToast(false);
