@@ -4,7 +4,7 @@
     "slug": "NovaQuest",
     "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
+    "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706478847/novaquest_jtgkrh.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706309994/nolancode-portrait-long_amwnvp.png",
@@ -16,13 +16,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
+        "foregroundImage": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706478847/novaquest_jtgkrh.png",
         "backgroundColor": "#ffffff"
       }
     },
     "notification": {
-      "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706308808/novaquest_m0vc8g.png",
+      "icon": "https://res.cloudinary.com/dntxhyxtx/image/upload/v1706478847/novaquest_jtgkrh.png",
       "color": "#009999"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f2c6dc56-65ab-455b-bd95-0932766f9422"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f2c6dc56-65ab-455b-bd95-0932766f9422"
     }
   }
 }
