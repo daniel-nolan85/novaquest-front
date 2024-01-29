@@ -19,6 +19,7 @@ import {
   Timestamp,
   PostActions,
   PostContentWrapper,
+  PostText,
   PostImage,
   PostVideo,
   ImageNumber,
@@ -210,7 +211,7 @@ export const Post = ({
       </PostHeader>
       <PostContentWrapper>
         <TouchableOpacity activeOpacity={1} onPress={() => doubleTap(item)}>
-          <Text variant='body'>{item.text}</Text>
+          <PostText variant='body'>{item.text}</PostText>
         </TouchableOpacity>
         {item.media.length > 1 ? (
           <ScrollView

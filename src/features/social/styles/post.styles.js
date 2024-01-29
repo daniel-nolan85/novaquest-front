@@ -55,6 +55,10 @@ export const PostContentWrapper = styled.View`
 
 export const PostActions = styled.TouchableOpacity``;
 
+export const PostText = styled(Text)`
+  line-height: 20px;
+`;
+
 export const PostImage = styled.Image`
   margin-top: 10px;
   width: 350px;
