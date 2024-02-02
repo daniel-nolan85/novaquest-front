@@ -29,7 +29,9 @@ export const CreatePost = ({
     (state) => state.user
   );
 
-  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+  const socket = io(process.env.SOCKET_IO_URL, {
+    path: '/socket.io',
+  });
 
   useEffect(() => {
     socket.connect();

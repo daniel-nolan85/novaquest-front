@@ -6,6 +6,7 @@ export const Description = styled.Text`
   background-color: white;
   font-family: Questrial_400Regular;
   font-size: 16px;
+  line-height: 20px;
 `;
 
 export const StatsWrapper = styled.View`

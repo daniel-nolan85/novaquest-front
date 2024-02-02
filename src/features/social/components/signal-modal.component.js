@@ -70,7 +70,9 @@ export const SignalModal = ({ signal, visible, setVisible, navigate }) => {
 
   const { token, _id, role, profileImage } = useSelector((state) => state.user);
 
-  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+  const socket = io(process.env.SOCKET_IO_URL, {
+    path: '/socket.io',
+  });
 
   useEffect(() => {
     fetchPost();

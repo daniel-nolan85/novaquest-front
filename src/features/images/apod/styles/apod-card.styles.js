@@ -26,4 +26,6 @@ export const Title = styled(Text)`
   padding: ${(props) => props.theme.space[3]} 0;
 `;
 
-export const Body = styled(Text)``;
+export const Body = styled(Text)`
+  line-height: 20px;
+`;

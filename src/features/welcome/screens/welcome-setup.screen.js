@@ -160,7 +160,9 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             setShowSignalsAcceptedToast(false);
           }, 3000);
           const token = (
-            await Notifications.getExpoPushTokenAsync({ projectId: PROJECT_ID })
+            await Notifications.getExpoPushTokenAsync({
+              projectId: PROJECT_ID,
+            })
           ).data;
           await storeNotifToken(user.token, user._id, user.role, token)
             .then((res) => {

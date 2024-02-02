@@ -59,7 +59,9 @@ export const AppComponents = () => {
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
 
-  const socket = io(process.env.SOCKET_IO_URL, { path: '/socket.io' });
+  const socket = io(process.env.SOCKET_IO_URL, {
+    path: '/socket.io',
+  });
 
   const translateY = useRef(new Animated.Value(0)).current;
   const translateX = useRef(new Animated.Value(-200)).current;

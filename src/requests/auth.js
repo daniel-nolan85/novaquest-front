@@ -2,7 +2,10 @@ import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
 export const checkBlockedList = async (ip, email) => {
-  return await axios.post(`${API_BASE_URL}/check-blocked-list`, { ip, email });
+  return await axios.post(`${API_BASE_URL}/check-blocked-list`, {
+    ip,
+    email,
+  });
 };
 
 export const createOrUpdateUser = async (authtoken, ip) => {
@@ -18,7 +21,9 @@ export const createOrUpdateUser = async (authtoken, ip) => {
 };
 
 export const createGuestUser = async (role) => {
-  return await axios.post(`${API_BASE_URL}/create-guest-user`, { role });
+  return await axios.post(`${API_BASE_URL}/create-guest-user`, {
+    role,
+  });
 };
 
 export const currentUser = async (authtoken) => {

@@ -10,7 +10,6 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../../../firebase';
 import { Text } from '../../../components/typography/text.component';
 import {
-  OptionContainer,
   Option,
   GradientBackground,
   OptionText,
