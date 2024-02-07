@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
 export const fetchLeaderboard = async (authtoken, role) => {
+  console.log('fetchLeaderboard => ', authtoken, role);
   return await axios.post(
     `${API_BASE_URL}/fetch-leaderboard`,
     { role },

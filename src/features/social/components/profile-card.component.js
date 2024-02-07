@@ -94,7 +94,7 @@ export const ProfileCard = ({
 
         <ProfileInfoWrapper>
           <Name variant='title'>
-            {rank} {name}
+            {userRole !== 'admin' ? `${rank} ${name}` : name}
           </Name>
           <Name variant='title'>{xp} XP</Name>
           <Name variant='title'>

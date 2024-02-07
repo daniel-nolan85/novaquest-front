@@ -84,6 +84,7 @@ export const deletePost = async (authtoken, _id, role, postId) => {
 };
 
 export const fetchPosts = async (authtoken, _id, role, page, pageSize) => {
+  console.log('fetchPosts => ', authtoken, _id, role, page, pageSize);
   return await axios.post(
     `${API_BASE_URL}/news-feed`,
     { _id, role, page, pageSize },

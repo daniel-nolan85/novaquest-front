@@ -200,7 +200,9 @@ export const Post = ({
           />
           <PostInfo>
             <Name variant='title'>
-              {item.postedBy.rank} {item.postedBy.name}
+              {item.postedBy.role !== 'admin'
+                ? `${item.postedBy.rank} ${item.postedBy.name}`
+                : item.postedBy.name}
             </Name>
             <Timestamp variant='body'>
               {moment(item.createdAt).fromNow()}

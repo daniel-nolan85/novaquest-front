@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '@env';
 
 export const fetchReportedPosts = async (authtoken) => {
+  console.log('fetchReportedPosts => ', authtoken);
   return await axios.get(`${API_BASE_URL}/fetch-reported-posts`, {
     headers: {
       authtoken,

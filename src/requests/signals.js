@@ -8,6 +8,14 @@ export const filterSignalsByDate = async (
   startDate,
   endDate
 ) => {
+  console.log(
+    'filterSignalsByDate => ',
+    authtoken,
+    _id,
+    role,
+    startDate,
+    endDate
+  );
   return await axios.post(
     `${API_BASE_URL}/filter-signals-by-date`,
     { _id, role, startDate, endDate },

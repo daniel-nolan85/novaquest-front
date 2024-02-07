@@ -26,6 +26,7 @@ export const awardXP = async (authtoken, _id, role, xp) => {
 };
 
 export const badgeUnlocked = async (authtoken, _id, role, badge) => {
+  console.log('badgeUnlocked => ', authtoken, _id, role, badge);
   return await axios.put(
     `${API_BASE_URL}/badge-unlocked`,
     { _id, role, badge },
@@ -346,6 +347,7 @@ export const updateNumOfAsteroids = async (authtoken, _id, role) => {
 };
 
 export const updateNumOfFacts = async (authtoken, _id, role) => {
+  console.log('updateNumOfFacts => ', authtoken, _id, role);
   return await axios.put(
     `${API_BASE_URL}/update-facts`,
     { _id, role },
