@@ -42,16 +42,21 @@ export const OptionContainer = styled.View``;
 export const Option = styled.TouchableOpacity`
   padding: ${(props) => props.theme.space[3]};
   margin: 6px;
-  background-color: #009999;
-  border-radius: 12px;
+  background-color: ${(props) => props.theme.colors.brand.muted};
+  border-width: 1px;
+  border-color: ${(props) => props.theme.colors.brand.primary};
+  border-radius: 4px;
   align-items: center;
 `;
 
 export const OptionText = styled(Text)`
-  color: ${(props) => props.theme.colors.text.inverse};
+  color: ${(props) => props.theme.colors.brand.primary};
+  font-family: ${(props) => props.theme.fonts.heading};
+  letter-spacing: 1px;
+  font-size: 13px;
 `;
 
 export const Input = styled(TextInput)`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.ui.tertiary};
   margin: 0 ${(props) => props.theme.space[2]};
 `;

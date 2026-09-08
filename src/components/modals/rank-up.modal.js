@@ -15,22 +15,31 @@ export const ModalWrapper = styled.View`
   justify-content: center;
   flex: 1;
   margin: 16px;
+  background-color: rgba(10, 14, 23, 0.94);
 `;
 
 export const ModalView = styled.ScrollView`
   margin: 20px;
-  background-color: white;
-  border-radius: 20px;
+  background-color: ${({ theme }) => theme.colors.ui.tertiary};
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.colors.hud.borderAmber};
   width: 100%;
   padding: 35px;
-  shadow-color: #000;
+  shadow-color: ${({ theme }) => theme.colors.brand.secondary};
   shadow-offset: {
     width: 0;
-    height: 2px;
+    height: 0;
   }
-  shadow-opacity: 0.25;
-  shadow-radius: 4px;
+  shadow-opacity: 0.4;
+  shadow-radius: 24px;
   elevation: 5;
+`;
+
+export const CornerBracket = styled.View`
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: ${({ theme }) => theme.colors.brand.secondary};
 `;
 
 export const CloseIcon = styled.TouchableOpacity`
@@ -41,6 +50,14 @@ export const CloseIcon = styled.TouchableOpacity`
   top: 8px;
   right: 8px;
   padding: 8px;
+`;
+
+export const RankKicker = styled(Text)`
+  color: ${({ theme }) => theme.colors.brand.primary};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
 `;
 
 export const AnimationWrapper = styled.View`
@@ -58,6 +75,13 @@ export const Animation = styled(LottieView)`
 export const PromotionText = styled(Text)`
   margin-bottom: 16px;
   line-height: 20px;
+  color: ${({ theme }) => theme.colors.text.secondary};
+`;
+
+export const RankHeadline = styled(Text)`
+  margin-bottom: 16px;
+  line-height: 28px;
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 export const RankUpModal = ({ rankUp, setRankUp }) => {
@@ -112,6 +136,38 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
       <Modal visible={rankUp} transparent={true} animationType='slide'>
         <ModalWrapper>
           <ModalView contentContainerStyle={{ alignItems: 'center' }}>
+            <CornerBracket
+              style={{
+                top: -1,
+                left: -1,
+                borderTopWidth: 2,
+                borderLeftWidth: 2,
+              }}
+            />
+            <CornerBracket
+              style={{
+                top: -1,
+                right: -1,
+                borderTopWidth: 2,
+                borderRightWidth: 2,
+              }}
+            />
+            <CornerBracket
+              style={{
+                bottom: -1,
+                left: -1,
+                borderBottomWidth: 2,
+                borderLeftWidth: 2,
+              }}
+            />
+            <CornerBracket
+              style={{
+                bottom: -1,
+                right: -1,
+                borderBottomWidth: 2,
+                borderRightWidth: 2,
+              }}
+            />
             <CloseIcon onPress={() => setRankUp(false)}>
               <Close />
             </CloseIcon>
@@ -125,9 +181,10 @@ export const RankUpModal = ({ rankUp, setRankUp }) => {
               />
             </AnimationWrapper>
             <ScrollView>
-              <PromotionText variant='title'>
+              <RankKicker variant='caption'>RANK ADVANCEMENT</RankKicker>
+              <RankHeadline variant='title'>
                 {promotedRank} {user.name}
-              </PromotionText>
+              </RankHeadline>
               <PromotionText variant='body'>
                 Congratulations! Your dedication, skill, and stellar performance
                 have propelled you to the esteemed rank of {promotedRank}. As

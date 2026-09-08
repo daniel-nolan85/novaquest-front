@@ -21,6 +21,17 @@ import {
   useFonts as useQuestrial,
   Questrial_400Regular,
 } from '@expo-google-fonts/questrial';
+import {
+  useFonts as useOrbitron,
+  Orbitron_600SemiBold,
+  Orbitron_800ExtraBold,
+} from '@expo-google-fonts/orbitron';
+import {
+  useFonts as useRajdhani,
+  Rajdhani_400Regular,
+  Rajdhani_500Medium,
+  Rajdhani_600SemiBold,
+} from '@expo-google-fonts/rajdhani';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from './firebase';
@@ -317,7 +328,17 @@ export const AppComponents = () => {
 
   const [audiowideLoaded] = useAudiowide({ Audiowide_400Regular });
   const [questrialLoaded] = useQuestrial({ Questrial_400Regular });
-  if (!audiowideLoaded || !questrialLoaded) return null;
+  const [orbitronLoaded] = useOrbitron({
+    Orbitron_600SemiBold,
+    Orbitron_800ExtraBold,
+  });
+  const [rajdhaniLoaded] = useRajdhani({
+    Rajdhani_400Regular,
+    Rajdhani_500Medium,
+    Rajdhani_600SemiBold,
+  });
+  if (!audiowideLoaded || !questrialLoaded || !orbitronLoaded || !rajdhaniLoaded)
+    return null;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

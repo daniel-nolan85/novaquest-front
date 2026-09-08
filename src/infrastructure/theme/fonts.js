@@ -1,12 +1,12 @@
 export const fonts = {
-  body: 'Questrial_400Regular',
-  heading: 'Audiowide_400Regular',
+  body: 'Rajdhani_500Medium',
+  heading: 'Orbitron_800ExtraBold',
 };
 
 export const fontWeights = {
   regular: 400,
   medium: 500,
-  bold: 700,
+  bold: 600,
 };
 
 export const fontSizes = {

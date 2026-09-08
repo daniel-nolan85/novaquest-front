@@ -21,16 +21,19 @@ const ProgressText = styled.Text`
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
-  font-family: Audiowide_400Regular;
+  font-family: Orbitron_800ExtraBold;
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 const ProgressBarContainer = styled.View`
   height: 20px;
-  background-color: #ccc;
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-width: 1px;
+  border-color: ${(props) => props.theme.colors.hud.border};
+  border-radius: 4px;
 `;
 const GradientProgressBar = styled(AnimatedLinearGradient)`
   height: 100%;
-  border-radius: 10px;
+  border-radius: 3px;
 `;
 const NumberContainer = styled.View`
   flex-direction: row;
@@ -38,10 +41,10 @@ const NumberContainer = styled.View`
   align-items: center;
 `;
 const NumberText = styled.Text`
-  color: #009999;
+  color: ${(props) => props.theme.colors.brand.primary};
   margin-top: 10px;
   margin-left: 10px;
-  font-family: Audiowide_400Regular;
+  font-family: Orbitron_800ExtraBold;
 `;
 
 export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
@@ -153,7 +156,7 @@ export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
       <ProgressText>+{earnedXP} XP</ProgressText>
       <ProgressBarContainer>
         <GradientProgressBar
-          colors={['#009999', '#00cccc']}
+          colors={['#4DEBFF', '#FFB020']}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={[
@@ -174,10 +177,10 @@ export const XPProgressAnimation = ({ earnedXP, showXP, initialXP }) => {
           countBy={1}
           onFinish={() => setNumAnimated(true)}
           style={{
-            fontFamily: 'Audiowide_400Regular',
+            fontFamily: 'Orbitron_800ExtraBold',
             fontSize: 20,
             fontWeight: 'bold',
-            color: '#009999',
+            color: '#4DEBFF',
             marginTop: 10,
           }}
         />

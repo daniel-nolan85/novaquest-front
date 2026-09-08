@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Platform } from 'react-native';
 import TypeWriter from 'react-native-typewriter';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -249,7 +249,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={nameTyping ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndName}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text1}
           </TypeWriter>
@@ -262,7 +262,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={typing ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEnd}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text2}
           </TypeWriter>
@@ -275,7 +275,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={typing ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEnd}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text3}
           </TypeWriter>
@@ -288,7 +288,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={typing ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEnd}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text4}
           </TypeWriter>
@@ -301,7 +301,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={typing ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEndNotifications}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text5}
           </TypeWriter>
@@ -314,7 +314,7 @@ export const WelcomeSetupScreen = ({ navigation }) => {
             typing={typing ? 1 : 0}
             maxDelay={user.textSpeed}
             onTypingEnd={handleTypingEnd}
-            style={{ fontFamily: 'Audiowide_400Regular' }}
+            style={{ fontFamily: 'Rajdhani_500Medium', fontSize: 16 }}
           >
             {text6}
           </TypeWriter>
@@ -386,17 +386,17 @@ export const WelcomeSetupScreen = ({ navigation }) => {
                 )}
                 {showName && nameTyping && (
                   <Option onPress={skipNameText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                    <MaterialIcons name='double-arrow' size={20} color='#4DEBFF' />
                   </Option>
                 )}
                 {showNotifications && notificationsTyping && (
                   <Option onPress={skipNotificationsText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                    <MaterialIcons name='double-arrow' size={20} color='#4DEBFF' />
                   </Option>
                 )}
                 {showOk && typing && (
                   <Option onPress={skipText}>
-                    <MaterialIcons name='double-arrow' size={20} color='#fff' />
+                    <MaterialIcons name='double-arrow' size={20} color='#4DEBFF' />
                   </Option>
                 )}
               </OptionContainer>

@@ -2,11 +2,23 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { moderateScale } from 'react-native-size-matters';
 
+const HUD_BUBBLE_BG = 'rgba(20, 28, 44, 0.95)';
+const HUD_BUBBLE_BORDER = '#4DEBFF';
+const HUD_BUBBLE_TEXT = '#DCEFFF';
+const REPLY_BUBBLE_BG = 'rgba(255, 176, 32, 0.16)';
+const REPLY_BUBBLE_BORDER = '#FFB020';
+
 export const MessageBubble = ({ mine, text, image }) => {
   return (
     <View style={[styles.message, mine ? styles.mine : styles.not_mine]}>
       <View
-        style={[styles.cloud, { backgroundColor: mine ? '#ddd' : '#007aff' }]}
+        style={[
+          styles.cloud,
+          {
+            backgroundColor: mine ? HUD_BUBBLE_BG : REPLY_BUBBLE_BG,
+            borderColor: mine ? HUD_BUBBLE_BORDER : REPLY_BUBBLE_BORDER,
+          },
+        ]}
       >
         {image ? (
           <Image
@@ -16,7 +28,12 @@ export const MessageBubble = ({ mine, text, image }) => {
           />
         ) : null}
         {text ? (
-          <Text style={[styles.text, { color: mine ? 'black' : 'white' }]}>
+          <Text
+            style={[
+              styles.text,
+              { color: mine ? HUD_BUBBLE_TEXT : REPLY_BUBBLE_BORDER },
+            ]}
+          >
             {text}
           </Text>
         ) : null}
@@ -39,7 +56,7 @@ export const MessageBubble = ({ mine, text, image }) => {
                   ? 'M38.484,17.5c0,8.75,1,13.5-6,17.5C51.484,35,52.484,17.5,38.484,17.5z'
                   : 'M48,35c-7-4-6-8.75-6-17.5C28,17.5,29,35,48,35z'
               }
-              fill={mine ? '#ddd' : '#007aff'}
+              fill={mine ? HUD_BUBBLE_BG : REPLY_BUBBLE_BG}
               x='0'
               y='0'
             />
@@ -67,7 +84,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(10, 2),
     paddingTop: moderateScale(5, 2),
     paddingBottom: moderateScale(7, 2),
-    borderRadius: 20,
+    borderRadius: 14,
+    borderWidth: 1,
   },
   text: {
     paddingTop: 3,

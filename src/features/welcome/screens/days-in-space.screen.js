@@ -19,6 +19,7 @@ const BadgeContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 export const DaysInSpaceScreen = ({ route }) => {

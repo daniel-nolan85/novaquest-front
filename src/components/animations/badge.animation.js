@@ -27,15 +27,18 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
   align-self: center;
   margin: 16px;
-  font-family: Audiowide_400Regular;
+  font-family: Orbitron_800ExtraBold;
   font-size: 20px;
+  color: ${(props) => props.theme.colors.text.primary};
+  letter-spacing: 0.5px;
 `;
 
 const Body = styled.Text`
-  font-family: Questrial_400Regular;
+  font-family: Rajdhani_500Medium;
   font-size: 16px;
   margin: 0 10px;
   line-height: 20px;
+  color: ${(props) => props.theme.colors.text.secondary};
 `;
 
 const Option = styled.TouchableOpacity`
@@ -44,21 +47,24 @@ const Option = styled.TouchableOpacity`
 `;
 
 const GradientBackground = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
+  colors: ['#8A5A16', '#4D3308'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`
   padding: 16px;
   margin: 6px;
-  background-color: #009999;
-  border-radius: 12px;
+  border-width: 1px;
+  border-color: ${(props) => props.theme.colors.brand.secondary};
+  border-radius: 4px;
   align-items: center;
 `;
 
 const OptionText = styled.Text`
-  color: #fff;
+  color: #fff6e5;
   text-transform: uppercase;
-  font-family: Questrial_400Regular;
+  font-family: Orbitron_800ExtraBold;
+  font-size: 13px;
+  letter-spacing: 2px;
 `;
 
 export const BadgeAnimation = ({ svg, title, body, handleSubmit }) => {

@@ -16,7 +16,8 @@ const body = (theme) => `
 
 const speech = (theme) => `
     font-size: ${theme.fontSizes.body};
-    font-family: ${theme.fonts.heading};
+    font-family: ${theme.fonts.body};
+    font-weight: ${theme.fontWeights.medium};
 `;
 
 const hint = (theme) => `
@@ -36,12 +37,14 @@ const label = (theme) => `
     font-family: ${theme.fonts.heading};
     font-size: ${theme.fontSizes.body};
     font-weight: ${theme.fontWeights.medium};
+    letter-spacing: 1.5px;
 `;
 
 const title = (theme) => `
     font-family: ${theme.fonts.heading};
     font-size: ${theme.fontSizes.title};
     font-weight: ${theme.fontWeights.medium};
+    letter-spacing: 0.5px;
 `;
 
 const variants = {
