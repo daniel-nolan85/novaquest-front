@@ -23,7 +23,7 @@ import { AudioContext } from '../../../services/audio/audio.context';
 
 const SafeAreaView = styled(SafeArea)`
   flex: 1;
-  background-color: #fff;
+  background-color: #141C2B;
 `;
 
 const PAGE_SIZE = 15;
@@ -181,17 +181,17 @@ export const ProfileScreen = ({ navigation }) => {
     <TabBar
       {...props}
       indicatorStyle={{
-        backgroundColor: '#009999',
+        backgroundColor: '#4DEBFF',
       }}
       renderIcon={({ route, focused }) =>
         focused ? route.icon : route.inactiveIcon
       }
       style={{
-        backgroundColor: '#fff',
+        backgroundColor: '#141C2B',
         height: 64,
       }}
       renderLabel={({ focused, route }) => (
-        <Text style={[{ color: focused ? '#009999' : 'gray' }]}>
+        <Text style={[{ color: focused ? '#4DEBFF' : '#8CA3B8' }]}>
           {route.title}
         </Text>
       )}

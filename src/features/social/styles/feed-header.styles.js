@@ -12,7 +12,7 @@ export const SearchContainer = styled.View`
 `;
 
 export const SignalsIcon = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
+  colors: ['#4DEBFF', '#FFB020'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`

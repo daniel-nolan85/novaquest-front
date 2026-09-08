@@ -9,7 +9,7 @@ export const ProfileCardWrapper = styled.View`
   width: ${width};
   margin: 0 22px;
   padding: 18px 6px;
-  background-color: #fff;
+  background-color: #141C2B;
 `;
 
 export const ProfileImageWrapper = styled.View`
@@ -32,7 +32,7 @@ export const ProfileImage = styled.Image`
   width: 100px;
   border-radius: 80px;
   border-width: 4px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const ProfileInfoWrapper = styled.View`
@@ -55,7 +55,7 @@ export const ProfileImageContainer = styled.View`
 
 export const Banner = styled.View`
   position: absolute;
-  background-color: #009999;
+  background-color: #4DEBFF;
   transform: rotate(45deg);
   top: 15px;
   left: 40px;

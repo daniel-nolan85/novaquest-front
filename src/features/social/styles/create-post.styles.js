@@ -4,7 +4,7 @@ export const CreateSection = styled.View`
   flex-direction: row;
   padding: 18px 0;
   border-top-width: 1px;
-  border-top-color: #fdf6ed;
+  border-top-color: #1B2536;
 `;
 
 export const UserImage = styled.Image`
@@ -18,7 +18,7 @@ export const CreateBox = styled.TouchableOpacity`
   height: 52px;
   border-radius: 26px;
   border-width: 1px;
-  border-color: #ccc;
+  border-color: #3A4B5C;
   margin-left: 12px;
   padding-left: 12px;
   justify-content: center;

@@ -76,7 +76,7 @@ export const PostsRoute = ({
         onEndReachedThreshold={0.1}
         ListFooterComponent={
           loading &&
-          !allPostsLoaded && <ActivityIndicator size='small' color='#009999' />
+          !allPostsLoaded && <ActivityIndicator size='small' color='#4DEBFF' />
         }
       />
     </PostsRouteWrapper>

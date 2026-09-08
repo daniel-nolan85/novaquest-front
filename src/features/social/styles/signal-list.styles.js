@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 import { Text } from '../../../components/typography/text.component';
 
 export const SignalWrapper = styled.View`
-  background-color: #fff;
+  background-color: #141C2B;
   flex-direction: column;
   width: 100%;
   border-radius: 12px;
   elevation: 5;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 4px;
@@ -47,5 +47,5 @@ export const Name = styled(Text)`
 export const Timestamp = styled(Text)`
   margin-left: 70px;
   font-size: 14px;
-  color: #009999;
+  color: #4DEBFF;
 `;

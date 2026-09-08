@@ -16,11 +16,11 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 100%;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -44,7 +44,7 @@ export const ProfileCardWrapper = styled.View`
   width: ${width};
   margin: 0 22px;
   padding: 18px 6px;
-  background-color: #ffffff;
+  background-color: #141C2B;
   elevation: 2;
   border-radius: 35px;
   flex-grow: 1;
@@ -59,7 +59,7 @@ export const CameraIcon = styled.TouchableOpacity`
   width: 100px;
   border-radius: 80px;
   border-width: 4px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const ProfileImage = styled.Image`
@@ -67,7 +67,7 @@ export const ProfileImage = styled.Image`
   width: 100px;
   border-radius: 80px;
   border-width: 4px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const ProfileInfoWrapper = styled.View`
@@ -76,7 +76,7 @@ export const ProfileInfoWrapper = styled.View`
 `;
 
 export const Input = styled(TextInput)`
-  background-color: #fff;
+  background-color: #141C2B;
   align-self: center;
   margin: 0 ${(props) => props.theme.space[2]};
   width: 90%;

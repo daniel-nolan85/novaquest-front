@@ -368,7 +368,7 @@ export const Post = ({
       )}
       ListFooterComponent={
         loading &&
-        !allPostsLoaded && <ActivityIndicator size='large' color='#009999' />
+        !allPostsLoaded && <ActivityIndicator size='large' color='#4DEBFF' />
       }
     />
   );

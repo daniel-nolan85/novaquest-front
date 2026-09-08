@@ -470,7 +470,7 @@ export const UserPostsScreen = ({ navigation, route }) => {
               </PostWrapper>
             ))}
           {loading && !allPostsLoaded && (
-            <ActivityIndicator size='large' color='#009999' />
+            <ActivityIndicator size='large' color='#4DEBFF' />
           )}
         </ScrollView>
       </View>

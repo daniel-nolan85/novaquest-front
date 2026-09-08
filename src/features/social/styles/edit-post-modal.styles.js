@@ -13,11 +13,11 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 90%;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -57,7 +57,7 @@ const baseGradientStyle = {
 };
 
 export const GradientBackground = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
+  colors: ['#4DEBFF', '#FFB020'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`
@@ -71,12 +71,12 @@ export const OptionText = styled(Text)`
 `;
 
 export const PostWrapper = styled.View`
-  background-color: #fff;
+  background-color: #141C2B;
   flex-direction: column;
   width: 100%;
   border-radius: 12px;
   elevation: 5;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 4px;
@@ -114,7 +114,7 @@ export const Name = styled(Text)`
 
 export const Timestamp = styled(Text)`
   font-size: 14px;
-  color: #009999;
+  color: #4DEBFF;
 `;
 
 export const PostContentWrapper = styled.View`
@@ -124,7 +124,7 @@ export const PostContentWrapper = styled.View`
 export const CreatePostBox = styled.View`
   border-radius: 26px;
   border-width: 1px;
-  border-color: #ccc;
+  border-color: #3A4B5C;
   padding: 12px;
   justify-content: center;
   flex-grow: 1;
@@ -146,7 +146,7 @@ export const PostVideo = styled(Video)`
 
 export const ImageNumber = styled(Text)`
   text-align: center;
-  color: #009999;
+  color: #4DEBFF;
 `;
 
 export const TrashIcon = styled.TouchableOpacity`

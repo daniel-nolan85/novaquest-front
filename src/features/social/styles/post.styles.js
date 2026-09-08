@@ -3,12 +3,12 @@ import { Video } from 'expo-av';
 import { Text } from '../../../components/typography/text.component';
 
 export const PostWrapper = styled.View`
-  background-color: #fff;
+  background-color: #141C2B;
   flex-direction: column;
   width: 100%;
   border-radius: 12px;
   elevation: 5;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 4px;
@@ -46,7 +46,7 @@ export const Name = styled(Text)`
 
 export const Timestamp = styled(Text)`
   font-size: 14px;
-  color: #009999;
+  color: #4DEBFF;
 `;
 
 export const PostContentWrapper = styled.View`
@@ -75,7 +75,7 @@ export const PostVideo = styled(Video)`
 
 export const ImageNumber = styled(Text)`
   text-align: center;
-  color: #009999;
+  color: #4DEBFF;
 `;
 
 export const PostReactionWrapper = styled.View`
@@ -115,7 +115,7 @@ export const CommentSection = styled.View`
   margin: 0 8px;
   padding: 18px 0;
   border-top-width: 1px;
-  border-top-color: #fdf6ed;
+  border-top-color: #1B2536;
 `;
 
 export const UserImage = styled.Image`
@@ -129,13 +129,13 @@ export const CommentBox = styled.TouchableOpacity`
   height: 52px;
   border-radius: 26px;
   border-width: 1px;
-  border-color: #ccc;
+  border-color: #3A4B5C;
   margin-left: 12px;
   padding-left: 12px;
   justify-content: center;
 `;
 
 export const Placeholder = styled(Text)`
-  color: #ccc;
+  color: #3A4B5C;
   font-size: 14px;
 `;

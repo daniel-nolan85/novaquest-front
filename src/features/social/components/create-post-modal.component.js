@@ -162,7 +162,7 @@ export const CreatePostModal = ({
 
                   <PostIcons>
                     {isLoadingMedia ? (
-                      <ActivityIndicator size='large' color='#009999' />
+                      <ActivityIndicator size='large' color='#4DEBFF' />
                     ) : (
                       <CameraIcon onPress={handleImagePicker}>
                         <Camera width={32} height={32} />

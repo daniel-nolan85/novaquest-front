@@ -11,12 +11,12 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 100%;
   padding: 35px;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -45,12 +45,12 @@ export const Comment = styled.TouchableOpacity`
 `;
 
 export const GradientBackground = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
+  colors: ['#4DEBFF', '#FFB020'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`
   padding: ${(props) => props.theme.space[3]};
-  background-color: #009999;
+  background-color: #4DEBFF;
   border-radius: 12px;
   align-items: center;
 `;

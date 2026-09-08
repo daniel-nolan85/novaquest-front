@@ -9,7 +9,7 @@ export const ProfileCardWrapper = styled.View`
   width: ${width};
   margin: 0 22px;
   padding: 18px 6px;
-  background-color: #fff;
+  background-color: #141C2B;
 `;
 
 export const ProfileImageWrapper = styled.View`
@@ -21,7 +21,7 @@ export const ProfileImage = styled.Image`
   width: 300px;
   border-radius: 80px;
   border-width: 4px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const ProfileInfoWrapper = styled.View`

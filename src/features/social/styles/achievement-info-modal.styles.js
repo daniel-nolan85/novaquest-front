@@ -10,12 +10,12 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 100%;
   padding: 35px;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;

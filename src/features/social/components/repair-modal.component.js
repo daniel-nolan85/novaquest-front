@@ -138,7 +138,7 @@ export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
                     <Camera />
                   </CameraIcon>
                 ) : imageIsLoading ? (
-                  <ActivityIndicator size='large' color='#009999' />
+                  <ActivityIndicator size='large' color='#4DEBFF' />
                 ) : (
                   <TouchableOpacity onPress={updatePhoto}>
                     <ProfileImage
@@ -173,7 +173,7 @@ export const RepairModal = ({ visible, setVisible, setFirstProfileImage }) => {
                 </BioWrapper>
               </ProfileInfoWrapper>
               {isLoading ? (
-                <ActivityIndicator size='large' color='#009999' />
+                <ActivityIndicator size='large' color='#4DEBFF' />
               ) : (
                 <SaveIcon onPress={save}>
                   <Save width={48} height={48} />

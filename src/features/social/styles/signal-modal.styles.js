@@ -13,11 +13,11 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 90%;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -38,12 +38,12 @@ export const CloseIcon = styled.TouchableOpacity`
 `;
 
 export const PostWrapper = styled.View`
-  background-color: #fff;
+  background-color: #141C2B;
   flex-direction: column;
   width: 100%;
   border-radius: 12px;
   elevation: 5;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 4px;

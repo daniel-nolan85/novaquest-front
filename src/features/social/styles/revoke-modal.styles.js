@@ -11,12 +11,12 @@ export const ModalWrapper = styled.View`
 
 export const ModalView = styled.View`
   margin: 20px;
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 100%;
   padding: 35px;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -40,7 +40,7 @@ export const AllianceImage = styled.Image`
   width: 100px;
   border-radius: 80px;
   border-width: 4px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const Name = styled(Text)`
@@ -66,7 +66,7 @@ const baseGradientStyle = {
 };
 
 export const GradientBackground = styled(LinearGradient).attrs({
-  colors: ['#009999', '#00cccc'],
+  colors: ['#4DEBFF', '#FFB020'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`
@@ -74,7 +74,7 @@ export const GradientBackground = styled(LinearGradient).attrs({
 `;
 
 export const CancelGradientBackground = styled(LinearGradient).attrs({
-  colors: ['#C0392B', '#E74C3C'],
+  colors: ['#D94444', '#FF5C5C'],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 0 },
 })`

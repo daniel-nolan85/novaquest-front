@@ -9,12 +9,12 @@ export const ModalWrapper = styled.View`
 `;
 
 export const ModalView = styled.View`
-  background-color: white;
+  background-color: #141C2B;
   border-radius: 20px;
   width: 100%;
   padding: 35px 10px;
   align-items: center;
-  shadow-color: #000;
+  shadow-color: #4DEBFF;
   shadow-offset: {
     width: 0;
     height: 2px;
@@ -49,7 +49,7 @@ export const CommentImage = styled.Image`
   margin-right: ${(props) => props.theme.space[3]};
   border-radius: 80px;
   border-width: 2px;
-  border-color: #fff;
+  border-color: #4DEBFF;
 `;
 
 export const Comment = styled(Text)`

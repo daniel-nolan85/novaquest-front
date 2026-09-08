@@ -76,7 +76,7 @@ export const StarsRoute = ({
         onEndReachedThreshold={0.1}
         ListFooterComponent={
           loading &&
-          !allStarsLoaded && <ActivityIndicator size='small' color='#009999' />
+          !allStarsLoaded && <ActivityIndicator size='small' color='#4DEBFF' />
         }
       />
     </StarsRouteWrapper>
